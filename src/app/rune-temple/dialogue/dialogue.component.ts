@@ -1,7 +1,6 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DialogueSnippet, Choice } from '../_objects/DialogueSnippet';
-import { RuneTempleService } from '../_services/rune-temple.service';
-import { Interaction, InteractionResponse } from '../_objects/Interaction';
+import { InteractionResponse } from '../_objects/Interaction';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { TriggerService } from '../_services/trigger.service';
@@ -16,6 +15,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
 
   allDialogue: DialogueSnippet[];
   dialogueSubscription: Subscription;
+  advanceSubscription: Subscription;
   current: DialogueSnippet;
   choice: Choice;
   index = 0;
@@ -31,18 +31,22 @@ export class DialogueComponent implements OnInit, OnDestroy {
       this.current = this.allDialogue[0];
       this.index = 0;
     });
+    this.advanceSubscription = this.dialogueserv.advance.subscribe(() => this.next());
     setTimeout(() => { this.skip = false }, 10)
   }
 
   ngOnDestroy() {
     this.dialogueSubscription.unsubscribe();
+    this.advanceSubscription.unsubscribe();
   }
 
   next() {
-    if (this.current.choice) {
-      this.choice = this.current.choice;
-    } else {
-      this.advance();
+    if (!this.skip) {
+      if (this.current.choice) {
+        this.choice = this.current.choice;
+      } else {
+        this.advance();
+      }  
     }
   }
 
@@ -63,12 +67,6 @@ export class DialogueComponent implements OnInit, OnDestroy {
       this.triggerserv.triggerInteraction(interaction);
     } else {
       this.advance();
-    }
-  }
-
-  @HostListener('window:click') onClick() {
-    if (!this.skip) {
-      this.next();
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { RuneTempleService } from '../_services/rune-temple.service';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
@@ -26,7 +26,11 @@ export class UIComponent implements OnInit, OnDestroy {
     this.dialogueSubscription.unsubscribe();
   }
 
-  test() {
+  getHint() { }
 
+  @HostListener('click', ['$event']) onClick() {
+    event.stopPropagation();
+    this.dialogueserv.advance.next();
   }
+
 }
