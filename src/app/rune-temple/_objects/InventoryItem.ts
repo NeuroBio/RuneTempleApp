@@ -80,6 +80,7 @@ export class GameItems {
     oilBottle = new InventoryItem('Bottle of Oil', 'oilBottle', 'This is the kind for lubrcating, not for eating.');
     nails = new InventoryItem('Nails', 'nails', 'My hammering stone\'s true calling');
     chalk = new InventoryItem('Siphoid Chalk', 'chalk', 'I can feel the flecks of Siphoid Metal in the chalk resonating.');
+    silverKey = new InventoryItem('Silver Key', 'silverKey', 'This will fit somewhere...')
     redKey = new InventoryItem('Deep Red Key', 'redKey', 'This has to go to something.');
     rag = new InventoryItem('Old Rag', 'rag', 'Might be helpful if I mess up.');
     glove = new InventoryItem('Glove', 'glove', 'Hopefully I won\'t need it\'s mate.');

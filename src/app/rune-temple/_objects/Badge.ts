@@ -27,4 +27,5 @@ export class GameBadges {
     random = new Badge('I’M SO RANDOM HAHA', 'Throw the pain pills into the Rancid Water Barrel, Draw a moustache on the Fish', 'random');
     deadFish = new Badge('1000 Ways to Die', 'Have fish die every way possible.','deadFish');
     hammer = new Badge('HAMMER TIME', 'Use the hammering rock on: the Exit, the Spigot, the Relief, the Lockbox, the Rusted Panel, the Puzzle box','hammer');
+    nice = new Badge('This is why we can\'t have nice things.','Overkill the troth with acid', 'nice');
 }

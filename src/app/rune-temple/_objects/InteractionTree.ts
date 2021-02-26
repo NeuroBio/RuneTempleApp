@@ -1,6 +1,7 @@
 import { DialogueTrove } from './DialogueSnippet';
 import { Activator } from './ActiveArea';
 import { Interaction } from './Interaction';
+import { EventFlag } from './EventFlag';
 
 export class InteractionTree {
     private dialog = new DialogueTrove;
@@ -20,6 +21,10 @@ export class InteractionTree {
                 new Interaction(this.dialog.zhangBuried.zhang2)
             ),
             pills: new Interaction(this.dialog.envCombos.pillsZhang)
+        },
+
+        zhangeFreed: {
+            default: new Interaction(this.dialog.zhangFreed.zhang3)
         },
 
         rubble: { default: new Interaction(this.dialog.activeAreas.rubble) },
@@ -46,7 +51,8 @@ export class InteractionTree {
         },
 
         ritualDoor: {
-            default: new Interaction(this.dialog.activeAreas.ritualDoor)
+            default: new Interaction(this.dialog.activeAreas.ritualDoor),
+            knife: new Interaction(this.dialog.envCombos.knifeDoor)
         },
 
         // Item Combos
@@ -82,7 +88,7 @@ export class InteractionTree {
             torch: new Interaction(this.dialog.envCombos.unlitTochDark),
             wetTorch: new Interaction(this.dialog.envCombos.unlitTochDark),
             litTorch: new Interaction(this.dialog.envCombos.litTorchDark,
-                [], [], [],
+                ['litTorch'], [], [],
                 [
                     new Activator('foyer', 'dark', false),
                     new Activator('foyer', 'ritualDoor', true)
@@ -115,7 +121,7 @@ export class InteractionTree {
 
         bookEnv: {
             default: new Interaction(this.dialog.activeAreas.book,
-            [], ['book'], [], [new Activator('classroom', 'bookEnv', false)])
+            [], ['book'], [new EventFlag('bookGot', true)], [new Activator('classroom', 'bookEnv', false)])
         },
 
         depression: {
@@ -160,6 +166,12 @@ export class InteractionTree {
                 ['acidDish'], ['glassCap'])
         },
 
+        glassCap: {
+            vodkaFlask: new Interaction(this.dialog.combos.flaskGlassCap),
+            vodkaFlask2: new Interaction(this.dialog.combos.flaskGlassCap),
+            swampFlask: new Interaction(this.dialog.combos.flaskGlassCap),
+        },
+
         magnet: {
             twine: new Interaction(this.dialog.combos.twineMagnet1, ['twine', 'magnet'], ['magnetString'])
         },
@@ -176,6 +188,87 @@ export class InteractionTree {
 
         exit: {
             default: new Interaction(this.dialog.activeAreas.exit)
+        },
+
+        craftDoor: {
+            default: new Interaction(this.dialog.activeAreas.craftDoor),
+            knife: new Interaction(this.dialog.envCombos.knifeDoor)
+        },
+
+        mossBank: {
+            default: new Interaction(this.dialog.activeAreas.mossBank),
+            knife: new Interaction(this.dialog.envCombos.knifeMossBank,
+                [], ['moss'], [], [
+                    new Activator('basement', 'mossBank', false),
+                    new Activator('basement', 'metalEngrave', true)
+                ]),
+        },
+
+        metalEngrave: {
+            default: new Interaction(this.dialog.activeAreas.metalEngrave)
+        },
+
+        peatOven: {
+            default: new Interaction(this.dialog.activeAreas.peatOven),
+            vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaFlask2Oven),
+            charcoal: new Interaction(this.dialog.envCombos.charcoalOven,
+                ['charcoal'], [], [new EventFlag('ovenCharcoal', true)] ),
+            lighter: new Interaction(this.dialog.envCombos.lighterOven)
+        },
+
+        peatOvenLit: {
+            default: new Interaction(this.dialog.activeAreas.peatOvenLit),
+            charcoal: new Interaction(this.dialog.envCombos.charcoalLitOven,
+                ['charcoal'], [], [new EventFlag('charcoalBurned', true)]),
+            map: new Interaction(this.dialog.envCombos.mapLitOven),
+            clothStrips: new Interaction(this.dialog.envCombos.clothStripsLitOven),
+        },
+
+        peat: {
+            default: new Interaction(this.dialog.activeAreas.peat),
+            lighter: new Interaction(this.dialog.envCombos.lighterPeat)
+        },
+
+        vent1: {
+            default: new Interaction(this.dialog.activeAreas.vent1A),
+            knife: new Interaction(this.dialog.envCombos.knifeVent1A, [], [],
+                [ new EventFlag('vent1Open', true) ], [], [], [], undefined,
+                new Interaction(this.dialog.envCombos.screwVent1)),
+            magnet: new Interaction(this.dialog.envCombos.magnetVent1A, [], [],
+                [ new EventFlag('vent1Open', true) ], [], [], [], undefined,
+                new Interaction(this.dialog.envCombos.screwVent1)),
+            magnetString: new Interaction(this.dialog.envCombos.magnetVent1A, [], [],
+                [ new EventFlag('vent1Open', true) ], [], [], [], undefined,
+                new Interaction(this.dialog.envCombos.screwVent1)),
+        },
+
+        tongs: {
+            default: new Interaction(this.dialog.activeAreas.tongs)
+        },
+
+        meltPot: {
+            default: new Interaction(this.dialog.activeAreas.meltPot)
+        },
+
+        troth: {
+            default: new Interaction(this.dialog.activeAreas.troth),
+            acidDish: new Interaction(this.dialog.envCombos.acidDishTroth1,
+                [], [], [], [], [], [], undefined, new Interaction(
+                    this.dialog.envCombos.acidDishTroth2,
+                    [], [], [], [], [], [], undefined, new Interaction(
+                        this.dialog.envCombos.acidDishTroth3,
+                        ['acidDish'], ['glassCap'], [new EventFlag('acidTroth', true)],
+                        [], [], [], undefined, new Interaction(
+                            this.dialog.envCombos.acidDishTroth4,
+                            ['acidDish'], ['glassCap'], [], [], [], ['nice'])
+                    )
+                )
+            ),
+            vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaFlask2Troth),
+        },
+
+        spigot: {
+            default: new Interaction(this.dialog.activeAreas.spigot)
         }
 
     };

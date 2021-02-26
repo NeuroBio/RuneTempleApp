@@ -19,8 +19,6 @@ export class SceneService {
   modifyAreaActivation(area: Activator[]) {
     const scenes = this.gameScenes.value;
     area.forEach(area => {
-      console.log(area.key)
-      console.log(scenes[area.scene].activeAreas)
       const index = scenes[area.scene].activeAreas.findIndex(act => act.assetKey === area.key)
       scenes[area.scene].activeAreas[index].render = area.reveal;
     });

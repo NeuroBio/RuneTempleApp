@@ -15,7 +15,6 @@ export class EpilogueSceneComponent implements OnInit {
 
   ngOnInit(): void {
     this.rtserv.setEpilogue(4);
-    console.log(this.rtserv.epilogue)
     this.epilogue = this.rtserv.epilogue;
   }
 

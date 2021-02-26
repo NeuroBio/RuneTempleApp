@@ -4,8 +4,9 @@ import { EventFlags, OneTimeEvents } from '../_objects/Events';
 import { BadgeService } from './badge.service';
 import { GameSettings } from '../_objects/GameSettings';
 import { InteractionService } from './interaction.service';
-import { zhangHelp } from '../_objects/DialogueSnippet';
+import { zhangHelp, DialogueTrove } from '../_objects/DialogueSnippet';
 import { InteractionResponse, Interaction } from '../_objects/Interaction';
+import { Activator } from '../_objects/ActiveArea';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class EventService {
   private events = new EventFlags;
   private oneTimeEvents = new OneTimeEvents;
   private gameSettings = new GameSettings;
+  private dialog = new DialogueTrove;
   private zhangDialog = new zhangHelp;
 
   constructor(private badgeserv: BadgeService,
@@ -23,7 +25,7 @@ export class EventService {
   updateEvents(events: EventFlag[]) {
     events.forEach(event => {
       this.events[event.key] = event.value;
-      this.checkBadgesandGameSettings(event.key);
+      this.checkTriggeredEvents(event.key);
     });
   }
 
@@ -31,10 +33,16 @@ export class EventService {
     return this.oneTimeEvents[eventKey];
   }
 
-  private checkBadgesandGameSettings(key: string) {
+  private checkTriggeredEvents(key: string) {
     switch (key) {
-      case ('compassBroken' || 'enteredFoyer') :
-        if (this.events.compassBroken && !this.events.enteredFoyer) {
+      case 'compassBroken' : // DO NOT BREAK
+        this.updateInteraction(
+          new Interaction([], [], [], [], [], [], [], undefined,
+            new Interaction(this.dialog.activeAreas.charcoal2,
+              [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)])),
+            'charcoalEnv', 'default');
+      case 'enteredFoyer' :
+        if (this.events.compassBroken && !this.events.foyerMap) {
           this.events.quickBreak = true;
         }
         break;
@@ -59,9 +67,31 @@ export class EventService {
           && this.events.hammerRustedPanel
           && this.events.hammerSpigot));
         break;
-      case 'book' :
-        this.addDialogueOptions('zhangFreed', 'default', ['about the book'],
-        [new InteractionResponse(new Interaction(this.zhangDialog.book))]);
+      case 'bookGot' :
+        this.updateInteraction(new Interaction(this.dialog.activeAreas.engrave2),
+          'engrave', 'default');
+        // this.addDialogueOptions('zhangFreed', 'default', ['about the book'],
+        // [new InteractionResponse(new Interaction(this.zhangDialog.book))], true);
+        // break;
+      case ('vent1Open' || 'keyFell') :
+        if (this.events.vent1Open && this.events.keyFell) {
+          this.updateInteraction(new Interaction(this.dialog.activeAreas.vent1C,
+            [], ['silverKey'], [], [], [], [], undefined, new Interaction(this.dialog.activeAreas.vent1B) 
+            ), 'vent1', 'default')
+        } else if (this.events.vent1Open) {
+          this.updateInteraction(new Interaction(this.dialog.activeAreas.vent1B), 'vent1', 'default')
+        }
+        break;
+      case 'acidTroth' :
+          this.updateInteraction(new Interaction(this.dialog.activeAreas.brokenTroth), 'troth', 'default')
+          break;
+      case 'ovenLit' :
+
+        break;
+      case 'ovenCharcoal' :
+        this.updateInteraction(new Interaction(this.dialog.envCombos.lighterCharcoalOven,
+          [], [], [new EventFlag('charcoalBurned', true)]), 'peatOven', 'lighter')
+        break;
       default:
         break;
     }
@@ -74,13 +104,23 @@ export class EventService {
     }
   }
 
-  addDialogueOptions(
+  private updateInteraction(int: Interaction, key: string, subkey: string) {
+    this.interactionserv.updateInteraction(key, subkey, int)
+  }
+
+  private addDialogueOptions(
     key: string, subkey: string, options: string[],
     outcomes: InteractionResponse[], insert: boolean = false
   ) {
+    console.log(outcomes)
+    console.log(options)
+    console.log(key, subkey);
     const int = this.interactionserv.getInteraction(key, subkey).interaction;
+    console.log(int)
     const option = int.dialogue[int.dialogue.length - 1].choice.options;
     const outcome = int.dialogue[int.dialogue.length - 1].choice.outcomes;
+    console.log(option)
+    console.log(outcome)
     if (insert) {
       option.splice(option.length-2, 0, ...options);
       outcome.splice(option.length-2, 0, ...outcomes)
@@ -90,7 +130,12 @@ export class EventService {
     }
     int.dialogue[int.dialogue.length - 1].choice.options = option;
     int.dialogue[int.dialogue.length - 1].choice.outcomes = outcome;
+    console.log(int)
     this.interactionserv.updateInteraction(key, subkey, int)
+  }
+
+  addMapEvent(key: string) {
+    this.events[`${key}Map`] = true;
   }
 
   endGameChecks() {

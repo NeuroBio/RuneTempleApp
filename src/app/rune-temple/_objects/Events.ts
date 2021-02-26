@@ -1,24 +1,32 @@
-import { Interaction } from './Interaction';
-import { InteractionResponse } from './Interaction';
 import { DialogueTrove } from './DialogueSnippet';
 
 export class EventFlags {
     compassBroken = false;
-    enteredFoyer = false;
     quickBreak = false;
     barrelPills = false;
+    bookGot = false;
 
-    
-    mustacheFish = false;
-
+    // Troth Hell
     trothFullness = 0;
-
+    acidTroth = false;
+    
     zhangSawFish = false;
+    mustacheFish = false;
+    ovenLit = false;
+    ovenFish = false;
+    ovenCharcoal = false;
+    fishSacrifice = false;
 
-    peatOvenFish = false;
+    // Firestarter
+    charcoalBurned = false;
+    mapBurned = false;
+
+    // vent magic
+    vent1Open = false;
+    keyFell = false;
+
     reliefDestroyed = false;
     muralDestroyed = false;
-
     wetKeyName = false;
 
     murderAttempt = false;
@@ -46,16 +54,4 @@ export class EventFlags {
 export class OneTimeEvents {
     private dialog = new DialogueTrove;
 
-    compassBroken = new InteractionResponse(
-        new Interaction([], [], [], [], [], [], [], undefined,
-            new Interaction(this.dialog.activeAreas.charcoal2)),
-        'charcoalEnv',
-        'default');
-
-    book = new InteractionResponse(
-        new Interaction([], [], [], [], [], [], [], undefined,
-            new Interaction(this.dialog.activeAreas.engrave2)),
-        'engrave',
-        'default'
-    );
 }

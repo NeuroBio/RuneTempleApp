@@ -1,5 +1,6 @@
 import { Interaction, InteractionResponse } from './Interaction';
 import { EventFlag } from './EventFlag';
+import { Activator } from './ActiveArea';
 
 export class Choice {
     question: string;
@@ -17,16 +18,14 @@ export class Choice {
 export class DialogueSnippet {
     speaker: string;
     text: string;
-    key: string;
     choice: Choice;
 
     constructor(
-        speaker: string, text: string, key: string = '',
+        speaker: string, text: string,
         choice: Choice = undefined
     ) {
         this.speaker = speaker;
         this.text = text;
-        this.key = key;
         this.choice = choice;
     }
 }
@@ -37,20 +36,20 @@ export class DialogueTrove {
 
     cinamatics = {
         intro: [
-            new DialogueSnippet('Zhang', 'Can you check the compass again?', 'checkMap'),
+            new DialogueSnippet('Zhang', 'Can you check the compass again?'),
             new DialogueSnippet('Erin', 'I promise you, we\'re on course.'),
             new DialogueSnippet('Zhang', 'And I was willing to believe that an hour ago.  But now…'),
             new DialogueSnippet('Erin', 'Look, here\'s the map and the compass.'),
             new DialogueSnippet('Zhang', 'Fine.  I guess we are on course.'),
             new DialogueSnippet('Erin', 'Thank you!'),
-            new DialogueSnippet('Zhang', 'But I don\'t like this.  We don\'t normally patrol here.  It\'s-  Whoa-!', 'pitCeiling'),
+            new DialogueSnippet('Zhang', 'But I don\'t like this.  We don\'t normally patrol here.  It\'s-  Whoa-!'),
             new DialogueSnippet('Erin', 'Ah, my head...')
         ],
         ending1: [
             new DialogueSnippet('Erin', 'Zhang!  I made a ladder.'),
             new DialogueSnippet('Zhang', 'About time!'),
-            new DialogueSnippet('', 'Despite his words, Zhang sounds relieved.', 'useLadder'),
-            new DialogueSnippet('', 'Erin helps Zhang onto the ladder and half carries him out of the pit.', 'checkMap2'),
+            new DialogueSnippet('', 'Despite his words, Zhang sounds relieved.'),
+            new DialogueSnippet('', 'Erin helps Zhang onto the ladder and half carries him out of the pit.'),
             new DialogueSnippet('Zhang', 'We need to go back south.  Where\'s the compass?'),
             new DialogueSnippet('Erin', 'Uhm...'),
             new DialogueSnippet('Zhang', '...'),
@@ -60,7 +59,7 @@ export class DialogueTrove {
         ],
         ending2: [
             new DialogueSnippet('Erin', 'Zhang!  I made a ladder.'),
-            new DialogueSnippet('', 'Zhang gives a mildly approving “hm,” but says nothing more.', 'addLadder'),
+            new DialogueSnippet('', 'Zhang gives a mildly approving “hm,” but says nothing more.'),
             new DialogueSnippet('', 'Erin helps Zhang onto the ladder and half carried him out of the pit.'),
             new DialogueSnippet('Zhang', 'I\'m going to need a walking stick or something to help me get home.'),
             new DialogueSnippet('Erin', 'No problem.'),
@@ -77,7 +76,7 @@ export class DialogueTrove {
             new DialogueSnippet('', 'A rush of motion through the skylight.  Another source of teal glow.  Erin looks up dumbfounded.  There is a tapping on the mosaic.  Erin puts her hand to it just as the stone cracks.'),
             new DialogueSnippet('', 'All around Erin, Ghosts slink in.  The tapping becomes a thundering roar of pounding.  Water starts gushing through the cracks.'),
             new DialogueSnippet('', 'A massive teal Ghost finally breaks through the rock.  As it slithers in, Erin realizes this serpentine creature is no Ghost.'),
-            new DialogueSnippet('', 'The Core.', 'addCore')
+            new DialogueSnippet('', 'The Core.')
         ],
         ending3part2: [
             new DialogueSnippet('', 'The being seems frustrated by Erin\'s lack of comprehension.  Or perhaps it is disdainful of her slack-jawed expression.'),
@@ -119,9 +118,9 @@ export class DialogueTrove {
             new DialogueSnippet('', 'The Core hesitates.'),
             new DialogueSnippet('The Core', 'If I leave, I will not see you again, and you will not send others.'),
             new DialogueSnippet('Erin', 'Deal.'),
-            new DialogueSnippet('', 'The Core hisses at Erin then lunges at the door.  Erin barely has the time to dodge to the side.', 'foyer'),
+            new DialogueSnippet('', 'The Core hisses at Erin then lunges at the door.  Erin barely has the time to dodge to the side.'),
             new DialogueSnippet('', 'The door crumbles, and the Core shoots out through it.  Water gushes into the temple.  Erin steps back and almost trips over Zhang.'),
-            new DialogueSnippet('Zhang', 'What on Areace?  Was that The Core!?', 'blackout'),
+            new DialogueSnippet('Zhang', 'What on Areace?  Was that The Core!?'),
             new DialogueSnippet('', 'The lights suddenly go out.'),
             new DialogueSnippet('Erin', 'We need to get out!'),
             new DialogueSnippet('', 'Erin drags Zhang to his feet, and the two hobble towards the door.  Erin pushes them through the torrenting water and desperately swims to the surface.'),
@@ -181,7 +180,7 @@ export class DialogueTrove {
         ],
         zhang5: [
             new DialogueSnippet('Erin', 'Willing to talk now?'),
-            new DialogueSnippet('Zhang', 'About what?', undefined,
+            new DialogueSnippet('Zhang', 'About what?',
             new Choice('Ask Zhang about...', [
                 'where we are',
                 'what to do',
@@ -250,7 +249,7 @@ export class DialogueTrove {
         thirdShelf2: [new DialogueSnippet('', 'On this shelf are boxes of fabric scraps, string, needles, buttons, and the like.')],
         bottomShelf: [new DialogueSnippet('', 'Rice, rice, and more rice.')],
         floor: [
-            new DialogueSnippet('', 'The space under the shelves is taken by a set of chipped ceramic vases.  Based on the sticky floor, they may have held something oil-y at some point.  The middle one vase is still fully intact, however.  Erin tries to pry the lid off.'),
+            new DialogueSnippet('', 'The space under the shelves is taken by a set of chipped ceramic vases.  Based on the sticky floor, they may have held something oil-y at some point.  The middle vase is still fully intact.  Erin tries to pry the lid off.'),
             new DialogueSnippet('', 'Erin pulls on the lid.  She tries to slide it.  She tries to pry it up with her fingers.  Nothing works.'),
             new DialogueSnippet('Erin', 'It\'s stuck...')
         ],
@@ -258,20 +257,51 @@ export class DialogueTrove {
         handBroom: [new DialogueSnippet('', 'A hand broom.  It is likely useless.  Especially since there is no dustpan.')],
         rancidBarrel: [new DialogueSnippet('', 'Maybe this water was safe to drink a few centuries or millennia ago.  As for now?  Perhaps a taste test would not be a wise idea...')],
 
-        engrave1: [new DialogueSnippet('Erin', 'What\'s this?  It\'s pretty whatever it is.')],
-        engrave2: [new DialogueSnippet('Erin', 'What\'s this?  It\'s pretty whatever it is.  : It reminds me of something...')],
+        engrave1: [new DialogueSnippet('Erin', 'What is this?  It\'s pretty whatever it is.')],
+        engrave2: [new DialogueSnippet('Erin', 'What is this?  It\'s pretty whatever it is.  It reminds me of something...')],
         herbsEnv: [new DialogueSnippet('Erin', 'I wonder if any of those are medicinal...')],
         exit: [
-            new DialogueSnippet('', 'Erin presses her ear to the door and ears the sound of water'),
-            new DialogueSnippet('Erin', 'Maybe this is the way out?')
+            new DialogueSnippet('', 'Erin presses her ear to the door and hears the sound of water'),
+            new DialogueSnippet('Erin', 'Maybe this is a way out?')
         ],
+
+        craftDoor: [new DialogueSnippet('Erin', 'It\'s locked.')],
+        mossBank: [new DialogueSnippet('', 'Erin makes a face at the offending bryophytes, but a strange lump in the plant lawn catches her attention.  She reaches her hand out to scrap away some of the moss, but it is thick and well attached to whatever lies beneath it.')],
+        metalEngrave: [new DialogueSnippet('', 'The metal engraving Erin revealed earlier is still there.')],
+
+        peatOven: [new DialogueSnippet('', 'The old, stone peat oven is unlit.  The ash from the last time it was used has settled deeply into the stone, staining it black.')],
+        peatOvenLit: [new DialogueSnippet('', 'The fire in the oven crackles softly, bringing warmth into the damp air.')],
+        peat: [new DialogueSnippet('', 'Layers and layers of compacted peat.',
+            new Choice('Add fuel to the oven and light it?', ['yes', 'no'], [
+                new InteractionResponse(new Interaction([
+                    new DialogueSnippet('','Erin tosses a few armfuls of peat into the oven\'s mouth.  She ignites the fuel.  The peat quickly smokes up into a roaring fire.  Erin steps back to admire her handiwork.'),
+                    new DialogueSnippet('', 'The entire room lights up, and Erin hears a distant whooshing sound.  She looks out into the hallway.  It is now lit.'),
+                    new DialogueSnippet('Erin', 'Perfect.'),
+                    new DialogueSnippet('', 'Erin tosses the torch into the fire.  She won\'t need it anymore.')
+                ], [], [], [new EventFlag('ovenLit', true)], [
+                    new Activator('oven', 'peatOven', false),
+                    new Activator('oven', 'peatOvenLit', true)
+                ], [], [], undefined,
+                new Interaction([new DialogueSnippet('Erin', 'The fire is strong enough.  I don\'t need to add more peat.')])),
+                'peat', 'default'), undefined
+            ])
+        )],
+        vent1A: [new DialogueSnippet('', 'Erin tries to pull the metal grate off, but it is screwed firmly in place.')],
+        vent1B: [new DialogueSnippet('', 'Erin peers into the vent, but there is nothing there.')],
+        vent1C: [new DialogueSnippet('', 'Erin peers into the vent.  The metal object from the classroom vent, now identifiable as a key, fell within reach.  Erin snags the key.')],
+        tongs: [new DialogueSnippet('Erin', 'If I needed these, I would probably be using the oven.   They can stay here.')],
+        meltPot: [new DialogueSnippet('Erin', 'If I needed this, I would probably be using the oven.   It can stay here.')],
+        troth: [new DialogueSnippet('', 'The troth is bone dry.')],
+        trothSemiFilled: [new DialogueSnippet('', 'There\'s an insufficent amount of water in the troth.')],
+        brokenTroth: [new DialogueSnippet('', 'There\'s a sizeable hole in the troth now...')],
+        spigot: [new DialogueSnippet('', 'Erin tries to turn the spigot, but it is rusted closed.  Erin huffs at it.')],
+
     };
 
     combos = {
         compassKnife: [new DialogueSnippet(
             'Erin',
             'I\'m not sure I want to do that.  I might not be able to put the compass back together.',
-            '',
             new Choice(
                 'Are you sure you want to open the compass?',
                 ['Yes', 'No'], [
@@ -297,9 +327,8 @@ export class DialogueTrove {
             new DialogueSnippet('', 'Erin ties the twine awkwardly around the compass magnet.'),
             new DialogueSnippet('Erin', 'Uh... I guess this makes sense?')
         ],
-        twineMagnet2: [
-            new DialogueSnippet('', 'Erin ties the twine awkwardly around the compass magnet.  Erin frowns at her handiwork.  It\'s not exactly an ideal tool, but it will do given the situation.')
-        ],
+        twineMagnet2: [new DialogueSnippet('', 'Erin ties the twine awkwardly around the compass magnet.  Erin frowns at her handiwork.  It\'s not exactly an ideal tool, but it will do given the situation.')],
+        flaskGlassCap: [new DialogueSnippet('Erin', 'The fluid in the flask is already contained.')]
     };
 
     envCombos = {
@@ -322,12 +351,45 @@ export class DialogueTrove {
         pillsBarrel: [new DialogueSnippet('', 'It completely is not clear why, but Erin feels the compulsion to throw the pain killers into the water.  She opens the tin and watches the two remaining pills fall into the barrel and sink.  In their wake rises a trail of fizzy bubbles.  Erin throws the tin in after them.  Hopefully, Zhang will not ask for the pills.')],
         glassCapBarrel: [new DialogueSnippet('', 'Erin carefully dips the glass into the barrel to get a sample of the water.')],
         acidDishBarrel: [new DialogueSnippet('', 'Erin decided that carrying around the filthy water was probably a terrible idea and poured it back into the barrel.')],
-        bookEngrave: [new DialogueSnippet('', 'Erin opens to a random page and looks from the book to the metal engraving.  She turns another page and then again.  Each engraving matches one of the creatures featured on one of the book\'s pages.')]
+        bookEngrave: [new DialogueSnippet('', 'Erin opens to a random page and looks from the book to the metal engraving.  She turns another page and then again.  Each engraving matches one of the creatures featured on one of the book\'s pages.')],
+        
+        knifeMossBank: [new DialogueSnippet('', 'Erin pulls out her pocketknife and wiggles the tip deeper into the plants until she feels stone.  She cuts through the plants, slicing at their short roots to peel off a strip.  Underneath is a metal engraving.')],
+        knifeDoor: [new DialogueSnippet('Erin', 'My knife is not a lockpick...')],
+        
+        knifeVent1A: [new DialogueSnippet('', 'Erin pulls out her pocketknife and uses it like a screwdriver to remove the screws.  She peers into the vent, but there is nothing there.')],
+        magnetVent1A: [new DialogueSnippet('', 'Erin pulls out her magnetic disk and uses it like a screwdriver to remove the screws.  She peers into the vent, but there is nothing there.')],
+        screwVent1: [new DialogueSnippet('Erin', 'There\'s nothing else to unscrew.')],
+        vodkaFlask2Oven: [new DialogueSnippet('Erin', 'That would be a terrible waste of vodka.')],
+        lighterOven: [new DialogueSnippet('Erin', 'There\'s nothing in the furnace to light.')],
+        charcoalOven: [
+            new DialogueSnippet('', 'Erin tosses the charcoal into the furnace.'),
+            new DialogueSnippet('Erin', 'Now what...')
+        ],
+        charcoalLitOven: [new DialogueSnippet('', 'Erin shrugs her shoulders and throws the charcaol into the fire.  The fire puffs up for a moment as it consumes the new fuel.')],
+        lighterCharcoalOven: [new DialogueSnippet('', 'Erin lights the charcoal on fire.  She watches the small fire burn.  Seh glances at the stacks of peat and then back at the ash of the charcoal stick.  She can make a bigger fire than this.')],
+        acidDishTroth1: [new DialogueSnippet('Erin', 'The troth is pretty old.  The fluid in the glass might hurt it...')],
+        acidDishTroth2: [new DialogueSnippet('Erin', 'I really don\'t think this is going to end well...')],
+        acidDishTroth3: [new DialogueSnippet('', 'Erin sighs.  Her compulsion to ruin nice things is simply too great.')],
+        acidDishTroth4: [new DialogueSnippet('', 'Erin pours more of the acrid water onto the troth.  It fizzles.')],
+        vodkaFlask2Troth: [new DialogueSnippet('Erin', 'If I was that desparate to get rid of the Vodka, I would just drink it.')],
+        lighterPeat: [new DialogueSnippet('Erin', 'I do not intend to die in a massive fire.')], 
+        mapLitOven: [new DialogueSnippet('', 'Erin stares down at the map.',
+            new Choice(
+                'Does Erin really want to burn the map?', ['Yes', 'No'], [
+                new InteractionResponse(new Interaction(
+                    [new DialogueSnippet('', 'Erin tosses Zhang\'s map into the fire.  He... probably won\'t notice.  Hopefully.')],
+                    ['map'], [], [new EventFlag('mapBurned', true)]
+                ), undefined, undefined),
+                undefined
+            ]
+        ))],
+        clothStripsLitOven: [new DialogueSnippet('Erin', 'Zhang\'s going to be annoyed enough that I cut up his shirt.  I don\'t want to image how he\'ll scream if I burn it.')]
     }
 
     itemDefaults = {
         lighter: [new DialogueSnippet('Erin', 'I enjoy burning things as much as the next person, but that seems like a bad idea.')]
     }
+
     placeholder = new DialogueSnippet('', '')
 
 }

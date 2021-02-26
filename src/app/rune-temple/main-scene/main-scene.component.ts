@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { SceneService } from '../_services/scene.service';
 import { TriggerService } from '../_services/trigger.service';
+import { EventService } from '../_services/event.service';
 
 @Component({
   selector: 'app-main-scene',
@@ -25,7 +26,8 @@ export class MainSceneComponent implements OnInit, OnDestroy {
   constructor(
     private triggerserv: TriggerService,
     private sceneserv: SceneService,
-    private dialogueserv: DialogueService
+    private dialogueserv: DialogueService,
+    private eventserv: EventService
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +59,7 @@ export class MainSceneComponent implements OnInit, OnDestroy {
     if (!this.scene.visited) {
       this.dialogueserv.startDialogue(this.scene.dialogue);
       this.sceneserv.updateScene(this.scene.assetKey, true, null);
+      this.eventserv.addMapEvent(this.scene.assetKey);
     }
   }
 }
