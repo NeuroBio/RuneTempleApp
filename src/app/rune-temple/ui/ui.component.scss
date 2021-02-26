@@ -1,0 +1,25 @@
+@import '../_objects/vars.scss';
+
+#decorative-frame {
+    position: relative;
+    border: 1px solid black;
+    width: $game-width;
+    height: 80vh;
+    max-width: $max-game-width;
+    max-height: $max-game-height;
+    display: flex;
+    flex-direction: column;
+}
+
+#menu {
+    position: absolute;
+    right: 0;
+}
+
+app-main-scene {
+    flex-grow: 1;
+}
+
+button {
+    margin: $standard-margin;
+}

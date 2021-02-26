@@ -1,0 +1,68 @@
+@import '../_objects/vars.scss';
+
+#badge-container {
+    margin: 0px $large-margin;
+    border: 1px solid black;
+    background-color: $almost-black;
+    color: whitesmoke;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    width: $badges-width;
+}
+
+h3 {
+    margin: $standard-margin;
+    font-size: 20pt;
+}
+
+#badge-list {
+    margin: 0px;
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column;
+    padding: 0;
+    list-style-type: none;
+    overflow-y: auto;
+    // manually set based on the height of the text :<
+    max-height: calc(#{$max-game-height} - 40px);
+}
+
+li {
+    width: calc(100% - #{standard-margin} * 2);
+    height: $item-dimentions;
+    border: 1px solid black;
+    flex-shrink: 0;
+    margin: $standard-margin;
+    display: flex;
+    align-items: center;
+    font-size: 14pt;
+    background-color: $medium-grey;
+}
+
+img {
+    height: $item-dimentions;
+    width: $item-dimentions;
+}
+
+// Scroll bar
+::-webkit-scrollbar {
+    width: 10px;
+    overflow-y: scroll;
+    background: $medium-grey;
+    box-shadow: inset 0 0 4px #707070;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $grey-ish;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: lightgray;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: whitesmoke;
+    border-radius: 10px;
+}

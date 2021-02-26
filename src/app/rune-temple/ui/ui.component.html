@@ -1,0 +1,27 @@
+<div id="decorative-frame">
+
+    <!-- Menu -->
+    <div id="menu">
+        <button mat-mini-fab aria-label="hint"
+        (click)=test()>
+            <mat-icon>help</mat-icon>
+        </button>
+        <button mat-mini-fab aria-label="game-options">
+            <mat-icon>settings</mat-icon>
+        </button>
+        <button mat-mini-fab aria-label="save"
+        [disabled]="!isLoggedIn">
+            <mat-icon>save</mat-icon>
+        </button>    
+    </div>
+
+    <!-- Main Game stuff -->
+    <app-main-scene></app-main-scene>
+
+
+    <!-- Inventory -->
+    <app-inventory *ngIf="!isDialogueActive"></app-inventory>
+    <app-dialogue *ngIf="isDialogueActive"></app-dialogue>
+
+</div>
+

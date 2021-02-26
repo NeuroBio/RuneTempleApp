@@ -1,0 +1,32 @@
+<div id="actions-row">
+    <!-- Breaker -->
+    <button mat-fab aria-label="use-Breaker"
+    class="action-button"
+    (click)="castBreaker()">
+        <mat-icon>api</mat-icon>
+    </button>
+    
+
+    <!-- Inventory -->
+    <div id="inventory">
+        <button mat-mini-fab aria-label="shift-inventory-left"
+        class="action-button"
+        (click)="shiftInventory(false)">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <ul id="item-list" #itemBand>
+            <li *ngFor="let item of inventoryItems; let index = index"
+            (contextmenu)="giveDescription(item.description)"
+            [class.selected]="item.selected">
+                <button (click)="select(index)">
+                    <img [src]="item.assetkey" [alt]="item.name">
+                </button>
+            </li>
+        </ul>
+        <button mat-mini-fab aria-label="shift-inventory-right"
+        class="action-button"
+        (click)="shiftInventory(true)">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
+</div>

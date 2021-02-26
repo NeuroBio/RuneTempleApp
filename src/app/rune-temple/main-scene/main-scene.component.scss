@@ -1,0 +1,14 @@
+@import '../_objects/vars.scss';
+
+#scene {
+    height: 100%;
+    background-color: $grey-ish-er;
+}
+
+.easymode {
+    cursor: pointer;
+}
+
+.hardmode {
+    cursor: none;
+}

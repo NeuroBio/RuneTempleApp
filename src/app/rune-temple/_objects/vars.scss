@@ -1,0 +1,16 @@
+$game-width: 80vw;
+$max-game-width: 1200px;
+$max-game-height: 800px;
+
+$item-dimentions: 75px;
+
+$standard-margin: 5px;
+$large-margin: 15px;
+
+$badges-width: calc(#{$item-dimentions} * 3.5);
+
+// Colors
+$almost-black:  #504f54;
+$grey-ish: #bbbbbb;
+$grey-ish-er: #a0a0a0;
+$medium-grey: rgb(110, 110, 110);

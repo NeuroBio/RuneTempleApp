@@ -1,0 +1,61 @@
+@import '../_objects/vars.scss';
+
+#actions-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: $medium-grey;
+
+}
+
+#inventory {
+    flex-shrink: 1;
+    background-color: $almost-black;
+    display: flex;
+    align-items: center;
+    // This is annoying set based on the width of the BreakerButton
+    width: calc(100% - 67px);
+
+    #item-list {
+        margin: $large-margin 0px;
+        flex-shrink: 1;
+        flex-grow: 1;
+        display: flex;
+        padding: 0;
+        list-style-type: none;
+        border: 1px solid black;
+        overflow: hidden;
+        background-color: $medium-grey;
+    }
+
+    li {
+        cursor: pointer;
+        border: 1px solid black;
+        flex-shrink: 0;
+        margin: $standard-margin;
+        padding: 0px;
+        background-color: $grey-ish-er;
+
+        button {
+            width: $item-dimentions;
+            height: $item-dimentions;
+            background-color: transparent;
+            padding: 0px;
+
+            img {
+                height: $item-dimentions;
+                width: $item-dimentions;
+                cursor: pointer;
+            }
+        }
+    }
+
+    li.selected {
+        background-color: whitesmoke;
+    }
+}
+
+.action-button {
+    margin: $standard-margin;
+}

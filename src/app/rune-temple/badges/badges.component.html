@@ -1,0 +1,21 @@
+<div id="badge-container">
+    <h3>Badges</h3>
+    <ul id="badge-list">
+        <li *ngFor="let badge of earnedBadges">
+            <div *ngIf="badge.earned; else unearned">
+                <img [src]="badge.assetKey">
+                <div class="badge-info">
+                    <b>{{ badge.name }}:</b>
+                    {{ badge.text }}
+                </div>
+            </div>
+    
+            <ng-template #unearned>
+                <img src="noBadge" [alt]="badge.earned">
+                <div class="badge-info">
+                    <b>{{ badge.name }}:</b> ?
+                </div>
+            </ng-template>
+        </li>
+    </ul>
+</div>

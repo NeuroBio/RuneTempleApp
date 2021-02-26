@@ -1,0 +1,28 @@
+<div id="scene">
+    <img src="scene.name" [alt]="scene.name">
+
+    <!-- Active Areas -->
+    <p>Actions</p>
+    <div *ngFor="let area of scene.activeAreas">
+        <!-- <img src="area.assetKey">
+        <img src="area.assetKey"
+        [ngclass]="easyMode ? 'easy-mode' : 'hardmode'"
+        (click)="interact()"> -->
+        <button *ngIf="area.render"
+        [disabled]="isDialogueActive"
+        (click)="interact(area.assetKey)">
+            {{ area.name }}
+        </button>
+    </div>
+
+    <!-- Travel Arrows -->
+    <p>Locations</p>
+    <div *ngFor="let location of scene.locations">
+        <button
+        *ngIf="location.render"
+        [disabled]="isDialogueActive"
+        (click)="travel(location.assetKey)">
+            {{ location.name }}
+        </button>
+    </div>
+</div>

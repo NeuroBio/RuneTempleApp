@@ -1,0 +1,51 @@
+@import '../_objects/vars.scss';
+
+#dialogue-frame {
+    background-color: $almost-black;
+    // The + four is for borders ...
+    height: calc(#{$item-dimentions} + #{$standard-margin} * 2 + #{$large-margin} * 2 + 5px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#portrait-frame {
+    background-color: $almost-black;
+    // The + four is for borders ...
+    display: flex;
+}
+
+.dialogue {
+    color: whitesmoke;
+    line-height: 1.5;
+    font-size: 16pt;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: $large-margin;
+    height: calc(100% - #{$large-margin} * 2);
+}
+
+#speaker {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+}
+
+#choice-frame {
+    width: $game-width;
+    max-width: $max-game-width;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+button {
+    margin: $standard-margin;
+}
+
+.seen {
+    background-color: $medium-grey;
+}
+
+.unseen {
+    background-color: lightgrey;
+}
