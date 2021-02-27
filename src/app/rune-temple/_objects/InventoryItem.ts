@@ -30,7 +30,7 @@ export class GameItems {
     glassCap = new InventoryItem('Glass Cap', 'glassCap', 'A dish-shaped hunk of glass.');
     fish = new InventoryItem('Tiny, Desperate Fish', 'fish', 'I should not keep it out of water for long.  It\'s gasping.');
     waterGlass = new InventoryItem('Tiny, Awkward Water Glass', 'waterGlass', 'It\'s kinda like a petrie dish now.');
-    deadFish = new InventoryItem('Tiny, Dead Fish', 'dead-fish', 'I don\'t understad why this happened.');
+    deadFish = new InventoryItem('Tiny, Dead Fish', 'dead-fish', 'I don\'t understand why this happened.');
     fishTank = new InventoryItem('Tiny, Official Fishtank', 'fishtank', 'The fish seems to be doing okay-ish.');
     cleanFishtank = new InventoryItem('Tiny, Purified, Official Fishtank', 'cleanFishtank', 'The fish seems to be doing well for now.');
     acidDish = new InventoryItem('Makeshift Petri Dish of Suspicious Water', 'acidDish', 'This stuff is bad news...');
@@ -44,7 +44,8 @@ export class GameItems {
     vodkaFlask2 = new InventoryItem('Quarter-full Vodka Flask', 'vodkaFlask2', 'I hope I have enough...');
     emptyFlask = new InventoryItem('Empty Vodka Flask', 'emptyFlask', 'It\'s ready to hold something else');
     swampFlask = new InventoryItem('Swamp Water Flask', 'swampFlask', 'It kinda smells.  Hopefully, Zhang will wash this thuroughly before he uses it again.')
-    
+    scrapMetal = new InventoryItem('Scrap Metal', 'scrapMetal', 'Don\'t tell Zhang.  Don\'t show Zhang.')
+
 // Shirt States
     shirt = new InventoryItem('Spare Shirt', 'shirt', 'Sorry, Zhang.  We\'re going to have to sacrifice this one.');
     clothStrips = new InventoryItem('Cloth Strips', 'clothStrips' , 'We\'ll see if Zhang notices what I just did...');

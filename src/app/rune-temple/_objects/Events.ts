@@ -15,6 +15,11 @@ export class EventFlags {
     wrapilize = false;
     zhangMedicated = false;
 
+    // Zhang sees...
+    zhangSawBook = false;
+    zhangSawCompass = false;
+    zhangSawBadFlask = false;
+
     // misc badge things
     quickBreak = false;
     barrelPills = false;
@@ -34,6 +39,7 @@ export class EventFlags {
     mapBurned = false;
     mossBurned = false;
     bookBurned = false;
+    puzzleBoxBurned = true;
 
     // vent magic
     vent1Open = false;
@@ -50,6 +56,8 @@ export class EventFlags {
     hammerLockBox = false;
     hammerRustedPanel = false;
     hammerPuzzleBox = false;
+    glassShatter = false;
+    flaskShatter = false;
 
     // Map Segments
     pitFloorMap = false;

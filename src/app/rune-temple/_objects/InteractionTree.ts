@@ -36,7 +36,10 @@ export class InteractionTree {
             default: new Interaction(this.dialog.zhangFreed.zhang6,
                 [], [], [], [], [], [], undefined,
                 new Interaction(this.dialog.zhangFreed.zhang4)),
-            emptyFlask: new Interaction(this.dialog.envCombos.emptyFlaskZhang),
+            emptyFlask: new Interaction(this.dialog.envCombos.emptyFlaskZhang,
+                [], [], [new EventFlag('zhangSawBadFlask', true)]),
+            swampFlask: new Interaction(this.dialog.envCombos.swampFlaskZhang,
+                [], [], [new EventFlag('zhangSawBadFlask', true)]),
             pills: new Interaction(this.dialog.envCombos.pillsZhang3,
                 ['pills'], [], [new EventFlag('zhangMedicated', true)]),
         },
@@ -84,7 +87,12 @@ export class InteractionTree {
              compass: new Interaction(this.dialog.combos.compassKnife),
              shirt: new Interaction(this.dialog.combos.shirtKnife, ['shirt'], ['clothStrips']),
              dark: new Interaction(this.dialog.envCombos.knifeDark),
-             floor: new Interaction(this.dialog.envCombos.knifeFloor)
+             floor: new Interaction(this.dialog.envCombos.knifeFloor,
+                [], [], [], [], [], [], undefined,
+                new Interaction(this.dialog.envCombos.knifeFloor2,
+                    [], [], [], [], [], [], undefined,
+                    new Interaction(this.dialog.envCombos.knifeFloor3,
+                        ['knife'])))
         },
 
         clothStrips: {
@@ -98,6 +106,7 @@ export class InteractionTree {
 
         lighter: {
             default: new Interaction(this.dialog.itemDefaults.lighter),
+            map: new Interaction(this.dialog.combos.mapLighter),
             dark: new Interaction(this.dialog.envCombos.lighterDark),
             root: new Interaction(this.dialog.combos.rootLighter),
             torch: new Interaction(this.dialog.combos.dryTorchLighter),
@@ -238,7 +247,8 @@ export class InteractionTree {
                 ['charcoal'], [], [new EventFlag('ovenCharcoal', true)] ),
             lighter: new Interaction(this.dialog.envCombos.lighterOven),
             herbs: new Interaction(this.dialog.envCombos.herbsOven),
-            moss: new Interaction(this.dialog.envCombos.mossOven)
+            moss: new Interaction(this.dialog.envCombos.mossOven),
+            book: new Interaction(this.dialog.envCombos.bookOven)
         },
 
         peatOvenLit: {
@@ -249,7 +259,9 @@ export class InteractionTree {
             clothStrips: new Interaction(this.dialog.envCombos.clothStripsLitOven),
             herbs: new Interaction(this.dialog.envCombos.herbsLitOven),
             moss: new Interaction(this.dialog.envCombos.mossLitOven,
-                ['moss'], [], [new EventFlag('mossBurned', true)])
+                ['moss'], [], [new EventFlag('mossBurned', true)]),
+            book: new Interaction(this.dialog.envCombos.bookLitOven),
+            puzzleBox: new Interaction(this.dialog.envCombos.puzzleBoxLitOven,)
         },
 
         peat: {
@@ -307,6 +319,16 @@ export class InteractionTree {
         rock: {
             default: new Interaction(this.dialog.itemDefaults.rock),
             puzzleBox: new Interaction(this.dialog.combos.rockPuzzle),
+            emptyFlask: new Interaction(this.dialog.combos.rockGlassCap),
+            glassCap: new Interaction(this.dialog.combos.rockEmptyFlask),
+            swampFlask: new Interaction(this.dialog.combos.fluidRock),
+            experiment: new Interaction(this.dialog.combos.fluidRock),
+            acidDish: new Interaction(this.dialog.combos.fluidRock),
+            coffin: new Interaction(this.dialog.combos.fluidRock),
+            waterGlass: new Interaction(this.dialog.combos.fluidRock),
+            fiskTank: new Interaction(this.dialog.combos.fishTankRock),
+            cleanFishTank: new Interaction(this.dialog.combos.fishTankRock),
+            compass: new Interaction(this.dialog.combos.compassRock)      
         },
 
         injury: {
@@ -320,6 +342,21 @@ export class InteractionTree {
             herbs: new Interaction(this.dialog.envCombos.legitItemsInjury),
             clothStrips: new Interaction(this.dialog.envCombos.legitItemsInjury),
             poles: new Interaction(this.dialog.envCombos.legitItemsInjury),
+            moss: new Interaction(this.dialog.envCombos.mossInjury)
+        },
+
+        haunt: {
+            default: new Interaction(this.dialog.activeAreas.haunt,
+                [], [], [], [
+                    new Activator('foyer', 'haunt', false),
+                    new Activator('foyer', 'ritualDoor', true)
+                ], [
+                    new Activator('foyer', 'classroom', true),
+                    new Activator('foyer', 'closet', true),
+                    new Activator('foyer', 'basement', true),
+                    new Activator('foyer', 'exit', true),
+                    new Activator('foyer', 'pitFloor', true)
+                ], [], 'pitFloor')
         }
 
     };

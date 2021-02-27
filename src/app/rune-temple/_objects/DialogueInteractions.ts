@@ -44,13 +44,48 @@ export class DialogueInteractions {
             ['book'], [], [new EventFlag('bookBurned', true)]
         )),
         undefined
-    ]
+    ];
 
     zhang = [
           new InteractionResponse(new Interaction(this.zhangHelp.where)),
           new InteractionResponse(new Interaction(this.zhangHelp.what)),
           new InteractionResponse(new Interaction(this.zhangHelp.mission)),
           undefined
+    ];
+
+    riskyGambit = [
+        new InteractionResponse(
+            new Interaction(this.DID.riskyGambit,
+            ['puzzleBox'], [], [new EventFlag('puzzleBoxBurned', true)])),
+        undefined
+    ];
+
+    shatter1 = [
+        new InteractionResponse(new Interaction(this.DID.shatter1,
+            ['glassCap'], [], [new EventFlag('gassShatter', true)])),
+        undefined
+    ];
+
+    shatter2 = [
+        new InteractionResponse(
+            new Interaction(this.DID.shatter2,
+            ['emptyFlask'], ['scrapMetal'], [new EventFlag('flaskShatter', true)])),
+        undefined
+    ];
+
+    shatter3 = [
+        new InteractionResponse(
+            new Interaction(this.DID.shatter3,
+            ['compass'], ['magnet'], [new EventFlag('glassShatter', true)])
+        )
+    ];
+
+    igniteMap = [
+        new InteractionResponse(
+            new Interaction(this.DID.igniteMap,
+            ['map'], [], [new EventFlag('mapBurned', true)]),
+            undefined
+        )
     ];
 }
 
@@ -62,21 +97,22 @@ class DIDialogue {
         new DialogueSnippet('', 'Erin tosses the torch into the fire.  She won\'t need it anymore.')
     ];
 
-    peatStacks2 = [
-        new DialogueSnippet('Erin', 'The fire is strong enough.  I don\'t need to add more peat.')
-    ];
+    peatStacks2 = [new DialogueSnippet('Erin', 'The fire is strong enough.  I don\'t need to add more peat.')];
 
-    compassKnife = [
-        new DialogueSnippet('Erin', 'Erin prizes open the compass, slitting it into two pieces.')
-    ];
+    compassKnife = [new DialogueSnippet('', 'Erin prizes open the compass, splitting it into two pieces.')];
 
-    mapOven = [
-        new DialogueSnippet('', 'Erin tosses Zhang\'s map into the fire.  He... probably won\'t notice.  Hopefully.')
-    ];
+    mapOven = [new DialogueSnippet('', 'Erin tosses Zhang\'s map into the fire.  He... probably won\'t notice.  Hopefully.')];
 
-    bookOven = [
-        new DialogueSnippet('', 'Erin tosses the book into the fire without further thought.')
-    ]
+    bookOven = [new DialogueSnippet('', 'Erin tosses the book into the fire without further thought.')];
+
+    riskyGambit = [new DialogueSnippet('', 'Erin tosses the box into the fire.  She watches intently as it is reduced to ash.  Whatever was inside did not survive the blaze.')];
+
+    shatter1 = [new DialogueSnippet('', 'Erin places the glass on the ground and smashes it into dust with the stone.')];
+
+    shatter2 = [new DialogueSnippet('', 'Erin gives the flask a good whack with the stone and it dents.  Disappointed with that, she places the flask on the ground and beats it into scrap metal.')];
+    shatter3 = [new DialogueSnippet('', 'Erin cracks the compass glass with her rock.  She shakes off the glass shards, leaving her with teh metal disk.')];
+
+    igniteMap = [new DialogueSnippet('', 'Erin flicks the lighter to life and sets the map ablaze.  It\'s not long before all that remains is a tiny scroched corner where her thumb was.  She drops that scrap.')];
 }
 
 export class ZhangHelp {
@@ -123,7 +159,7 @@ export class ZhangHelp {
         new DialogueSnippet('Erin', 'No reason.'),
         new DialogueSnippet('', 'Zhang suddenly looks concerned.')
     ];
-    relief= [
+    relief = [
         new DialogueSnippet('Erin', 'Hey Zhang, does this creature mean anything to you?'),
         new DialogueSnippet('', 'Erin shows Zhang 4 page of the book.'),
         new DialogueSnippet('Zhang', 'Not really.  Should it?'),

@@ -60,6 +60,7 @@ export class GameScenes {
         [
             new ActiveArea('Darkness', 'dark', 0, 0),
             new ActiveArea('Go Far Left', 'ritualDoor', 0, 0, false),
+            new ActiveArea('???', 'haunt', 0, 0, false)
         ], [
             new ActiveArea('Go Left', 'classroom', 0, 0, false),
             new ActiveArea('Go Far Left', 'ritual', 0, 0, false),

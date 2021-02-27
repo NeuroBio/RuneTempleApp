@@ -2,6 +2,13 @@ import { DialogueSnippet } from './DialogueSnippet';
 
 export class DialogueTrove {
 
+    breaker = {
+        envDefault: [new DialogueSnippet('', 'Erin feels the crackle of Breaker rising in her finger tips, but nothing happens.')],
+        itemDefault: [new DialogueSnippet('Erin', 'Mmm... I don\'t think that\'s posessed.')],
+        miniGameEvent: [new DialogueSnippet('', 'Erin readys a fog of Breaker whitenoise')],
+        core: [new DialogueSnippet('Erin', 'Not strong enough!  Run!')],
+    };
+
     cinamatics = {
         intro: [
             new DialogueSnippet('Zhang', 'Can you check the compass again?'),
@@ -193,7 +200,7 @@ export class DialogueTrove {
         ],
         column2: [new DialogueSnippet('Erin', 'This place has seen better days...')],
         charcoal1: [new DialogueSnippet('Erin', 'Perfect!  I can use this and my compass to map this place out.')],
-        charcoal2: [new DialogueSnippet('Erin', 'Perfect!  I can use this and my compass to map this place out... or I could have if I hadn\'t broken my compass anyway...')],
+        charcoal2: [new DialogueSnippet('Erin', 'Perfect!  I can use this and my compass to map this place out... or I could have if I hadn\'t burned Zhang\'s map anyway...')],
         book: [
             new DialogueSnippet('', 'Erin gasps. The beautiful, ancient book is in incredible condition.  She flips a few pages, but derives no further information, because she cannot read Runic.'),
             new DialogueSnippet('Erin', 'This might sell for a high price...')
@@ -250,6 +257,16 @@ export class DialogueTrove {
 
         rockEnv: [new DialogueSnippet('Erin', 'This rock looks like it\'s about the right size to be a makeshift hammer...')],
         injury: [new DialogueSnippet('Erin', 'That looks like it hurts.')],
+
+        haunt: [
+            new DialogueSnippet('', 'Erin doesn\'t have a chance to react before she is shoved back.'),
+            new DialogueSnippet('', 'Erin tumbles to the ground in front of Zhang.'),
+            new DialogueSnippet('Zhang', 'What is going—'),
+            new DialogueSnippet('', 'Zhang stops talking as the room is filled with a teal glow.  Without hesitation, Zhang casts Breaker to destroy the Ghost that attacked Erin.'),
+            new DialogueSnippet('Erin', 'Thanks...'),
+            new DialogueSnippet('Zhang', 'That was a stupid rookie mistake!  I shouldn\'t have to step in for you.  Keep your wits about you, so this doesn\'t happen again!'),
+            new DialogueSnippet('Erin', 'Sir, yessir.'),
+        ],
     };
 
     combos = {
@@ -270,6 +287,12 @@ export class DialogueTrove {
         flaskGlassCap: [new DialogueSnippet('Erin', 'The fluid in the flask is already contained.')],
         rockPuzzle: [new DialogueSnippet('', 'Erin holds the two items in her hands, unsure where to hit the puzzle box with the rock.  There are no visible seams or hinges.  Erin decides this must be the wrong course of action and puts the two items away.')],
 
+        rockGlassCap: [new DialogueSnippet('', 'Erin looks between the rock and the glass cap.  There is wanton destruction to be had here.', 'shatter1')],
+        rockEmptyFlask: [new DialogueSnippet('', 'Erin looks between the rock and the flask.  Yes, the flask is Zhang\'s but this would not be the first of his things she destoroyed today.', 'shatter2')],
+        mapLighter: [new DialogueSnippet('', 'Erin considers the lighter and the map.  Yes, the map is made of paper, and paper is very flammable, but it has also proved... somewhat useful as a navigation tool.', 'igniteMap')],
+        fluidRock: [new DialogueSnippet('Erin', 'Mmm... I don\'t think so.  If I break that with the rock, I\'ll get the fluid all over my hands.')],
+        fishTankRock: [new DialogueSnippet('Erin', 'NO.  Not while the fish is still in it.')],
+        compassRock: [new DialogueSnippet('', 'Erin considers the rock and the compass.  The rock could certainly smash through the glass, but that seems like a violent way to deal with the compass.', 'shatter3')]
     };
 
     envCombos = {
@@ -290,6 +313,8 @@ export class DialogueTrove {
         ],
 
         knifeFloor: [new DialogueSnippet('', 'Erin tries to prize open the middle vase, but the lid just won\'t budge.  The knife bends ever so slightly.  Fearing the knife will break, Erin stops.')],
+        knifeFloor2: [new DialogueSnippet('', 'Erin digs her knife into the crease between the vase and it\'s lid again.  Again, her knife begins to bend.')],
+        knifeFloor3: [new DialogueSnippet('', 'Erin\'s persistence in trying to open the vase with her knife rewards her with a broken knife.')],
         vodkaFlask2Barrel: [new DialogueSnippet('Erin', 'I’m pretty sure Zhang would kill me if I wasted his booze.')],
         pillsBarrel: [new DialogueSnippet('', 'It completely is not clear why, but Erin feels the compulsion to throw the pain killers into the water.  She opens the tin and watches the two remaining pills fall into the barrel and sink.  In their wake rises a trail of fizzy bubbles.  Erin throws the tin in after them.  Hopefully, Zhang will not ask for the pills.')],
         glassCapBarrel: [new DialogueSnippet('', 'Erin carefully dips the glass into the barrel to get a sample of the water.')],
@@ -309,7 +334,7 @@ export class DialogueTrove {
             new DialogueSnippet('Erin', 'Now what...')
         ],
         charcoalLitOven: [new DialogueSnippet('', 'Erin shrugs her shoulders and throws the charcaol into the fire.  The fire puffs up for a moment as it consumes the new fuel.')],
-        lighterCharcoalOven: [new DialogueSnippet('', 'Erin lights the charcoal on fire.  She watches the small fire burn.  Seh glances at the stacks of peat and then back at the ash of the charcoal stick.  She can make a bigger fire than this.')],
+        lighterCharcoalOven: [new DialogueSnippet('', 'Erin lights the charcoal on fire.  She watches the small fire burn.  She glances at the stacks of peat and then back at the ash of the charcoal stick.  She can make a bigger fire than this.')],
         acidDishTroth1: [new DialogueSnippet('Erin', 'The troth is pretty old.  The fluid in the glass might hurt it...')],
         acidDishTroth2: [new DialogueSnippet('Erin', 'I really don\'t think this is going to end well...')],
         acidDishTroth3: [new DialogueSnippet('', 'Erin sighs.  Her compulsion to ruin nice things is simply too great.')],
@@ -362,6 +387,76 @@ export class DialogueTrove {
             new DialogueSnippet('', 'Erin offers Zhang the empty flask.'),
             new DialogueSnippet('Zhang', 'Thanks, I could really—Haha, Erin.  Bravo.  Wonderful.  Add insult to injury.'),
             new DialogueSnippet('Erin', 'Pardon me for helping you.  Next time you can just die of an infection.'),
+        ],
+
+        swampFlaskZhang: [
+            new DialogueSnippet('', 'Erin offers Zhang the swamp water flask.'),
+            new DialogueSnippet('Zhang', 'Thanks Erin, I—'),
+            new DialogueSnippet('', 'Zhange makes a disgusted expression as he catches a whiff of the flask\'s contents.'),
+            new DialogueSnippet('Zhang', 'What did you put in here?'),
+            new DialogueSnippet('Erin', 'Swamp water.'),
+            new DialogueSnippet('', 'Zhang shoves the flask back into Erin\'s hands.')
+        ],
+
+        badFlaskZhang: [
+            new DialogueSnippet('', 'Zhang glares at Erin.')
+        ],
+
+        bookZhang1: [
+            new DialogueSnippet('', 'Erin offers Zhang the book.'),
+            new DialogueSnippet('Zhang', 'This has gorgeous craftsmanship.  I mean, the pages look like dyed leather.  I’ve never seen anything like this before...'),
+            new DialogueSnippet('', 'Zhang flips through several pages nonchalantly, but his expression changes when he turnes to one of the pages.  He closes the book and returns it to Erin.'),
+            new DialogueSnippet('Erin', 'What?'),
+            new DialogueSnippet('Zhang', 'I wish we weren\'t here right now.')
+        ],
+        bookZhang2: [
+            new DialogueSnippet('Zhang', 'I don\'t need to look again.')
+        ],
+        magnetZhang: [
+            new DialogueSnippet('', 'Erin offers Zhang the magnetic disk'),
+            new DialogueSnippet('Zhang', 'What\'s this?  '),
+            new DialogueSnippet('Erin', 'I may have broken the compass...'),
+            new DialogueSnippet('Zhang', 'You did what?  What were you thinking!?')
+        ],
+        glassZhang: [
+            new DialogueSnippet('', 'Erin offers Zhang the glass cap.'),
+            new DialogueSnippet('Zhang', 'What\'s this?  '),
+            new DialogueSnippet('Erin', 'I may have broken the compass...'),
+            new DialogueSnippet('Zhang', 'You did what?  What were you thinking!?')
+        ],
+        compassParts: [
+            new DialogueSnippet('', 'Erin offers Zhang the—'),
+            new DialogueSnippet('Zhang', 'I know you broke the compass.  Stop showing me the carnage.')
+        ],
+
+        compassPartsString: [
+            new DialogueSnippet('', 'Erin offers Zhang the—'),
+            new DialogueSnippet('Zhang', 'I know you broke the compass.  Stop showing me the carnage.'),
+            new DialogueSnippet('Erin', 'But it\'s on a string now.'),
+            new DialogueSnippet('Zhang', 'GO.  AWAY.  ERIN.')
+        ],
+
+        mossInjury: [
+            new DialogueSnippet('Erin', 'Zhang, I think I found some medicinal herbs.'),
+            new DialogueSnippet('Zhang',  'That\'s moss.  Moss is not an herb.'),
+            new DialogueSnippet('', 'Erin stares blankly at Zhang.'),
+            new DialogueSnippet('Zhang', 'It\'s not medicinal.'),
+            new DialogueSnippet('Erin', 'Why didn\'t you just say that?')
+        ],
+
+        puzzleBoxZhang: [
+            new DialogueSnippet('', 'Erin offers Zhang the puzzle box.  Zhang rotates it around and hands it back to Erin.'),
+            new DialogueSnippet('Erin', 'Any ideas how to open it?'),
+            new DialogueSnippet('Zhang', 'Maybe teh slots are important?  But why are you trying to open it anyway  What happened to getting us out of here?'),
+            new DialogueSnippet('Erin', 'Right...')
+        ],
+
+        puzzleBoxLitOven: [
+            new DialogueSnippet('', 'Erin looks down at the puzzle box.  It\'s a risky gambit, but maybe the corrext way to open teh box is with fire.', 'riskyGambit')
+        ],
+
+        zhangScrapMetal: [
+            new DialogueSnippet('', 'Erin thinks to herself: Don\'t tell Zhang.  Don\'t show Zhang.')
         ]
     }
 
@@ -372,4 +467,16 @@ export class DialogueTrove {
 
     placeholder = new DialogueSnippet('', '')
 
+}
+
+export class SceneDialogue {
+    defaults = {
+
+    };
+
+    sceneUpdates = {
+        foyerHaunt: [
+            new DialogueSnippet('Erin', 'What the...'),
+        ],
+    };
 }
