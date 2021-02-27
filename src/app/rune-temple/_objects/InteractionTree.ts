@@ -20,14 +20,34 @@ export class InteractionTree {
                 this.dialog.zhangBuried.zhang1, [], [], [], [], [], [], undefined,
                 new Interaction(this.dialog.zhangBuried.zhang2)
             ),
-            pills: new Interaction(this.dialog.envCombos.pillsZhang)
+            pills: new Interaction(this.dialog.envCombos.pillsZhang),
+            pole: new Interaction(this.dialog.envCombos.poleZhang),
+            vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaZhangBurried)
         },
 
-        zhangeFreed: {
-            default: new Interaction(this.dialog.zhangFreed.zhang3)
+        zhangFreed: {
+            default: new Interaction(this.dialog.zhangFreed.zhang3),
+            vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaZhangBurried),
+            emptyFlask: new Interaction(this.dialog.envCombos.vodkaZhangBurried),
+            pills: new Interaction(this.dialog.envCombos.pillsZhang2),
         },
 
-        rubble: { default: new Interaction(this.dialog.activeAreas.rubble) },
+        zhangBandaged: {
+            default: new Interaction(this.dialog.zhangFreed.zhang4),
+            emptyFlask: new Interaction(this.dialog.envCombos.emptyFlaskZhang)
+        },
+
+        rubble: { 
+            default: new Interaction(this.dialog.activeAreas.rubble),
+            pole: new Interaction(this.dialog.envCombos.poleRubble,
+                ['pole'], ['poles'], [new EventFlag('zhangFreed', true)], [
+                    new Activator('pitFloor', 'zhangBuried', false),
+                    new Activator('pitFloor', 'zhangFreed', true),
+                    new Activator('pitFloor', 'rockEnv', true),
+                ],
+                [new Activator('pitFloor', 'leg', true),
+            ]),
+        },
 
         food: { default: new Interaction(this.dialog.activeAreas.food) },
         zhangLighter: { default: new Interaction(this.dialog.activeAreas.zhangLighter) },
@@ -70,7 +90,6 @@ export class InteractionTree {
         vodkaFlask: {
             torch: new Interaction(this.dialog.combos.dryTorchVodka,
                 ['vodkaFlask', 'torch'], ['wetTorch', 'vodkaFlask2']),
-            zhangBuried: new Interaction(this.dialog.envCombos.vodkaZhangBurried)
         },
 
         lighter: {
@@ -213,7 +232,9 @@ export class InteractionTree {
             vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaFlask2Oven),
             charcoal: new Interaction(this.dialog.envCombos.charcoalOven,
                 ['charcoal'], [], [new EventFlag('ovenCharcoal', true)] ),
-            lighter: new Interaction(this.dialog.envCombos.lighterOven)
+            lighter: new Interaction(this.dialog.envCombos.lighterOven),
+            herbs: new Interaction(this.dialog.envCombos.herbsOven),
+            moss: new Interaction(this.dialog.envCombos.mossOven)
         },
 
         peatOvenLit: {
@@ -222,6 +243,9 @@ export class InteractionTree {
                 ['charcoal'], [], [new EventFlag('charcoalBurned', true)]),
             map: new Interaction(this.dialog.envCombos.mapLitOven),
             clothStrips: new Interaction(this.dialog.envCombos.clothStripsLitOven),
+            herbs: new Interaction(this.dialog.envCombos.herbsLitOven),
+            moss: new Interaction(this.dialog.envCombos.mossLitOven,
+                ['moss'], [], [new EventFlag('mossBurned', true)])
         },
 
         peat: {
@@ -269,7 +293,32 @@ export class InteractionTree {
 
         spigot: {
             default: new Interaction(this.dialog.activeAreas.spigot)
+        },
+
+        rockEnv: {
+            default: new Interaction(this.dialog.activeAreas.rockEnv,
+                [], ['rock'], [], [new Activator('pitFloor', 'rockEnv', false)])
+        },
+
+        rock: {
+            default: new Interaction(this.dialog.itemDefaults.rock),
+            puzzleBox: new Interaction(this.dialog.combos.rockPuzzle),
+        },
+
+        injury: {
+            default: new Interaction(this.dialog.activeAreas.injury),
+            lighter: new Interaction(this.dialog.envCombos.lighterInjury),
+            pills: new Interaction(this.dialog.envCombos.pillsInjury),
+            knife: new Interaction(this.dialog.envCombos.knifeInjury),
+            rock: new Interaction(this.dialog.envCombos.rockInjury),
+            vodkaFlask2 : new Interaction(this.dialog.envCombos.vodkaInjury,
+                ['vodkaFlask2'], ['emptyFlask'], [new EventFlag('sterilize', true)]),
+            herbs: new Interaction(this.dialog.envCombos.legitItemsInjury),
+            clothStrips: new Interaction(this.dialog.envCombos.legitItemsInjury),
+            poles: new Interaction(this.dialog.envCombos.legitItemsInjury),
         }
+
+
 
     };
 }

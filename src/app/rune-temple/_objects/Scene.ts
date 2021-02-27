@@ -27,11 +27,15 @@ export class GameScenes {
     pitFloor = new Scene('Pit Floor', 'pitFloor',
         [
             new ActiveArea('Zhang Buried', 'zhangBuried', 0, 0),
+            new ActiveArea('Zhang', 'zhangFreed', 0, 0, false),
+            new ActiveArea('Zhang', 'zhangBandaged', 0, 0, false),
             new ActiveArea('Rubble', 'rubble', 0, 0,),
-            new ActiveArea('Dry Root', 'rootEnv', 0, 0,)
+            new ActiveArea('Dry Root', 'rootEnv', 0, 0,),
+            new ActiveArea('Palm-sized Stone', 'rockEnv', 0, 0, false)
         ], [
             new ActiveArea('Look Up', 'pitCeiling', 0, 0,),
             new ActiveArea('Zhang\'s Bag', 'bag', 0, 0,),
+            new ActiveArea('Zhang\'s Leg', 'leg', 0, 0, false),
             new ActiveArea('Foyer', 'foyer', 0, 0,)
         ]);
 
@@ -117,7 +121,11 @@ export class GameScenes {
         ], [new ActiveArea('Go Back', 'basement', 0, 0)],
         [new DialogueSnippet('Erin', 'A furnace room... Good to know that I can heat this place up if it gets too cold.')]);
 
-    leg = new Scene('Zhang\'s Leg', 'leg', [], []);
+    leg = new Scene('Zhang\'s Leg', 'leg',
+        [new ActiveArea('Injury', 'injury', 0, 0)],
+        [new ActiveArea('Go Back', 'pitFloor', 0, 0)],
+        [new DialogueSnippet('Erin', 'That doesn\'t look good.')]);
+
     craft = new Scene('Crafting Room', 'craft', [], []);
     summon = new Scene('Summoning Room', 'summon', [], []);
     crate = new Scene('Small Crate', 'crate', [], []);

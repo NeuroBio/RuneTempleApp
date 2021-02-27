@@ -199,6 +199,7 @@ export class DialogueTrove {
         // pitFloor
         rootEnv: [new DialogueSnippet('Erin', 'This root must have fallen through with us.')],
         rubble: [new DialogueSnippet('Erin', 'I need to get these rocks off Zhang.')],
+        rubble2: [new DialogueSnippet('Erin', 'I feel bad for Zhang.  Also, I\'m  a little guilty that I\'m glad the rocks fell on Zhang instead of me.  But only a little guilty.')],
 
         // bag
         food: [
@@ -296,6 +297,8 @@ export class DialogueTrove {
         brokenTroth: [new DialogueSnippet('', 'There\'s a sizeable hole in the troth now...')],
         spigot: [new DialogueSnippet('', 'Erin tries to turn the spigot, but it is rusted closed.  Erin huffs at it.')],
 
+        rockEnv: [new DialogueSnippet('Erin', 'This rock looks like it\'s about the right size to be a makeshift hammer...')],
+        injury: [new DialogueSnippet('Erin', 'That looks like it hurts.')],
     };
 
     combos = {
@@ -328,11 +331,14 @@ export class DialogueTrove {
             new DialogueSnippet('Erin', 'Uh... I guess this makes sense?')
         ],
         twineMagnet2: [new DialogueSnippet('', 'Erin ties the twine awkwardly around the compass magnet.  Erin frowns at her handiwork.  It\'s not exactly an ideal tool, but it will do given the situation.')],
-        flaskGlassCap: [new DialogueSnippet('Erin', 'The fluid in the flask is already contained.')]
+        flaskGlassCap: [new DialogueSnippet('Erin', 'The fluid in the flask is already contained.')],
+        rockPuzzle: [new DialogueSnippet('', 'Erin holds the two items in her hands, unsure where to hit the puzzle box with the rock.  There are no visible seams or hinges.  Erin decides this must be the wrong course of action and puts the two items away.')],
+
     };
 
     envCombos = {
         pillsZhang: [new DialogueSnippet('Zhang', 'Not now.  Those things make me drowsy.  Dig me out first.')],
+        pillsZhang2: [new DialogueSnippet('Zhang', 'Not now.  I don\'t want to put anything in my mouth until my leg\'s cleaned up.')],
         vodkaZhangBurried: [
             new DialogueSnippet('', 'Zhang gives a grimace pretending to be a smile.'),
             new DialogueSnippet('Zhang', 'Maybe later.')
@@ -383,11 +389,63 @@ export class DialogueTrove {
                 undefined
             ]
         ))],
-        clothStripsLitOven: [new DialogueSnippet('Erin', 'Zhang\'s going to be annoyed enough that I cut up his shirt.  I don\'t want to image how he\'ll scream if I burn it.')]
+        clothStripsLitOven: [new DialogueSnippet('Erin', 'Zhang\'s going to be annoyed enough that I cut up his shirt.  I don\'t want to image how he\'ll scream if I burn it.')],
+        herbsOven: [new DialogueSnippet('Erin', 'The herbs are too fresh.  They won\'t make for good kindling.')],
+        mossOven: [new DialogueSnippet('Erin', 'The moss is springy and wet.  It won\'t make for good kindling.')],
+        herbsLitOven: [new DialogueSnippet('Erin', 'These are for Zhang.  I\'m not burning them.')],
+        mossLitOven: [
+            new DialogueSnippet('', 'Erin considers the similarities between the moss and the peat.  Sure the peat is dryer but...'),
+            new DialogueSnippet('', 'Erin tosses the moss into the flames.')
+        ],
+        bookOven: [new DialogueSnippet('Erin', 'The book\'s pages are made of leather, not paper.  It\'s not good kindling.')],
+        bookLitOven: [new DialogueSnippet('Erin', 'This thing looks like it\'s worth a lot of money.',
+            new Choice('Why would I burn it?', ['Why not?', 'It\'s a bad idea...'], [
+                new InteractionResponse(
+                    new Interaction([new DialogueSnippet('', 'Erin tosses the book into the fire without further thought.')],
+                    ['book'], [], [new EventFlag('bookBurned', true)])),
+                undefined
+            ]))],
+        poleRubble: [
+            new DialogueSnippet('', 'Erin sticks the pole under the largest rock, and users another rock as a fulcrum.  She pushes down hard and the big rock starts to lift.'),
+            new DialogueSnippet('Erin', 'MOVE!'),
+            new DialogueSnippet('', 'Zhang pulls his leg out from under the rock just as the metal pole snaps and the rock falls back into place.  Erin and Zhang stare at one another in silence.'),
+            new DialogueSnippet('Zhang', 'That could have turned out worse...'),
+        ],
+
+        lighterInjury: [
+            new DialogueSnippet('Erin', 'I don\'t think I need to cauterize this kind of injury.'),
+            new DialogueSnippet('Zhang', 'No, you don\'t.')
+        ],
+        pillsInjury: [new DialogueSnippet('Erin', 'Uhm... I don\'t think that\'s how pills work.')],
+        rockInjury: [new DialogueSnippet('Erin', 'I don\'t think now is the right time to test Zhang\'s reflexes...')],
+        knifeInjury: [new DialogueSnippet('', 'Erin reminds herself that now is not the best to to try to murder Zhang.')],
+        legitItemsInjury: [new DialogueSnippet('Erin', 'I\'ll need these soon.')],
+        vodkaInjury: [new DialogueSnippet('', 'Erin pours the vodka over the wound.  Zhang swears under his breath.')],
+        herbsInjury: [
+            new DialogueSnippet('Erin','Zhang, I think some of these herbs are medicinal.'),
+            new DialogueSnippet('','Zhang silently takes sprigs of the plant with tiny leaves, plucks off the leaves, and smashes them.  He applies the mush to his cuts.'),
+            new DialogueSnippet('Zhang','I would say good eye, but the broad leaf one is you\'re holding is poisonous.'),
+            new DialogueSnippet('','Erin drops the plants and rubs her hand on her slacks.'),
+            new DialogueSnippet('Erin','Do you think your leg is broken?'),
+            new DialogueSnippet('Zhang','No idea.  Better stabilize it just in case.'),
+        ],
+        polesInjury: [new DialogueSnippet('', 'Erin places the poles on either side of Zhang’s leg')],
+        clothInjury: [new DialogueSnippet('', 'Erin ties the stripes together to make a long make-shift bandage and wraps it carefully around the wound and the metal poles.')],
+        poleZhang: [
+            new DialogueSnippet('Zhang', 'Think you can life the rocks with that?'),
+            new DialogueSnippet('Erin', 'Maybe?'),
+            new DialogueSnippet('Zhang', 'It\'s worth a shot.')
+        ],
+        emptyFlaskZhang: [
+            new DialogueSnippet('', 'Erin offers Zhang the empty flask.'),
+            new DialogueSnippet('Zhang', 'Thanks, I could really—Haha, Erin.  Bravo.  Wonderful.  Add insult to injury.'),
+            new DialogueSnippet('Erin', 'Pardon me for helping you.  Next time you can just die of an infection.'),
+        ]
     }
 
     itemDefaults = {
-        lighter: [new DialogueSnippet('Erin', 'I enjoy burning things as much as the next person, but that seems like a bad idea.')]
+        lighter: [new DialogueSnippet('Erin', 'I enjoy burning things as much as the next person, but that seems like a bad idea.')],
+        rock: [new DialogueSnippet('Erin', 'That doesn\'t look like a nail...')]
     }
 
     placeholder = new DialogueSnippet('', '')

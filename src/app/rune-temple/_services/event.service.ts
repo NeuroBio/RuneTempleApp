@@ -50,7 +50,7 @@ export class EventService {
         this.badgeCheck('breakfast', (this.gameSettings.fishName === 'Fish'));
         this.badgeCheck('enlightenment', (this.gameSettings.fishName === 'kArA'));
         break;
-      case 'zhangeSawFish' :
+      case 'zhangSawFish' :
         this.badgeCheck('zhangFish', (this.gameSettings.fishName === 'Zhang' && this.events.zhangSawFish));
         break;
       case 'trothFullness' :
@@ -73,25 +73,59 @@ export class EventService {
         // this.addDialogueOptions('zhangFreed', 'default', ['about the book'],
         // [new InteractionResponse(new Interaction(this.zhangDialog.book))], true);
         // break;
+      case 'bookBurned' : 
+        if (this.events.reliefRepaired) {
+          // TODO: remove relief dialogue option
+        }
+        break;
+      case 'reliefRepaired' :
+        if (!this.events.bookBurned) {
+          // TODO: add dialogue for Zhang
+      }
       case ('vent1Open' || 'keyFell') :
         if (this.events.vent1Open && this.events.keyFell) {
           this.updateInteraction(new Interaction(this.dialog.activeAreas.vent1C,
             [], ['silverKey'], [], [], [], [], undefined, new Interaction(this.dialog.activeAreas.vent1B) 
-            ), 'vent1', 'default')
+            ), 'vent1', 'default');
         } else if (this.events.vent1Open) {
-          this.updateInteraction(new Interaction(this.dialog.activeAreas.vent1B), 'vent1', 'default')
+          this.updateInteraction(new Interaction(this.dialog.activeAreas.vent1B), 'vent1', 'default');
         }
         break;
       case 'acidTroth' :
-          this.updateInteraction(new Interaction(this.dialog.activeAreas.brokenTroth), 'troth', 'default')
+          this.updateInteraction(new Interaction(this.dialog.activeAreas.brokenTroth), 'troth', 'default');
           break;
       case 'ovenLit' :
 
         break;
       case 'ovenCharcoal' :
         this.updateInteraction(new Interaction(this.dialog.envCombos.lighterCharcoalOven,
-          [], [], [new EventFlag('charcoalBurned', true)]), 'peatOven', 'lighter')
+          [], [], [new EventFlag('charcoalBurned', true)]), 'peatOven', 'lighter');
         break;
+      case 'zhangFreed' :
+        this.updateInteraction(new Interaction(this.dialog.activeAreas.rubble2), 'rubble', 'default');
+        break;
+      case 'sterilize' :
+        this.updateInteraction(new Interaction(this.dialog.envCombos.herbsInjury,
+          ['herbs'], [], [new EventFlag('herbalize', true)],
+          ), 'injury', 'herbs');
+        break;
+        case 'herbalize' :
+          this.updateInteraction(new Interaction(this.dialog.envCombos.polesInjury,
+            ['poles'], [], [new EventFlag('stabilize', true)],
+            ), 'injury', 'poles');
+          break;
+        case 'stabilize' :
+          this.updateInteraction(new Interaction(this.dialog.envCombos.clothInjury,
+            ['clothStrips'], [], [new EventFlag('wrapilize', true)],
+            [
+              new Activator('pitFloor', 'zhangFreed', false),
+              new Activator('pitFloor', 'zhangBandaged', true)
+            ], [new Activator('pitFloor', 'leg', false)],
+            [], 'pitFloor'), 'injury', 'clothStrips');
+          break;
+        case 'wrapilize' :
+          //might need?
+          break;
       default:
         break;
     }

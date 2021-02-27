@@ -1,10 +1,24 @@
 import { DialogueTrove } from './DialogueSnippet';
 
 export class EventFlags {
+
+    // Game Events
     compassBroken = false;
+    bookGot = false;
+    ovenLit = false;
+    reliefRepaired = false;
+    zhangFreed = false;
+    wetKeyMade = false;
+
+    // help Zhang
+    sterilize = false;
+    herbalize = false;
+    stabilize = false;
+    wrapilize = false;
+
+    // misc badge things
     quickBreak = false;
     barrelPills = false;
-    bookGot = false;
 
     // Troth Hell
     trothFullness = 0;
@@ -12,7 +26,6 @@ export class EventFlags {
     
     zhangSawFish = false;
     mustacheFish = false;
-    ovenLit = false;
     ovenFish = false;
     ovenCharcoal = false;
     fishSacrifice = false;
@@ -20,15 +33,16 @@ export class EventFlags {
     // Firestarter
     charcoalBurned = false;
     mapBurned = false;
+    mossBurned = false;
+    bookBurned = false;
 
     // vent magic
     vent1Open = false;
     keyFell = false;
 
+    //Endings 
     reliefDestroyed = false;
     muralDestroyed = false;
-    wetKeyName = false;
-
     murderAttempt = false;
 
     // HAMMER EVERYTHING
