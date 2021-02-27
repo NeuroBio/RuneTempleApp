@@ -40,12 +40,15 @@
 
 button {
     margin: $standard-margin;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14pt;
+    color: whitesmoke;
 }
 
-.seen {
+.mat-seen {
+    background-color: $grey-ish;
+}
+
+.mat-unseen {
     background-color: $medium-grey;
-}
-
-.unseen {
-    background-color: lightgrey;
 }

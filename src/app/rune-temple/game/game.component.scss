@@ -1,5 +1,9 @@
 @import '../_objects/vars.scss';
 
+#interface-container {
+    margin: $large-margin;
+}
+
 #game-banner {
     display: flex;
     justify-content: center;

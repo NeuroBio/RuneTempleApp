@@ -1,10 +1,12 @@
-<h2 id="game-banner">
-    <img src="">
-    Game Banner
-</h2>
-
-<div id="game-container">
-    <app-ui *ngIf="!intro && !epilogue"></app-ui>
-    <app-epilogue-scene *ngIf="epilogue"></app-epilogue-scene>
-    <app-badges></app-badges>
+<div id="interface-container">
+    <h2 id="game-banner">
+        <img src="">
+        Game Banner
+    </h2>
+    
+    <div id="game-container">
+        <app-ui *ngIf="!intro && !epilogue"></app-ui>
+        <app-epilogue-scene *ngIf="epilogue"></app-epilogue-scene>
+        <app-badges></app-badges>
+    </div>    
 </div>

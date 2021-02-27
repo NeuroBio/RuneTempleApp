@@ -11,9 +11,8 @@
             <!-- Choices -->
             <div>
                 <button *ngFor="let opt of choice.options; let index = index"
-                mat-flat-button
-                [ngClass]="choice.seen[index] ? 'seen' : 'unseen'"
-                (click)="choose(choice.outcomes[index], $event)">
+                mat-flat-button [color]="choice.seen[index] ? 'seen' : 'unseen'"
+                (click)="choose(index, $event)">
                     {{ opt }}
                 </button>    
             </div>

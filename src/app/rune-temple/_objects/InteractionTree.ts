@@ -1,7 +1,7 @@
-import { DialogueTrove } from './DialogueSnippet';
 import { Activator } from './ActiveArea';
 import { Interaction } from './Interaction';
 import { EventFlag } from './EventFlag';
+import { DialogueTrove } from './DialogueTrove';
 
 export class InteractionTree {
     private dialog = new DialogueTrove;
@@ -33,8 +33,12 @@ export class InteractionTree {
         },
 
         zhangBandaged: {
-            default: new Interaction(this.dialog.zhangFreed.zhang4),
-            emptyFlask: new Interaction(this.dialog.envCombos.emptyFlaskZhang)
+            default: new Interaction(this.dialog.zhangFreed.zhang6,
+                [], [], [], [], [], [], undefined,
+                new Interaction(this.dialog.zhangFreed.zhang4)),
+            emptyFlask: new Interaction(this.dialog.envCombos.emptyFlaskZhang),
+            pills: new Interaction(this.dialog.envCombos.pillsZhang3,
+                ['pills'], [], [new EventFlag('zhangMedicated', true)]),
         },
 
         rubble: { 
@@ -317,8 +321,6 @@ export class InteractionTree {
             clothStrips: new Interaction(this.dialog.envCombos.legitItemsInjury),
             poles: new Interaction(this.dialog.envCombos.legitItemsInjury),
         }
-
-
 
     };
 }

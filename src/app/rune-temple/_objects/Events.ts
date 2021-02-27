@@ -1,5 +1,3 @@
-import { DialogueTrove } from './DialogueSnippet';
-
 export class EventFlags {
 
     // Game Events
@@ -15,6 +13,7 @@ export class EventFlags {
     herbalize = false;
     stabilize = false;
     wrapilize = false;
+    zhangMedicated = false;
 
     // misc badge things
     quickBreak = false;
@@ -63,9 +62,4 @@ export class EventFlags {
     ovenMap = false;
     summonMap = false;
     craftMap = false;
-}
-
-export class OneTimeEvents {
-    private dialog = new DialogueTrove;
-
 }

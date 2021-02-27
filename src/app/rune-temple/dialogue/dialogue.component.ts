@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DialogueSnippet, Choice } from '../_objects/DialogueSnippet';
+import { DialogueSnippet } from '../_objects/DialogueSnippet';
 import { InteractionResponse } from '../_objects/Interaction';
+import { Choice } from '../_objects/Choices';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { TriggerService } from '../_services/trigger.service';
+import { ChoiceService } from '../_services/choice.service';
 
 @Component({
   selector: 'app-dialogue',
@@ -23,7 +25,8 @@ export class DialogueComponent implements OnInit, OnDestroy {
 
   constructor(
     private triggerserv: TriggerService,
-    private dialogueserv: DialogueService) { }
+    private dialogueserv: DialogueService,
+    private choiceserv: ChoiceService) { }
 
   ngOnInit(): void {
     this.dialogueSubscription = this.dialogueserv.activeDialogue.subscribe(dial => {
@@ -42,8 +45,8 @@ export class DialogueComponent implements OnInit, OnDestroy {
 
   next() {
     if (!this.skip) {
-      if (this.current.choice) {
-        this.choice = this.current.choice;
+      if (this.current.choiceKey) {
+        this.choice = this.choiceserv.getChoice(this.current.choiceKey);
       } else {
         this.advance();
       }  
@@ -59,11 +62,16 @@ export class DialogueComponent implements OnInit, OnDestroy {
     }
   }
 
-  choose(interaction: InteractionResponse, event: any) {
+  choose(index: number, event: any) {
     event.stopPropagation();
-    this.choice = undefined;
+    this.choiceserv.markAsSeen(this.current.choiceKey, index);      
+    const interaction = this.choice.outcomes[index]
 
     if (interaction) {
+      if (this.choice.chooseAgain) {
+        this.dialogueserv.choose(this.current);
+      }
+      this.choice = undefined;
       this.triggerserv.triggerInteraction(interaction);
     } else {
       this.advance();

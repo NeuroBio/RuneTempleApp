@@ -77,13 +77,6 @@ export class TriggerService {
     }
     if (int.eventFlags[0]) {
       this.eventserv.updateEvents(int.eventFlags);
-
-      int.eventFlags.forEach(flag => {
-        const result = this.eventserv.interactionChangeCheck(flag.key);
-        if (result) {
-          this.triggerInteraction(result);
-        }
-      });
     }
   }
 

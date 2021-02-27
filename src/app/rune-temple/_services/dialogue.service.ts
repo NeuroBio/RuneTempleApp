@@ -9,6 +9,7 @@ export class DialogueService {
 
   activeDialogue = new BehaviorSubject<DialogueSnippet[]>([]);
   advance = new Subject();
+  private current: DialogueSnippet;
 
   constructor() { }
 
@@ -18,5 +19,18 @@ export class DialogueService {
 
   endDialogue(): void {
     this.activeDialogue.next([]);
+  }
+
+  choose(current: DialogueSnippet) {
+    this.current = current;
+    const waiter = this.activeDialogue.subscribe(value => {
+      // wait until there are no more dialogue interactions
+      // then reassign the choice dialogue snippet
+      if (!value[0]) {
+        this.startDialogue([this.current]);
+        this.current = undefined;
+        waiter.unsubscribe();
+      }
+    })
   }
 }
