@@ -149,7 +149,7 @@ export class EventInteractions {
             new Interaction(this.dialog.envCombos.compassPartsString),
             'zhangBandaged', 'magnetString'
         )
-    ]
+    ];
 
     zhangSawBadFlask = [
         new InteractionResponse(
@@ -161,6 +161,17 @@ export class EventInteractions {
             new Interaction(this.dialog.envCombos.badFlaskZhang),
             'zhangBandaged', 'swampFlask'
         )
-    ]
+    ];
+
+    hammerExit = [
+        new InteractionResponse(
+            new Interaction(this.dialog.activeAreas.exit2),
+            'exit', 'default'
+        )
+    ];
+
+    noFishForYou = [
+        new InteractionResponse(new Interaction(this.dialog.activeAreas.puddle2))
+    ];
 
 }

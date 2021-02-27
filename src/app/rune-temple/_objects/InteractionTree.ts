@@ -219,7 +219,17 @@ export class InteractionTree {
         },
 
         exit: {
-            default: new Interaction(this.dialog.activeAreas.exit)
+            default: new Interaction(this.dialog.activeAreas.exit),
+            rock: new Interaction(this.dialog.envCombos.rockExit,
+                [], [], [new EventFlag('hammerExit', true)],
+                [new Activator('foyer', 'puddle', true)], [] ,[], undefined,
+            new Interaction(this.dialog.envCombos.rockExit2))
+        },
+
+        puddle: {
+            default: new Interaction(this.dialog.activeAreas.puddle1,
+                [], ['fish'], [], [], [], [], undefined,
+                new Interaction(this.dialog.activeAreas.puddle2))
         },
 
         craftDoor: {
@@ -319,9 +329,10 @@ export class InteractionTree {
         rock: {
             default: new Interaction(this.dialog.itemDefaults.rock),
             puzzleBox: new Interaction(this.dialog.combos.rockPuzzle),
-            emptyFlask: new Interaction(this.dialog.combos.rockGlassCap),
-            glassCap: new Interaction(this.dialog.combos.rockEmptyFlask),
+            emptyFlask: new Interaction(this.dialog.combos.rockEmptyFlask),
+            glassCap: new Interaction(this.dialog.combos.rockGlassCap),
             swampFlask: new Interaction(this.dialog.combos.fluidRock),
+            vodkaFlask2: new Interaction(this.dialog.combos.fluidRock),
             experiment: new Interaction(this.dialog.combos.fluidRock),
             acidDish: new Interaction(this.dialog.combos.fluidRock),
             coffin: new Interaction(this.dialog.combos.fluidRock),

@@ -11,6 +11,7 @@ import { SceneService } from './scene.service';
 import { SceneDialogue } from '../_objects/DialogueTrove';
 import { ChoiceService } from './choice.service';
 import { DialogueSnippet } from '../_objects/DialogueSnippet';
+import { GameSettingsService } from './game-settings.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +23,12 @@ export class EventService {
   private sceneDial = new SceneDialogue;
   private zhang = new ZhangHelp;
 
-  private gameSettings = new GameSettings;
-
   constructor(
     private badgeserv: BadgeService,
     private interactionserv: InteractionService,
     private sceneserv: SceneService,
-    private choiceserv: ChoiceService
+    private choiceserv: ChoiceService,
+    private gamesettingsserv: GameSettingsService
   ) { }
 
   updateEvents(events: EventFlag[]) {
@@ -46,12 +46,13 @@ export class EventService {
           this.events.quickBreak = true;
         }
         break;
-      case 'fishName' :
-        this.badgeCheck('breakfast', (this.gameSettings.fishName === 'Fish'));
-        this.badgeCheck('enlightenment', (this.gameSettings.fishName === 'kArA'));
+      case 'fishNamed' :
+        const name = this.gamesettingsserv.getTextVar('fishName');
+        this.badgeCheck('breakfast', (name === 'Fish'));
+        this.badgeCheck('enlightenment', (name.fishName === 'kArA'));
         break;
       case 'zhangSawFish' :
-        this.badgeCheck('zhangFish', (this.gameSettings.fishName === 'Zhang' && this.events.zhangSawFish));
+        this.badgeCheck('zhangFish', (this.gamesettingsserv.getTextVar('fishName') === 'Zhang' && this.events.zhangSawFish));
         break;
       case 'trothFullness' :
         this.badgeCheck('stubborn', (this.events.trothFullness === 10));
@@ -59,7 +60,12 @@ export class EventService {
       case ('mustacheFish' || 'barrelPills') :
         this.badgeCheck('random', (this.events.mustacheFish && this.events.barrelPills));
         break;
-      case ('hammerExit' || 'hammerLockBox' || 'hammerPuzzleBox' || 'hammerRustedPanel'
+      case 'hammerExit' :
+        this.addChoice('zhangConvoTopics', 'about the water', this.zhang.water);
+        if (this.events.reliefRepaired) {
+          this.updateInteraction(this.eventInteractions.noFishForYou);
+        }
+      case ('hammerLockBox' || 'hammerPuzzleBox' || 'hammerRustedPanel'
         || 'hammerSpigot' || 'glassShatter' || 'flaskShatter') :
         this.badgeCheck('hammer',
           (  this.events.hammerExit

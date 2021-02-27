@@ -70,7 +70,7 @@ export class DialogueChoices {
         this.dialEvents.shatter2
     );
 
-    shatter3= new Choice(
+    shatter3 = new Choice(
         'Smash the compass?',
         ['Yes', 'No'],
         this.dialEvents.shatter3
@@ -80,5 +80,11 @@ export class DialogueChoices {
         'Light Zhang\'s map on fire?',
         ['Yes', 'No'],
         this.dialEvents.igniteMap
+    );
+
+    nameFish = new Choice(
+        'Will Erin name the fish?',
+        ['Yes', 'No'],
+        this.dialEvents.nameFish
     )
 }

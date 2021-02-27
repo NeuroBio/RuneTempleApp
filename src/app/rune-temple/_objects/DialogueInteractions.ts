@@ -87,6 +87,17 @@ export class DialogueInteractions {
             undefined
         )
     ];
+
+    nameFish = [
+        new InteractionResponse(
+            new Interaction(this.DID.nameFish,
+                [], [], [new EventFlag('fishNamed')])
+        ),
+        new InteractionResponse(
+            new Interaction(this.DID.unnameFish,
+                [], [], [], [], [], ['pokemon'])
+        )
+    ]
 }
 
 class DIDialogue {
@@ -113,6 +124,9 @@ class DIDialogue {
     shatter3 = [new DialogueSnippet('', 'Erin cracks the compass glass with her rock.  She shakes off the glass shards, leaving her with teh metal disk.')];
 
     igniteMap = [new DialogueSnippet('', 'Erin flicks the lighter to life and sets the map ablaze.  It\'s not long before all that remains is a tiny scroched corner where her thumb was.  She drops that scrap.')];
+
+    nameFish = [new DialogueSnippet('', 'Erin chose to name the fish ${fishName}')];
+    unnameFish = [new DialogueSnippet('', 'Erin chose to not name the fish')];
 }
 
 export class ZhangHelp {
@@ -151,7 +165,7 @@ export class ZhangHelp {
         new DialogueSnippet('Zhang', 'I don\'t know.'),
         new DialogueSnippet('Erin', 'You sound like one of the charm crafters from the coasts, you know that?'),
         new DialogueSnippet('Zhang', 'Look, I don\'t know if I believe the legends or not, but I do know it\'s bad turf for Hunters.  The Ghosts are stronger and a lot of Hunters that go into that swamp don\'t come back.  We may not be in Mikania proper, but we\'re close enough, and I don\'t like it.'),
-        new DialogueSnippet('', 'The finality in Zhang\'s tone made it clear that Erin should not question him further abotu the book.')
+        new DialogueSnippet('', 'The finality in Zhang\'s tone makes it clear that Erin should not question him further about the book.')
     ];
     water = [
         new DialogueSnippet('Erin', 'Zhang, can you swim?'),

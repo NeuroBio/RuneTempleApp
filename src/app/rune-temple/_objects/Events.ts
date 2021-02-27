@@ -4,8 +4,8 @@ export class EventFlags {
     compassBroken = false;
     bookGot = false;
     ovenLit = false;
-    reliefRepaired = false;
     zhangFreed = false;
+    reliefRepaired = false;
     wetKeyMade = false;
 
     // help Zhang
@@ -28,11 +28,13 @@ export class EventFlags {
     trothFullness = 0;
     acidTroth = false;
     
+    // Fishy
     zhangSawFish = false;
     mustacheFish = false;
     ovenFish = false;
     ovenCharcoal = false;
     fishSacrifice = false;
+    fishNamed = false;
 
     // Firestarter
     charcoalBurned = false;

@@ -237,6 +237,7 @@ export class DialogueTrove {
             new DialogueSnippet('', 'Erin presses her ear to the door and hears the sound of water'),
             new DialogueSnippet('Erin', 'Maybe this is a way out?')
         ],
+        exit2: [new DialogueSnippet('', 'Erin feels a pang of anxiety as she watches the water pour in through the hole she made.')],
 
         craftDoor: [new DialogueSnippet('Erin', 'It\'s locked.')],
         mossBank: [new DialogueSnippet('', 'Erin makes a face at the offending bryophytes, but a strange lump in the plant lawn catches her attention.  She reaches her hand out to scrap away some of the moss, but it is thick and well attached to whatever lies beneath it.')],
@@ -267,6 +268,12 @@ export class DialogueTrove {
             new DialogueSnippet('Zhang', 'That was a stupid rookie mistake!  I shouldn\'t have to step in for you.  Keep your wits about you, so this doesn\'t happen again!'),
             new DialogueSnippet('Erin', 'Sir, yessir.'),
         ],
+
+        puddle1: [
+            new DialogueSnippet('', 'Erin looks at the pooling water with growing concern.  She sees a tiny fish, smaller than her finger.  She scoops the fragile creature up with her hands.'),
+            new DialogueSnippet('Erin', 'Is there a whole lake beyond that door?', 'nameFish')
+        ],
+        puddle2: [new DialogueSnippet('Erin', 'This is REALLY not good.')],
     };
 
     combos = {
@@ -291,7 +298,7 @@ export class DialogueTrove {
         rockEmptyFlask: [new DialogueSnippet('', 'Erin looks between the rock and the flask.  Yes, the flask is Zhang\'s but this would not be the first of his things she destoroyed today.', 'shatter2')],
         mapLighter: [new DialogueSnippet('', 'Erin considers the lighter and the map.  Yes, the map is made of paper, and paper is very flammable, but it has also proved... somewhat useful as a navigation tool.', 'igniteMap')],
         fluidRock: [new DialogueSnippet('Erin', 'Mmm... I don\'t think so.  If I break that with the rock, I\'ll get the fluid all over my hands.')],
-        fishTankRock: [new DialogueSnippet('Erin', 'NO.  Not while the fish is still in it.')],
+        fishTankRock: [new DialogueSnippet('Erin', 'NO.  Not while ${fishName} is still in it.')],
         compassRock: [new DialogueSnippet('', 'Erin considers the rock and the compass.  The rock could certainly smash through the glass, but that seems like a violent way to deal with the compass.', 'shatter3')]
     };
 
@@ -398,9 +405,7 @@ export class DialogueTrove {
             new DialogueSnippet('', 'Zhang shoves the flask back into Erin\'s hands.')
         ],
 
-        badFlaskZhang: [
-            new DialogueSnippet('', 'Zhang glares at Erin.')
-        ],
+        badFlaskZhang: [new DialogueSnippet('', 'Zhang glares at Erin.')],
 
         bookZhang1: [
             new DialogueSnippet('', 'Erin offers Zhang the book.'),
@@ -451,21 +456,22 @@ export class DialogueTrove {
             new DialogueSnippet('Erin', 'Right...')
         ],
 
-        puzzleBoxLitOven: [
-            new DialogueSnippet('', 'Erin looks down at the puzzle box.  It\'s a risky gambit, but maybe the corrext way to open teh box is with fire.', 'riskyGambit')
+        puzzleBoxLitOven: [new DialogueSnippet('', 'Erin looks down at the puzzle box.  It\'s a risky gambit, but maybe the corrext way to open teh box is with fire.', 'riskyGambit')],
+        zhangScrapMetal: [new DialogueSnippet('', 'Erin thinks to herself: Don\'t tell Zhang.  Don\'t show Zhang.')],
+        rockExit: [
+            new DialogueSnippet('Erin', 'I bet if I just...'),
+            new DialogueSnippet('', 'Erin pounds viciously on the stone door with the rock.  The door chips, and then the chip widens into a dent.  As she hammers, a squirt of water splashes her face, and Erin stops.  A fast trickle of water streams through a finger’s-width hole.'),
+            new DialogueSnippet('Erin', 'That... that\'s not good.'),
         ],
+        rockExit2: [new DialogueSnippet('Erin', 'That seems like a REALLY bad idea.')]
 
-        zhangScrapMetal: [
-            new DialogueSnippet('', 'Erin thinks to herself: Don\'t tell Zhang.  Don\'t show Zhang.')
-        ]
+
     }
 
     itemDefaults = {
         lighter: [new DialogueSnippet('Erin', 'I enjoy burning things as much as the next person, but that seems like a bad idea.')],
         rock: [new DialogueSnippet('Erin', 'That doesn\'t look like a nail...')]
     }
-
-    placeholder = new DialogueSnippet('', '')
 
 }
 
