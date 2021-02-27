@@ -28,6 +28,7 @@ export class DialogueService {
       // then reassign the choice dialogue snippet
       if (!value[0]) {
         this.startDialogue([this.current]);
+        this.advance.next();
         this.current = undefined;
         waiter.unsubscribe();
       }

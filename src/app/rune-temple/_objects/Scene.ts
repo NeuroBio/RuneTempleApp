@@ -130,5 +130,4 @@ export class GameScenes {
     summon = new Scene('Summoning Room', 'summon', [], []);
     crate = new Scene('Small Crate', 'crate', [], []);
     ritual = new Scene('Ritual Room', 'ritua l', [], []);
-    // new ActiveArea('', '', 0, 0)
 }

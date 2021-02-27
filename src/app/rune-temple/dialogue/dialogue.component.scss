@@ -42,13 +42,14 @@ button {
     margin: $standard-margin;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 14pt;
-    color: whitesmoke;
 }
 
 .mat-seen {
-    background-color: $grey-ish;
+    color: $grey-ish-er;
+    background-color: $dark-ish-grey;
 }
 
 .mat-unseen {
+    color: whitesmoke;
     background-color: $medium-grey;
 }
