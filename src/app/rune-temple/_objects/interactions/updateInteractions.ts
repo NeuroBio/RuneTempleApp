@@ -10,7 +10,7 @@ export class UpdateInteractions {
     zhangBandagedDefault = [
         new InteractionWithKeys(
             new Interaction(this.dialog.zhangFreed.zhang4),
-            'zhangeBandaged', 'default')];
+            'zhangBandaged', 'default')];
 
     knifeFloor = [
         new InteractionWithKeys(
@@ -185,7 +185,7 @@ export class LevelOne {
     zhangBook = [
         new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.bookZhang2),
-            'zhangeBandaged', 'book')];
+            'zhangBandaged', 'book')];
 
     herbalize = [
         new InteractionWithKeys(

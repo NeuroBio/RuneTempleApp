@@ -19,7 +19,7 @@ export class ChoiceService {
     const index = this.choices[key].options.length - 1;
     this.choices[key].options.splice(index, 0, option);
     this.choices[key].outcomes.splice(index, 0, outcome);
-    this.choices[key].seensplice(index, 0, false);
+    this.choices[key].seen.splice(index, 0, false);
   }
 
   removeChoice(key: string, option: string) {

@@ -34,8 +34,7 @@ export class onClickInteractions {
 
     zhangBandaged = {
         default: new Interaction(this.dialog.zhangFreed.zhang6,
-            [], [], [], [], [], [], undefined,
-            ),
+            [], [], [], [], [], [], undefined, this.nested.zhangBandagedDefault),
         emptyFlask: new Interaction(this.dialog.envCombos.emptyFlaskZhang,
             [], [], [new EventFlag('zhangSawBadFlask')], [], [], [], undefined,
             this.nested.zhangSawBadFlask),
@@ -44,7 +43,7 @@ export class onClickInteractions {
             this.nested.zhangSawBadFlask),
         pills: new Interaction(this.dialog.envCombos.pillsZhang3,
             ['pills'], [], [new EventFlag('zhangMedicated')],
-            [], [], [], undefined, ),
+            [], [], [], undefined, this.nested.zhangMedicated),
     };
 
     rubble = { 
