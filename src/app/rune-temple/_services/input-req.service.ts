@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { InputRequest } from '../_objects/input-requests/InputRequest';
 import { InputRequests } from '../_objects/input-requests/InputRequests';
+import { GameSettingsService } from './game-settings.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,17 @@ export class InputReqService {
   activeInputReq = new BehaviorSubject<InputRequest>(undefined);
   private inputRequests = new InputRequests;
 
-  constructor() { }
+  constructor(private gs: GameSettingsService) { this.setInputRequest('dialogue', 'fishName')}
 
-  setInputRequest(key: string, subkey: string) {
+  setInputRequest(key: string, subkey: string): void {
     this.activeInputReq.next(this.inputRequests[key][subkey]);
   }
 
-  unsetInputRequest() {
+  unsetInputRequest(): void {
     this.activeInputReq.next(undefined);
   }
 
+  updateData(request: InputRequest): void {
+    this.gs.setTextVar(request.key, request.control.value);
+  }
 }

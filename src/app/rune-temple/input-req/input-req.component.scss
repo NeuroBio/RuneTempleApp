@@ -1,0 +1,57 @@
+@import '../_objects/vars.scss';
+
+#input-frame {
+    background-color: $almost-black;
+    // The + four is for borders ...
+    height: calc(#{$item-dimentions} + #{$standard-margin} * 2 + #{$large-margin} * 2 + 5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $large-margin;
+}
+
+#input-aligner {
+    width: 80%;
+}
+
+.mat-form-field-appearance-outline {
+    width: calc(100% - #{$standard-margin} * 2);
+    margin: $standard-margin
+}
+
+::ng-deep .mat-form-field-wrapper{
+    margin-bottom: -1.25em !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: whitesmoke;
+}
+
+mat-label {
+    color: whitesmoke;
+    line-height: 1.5;
+    font-size: 16pt;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+input {
+    color: whitesmoke;
+    line-height: 1.5;
+    font-size: 16pt;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+button {
+    margin: $standard-margin;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14pt;
+    color: whitesmoke;
+    background-color: $medium-grey;
+    float: right;
+}
+
+.mat-unseen:disabled {
+    color: $grey-ish-er;
+    background-color: $dark-ish-grey;
+}

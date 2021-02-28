@@ -48,7 +48,7 @@ export class EventFlagService {
       case 'fishNamed' :
         const name = this.gamesettingsserv.getTextVar('fishName');
         this.badgeCheck('breakfast', (name === 'Fish'));
-        this.badgeCheck('enlightenment', (name.fishName === 'kArA'));
+        this.badgeCheck('enlightenment', (name === 'kArA'));
         break;
       case 'zhangSawFish' :
         this.badgeCheck('zhangFish', (this.gamesettingsserv.getTextVar('fishName') === 'Zhang' && this.events.zhangSawFish));

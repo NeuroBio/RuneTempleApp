@@ -17,6 +17,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { ChoiceComponent } from './choice/choice.component';
+import { InputReqComponent } from './input-req/input-req.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,15 +30,18 @@ import { ChoiceComponent } from './choice/choice.component';
     BadgesComponent,
     GameComponent,
     EpilogueSceneComponent,
-    ChoiceComponent
+    ChoiceComponent,
+    InputReqComponent
   ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     RuneTempleRoutingModule,
 
     // Material Imports
     MatButtonModule,
+    MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatTooltipModule

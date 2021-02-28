@@ -47,7 +47,8 @@ export class DialogueService {
       case 'scene' :
         this.sceneserv.triggerUpdate('dialogue', key);
         break;
+      default:
+        console.error('Unknown event type: ', type)
     }
-    console.log('unknown event type!')
   }
 }

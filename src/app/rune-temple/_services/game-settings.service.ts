@@ -10,7 +10,13 @@ export class GameSettingsService {
 
   constructor() { }
 
-  getTextVar(key: string) {
-    return this.gameSettings.textVariables[key];
+  getTextVar(key: string): string {
+    return this.gameSettings.textVariables[key]
+    ? this.gameSettings.textVariables[key]
+    :this.gameSettings.textVariables[`${key}Default`];
+  }
+
+  setTextVar(key: string, value: string): void {
+    this.gameSettings.textVariables[key] = value;
   }
 }

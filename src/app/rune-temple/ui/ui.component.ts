@@ -3,6 +3,7 @@ import { RuneTempleService } from '../_services/rune-temple.service';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { ChoiceService } from '../_services/choice.service';
+import { InputReqService } from '../_services/input-req.service';
 
 @Component({
   selector: 'app-ui',
@@ -17,12 +18,16 @@ export class UIComponent implements OnInit, OnDestroy {
   isChoiceActive = false;
   choiceSubscription: Subscription;
 
+  isInputReqActive = false
+  inputReqSubscription: Subscription;
+
   isLoggedIn = false
 
   constructor(
     private rtserv: RuneTempleService,
     private dialogueserv: DialogueService,
-    private choiceserv: ChoiceService) { }
+    private choiceserv: ChoiceService,
+    private inputreqserv: InputReqService) { }
 
   ngOnInit(): void {
     this.dialogueSubscription = this.dialogueserv.activeDialogue
@@ -31,6 +36,9 @@ export class UIComponent implements OnInit, OnDestroy {
     this.choiceSubscription = this.choiceserv.activeChoice
       .subscribe(active => this.isChoiceActive = active ? true : false);
 
+    this.inputReqSubscription = this.inputreqserv.activeInputReq
+      .subscribe(active => this.isInputReqActive = active ? true : false);
+      
     this.rtserv.isLoggedIn.subscribe(authed => this.isLoggedIn = authed);
   }
 

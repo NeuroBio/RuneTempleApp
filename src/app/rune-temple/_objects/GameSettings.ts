@@ -12,5 +12,5 @@ export class CrossGameEvents {
 
 export class TextVariables {
     fishName: string;
-    fishNameDefault: 'the fish'
+    fishNameDefault = 'the fish';
 }

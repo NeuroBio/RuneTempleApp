@@ -42,7 +42,6 @@ export class ChoiceService {
   setChoice(key: string, subkey: string,): void {
     this.key = key;
     this.subkey = subkey;
-    console.log(key, subkey)
     this.activeChoice.next(this.choices[key][subkey]);
   }
 

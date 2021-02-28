@@ -17,13 +17,9 @@ export class DialogueComponent implements OnInit, OnDestroy {
   dialogueSubscription: Subscription;
   dialogue:  DialogueSnippet;
 
-
-
-  inputReq: InputRequest;
-  inputReqSubsciption: Subscription;
-  advanceSubscription: Subscription;
   index = 0;
   skip = true;
+  advanceSubscription: Subscription;
 
   constructor(private dialogueserv: DialogueService) { }
 

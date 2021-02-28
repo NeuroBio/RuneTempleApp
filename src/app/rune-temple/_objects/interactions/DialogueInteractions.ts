@@ -90,7 +90,7 @@ export class DialogueInteractions {
     ];
 
     nameFish = [
-        new InputRequestInteraction('dialogue', 'nameFish'),
+        new InputRequestInteraction('dialogue', 'fishName'),
 
         new InteractionWithKeys(
             new Interaction(this.DID.unnameFish,

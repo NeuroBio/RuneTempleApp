@@ -1,0 +1,16 @@
+<div id="input-frame">
+    <div id="input-aligner">
+        <mat-form-field  appearance="outline">
+            <mat-label>Fish Name</mat-label>
+            <input matInput type="text" [formControl]="inputValue">
+        </mat-form-field>
+    
+        <button mat-flat-button
+        color="unseen"
+        [disabled]="!inputValue.valid"
+        (click)="accept()">
+            Accept
+        </button>
+    </div>
+
+</div>
