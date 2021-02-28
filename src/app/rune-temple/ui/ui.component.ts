@@ -6,6 +6,7 @@ import { ChoiceService } from '../_services/choice.service';
 import { InputReqService } from '../_services/input-req.service';
 import { InventoryService } from '../_services/inventory.service';
 import { GameSettingsService } from '../_services/game-settings.service';
+import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
 
 @Component({
   selector: 'app-ui',
@@ -66,7 +67,9 @@ export class UIComponent implements OnInit, OnDestroy {
     this.hintSubscription.unsubscribe();
   }
 
-  getHint() { }
+  getHint() { 
+    this.dialogueserv.setDialogue([new DialogueSnippet('', 'This system is not yet in place, sorry!')])
+  }
 
   viewSettings(): void {
     this.showSettings = !this.showSettings;
