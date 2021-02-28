@@ -1,5 +1,5 @@
 import { DialogueSnippet } from '../dialogue-snippets/DialogueSnippet';
-import { EventFlag } from '../EventFlag';
+import { EventFlag } from '../event-types/EventFlag';
 import { Activator } from '../scenes/ActiveArea';
 
 export class Interaction {
@@ -11,14 +11,14 @@ export class Interaction {
     changeLocations: Activator[];
     addBadges: string[];
     changeScene: string;
-    update: Interaction;
+    updates: InteractionWithKeys[];
 
     constructor(
         dialogue: DialogueSnippet[], removeItems: string[] = [],
         addItems: string[] = [], eventFlags: EventFlag[] = [],
         changeAreas: Activator[] = [], changeLocations: Activator[] = [],
         addBadges: string[] = [],
-        changeScene: string = undefined, update: Interaction = undefined
+        changeScene: string = undefined, updates: InteractionWithKeys[] = []
     ) {
         this.dialogue = dialogue;
         this.removeItems = removeItems;
@@ -28,7 +28,7 @@ export class Interaction {
         this.changeLocations = changeLocations;
         this.addBadges = addBadges;
         this.changeScene = changeScene;
-        this.update = update;
+        this.updates = updates;
     }
 }
 

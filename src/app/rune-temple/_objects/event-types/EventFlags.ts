@@ -26,7 +26,6 @@ export class EventFlags {
 
     // Troth Hell
     trothFullness = 0;
-    acidTroth = false;
     
     // Fishy
     zhangSawFish = false;

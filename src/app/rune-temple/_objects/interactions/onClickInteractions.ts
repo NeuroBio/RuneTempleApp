@@ -1,10 +1,12 @@
 import { Activator } from '../scenes/ActiveArea';
-import { Interaction } from './Interaction';
-import { EventFlag } from '../EventFlag';
+import { Interaction, InteractionWithKeys } from './Interaction';
+import { EventFlag } from '../event-types/EventFlag';
 import { onClickDialogue } from '../dialogue-snippets/onClickDialogue';
+import { UpdateInteractions } from './updateInteractions';
 
 export class onClickInteractions {
     private dialog = new onClickDialogue;
+    private nested = new UpdateInteractions;
 
     // Active Areas
     rootEnv = {
@@ -17,8 +19,7 @@ export class onClickInteractions {
     zhangBuried = {
         default: new Interaction(
             this.dialog.zhangBuried.zhang1, [], [], [], [], [], [], undefined,
-            new Interaction(this.dialog.zhangBuried.zhang2)
-        ),
+            this.nested.zhangBandagedDefault),
         pills: new Interaction(this.dialog.envCombos.pillsZhang),
         pole: new Interaction(this.dialog.envCombos.poleZhang),
         vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaZhangBurried)
@@ -34,13 +35,16 @@ export class onClickInteractions {
     zhangBandaged = {
         default: new Interaction(this.dialog.zhangFreed.zhang6,
             [], [], [], [], [], [], undefined,
-            new Interaction(this.dialog.zhangFreed.zhang4)),
+            ),
         emptyFlask: new Interaction(this.dialog.envCombos.emptyFlaskZhang,
-            [], [], [new EventFlag('zhangSawBadFlask', true)]),
+            [], [], [new EventFlag('zhangSawBadFlask')], [], [], [], undefined,
+            this.nested.zhangSawBadFlask),
         swampFlask: new Interaction(this.dialog.envCombos.swampFlaskZhang,
-            [], [], [new EventFlag('zhangSawBadFlask', true)]),
+            [], [], [new EventFlag('zhangSawBadFlask')], [], [], [], undefined,
+            this.nested.zhangSawBadFlask),
         pills: new Interaction(this.dialog.envCombos.pillsZhang3,
-            ['pills'], [], [new EventFlag('zhangMedicated', true)]),
+            ['pills'], [], [new EventFlag('zhangMedicated')],
+            [], [], [], undefined, ),
     };
 
     rubble = { 
@@ -49,10 +53,9 @@ export class onClickInteractions {
             ['pole'], ['poles'], [new EventFlag('zhangFreed', true)], [
                 new Activator('pitFloor', 'zhangBuried', false),
                 new Activator('pitFloor', 'zhangFreed', true),
-                new Activator('pitFloor', 'rockEnv', true),
-            ],
-            [new Activator('pitFloor', 'leg', true),
-        ]),
+                new Activator('pitFloor', 'rockEnv', true)
+            ], [new Activator('pitFloor', 'leg', true)], 
+            [], undefined, this.nested.rubblePole),
     };
 
     food = { default: new Interaction(this.dialog.activeAreas.food) };
@@ -88,10 +91,7 @@ export class onClickInteractions {
             dark: new Interaction(this.dialog.envCombos.knifeDark),
             floor: new Interaction(this.dialog.envCombos.knifeFloor,
             [], [], [], [], [], [], undefined,
-            new Interaction(this.dialog.envCombos.knifeFloor2,
-                [], [], [], [], [], [], undefined,
-                new Interaction(this.dialog.envCombos.knifeFloor3,
-                    ['knife'])))
+            this.nested.knifeFloor)
     };
 
     clothStrips = {
@@ -135,24 +135,24 @@ export class onClickInteractions {
     
     blackboard = {
         default: new Interaction(this.dialog.activeAreas.blackboard1,
-            [], ['puzzleBox'], [], [] , [], [], undefined,
-            new Interaction(this.dialog.activeAreas.blackboard2))
+            [], ['puzzleBox'], [], [] , [], [], undefined, this.nested.blackboardDefault)
     };
     
     column = {
         default: new Interaction(this.dialog.activeAreas.column1,
-            [], ['pole'], [], [], [], [], undefined,
-            new Interaction(this.dialog.activeAreas.column2))
+            [], ['pole'], [], [], [], [], undefined, this.nested.columnDefault)
     };
     
     charcoalEnv = {
         default: new Interaction(this.dialog.activeAreas.charcoal1,
-        [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)])
+            [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)])
     };
 
     bookEnv = {
         default: new Interaction(this.dialog.activeAreas.book,
-        [], ['book'], [new EventFlag('bookGot', true)], [new Activator('classroom', 'bookEnv', false)])
+            [], ['book'], [new EventFlag('bookGot', true)],
+            [new Activator('classroom', 'bookEnv', false)],
+            [], [], undefined, this.nested.bookEnvDefault)
     };
 
     depression = {
@@ -173,14 +173,12 @@ export class onClickInteractions {
 
     thirdShelf = {
         default: new Interaction(this.dialog.activeAreas.thirdShelf,
-            [], ['twine'], [], [], [], [], undefined,
-            new Interaction(this.dialog.activeAreas.thirdShelf2))
+            [], ['twine'], [], [], [], [], undefined, this.nested.thirdShelfDefault)
     };
 
     floor = {
         default: new Interaction(this.dialog.activeAreas.floor,
-            [], [], [], [], [], [], undefined,
-            new Interaction(this.dialog.activeAreas.floor2))
+            [], [], [], [], [], [], undefined, this.nested.floorDefault)
     };
 
     handBroom = {
@@ -221,14 +219,12 @@ export class onClickInteractions {
         default: new Interaction(this.dialog.activeAreas.exit),
         rock: new Interaction(this.dialog.envCombos.rockExit,
             [], [], [new EventFlag('hammerExit', true)],
-            [new Activator('foyer', 'puddle', true)], [] ,[], undefined,
-        new Interaction(this.dialog.envCombos.rockExit2))
+            [new Activator('foyer', 'puddle', true)], [] ,[], undefined, this.nested.exitRock)
     };
 
     puddle = {
         default: new Interaction(this.dialog.activeAreas.puddle1,
-            [], ['fish'], [], [], [], [], undefined,
-            new Interaction(this.dialog.activeAreas.puddle2))
+            [], ['fish'], [], [], [], [], undefined, this.nested.puddleDefault)
     };
 
     craftDoor = {
@@ -282,13 +278,13 @@ export class onClickInteractions {
         default: new Interaction(this.dialog.activeAreas.vent1A),
         knife: new Interaction(this.dialog.envCombos.knifeVent1A, [], [],
             [ new EventFlag('vent1Open', true) ], [], [], [], undefined,
-            new Interaction(this.dialog.envCombos.screwVent1)),
+            this.nested.vent1Knife),
         magnet: new Interaction(this.dialog.envCombos.magnetVent1A, [], [],
             [ new EventFlag('vent1Open', true) ], [], [], [], undefined,
-            new Interaction(this.dialog.envCombos.screwVent1)),
+            this.nested.vent1Magnet),
         magnetString: new Interaction(this.dialog.envCombos.magnetVent1A, [], [],
             [ new EventFlag('vent1Open', true) ], [], [], [], undefined,
-            new Interaction(this.dialog.envCombos.screwVent1)),
+            this.nested.vent1MagnetString),
     };
 
     tongs = {
@@ -302,17 +298,7 @@ export class onClickInteractions {
     troth = {
         default: new Interaction(this.dialog.activeAreas.troth),
         acidDish: new Interaction(this.dialog.envCombos.acidDishTroth1,
-            [], [], [], [], [], [], undefined, new Interaction(
-                this.dialog.envCombos.acidDishTroth2,
-                [], [], [], [], [], [], undefined, new Interaction(
-                    this.dialog.envCombos.acidDishTroth3,
-                    ['acidDish'], ['glassCap'], [new EventFlag('acidTroth', true)],
-                    [], [], [], undefined, new Interaction(
-                        this.dialog.envCombos.acidDishTroth4,
-                        ['acidDish'], ['glassCap'], [], [], [], ['nice'])
-                )
-            )
-        ),
+            [], [], [], [], [], [], undefined, this.nested.trothAcidDish),
         vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaFlask2Troth),
     };
 
@@ -348,7 +334,8 @@ export class onClickInteractions {
         knife: new Interaction(this.dialog.envCombos.knifeInjury),
         rock: new Interaction(this.dialog.envCombos.rockInjury),
         vodkaFlask2 : new Interaction(this.dialog.envCombos.vodkaInjury,
-            ['vodkaFlask2'], ['emptyFlask'], [new EventFlag('sterilize', true)]),
+            ['vodkaFlask2'], ['emptyFlask'], [new EventFlag('sterilize', true)],
+            [], [], [], undefined, this.nested.sterilize),
         herbs: new Interaction(this.dialog.envCombos.legitItemsInjury),
         clothStrips: new Interaction(this.dialog.envCombos.legitItemsInjury),
         poles: new Interaction(this.dialog.envCombos.legitItemsInjury),

@@ -1,4 +1,4 @@
-import { DialogueInteractions } from './interactions/DialogueInteractions';
+import { DialogueInteractions } from '../interactions/DialogueInteractions';
 import { Choice } from './Choice';
 
 export class DialogueEvents {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { EventFlag } from '../_objects/EventFlag';
-import { EventFlags } from '../_objects/Events';
+import { EventFlag } from '../_objects/event-types/EventFlag';
+import { EventFlags } from '../_objects/event-types/EventFlags';
 import { BadgeService } from './badge.service';
 import { InteractionService } from './interaction.service';
 import { InteractionWithKeys, Interaction } from '../_objects/interactions/Interaction';
@@ -15,7 +15,7 @@ import { GameSettingsService } from './game-settings.service';
 @Injectable({
   providedIn: 'root'
 })
-export class EventService {
+export class EventFlagService {
 
   private events = new EventFlags;
   private eventInteractions = new EventFlagInteractions;
@@ -98,7 +98,7 @@ export class EventService {
         }
         // TODO: trigger effects?
         break;
-      case 'wrapilize' : 
+      case 'wrapilize' :
         this.updateScene('foyer', this.sceneDial.sceneUpdates.foyerHaunt);
       case 'zhangSawBook' :
         this.addChoice('zhangConvoTopics', 'about the book', this.zhang.book);
@@ -118,7 +118,7 @@ export class EventService {
   private updateInteraction(interactions: InteractionWithKeys[]) {
     if (interactions) {
       interactions.forEach(int => {
-        this.interactionserv.updateInteraction(int.key, int.subkey, int.interaction);
+        this.interactionserv.updateInteractions(interactions);
 
       });
     }

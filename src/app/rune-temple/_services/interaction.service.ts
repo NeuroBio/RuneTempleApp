@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { onClickInteractions } from '../_objects/interactions/onClickInteractions';
-import { Interaction, InteractionWithKeys } from '../_objects/interactions/Interaction';
+import { InteractionWithKeys } from '../_objects/interactions/Interaction';
 
 @Injectable({
   providedIn: 'root'
@@ -59,8 +59,10 @@ export class InteractionService {
     return undefined;
   }
 
-  updateInteraction(key: string, subkey: string, newValue: Interaction): void {
-    this.interactions[key][subkey] = newValue;
+  updateInteractions(newInteractions: InteractionWithKeys[]): void {
+    newInteractions.forEach(int => {
+      this.interactions[int.key][int.subkey] = int.interaction;
+    })
   }
 
 }

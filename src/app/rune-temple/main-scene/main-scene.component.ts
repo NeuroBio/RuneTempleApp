@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { SceneService } from '../_services/scene.service';
 import { TriggerService } from '../_services/trigger.service';
-import { EventService } from '../_services/event.service';
+import { EventFlagService } from '../_services/event-flag.service';
 
 @Component({
   selector: 'app-main-scene',
@@ -27,7 +27,7 @@ export class MainSceneComponent implements OnInit, OnDestroy {
     private triggerserv: TriggerService,
     private sceneserv: SceneService,
     private dialogueserv: DialogueService,
-    private eventserv: EventService
+    private eventserv: EventFlagService
   ) { }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
-import { Choice } from '../_objects/Choice';
+import { Choice } from '../_objects/event-types/Choice';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { TriggerService } from '../_services/trigger.service';

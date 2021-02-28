@@ -1,4 +1,4 @@
-import { InteractionWithKeys } from './interactions/Interaction';
+import { InteractionWithKeys } from '../interactions/Interaction';
 
 export class Choice {
     question: string;

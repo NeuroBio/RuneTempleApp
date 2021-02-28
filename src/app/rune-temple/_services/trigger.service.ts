@@ -4,7 +4,7 @@ import { InventoryService } from './inventory.service';
 import { DialogueService } from './dialogue.service';
 import { SceneService } from './scene.service';
 import { InteractionService } from './interaction.service';
-import { EventService } from './event.service';
+import { EventFlagService } from './event-flag.service';
 import { BadgeService } from './badge.service';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class TriggerService {
     private dialogueserv: DialogueService,
     private interactionserv: InteractionService,
     private inventoryserv: InventoryService,
-    private eventserv: EventService,
+    private eventserv: EventFlagService,
     private badgeserv: BadgeService,
     private sceneserv: SceneService) { }
 
@@ -51,8 +51,8 @@ export class TriggerService {
 
   triggerInteraction(res: InteractionWithKeys) {
     const int = res.interaction
-    if (int.update) {
-      this.interactionserv.updateInteraction(res.key, res.subkey, res.interaction.update)
+    if (int.updates[0]) {
+      this.interactionserv.updateInteractions(int.updates);
     }
     if (int.dialogue[0]) {
       this.dialogueserv.startDialogue(int.dialogue);

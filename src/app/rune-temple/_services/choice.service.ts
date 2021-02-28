@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DialogueEvents } from '../_objects/DialogueEvents';
+import { DialogueEvents } from '../_objects/event-types/DialogueEvents';
 import { InteractionWithKeys } from '../_objects/interactions/Interaction';
 
 @Injectable({
