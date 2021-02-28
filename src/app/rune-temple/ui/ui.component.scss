@@ -25,7 +25,7 @@ button {
 }
 
 
-app-settings {
+.floating-element {
     position: absolute;
     top: calc(50% - #{$bottom-section-height} / 2);
     left: 50%;

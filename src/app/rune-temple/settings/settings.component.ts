@@ -30,7 +30,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
           this.form.controls.enableHints.enable();
         }
     });
-    setTimeout(() => { this.settings.nativeElement.style.opacity = 1 }, 10)
+    setTimeout(() => { this.settings.nativeElement.style.opacity = 1 }, 10);
   }
 
   ngOnDestroy() {

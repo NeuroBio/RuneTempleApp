@@ -23,6 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { SaveLoadComponent } from './save-load/save-load.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     EpilogueSceneComponent,
     ChoiceComponent,
     InputReqComponent,
-    SettingsComponent
+    SettingsComponent,
+    SaveLoadComponent
   ],
   imports: [
     CommonModule,

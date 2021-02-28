@@ -12,10 +12,14 @@
             <mat-icon>settings</mat-icon>
         </button>
         <button mat-mini-fab aria-label="save"
-        [disabled]="!isLoggedIn">
+        (click)="viewSaveLoad()">
             <mat-icon>save</mat-icon>
-        </button>    
+        </button>
     </div>
+
+    <!-- Menu Components -->
+    <app-settings *ngIf="showSettings" class="floating-element"></app-settings>
+    <app-save-load *ngIf="showSaveLoad"class="floating-element"></app-save-load>
 
     <!-- Main Game stuff -->
     <app-main-scene></app-main-scene>
@@ -27,7 +31,5 @@
     <app-choice *ngIf="isChoiceActive"></app-choice>
     <app-input-req *ngIf="isInputReqActive"></app-input-req>
 
-    <app-settings *ngIf="showSettings"></app-settings>
-    
 </div>
 

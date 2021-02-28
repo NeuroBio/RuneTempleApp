@@ -7,6 +7,7 @@ import { InputReqService } from '../_services/input-req.service';
 import { InventoryService } from '../_services/inventory.service';
 import { GameSettingsService } from '../_services/game-settings.service';
 import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
+import { SaveLoadService } from '../_services/save-load.service';
 
 @Component({
   selector: 'app-ui',
@@ -30,6 +31,9 @@ export class UIComponent implements OnInit, OnDestroy {
   hint = false;
   hintSubscription: Subscription;
 
+  showSaveLoad = false;
+  savelaodSubscription: Subscription;
+
   isLoggedIn = false;
 
 
@@ -39,6 +43,7 @@ export class UIComponent implements OnInit, OnDestroy {
     private choiceserv: ChoiceService,
     private inventoryserv: InventoryService,
     private inputreqserv: InputReqService,
+    private saveloadserv: SaveLoadService,
     private gs: GameSettingsService) { }
 
   ngOnInit(): void {
@@ -53,10 +58,14 @@ export class UIComponent implements OnInit, OnDestroy {
       
     this.settingsSubscription = this.gs.settingsOpen
       .subscribe(open => this.showSettings = open);
-    this.rtserv.isLoggedIn.subscribe(authed => this.isLoggedIn = authed);
+
+    this.savelaodSubscription = this.saveloadserv.saveloadOpen
+    .subscribe(open => this.showSaveLoad = open);
 
     this.hintSubscription = this.gs.getSetting('enableHints').valueChanges
       .subscribe(value => this.hint = value);
+
+    this.rtserv.isLoggedIn.subscribe(authed => this.isLoggedIn = authed);
   }
 
   ngOnDestroy(): void {
@@ -72,7 +81,19 @@ export class UIComponent implements OnInit, OnDestroy {
   }
 
   viewSettings(): void {
-    this.showSettings = !this.showSettings;
+    if (this.showSettings) {
+      this.gs.closeSettings();
+    } else {
+      this.gs.openSettings();
+    }
+  }
+
+  viewSaveLoad(): void {
+    if (this.showSaveLoad) {
+      this.saveloadserv.closeSaveLoad();
+    } else {
+      this.saveloadserv.openSaveLoad();
+    }
   }
 
   @HostListener('click', ['$event'])
