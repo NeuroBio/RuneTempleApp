@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { DialogueSnippet } from '../_objects/DialogueSnippet';
+import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
 import { GameSettings } from '../_objects/GameSettings';
 import { GameSettingsService } from './game-settings.service';
 

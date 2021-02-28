@@ -1,6 +1,6 @@
 import { DialogueSnippet } from './DialogueSnippet';
 
-export class DialogueTrove {
+export class onClickDialogue {
 
     breaker = {
         envDefault: [new DialogueSnippet('', 'Erin feels the crackle of Breaker rising in her finger tips, but nothing happens.')],
@@ -473,16 +473,4 @@ export class DialogueTrove {
         rock: [new DialogueSnippet('Erin', 'That doesn\'t look like a nail...')]
     }
 
-}
-
-export class SceneDialogue {
-    defaults = {
-
-    };
-
-    sceneUpdates = {
-        foyerHaunt: [
-            new DialogueSnippet('Erin', 'What the...'),
-        ],
-    };
 }

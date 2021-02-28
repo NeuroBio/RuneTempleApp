@@ -1,9 +1,9 @@
 <div id="dialogue-frame">
 
     <!-- Decision to be made -->
-    <div *ngIf="choice; else dialogue">
+    <div *ngIf="choice; else (inputRequired ? input : dialogue)">
         <div id="choice-frame">
-            <!-- Uqestion -->
+            <!-- Question -->
             <div class="dialogue">
                 <i>{{ choice.question }}</i>
             </div>
@@ -37,11 +37,15 @@
                 <i>{{ current.text }}</i>
             </div>
         </ng-template>
-    
-        <!-- <button mat-mini-fab aria-label="advance-dialogue"
-        (click)="next()">
-            <mat-icon>keyboard_arrow_down</mat-icon>
-        </button>     -->
+    </ng-template>
+
+    <ng-template #input>
+        <div class="dialogue" (click)="$event.stopPropagation">
+            <label>
+                Fish Name <br>
+                <input type="text">
+            </label>
+        </div>
     </ng-template>
 
 </div>

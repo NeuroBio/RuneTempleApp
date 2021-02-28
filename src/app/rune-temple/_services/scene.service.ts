@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Activator } from '../_objects/ActiveArea';
-import { DialogueSnippet } from '../_objects/DialogueSnippet';
+import { Activator } from '../_objects/scenes/ActiveArea';
+import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
 import { BehaviorSubject } from 'rxjs';
-import { GameScenes } from '../_objects/Scene';
+import { GameScenes } from '../_objects/scenes/Scene';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
-import { DialogueSnippet } from './DialogueSnippet';
-import { EventFlag } from './EventFlag';
-import { Activator } from './ActiveArea';
+import { DialogueSnippet } from '../dialogue-snippets/DialogueSnippet';
+import { EventFlag } from '../EventFlag';
+import { Activator } from '../scenes/ActiveArea';
 
 export class Interaction {
     dialogue: DialogueSnippet[];
@@ -32,7 +32,7 @@ export class Interaction {
     }
 }
 
-export class InteractionResponse {
+export class InteractionWithKeys {
     interaction: Interaction;
     key: string;
     subkey: string;

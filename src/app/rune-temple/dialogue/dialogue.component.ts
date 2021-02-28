@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DialogueSnippet } from '../_objects/DialogueSnippet';
-import { InteractionResponse } from '../_objects/Interaction';
-import { Choice } from '../_objects/Choices';
+import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
+import { Choice } from '../_objects/Choice';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { TriggerService } from '../_services/trigger.service';
@@ -20,6 +19,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
   advanceSubscription: Subscription;
   current: DialogueSnippet;
   choice: Choice;
+  inputRequired: boolean = false;
   index = 0;
   skip = true;
 
@@ -44,7 +44,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    if (!this.skip) {
+    if (!this.skip  && !this.choice && !this.inputRequired) {
       if (this.current.choiceKey) {
         this.choice = this.choiceserv.getChoice(this.current.choiceKey);
       } else {
@@ -63,6 +63,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
   }
 
   choose(index: number, event: any) {
+    console.log('click choose')
     event.stopPropagation();
     this.choiceserv.markAsSeen(this.current.choiceKey, index);      
     const interaction = this.choice.outcomes[index]

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GameScenes, Scene } from '../_objects/Scene';
+import { GameScenes, Scene } from '../_objects/scenes/Scene';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { SceneService } from '../_services/scene.service';

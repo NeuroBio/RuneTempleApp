@@ -1,14 +1,14 @@
-import { Interaction, InteractionResponse } from './Interaction';
-import { Activator } from './ActiveArea';
-import { DialogueTrove } from'./DialogueTrove';
-import { EventFlag } from './EventFlag';
+import { Interaction, InteractionWithKeys } from './Interaction';
+import { Activator } from '../scenes/ActiveArea';
+import { onClickDialogue } from'../dialogue-snippets/onClickDialogue';
+import { EventFlag } from '../EventFlag';
 
 
-export class EventInteractions {
-    private dialog = new DialogueTrove;
+export class EventFlagInteractions {
+    private dialog = new onClickDialogue;
 
     mapBurned = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction([], [], [], [], [], [], [], undefined,
                 new Interaction(this.dialog.activeAreas.charcoal2,
                 [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)]
@@ -17,13 +17,13 @@ export class EventInteractions {
     ];
 
     bookGot = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.activeAreas.engrave2),
             'engrave', 'default')
     ];
 
     vent1openANDkeyFell = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.activeAreas.vent1C,
                 [], ['silverKey'], [], [], [], [], undefined,
                 new Interaction(this.dialog.activeAreas.vent1B) 
@@ -32,21 +32,21 @@ export class EventInteractions {
     ];
 
     ventOpenOnly = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.activeAreas.vent1B),
             'vent1', 'default'
         )
     ];
 
     acidTroth = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.activeAreas.brokenTroth),
             'troth', 'default'
         )
     ];
 
     ovenCharcoal = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.lighterCharcoalOven,
                 [], [], [new EventFlag('charcoalBurned', true)]
             ), 'peatOven', 'lighter'
@@ -54,13 +54,13 @@ export class EventInteractions {
     ];
 
     zhangFreed = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.activeAreas.rubble2), 'rubble', 'default'
         )
     ];
 
     sterilize = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.herbsInjury,
                 ['herbs'], [], [new EventFlag('herbalize', true)],
             ), 'injury', 'herbs'
@@ -68,7 +68,7 @@ export class EventInteractions {
     ];
 
     herbalize = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.polesInjury,
                 ['poles'], [], [new EventFlag('stabilize', true)],
             ), 'injury', 'poles'
@@ -76,7 +76,7 @@ export class EventInteractions {
     ];
 
     stabilize = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.clothInjury,
                 ['clothStrips'], [], [new EventFlag('wrapilize', true)],
                 [
@@ -98,80 +98,80 @@ export class EventInteractions {
     ];
 
     zhangMedicated = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.zhangFreed.zhang5),
             'zhangBandaged', 'default'
         ),
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.bookZhang1,
                 [], [], [new EventFlag('zhangSawBook', true)],
                 [], [], [], undefined,
                 new Interaction(this.dialog.envCombos.bookZhang2)),
             'zhangBandaged', 'book'
         ),
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.glassZhang,
                 [], [], [new EventFlag('zhangSawCompass', true)]),
             'zhangBandaged', 'glassCap'
         ),
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.magnetZhang,
                 [], [], [new EventFlag('zhangSawCompass', true)]),
             'zhangBandaged', 'magnet'
         ),
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.magnetZhang,
                 [], [], [new EventFlag('zhangSawCompass', true)]),
             'zhangBandaged', 'magnetString'
         ),
 
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.badFlaskZhang,
             [], [], [new EventFlag('zhangSawBadFlask', true)]),
             'zhangBandaged', 'swampFlask'
         ),
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.puzzleBoxZhang),
             'zhangBandaged', 'puzzlebox'
         ),
     ];
 
     zhangSawCompass = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.compassParts),
             'zhangBandaged', 'glassCap'
         ),
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.compassParts),
             'zhangBandaged', 'magnet'
         ),
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.compassPartsString),
             'zhangBandaged', 'magnetString'
         )
     ];
 
     zhangSawBadFlask = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.badFlaskZhang),
             'zhangBandaged', 'emptyFlask'
         ),
 
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.badFlaskZhang),
             'zhangBandaged', 'swampFlask'
         )
     ];
 
     hammerExit = [
-        new InteractionResponse(
+        new InteractionWithKeys(
             new Interaction(this.dialog.activeAreas.exit2),
             'exit', 'default'
         )
     ];
 
     noFishForYou = [
-        new InteractionResponse(new Interaction(this.dialog.activeAreas.puddle2))
+        new InteractionWithKeys(new Interaction(this.dialog.activeAreas.puddle2))
     ];
 
 }

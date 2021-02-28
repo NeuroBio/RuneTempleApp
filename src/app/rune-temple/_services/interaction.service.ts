@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { InteractionTree } from '../_objects/InteractionTree';
-import { Interaction, InteractionResponse } from '../_objects/Interaction';
+import { onClickInteractions } from '../_objects/interactions/onClickInteractions';
+import { Interaction, InteractionWithKeys } from '../_objects/interactions/Interaction';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InteractionService {
 
-  interactions = new InteractionTree().interactions;
+  interactions = new onClickInteractions();
 
   constructor() { }
 
-  getInteraction(key: string, subkey: string): InteractionResponse {
+  getInteraction(key: string, subkey: string): InteractionWithKeys {
     let interaction: any;
     if (!subkey) { // nothing selected
-      return new InteractionResponse(this.interactions[key].default, key, 'default');
+      return new InteractionWithKeys(this.interactions[key].default, key, 'default');
     }
 
     interaction = this.checkKeys(key, subkey);
@@ -43,7 +43,7 @@ export class InteractionService {
   private checkKeys(key: string, subkey: string) {
     if (this.interactions[key]) {
       if (this.interactions[key][subkey]) { //assetKey is subkey
-          return new InteractionResponse(this.interactions[key][subkey], key, subkey);
+          return new InteractionWithKeys(this.interactions[key][subkey], key, subkey);
       }
     }
     return undefined;
@@ -52,7 +52,7 @@ export class InteractionService {
   private returnDefault(key: string) {
     if (this.interactions[key]
       && this.interactions[key].default) {
-      return new InteractionResponse(
+      return new InteractionWithKeys(
         this.interactions[key].default,
         key, 'default');
     }

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { GameItems, InventoryItem } from '../_objects/InventoryItem';
 import { Subscription } from 'rxjs';
-import { DialogueSnippet } from '../_objects/DialogueSnippet';
+import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
 import { DialogueService } from '../_services/dialogue.service';
 import { InventoryService } from '../_services/inventory.service';
 import { TriggerService } from '../_services/trigger.service';

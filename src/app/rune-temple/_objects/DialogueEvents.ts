@@ -1,24 +1,7 @@
-import { InteractionResponse } from './Interaction';
-import { DialogueInteractions } from './DialogueInteractions';
+import { DialogueInteractions } from './interactions/DialogueInteractions';
+import { Choice } from './Choice';
 
-export class Choice {
-    question: string;
-    options: string[];
-    seen: boolean[];
-    outcomes: InteractionResponse[];
-    chooseAgain: boolean;
-
-    constructor(question: string, options: string[],
-        outcomes: InteractionResponse[], chooseAgain: boolean = false) {
-        this.question = question;
-        this.options = options;
-        this.seen = Array(options.length).fill(false);
-        this.outcomes = outcomes;
-        this.chooseAgain = chooseAgain;
-    }
-}
-
-export class DialogueChoices {
+export class DialogueEvents {
     private dialEvents = new DialogueInteractions;
 
     peatStacks = new Choice(
@@ -88,3 +71,4 @@ export class DialogueChoices {
         this.dialEvents.nameFish
     )
 }
+

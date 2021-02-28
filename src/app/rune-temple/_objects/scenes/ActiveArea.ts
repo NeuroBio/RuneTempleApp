@@ -30,7 +30,3 @@ export class Activator {
         this.newKey = newKey;
     }
 }
-
-export class Location {
-    
-}

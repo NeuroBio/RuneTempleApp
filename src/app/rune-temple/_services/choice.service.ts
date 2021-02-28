@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { DialogueChoices } from '../_objects/Choices';
-import { InteractionResponse } from '../_objects/Interaction';
+import { DialogueEvents } from '../_objects/DialogueEvents';
+import { InteractionWithKeys } from '../_objects/interactions/Interaction';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChoiceService {
 
-  private choices = new DialogueChoices;
+  private choices = new DialogueEvents;
 
   constructor() { }
 
@@ -15,7 +15,7 @@ export class ChoiceService {
     return this.choices[key];
   }
 
-  addChoice(key: string, option: string, outcome: InteractionResponse) {
+  addChoice(key: string, option: string, outcome: InteractionWithKeys) {
     const index = this.choices[key].options.length - 1;
     this.choices[key].options.splice(index, 0, option);
     this.choices[key].outcomes.splice(index, 0, outcome);

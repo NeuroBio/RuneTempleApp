@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { EventFlag } from '../_objects/EventFlag';
 import { EventFlags } from '../_objects/Events';
 import { BadgeService } from './badge.service';
-import { GameSettings } from '../_objects/GameSettings';
 import { InteractionService } from './interaction.service';
-import { InteractionResponse, Interaction } from '../_objects/Interaction';
-import { EventInteractions } from '../_objects/EventInteractions';
-import { ZhangHelp } from '../_objects/DialogueInteractions'
+import { InteractionWithKeys, Interaction } from '../_objects/interactions/Interaction';
+import { EventFlagInteractions } from '../_objects/interactions/EventFlagInteractions';
+import { ZhangHelp } from '../_objects/dialogue-snippets/onChoiceDialogue'
 import { SceneService } from './scene.service';
-import { SceneDialogue } from '../_objects/DialogueTrove';
+import { SceneDialogue } from '../_objects/dialogue-snippets/sceneDialogue';
 import { ChoiceService } from './choice.service';
-import { DialogueSnippet } from '../_objects/DialogueSnippet';
+import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
 import { GameSettingsService } from './game-settings.service';
 
 @Injectable({
@@ -19,7 +18,7 @@ import { GameSettingsService } from './game-settings.service';
 export class EventService {
 
   private events = new EventFlags;
-  private eventInteractions = new EventInteractions;
+  private eventInteractions = new EventFlagInteractions;
   private sceneDial = new SceneDialogue;
   private zhang = new ZhangHelp;
 
@@ -116,7 +115,7 @@ export class EventService {
     }
   }
 
-  private updateInteraction(interactions: InteractionResponse[]) {
+  private updateInteraction(interactions: InteractionWithKeys[]) {
     if (interactions) {
       interactions.forEach(int => {
         this.interactionserv.updateInteraction(int.key, int.subkey, int.interaction);
@@ -130,7 +129,7 @@ export class EventService {
   }
 
   private addChoice(key: string, opt: string, out: DialogueSnippet[]) {
-    this.choiceserv.addChoice(key, opt, new InteractionResponse(new Interaction(out)));
+    this.choiceserv.addChoice(key, opt, new InteractionWithKeys(new Interaction(out)));
   }
 
   addMapEvent(key: string) {

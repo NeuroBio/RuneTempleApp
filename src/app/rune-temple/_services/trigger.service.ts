@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Interaction, InteractionResponse } from '../_objects/Interaction';
+import { InteractionWithKeys } from '../_objects/interactions/Interaction';
 import { InventoryService } from './inventory.service';
 import { DialogueService } from './dialogue.service';
 import { SceneService } from './scene.service';
@@ -49,7 +49,7 @@ export class TriggerService {
     return subkey
   }
 
-  triggerInteraction(res: InteractionResponse) {
+  triggerInteraction(res: InteractionWithKeys) {
     const int = res.interaction
     if (int.update) {
       this.interactionserv.updateInteraction(res.key, res.subkey, res.interaction.update)

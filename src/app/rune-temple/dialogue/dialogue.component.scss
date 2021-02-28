@@ -20,8 +20,9 @@
     line-height: 1.5;
     font-size: 16pt;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: $large-margin;
+    padding: $large-margin;
     height: calc(100% - #{$large-margin} * 2);
+    width: 100%;
 }
 
 #speaker {
@@ -52,4 +53,16 @@ button {
 .mat-unseen {
     color: whitesmoke;
     background-color: $medium-grey;
+}
+
+#input-frame {
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    color: whitesmoke;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
