@@ -1,4 +1,4 @@
-import { InteractionWithKeys, Interaction } from './Interaction'
+import { InteractionWithKeys, Interaction, InputRequestInteraction } from './Interaction'
 import { EventFlag } from '../event-types/EventFlag'
 import { Activator } from '../scenes/ActiveArea'
 import { ZhangHelp, DIDialogue } from '../dialogue-snippets/onChoiceDialogue';
@@ -90,9 +90,7 @@ export class DialogueInteractions {
     ];
 
     nameFish = [
-        new InteractionWithKeys(
-            new Interaction(this.DID.nameFish,
-                [], [], [new EventFlag('fishNamed')])),
+        new InputRequestInteraction('dialogue', 'nameFish'),
 
         new InteractionWithKeys(
             new Interaction(this.DID.unnameFish,

@@ -100,6 +100,7 @@ export class EventFlagService {
         break;
       case 'wrapilize' :
         this.updateScene('foyer', this.sceneDial.sceneUpdates.foyerHaunt);
+        break;
       case 'zhangSawBook' :
         this.addChoice('dialogue', 'zhangConvoTopics', 'about the book', this.zhang.book);
         break;

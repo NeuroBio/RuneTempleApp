@@ -4,7 +4,7 @@ export class SceneActiveAreas {
     pitFloor = [
         new ActiveArea('Zhang Buried', 'zhangBuried', 0, 0),
         new ActiveArea('Zhang', 'zhangFreed', 0, 0, false),
-        new ActiveArea('Zhang', 'zhangBandaged', 0, 0, true),
+        new ActiveArea('Zhang', 'zhangBandaged', 0, 0, false),
         new ActiveArea('Rubble', 'rubble', 0, 0,),
         new ActiveArea('Dry Root', 'rootEnv', 0, 0,),
         new ActiveArea('Palm-sized Stone', 'rockEnv', 0, 0, false)

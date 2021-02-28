@@ -19,7 +19,7 @@ export class onClickInteractions {
     zhangBuried = {
         default: new Interaction(
             this.dialog.zhangBuried.zhang1, [], [], [], [], [], [],
-            this.nested.zhangBandagedDefault),
+            this.nested.zhangBuried),
         pills: new Interaction(this.dialog.envCombos.pillsZhang),
         pole: new Interaction(this.dialog.envCombos.poleZhang),
         vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaZhangBurried)
@@ -98,7 +98,7 @@ export class onClickInteractions {
 
     vodkaFlask = {
         torch: new Interaction(this.dialog.combos.dryTorchVodka,
-            ['vodkaFlask', 'torch'], ['wetTorch', 'vodkaFlask2']),
+            ['vodkaFlask', 'torch'], ['vodkaFlask2', 'wetTorch']),
     };
 
     lighter = {

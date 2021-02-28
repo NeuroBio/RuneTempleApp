@@ -60,7 +60,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
   }
 
   giveDescription(text: string) {
-    this.dialogueserv.startDialogue([new DialogueSnippet('Erin', text)]);
+    this.dialogueserv.setDialogue([new DialogueSnippet('Erin', text)]);
     return false;
   }
 

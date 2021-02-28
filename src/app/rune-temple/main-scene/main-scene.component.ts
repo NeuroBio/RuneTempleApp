@@ -57,7 +57,7 @@ export class MainSceneComponent implements OnInit, OnDestroy {
     this.activeKey = key;
     this.scene = this.allScenes[key];
     if (!this.scene.visited) {
-      this.dialogueserv.startDialogue(this.scene.dialogue);
+      this.dialogueserv.setDialogue(this.scene.dialogue);
       this.sceneserv.updateScene(this.scene.assetKey, true, null);
       this.eventserv.addMapEvent(this.scene.assetKey);
     }

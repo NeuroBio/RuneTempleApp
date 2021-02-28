@@ -7,6 +7,11 @@ export class UpdateInteractions {
     private dialog = new onClickDialogue;
     private one = new LevelOne;
 
+    zhangBuried = [
+        new InteractionWithKeys(
+            new Interaction(this.dialog.zhangBuried.zhang2),
+            'zhangBuried', 'default')];
+
     zhangBandagedDefault = [
         new InteractionWithKeys(
             new Interaction(this.dialog.zhangFreed.zhang4),
@@ -37,16 +42,16 @@ export class UpdateInteractions {
     floorDefault =  [
         new InteractionWithKeys(
             new Interaction(this.dialog.activeAreas.floor2),
-            'floor', 'default'),
-
-        new InteractionWithKeys(
-            new Interaction(this.dialog.activeAreas.exit2),
-            'exit', 'default')];
+            'floor', 'default')];
     
     exitRock = [
         new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.rockExit2),
-            'exit', 'rock')];
+            'exit', 'rock'),
+
+        new InteractionWithKeys(
+            new Interaction(this.dialog.activeAreas.exit2),
+            'exit', 'default')];
     
     puddleDefault = [
         new InteractionWithKeys(

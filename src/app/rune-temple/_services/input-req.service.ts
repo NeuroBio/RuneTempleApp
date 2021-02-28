@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { InputRequest } from '../_objects/event-types/InputRequest';
+import { InputRequest } from '../_objects/input-requests/InputRequest';
+import { InputRequests } from '../_objects/input-requests/InputRequests';
 
 @Injectable({
   providedIn: 'root'
@@ -8,18 +9,16 @@ import { InputRequest } from '../_objects/event-types/InputRequest';
 export class InputReqService {
 
   activeInputReq = new BehaviorSubject<InputRequest>(undefined);
+  private inputRequests = new InputRequests;
 
   constructor() { }
 
-  setInputRequest(input: InputRequest) {
-    this.activeInputReq.next(input);
+  setInputRequest(key: string, subkey: string) {
+    this.activeInputReq.next(this.inputRequests[key][subkey]);
   }
 
-  endInputRequest() {
+  unsetInputRequest() {
     this.activeInputReq.next(undefined);
   }
 
-  getInputRuest(key: string) {
-    return new InputRequest('event', 'fake', 'this is fake');
-  }
 }

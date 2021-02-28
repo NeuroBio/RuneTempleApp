@@ -245,7 +245,7 @@ export class onClickDialogue {
 
         peatOven: [new DialogueSnippet('', 'The old, stone peat oven is unlit.  The ash from the last time it was used has settled deeply into the stone, staining it black.')],
         peatOvenLit: [new DialogueSnippet('', 'The fire in the oven crackles softly, bringing warmth into the damp air.')],
-        peat: [new DialogueSnippet('', 'Layers and layers of compacted peat.', 'peatStacks')],
+        peat: [new DialogueSnippet('', 'Layers and layers of compacted peat.', 'choice', 'peatStacks')],
         vent1A: [new DialogueSnippet('', 'Erin tries to pull the metal grate off, but it is screwed firmly in place.')],
         vent1B: [new DialogueSnippet('', 'Erin peers into the vent, but there is nothing there.')],
         vent1C: [new DialogueSnippet('', 'Erin peers into the vent.  The metal object from the classroom vent, now identifiable as a key, fell within reach.  Erin snags the key.')],
@@ -320,7 +320,7 @@ export class onClickDialogue {
         ],
 
         knifeFloor: [new DialogueSnippet('', 'Erin tries to prize open the middle vase, but the lid just won\'t budge.  The knife bends ever so slightly.  Fearing the knife will break, Erin stops.')],
-        knifeFloor2: [new DialogueSnippet('', 'Erin digs her knife into the crease between the vase and it\'s lid again.  Again, her knife begins to bend.')],
+        knifeFloor2: [new DialogueSnippet('', 'Erin digs her knife into the crease between the vase and its lid again.  Again, her knife begins to bend.')],
         knifeFloor3: [new DialogueSnippet('', 'Erin\'s persistence in trying to open the vase with her knife rewards her with a broken knife.')],
         vodkaFlask2Barrel: [new DialogueSnippet('Erin', 'I’m pretty sure Zhang would kill me if I wasted his booze.')],
         pillsBarrel: [new DialogueSnippet('', 'It completely is not clear why, but Erin feels the compulsion to throw the pain killers into the water.  She opens the tin and watches the two remaining pills fall into the barrel and sink.  In their wake rises a trail of fizzy bubbles.  Erin throws the tin in after them.  Hopefully, Zhang will not ask for the pills.')],

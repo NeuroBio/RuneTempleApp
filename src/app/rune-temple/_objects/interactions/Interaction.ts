@@ -1,8 +1,6 @@
 import { DialogueSnippet } from '../dialogue-snippets/DialogueSnippet';
 import { EventFlag } from '../event-types/EventFlag';
 import { Activator } from '../scenes/ActiveArea';
-import { Choice } from '../choices/Choice';
-import { InputRequest } from '../event-types/InputRequest';
 
 export class Interaction {
     dialogue: DialogueSnippet[];
@@ -16,7 +14,7 @@ export class Interaction {
     updateScenes = []
     moveToScene: string;
     loadChoice: string[];
-    requestInput: InputRequest;
+    requestInput: string[];
 
     constructor(
         dialogue: DialogueSnippet[], removeItems: string[] = [],
@@ -25,7 +23,7 @@ export class Interaction {
         addBadges: string[] = [],
         updates: InteractionWithKeys[] = [], moveToScene: string = undefined,
         updateScenes = [], loadChoice: string[] = [],
-        requestInput: InputRequest = undefined
+        requestInput: string[] = []
     ) {
         this.dialogue = dialogue;
         this.removeItems = removeItems;
@@ -57,23 +55,29 @@ export class InteractionWithKeys {
 export class ChoiceInteraction extends InteractionWithKeys {
     constructor(key: string, subkey: string) {
         super(
-            new Interaction([], [], [], [], [], [], [], [], undefined, [], [key, subkey]),
-            undefined, undefined);
+            new Interaction([], [], [], [], [], [], [], [], undefined, [], [key, subkey]));
     }
 }
 
 export class SceneUdateInteraction extends InteractionWithKeys {
     constructor(scenesToUpdate) {
         super(
-            new Interaction([], [], [], [], [], [], [], [], undefined, scenesToUpdate),
-            undefined, undefined)
+            new Interaction([], [], [], [], [], [], [], [], undefined, scenesToUpdate))
     }
 }
 
-export class InputRequetInteraction extends InteractionWithKeys {
-    constructor(input: InputRequest) {
+export class InputRequestInteraction extends InteractionWithKeys {
+    constructor(key: string, subkey: string) {
         super(
-            new Interaction([], [], [], [], [], [], [], [], undefined, [], undefined, input),
-            undefined, undefined)
+            new Interaction([], [], [], [], [], [], [], [],
+                undefined, [], undefined, [key, subkey]));
+    }
+}
+
+export class SceneInteraction extends InteractionWithKeys {
+    constructor(activeAreas: Activator[], locations?: Activator[], moveToScene?: string, updateScenes?: []) {
+        super(
+            new Interaction([], [], [], [], activeAreas, locations,
+                [], [], moveToScene, updateScenes));
     }
 }

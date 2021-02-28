@@ -39,14 +39,14 @@ export class ChoiceService {
     this.choices[this.key][this.subkey].seen[index] = true;
   }
 
-  loadActiveChoice(key: string, subkey: string,): void {
+  setChoice(key: string, subkey: string,): void {
     this.key = key;
     this.subkey = subkey;
     console.log(key, subkey)
     this.activeChoice.next(this.choices[key][subkey]);
   }
 
-  unloadChoice(): void {
+  unsetChoice(): void {
     this.key = undefined;
     this.subkey = undefined;
     this.activeChoice.next(undefined);

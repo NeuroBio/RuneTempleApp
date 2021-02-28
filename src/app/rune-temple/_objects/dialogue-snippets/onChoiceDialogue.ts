@@ -25,7 +25,6 @@ export class DIDialogue {
 
     igniteMap = [new DialogueSnippet('', 'Erin flicks the lighter to life and sets the map ablaze.  It\'s not long before all that remains is a tiny scroched corner where her thumb was.  She drops that scrap.')];
 
-    nameFish = [new DialogueSnippet('', 'Erin chose to name the fish ${fishName}')];
     unnameFish = [new DialogueSnippet('', 'Erin chose to not name the fish')];
 }
 

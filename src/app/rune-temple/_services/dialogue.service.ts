@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
 import { GameSettingsService } from './game-settings.service';
-import { ChoiceInteraction, InputRequetInteraction } from '../_objects/interactions/Interaction'
-import { InputReqService } from './input-req.service';
+import { SceneService } from './scene.service';
 import { ChoiceService } from './choice.service';
+import { InputReqService } from './input-req.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,12 +15,14 @@ export class DialogueService {
   advance = new Subject();
   parse = new RegExp('\\${.*?}', 'g');
 
+  constructor(
+    private gs: GameSettingsService,
+    private sceneserv: SceneService,
+    private choiceserv: ChoiceService,
+    private inputreqserv: InputReqService
+  ) { }
 
-  private current: DialogueSnippet;
-
-  constructor(private gs: GameSettingsService) { }
-
-  startDialogue(dialogue: DialogueSnippet[]): void {
+  setDialogue(dialogue: DialogueSnippet[]): void {
     // replaces vars marked by ${} with their value in game settings
     dialogue.forEach(snip => {
       snip.text = snip.text.replace(this.parse, (parsed) => 
@@ -29,31 +32,21 @@ export class DialogueService {
     this.activeDialogue.next(dialogue);
   }
 
-  endDialogue(): void {
+  unsetDialogue(): void {
     this.activeDialogue.next([]);
   }
 
-  choose(current: DialogueSnippet) {
-    this.current = current;
-    const waiter = this.activeDialogue.subscribe(value => {
-      // wait until there are no more dialogue interactions
-      // then reassign the choice dialogue snippet
-      if (!value[0]) {
-        this.startDialogue([this.current]);
-        this.advance.next();
-        this.current = undefined;
-        waiter.unsubscribe();
-      }
-    })
-  }
-
-
-  getEvent(type: string, key: string) {
+  triggerEvent(type: string, key: string) {
     switch (type) {
       case 'choice' :
-        return new ChoiceInteraction('dialogue', key);
+        this.choiceserv.setChoice('dialogue', key);
+        break;
       case 'inputRequest' :
-        // return  new InputRequetInteraction(this.inputreqserv.getInputReq(key));
+        this.inputreqserv.setInputRequest('dialogue', key);
+        break;
+      case 'scene' :
+        this.sceneserv.triggerUpdate('dialogue', key);
+        break;
     }
     console.log('unknown event type!')
   }

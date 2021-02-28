@@ -37,7 +37,7 @@ export class ChoiceComponent implements OnInit, OnDestroy {
       this.triggerserv.triggerInteraction(interaction);
     }
 
-    this.choiceserv.unloadChoice();
+    this.choiceserv.unsetChoice();
   }
 
 }
