@@ -15,7 +15,7 @@ export class UpdateInteractions {
     knifeFloor = [
         new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.knifeFloor2,
-                [], [], [], [], [], [], undefined,
+                [], [], [], [], [], [],
                 this.one.knifeFloor),
             'knife', 'floor')];
     
@@ -72,7 +72,7 @@ export class UpdateInteractions {
         new InteractionWithKeys(
             new Interaction(
                 this.dialog.envCombos.acidDishTroth2,
-                [], [], [], [], [], [], undefined, this.one.trothAcidDish),
+                [], [], [], [], [], [], this.one.trothAcidDish),
             'troth', 'acidDish')];
     
     bookEnvDefault = [
@@ -84,7 +84,7 @@ export class UpdateInteractions {
         new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.lighterCharcoalOven,
                 [], [], [new EventFlag('charcoalBurned', true)],
-                [], [], [], undefined, this.one.peatOvenLighter),
+                [], [], [], this.one.peatOvenLighter),
             'peatOven', 'lighter')];
 
     rubblePole = [
@@ -121,7 +121,7 @@ export class UpdateInteractions {
         new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.herbsInjury,
                 ['herbs'], [], [new EventFlag('herbalize', true)],
-                [], [], [], undefined, this.one.herbalize),
+                [], [], [], this.one.herbalize),
             'injury', 'herbs')];
 
     zhangMedicated = [
@@ -132,7 +132,7 @@ export class UpdateInteractions {
         new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.bookZhang1,
                 [], [], [new EventFlag('zhangSawBook', true)],
-                [], [], [], undefined, this.one.zhangBook),
+                [], [], [], this.one.zhangBook),
             'zhangBandaged', 'book'),
 
         new InteractionWithKeys(
@@ -174,7 +174,7 @@ export class LevelOne {
             new Interaction(
                 this.dialog.envCombos.acidDishTroth3,
                 ['acidDish'], ['glassCap'], [new EventFlag('acidTroth', true)],
-                [], [], [], undefined, this.two.trothAcidDish),
+                [], [], [], this.two.trothAcidDish),
             'troth', 'acidDish')];
     
     peatOvenLighter = [
@@ -191,7 +191,7 @@ export class LevelOne {
         new InteractionWithKeys(
             new Interaction(this.dialog.envCombos.polesInjury,
                 ['poles'], [], [new EventFlag('stabilize', true)],
-                [], [], [], undefined, this.two.stabilize),
+                [], [], [], this.two.stabilize),
             'injury', 'poles')];
 }
 
@@ -226,6 +226,6 @@ export class LevelTwo {
                     new Activator('foyer', 'exit', false),
                     new Activator('foyer', 'pitFloor', false)
                 ],
-                [], 'pitFloor'),
+                [], [], 'pitFloor'),
             'injury', 'clothStrips')];
 }

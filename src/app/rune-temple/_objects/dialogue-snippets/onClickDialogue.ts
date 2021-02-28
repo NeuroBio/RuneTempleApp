@@ -155,7 +155,7 @@ export class onClickDialogue {
         ],
         zhang5: [
             new DialogueSnippet('Erin', 'Willing to talk now?'),
-            new DialogueSnippet('Zhang', 'About what?', 'zhangConvoTopics')
+            new DialogueSnippet('Zhang', 'About what?', 'choice', 'zhangConvoTopics')
         ],
         zhang6: [
             new DialogueSnippet('Erin', 'Do you think you can stand?'),
@@ -271,13 +271,13 @@ export class onClickDialogue {
 
         puddle1: [
             new DialogueSnippet('', 'Erin looks at the pooling water with growing concern.  She sees a tiny fish, smaller than her finger.  She scoops the fragile creature up with her hands.'),
-            new DialogueSnippet('Erin', 'Is there a whole lake beyond that door?', 'nameFish')
+            new DialogueSnippet('Erin', 'Is there a whole lake beyond that door?', 'choice', 'nameFish')
         ],
         puddle2: [new DialogueSnippet('Erin', 'This is REALLY not good.')],
     };
 
     combos = {
-        compassKnife: [new DialogueSnippet('Erin', 'I\'m not sure I want to do that.  I might not be able to put the compass back together.', 'compassKnife')],
+        compassKnife: [new DialogueSnippet('Erin', 'I\'m not sure I want to do that.  I might not be able to put the compass back together.', 'choice', 'compassKnife')],
 
         shirtKnife: [new DialogueSnippet('', 'Erin cuts the shirt into strips.')],
         rootLighter: [new DialogueSnippet('Erin', 'I think I can make a better torch than this...')],
@@ -294,12 +294,12 @@ export class onClickDialogue {
         flaskGlassCap: [new DialogueSnippet('Erin', 'The fluid in the flask is already contained.')],
         rockPuzzle: [new DialogueSnippet('', 'Erin holds the two items in her hands, unsure where to hit the puzzle box with the rock.  There are no visible seams or hinges.  Erin decides this must be the wrong course of action and puts the two items away.')],
 
-        rockGlassCap: [new DialogueSnippet('', 'Erin looks between the rock and the glass cap.  There is wanton destruction to be had here.', 'shatter1')],
-        rockEmptyFlask: [new DialogueSnippet('', 'Erin looks between the rock and the flask.  Yes, the flask is Zhang\'s but this would not be the first of his things she destoroyed today.', 'shatter2')],
-        mapLighter: [new DialogueSnippet('', 'Erin considers the lighter and the map.  Yes, the map is made of paper, and paper is very flammable, but it has also proved... somewhat useful as a navigation tool.', 'igniteMap')],
+        rockGlassCap: [new DialogueSnippet('', 'Erin looks between the rock and the glass cap.  There is wanton destruction to be had here.', 'choice', 'shatter1')],
+        rockEmptyFlask: [new DialogueSnippet('', 'Erin looks between the rock and the flask.  Yes, the flask is Zhang\'s but this would not be the first of his things she destoroyed today.', 'choice', 'shatter2')],
+        mapLighter: [new DialogueSnippet('', 'Erin considers the lighter and the map.  Yes, the map is made of paper, and paper is very flammable, but it has also proved... somewhat useful as a navigation tool.', 'choice', 'igniteMap')],
         fluidRock: [new DialogueSnippet('Erin', 'Mmm... I don\'t think so.  If I break that with the rock, I\'ll get the fluid all over my hands.')],
         fishTankRock: [new DialogueSnippet('Erin', 'NO.  Not while ${fishName} is still in it.')],
-        compassRock: [new DialogueSnippet('', 'Erin considers the rock and the compass.  The rock could certainly smash through the glass, but that seems like a violent way to deal with the compass.', 'shatter3')]
+        compassRock: [new DialogueSnippet('', 'Erin considers the rock and the compass.  The rock could certainly smash through the glass, but that seems like a violent way to deal with the compass.', 'choice', 'shatter3')]
     };
 
     envCombos = {
@@ -456,7 +456,7 @@ export class onClickDialogue {
             new DialogueSnippet('Erin', 'Right...')
         ],
 
-        puzzleBoxLitOven: [new DialogueSnippet('', 'Erin looks down at the puzzle box.  It\'s a risky gambit, but maybe the corrext way to open teh box is with fire.', 'riskyGambit')],
+        puzzleBoxLitOven: [new DialogueSnippet('', 'Erin looks down at the puzzle box.  It\'s a risky gambit, but maybe the corrext way to open teh box is with fire.', 'choice', 'riskyGambit')],
         zhangScrapMetal: [new DialogueSnippet('', 'Erin thinks to herself: Don\'t tell Zhang.  Don\'t show Zhang.')],
         rockExit: [
             new DialogueSnippet('Erin', 'I bet if I just...'),
@@ -470,7 +470,7 @@ export class onClickDialogue {
 
     itemDefaults = {
         lighter: [new DialogueSnippet('Erin', 'I enjoy burning things as much as the next person, but that seems like a bad idea.')],
-        rock: [new DialogueSnippet('Erin', 'That doesn\'t look like a nail...')]
+        rock: [new DialogueSnippet('Erin', 'That doesn\'t look like a nail...')],
     }
 
 }

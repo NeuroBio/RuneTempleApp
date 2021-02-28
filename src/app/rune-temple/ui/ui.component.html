@@ -20,8 +20,9 @@
 
 
     <!-- Inventory -->
-    <app-inventory *ngIf="!isDialogueActive"></app-inventory>
+    <app-inventory *ngIf="!isDialogueActive && !isChoiceActive"></app-inventory>
     <app-dialogue *ngIf="isDialogueActive"></app-dialogue>
+    <app-choice *ngIf="isChoiceActive"></app-choice>
     
 </div>
 

@@ -6,6 +6,7 @@ import { SceneService } from './scene.service';
 import { InteractionService } from './interaction.service';
 import { EventFlagService } from './event-flag.service';
 import { BadgeService } from './badge.service';
+import { ChoiceService } from './choice.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class TriggerService {
     private inventoryserv: InventoryService,
     private eventserv: EventFlagService,
     private badgeserv: BadgeService,
-    private sceneserv: SceneService) { }
+    private sceneserv: SceneService,
+    private choiceserv: ChoiceService) { }
 
 
   checkClickOrCombo(index: number) {
@@ -72,11 +74,14 @@ export class TriggerService {
     if (int.addBadges[0]) {
       this.badgeserv.addBadges(int.addBadges);
     }
-    if (int.changeScene) {
-      this.sceneserv.activeScene.next(int.changeScene);
+    if (int.moveToScene) {
+      this.sceneserv.activeScene.next(int.moveToScene);
     }
     if (int.eventFlags[0]) {
       this.eventserv.updateEvents(int.eventFlags);
+    }
+    if(int.loadChoice[0]) {
+      this.choiceserv.loadActiveChoice(int.loadChoice[0], int.loadChoice[1])
     }
   }
 

@@ -1,51 +1,30 @@
 <div id="dialogue-frame">
 
-    <!-- Decision to be made -->
-    <div *ngIf="choice; else (inputRequired ? input : dialogue)">
-        <div id="choice-frame">
-            <!-- Question -->
+    <!-- Character speaking -->
+    <div *ngIf="dialogue.speaker !== ''; else narrator">
+        <div id="portrait-frame">
+            <img src="" id="speaker" [alt]="dialogue.speaker + '\'s portrait'">
             <div class="dialogue">
-                <i>{{ choice.question }}</i>
-            </div>
-
-            <!-- Choices -->
-            <div>
-                <button *ngFor="let opt of choice.options; let index = index"
-                mat-flat-button [color]="choice.seen[index] ? 'seen' : 'unseen'"
-                (click)="choose(index, $event)">
-                    {{ opt }}
-                </button>    
-            </div>
+                <b>{{ dialogue.speaker }}:</b>
+                {{ dialogue.text }}
+            </div>    
         </div>
     </div>
 
-    <ng-template #dialogue>
-        <!-- Character speaking -->
-        <div *ngIf="current.speaker !== ''; else narrator">
-            <div id="portrait-frame">
-                <img src="" id="speaker" [alt]="current.speaker + '\'s portrait'">
-                <div class="dialogue">
-                    <b>{{ current.speaker }}:</b>
-                    {{ current.text }}
-                </div>    
-            </div>
+    <!-- Narration -->
+    <ng-template #narrator>
+        <div class="dialogue">
+            <i>{{ dialogue.text }}</i>
         </div>
-    
-        <!-- Narration -->
-        <ng-template #narrator>
-            <div class="dialogue">
-                <i>{{ current.text }}</i>
-            </div>
-        </ng-template>
     </ng-template>
 
-    <ng-template #input>
-        <div class="dialogue" (click)="$event.stopPropagation">
-            <label>
-                Fish Name <br>
-                <input type="text">
-            </label>
-        </div>
-    </ng-template>
+    <!-- Input -->
+    <div *ngIf="inputReq"
+    class="dialogue" (click)="$event.stopPropagation">
+        <label>
+            Fish Name <br>
+            <input type="text">
+        </label>
+    </div>
 
 </div>

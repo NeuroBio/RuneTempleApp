@@ -60,7 +60,7 @@ export class EventFlagService {
         this.badgeCheck('random', (this.events.mustacheFish && this.events.barrelPills));
         break;
       case 'hammerExit' :
-        this.addChoice('zhangConvoTopics', 'about the water', this.zhang.water);
+        this.addChoice('dialogue', 'zhangConvoTopics', 'about the water', this.zhang.water);
         if (this.events.reliefRepaired) {
           this.updateInteraction(this.eventInteractions.noFishForYou);
         }
@@ -101,7 +101,7 @@ export class EventFlagService {
       case 'wrapilize' :
         this.updateScene('foyer', this.sceneDial.sceneUpdates.foyerHaunt);
       case 'zhangSawBook' :
-        this.addChoice('zhangConvoTopics', 'about the book', this.zhang.book);
+        this.addChoice('dialogue', 'zhangConvoTopics', 'about the book', this.zhang.book);
         break;
       default:
         break;
@@ -128,8 +128,8 @@ export class EventFlagService {
     this.sceneserv.updateScene(scene, false, dialog);
   }
 
-  private addChoice(key: string, opt: string, out: DialogueSnippet[]) {
-    this.choiceserv.addChoice(key, opt, new InteractionWithKeys(new Interaction(out)));
+  private addChoice(key: string, subkey: string, opt: string, out: DialogueSnippet[]) {
+    this.choiceserv.addChoice(key, subkey, opt, new InteractionWithKeys(new Interaction(out)));
   }
 
   addMapEvent(key: string) {

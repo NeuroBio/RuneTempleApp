@@ -8,7 +8,7 @@ export class EventFlagInteractions {
     vent1openANDkeyFell = [
         new InteractionWithKeys(
             new Interaction(this.dialog.activeAreas.vent1C,
-                [], ['silverKey'], [], [], [], [], undefined,
+                [], ['silverKey'], [], [], [], [],
                 [
                     new InteractionWithKeys(
                         new Interaction(this.dialog.activeAreas.vent1B),

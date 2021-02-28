@@ -1,11 +1,11 @@
 export class InputRequest {
 
     title: string;
-    type: 'event' | 'gameSetting';
+    affects: 'event' | 'gameSetting';
     key: string;
 
-    constructor(type: 'event' | 'gameSetting', key: string, title: string) {
-        this.type = type;
+    constructor(affects: 'event' | 'gameSetting', key: string, title: string) {
+        this.affects = affects;
         this.key = key;
         this.title = title;
     }

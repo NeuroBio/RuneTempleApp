@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
+import { ChoiceComponent } from './choice/choice.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatInputModule } from '@angular/material/input';
     DialogueComponent,
     BadgesComponent,
     GameComponent,
-    EpilogueSceneComponent
+    EpilogueSceneComponent,
+    ChoiceComponent
   ],
   imports: [
     CommonModule,

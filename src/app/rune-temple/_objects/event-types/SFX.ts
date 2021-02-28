@@ -4,4 +4,5 @@ export class SFX {
     cursorEffect: string;
     areaActivators: string;
     locationActivators: string;
+    type = 'SFX'
 }

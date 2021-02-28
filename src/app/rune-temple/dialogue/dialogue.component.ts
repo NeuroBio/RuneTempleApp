@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
-import { Choice } from '../_objects/event-types/Choice';
+import { Choice } from '../_objects/choices/Choice';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { TriggerService } from '../_services/trigger.service';
 import { ChoiceService } from '../_services/choice.service';
+import { InputRequest } from '../_objects/event-types/InputRequest';
 
 @Component({
   selector: 'app-dialogue',
@@ -16,22 +17,25 @@ export class DialogueComponent implements OnInit, OnDestroy {
 
   allDialogue: DialogueSnippet[];
   dialogueSubscription: Subscription;
+  dialogue:  DialogueSnippet;
+
+
+
+  inputReq: InputRequest;
+  inputReqSubsciption: Subscription;
   advanceSubscription: Subscription;
-  current: DialogueSnippet;
-  choice: Choice;
-  inputRequired: boolean = false;
   index = 0;
   skip = true;
 
   constructor(
     private triggerserv: TriggerService,
     private dialogueserv: DialogueService,
-    private choiceserv: ChoiceService) { }
+  ) { }
 
   ngOnInit(): void {
     this.dialogueSubscription = this.dialogueserv.activeDialogue.subscribe(dial => {
       this.allDialogue = dial;
-      this.current = this.allDialogue[0];
+      this.dialogue = this.allDialogue[0];
       this.index = 0;
     });
     this.advanceSubscription = this.dialogueserv.advance.subscribe(() => this.next());
@@ -44,38 +48,22 @@ export class DialogueComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    if (!this.skip  && !this.choice && !this.inputRequired) {
-      if (this.current.choiceKey) {
-        this.choice = this.choiceserv.getChoice(this.current.choiceKey);
-      } else {
-        this.advance();
-      }  
+    if (!this.skip) {
+      if (this.dialogue.eventKey) {
+        const dialEvent = this.dialogueserv
+        .getEvent(this.dialogue.eventType, this.dialogue.eventKey)
+        this.triggerserv.triggerInteraction(dialEvent);
+      }
+      this.advance();  
     }
   }
 
   advance() {
     this.index ++;
     if (this.allDialogue[this.index]) {
-      this.current = this.allDialogue[this.index];
+      this.dialogue = this.allDialogue[this.index];
     } else {
       this.dialogueserv.endDialogue();
-    }
-  }
-
-  choose(index: number, event: any) {
-    console.log('click choose')
-    event.stopPropagation();
-    this.choiceserv.markAsSeen(this.current.choiceKey, index);      
-    const interaction = this.choice.outcomes[index]
-
-    if (interaction) {
-      if (this.choice.chooseAgain) {
-        this.dialogueserv.choose(this.current);
-      }
-      this.choice = undefined;
-      this.triggerserv.triggerInteraction(interaction);
-    } else {
-      this.advance();
     }
   }
 

@@ -1,0 +1,15 @@
+<div id="choice-frame">
+    <!-- Question -->
+    <div id="question">
+        <i>{{ choice.question }}</i>
+    </div>
+
+    <!-- Choices -->
+    <div>
+        <button *ngFor="let opt of choice.options; let index = index"
+        mat-flat-button [color]="choice.seen[index] ? 'seen' : 'unseen'"
+        (click)="choosen(index, $event)">
+            {{ opt }}
+        </button>    
+    </div>
+</div>

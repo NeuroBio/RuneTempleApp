@@ -16,3 +16,4 @@ export class Choice {
         this.chooseAgain = chooseAgain;
     }
 }
+

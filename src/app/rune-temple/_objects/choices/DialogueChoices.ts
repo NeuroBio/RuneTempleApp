@@ -1,9 +1,10 @@
 import { DialogueInteractions } from '../interactions/DialogueInteractions';
 import { Choice } from './Choice';
 
-export class DialogueEvents {
+export class DialogueChoices {
     private dialEvents = new DialogueInteractions;
 
+    // Choices
     peatStacks = new Choice(
         'Add fuel to the oven and light it?',
         ['yes', 'no'],

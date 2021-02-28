@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
-import { GameSettings } from '../_objects/GameSettings';
 import { GameSettingsService } from './game-settings.service';
-
+import { ChoiceInteraction, InputRequetInteraction } from '../_objects/interactions/Interaction'
+import { InputReqService } from './input-req.service';
+import { ChoiceService } from './choice.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,7 @@ export class DialogueService {
   activeDialogue = new BehaviorSubject<DialogueSnippet[]>([]);
   advance = new Subject();
   parse = new RegExp('\\${.*?}', 'g');
+
 
   private current: DialogueSnippet;
 
@@ -43,5 +45,16 @@ export class DialogueService {
         waiter.unsubscribe();
       }
     })
+  }
+
+
+  getEvent(type: string, key: string) {
+    switch (type) {
+      case 'choice' :
+        return new ChoiceInteraction('dialogue', key);
+      case 'inputRequest' :
+        // return  new InputRequetInteraction(this.inputreqserv.getInputReq(key));
+    }
+    console.log('unknown event type!')
   }
 }

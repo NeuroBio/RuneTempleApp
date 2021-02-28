@@ -1,15 +1,17 @@
 export class DialogueSnippet {
     speaker: string;
     text: string;
-    choiceKey: string;
+    eventType: string;
+    eventKey: string
 
     constructor(
         speaker: string, text: string,
-        choice: string = undefined
+        eventType: string = undefined, eventKey: string = undefined
     ) {
         this.speaker = speaker;
         this.text = text;
-        this.choiceKey = choice;
+        this.eventType = eventType;
+        this.eventKey = eventKey;
     }
 }
 

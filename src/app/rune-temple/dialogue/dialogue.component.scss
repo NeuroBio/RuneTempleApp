@@ -30,29 +30,7 @@
     height: 100px;
 }
 
-#choice-frame {
-    width: $game-width;
-    max-width: $max-game-width;
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-}
 
-button {
-    margin: $standard-margin;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 14pt;
-}
-
-.mat-seen {
-    color: $grey-ish-er;
-    background-color: $dark-ish-grey;
-}
-
-.mat-unseen {
-    color: whitesmoke;
-    background-color: $medium-grey;
-}
 
 #input-frame {
     display: flex;

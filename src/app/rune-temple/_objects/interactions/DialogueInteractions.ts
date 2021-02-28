@@ -16,7 +16,7 @@ export class DialogueInteractions {
                 [new EventFlag('ovenLit', true)], [
                     new Activator('oven', 'peatOven', false),
                     new Activator('oven', 'peatOvenLit', true)
-                ], [], [], undefined, this.update.ovenLit),
+                ], [], [], this.update.ovenLit),
             'peat', 'default'
         ),
         undefined
@@ -35,7 +35,7 @@ export class DialogueInteractions {
         new InteractionWithKeys(new Interaction(
             this.DID.mapOven,
             ['map'], [], [new EventFlag('mapBurned', true)],
-            [], [], [], undefined, this.update.mapBurned
+            [], [], [], this.update.mapBurned
         )),
         undefined
     ];
@@ -113,7 +113,6 @@ class updateDialogueInteractions {
         new InteractionWithKeys(
             new Interaction(this.dialog.activeAreas.charcoal2,
                 [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)]),
-            'charcoalEnv', 'default')
-    ];
+            'charcoalEnv', 'default')];
 }
 
