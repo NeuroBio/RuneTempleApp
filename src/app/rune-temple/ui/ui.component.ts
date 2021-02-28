@@ -5,6 +5,7 @@ import { DialogueService } from '../_services/dialogue.service';
 import { ChoiceService } from '../_services/choice.service';
 import { InputReqService } from '../_services/input-req.service';
 import { InventoryService } from '../_services/inventory.service';
+import { GameSettingsService } from '../_services/game-settings.service';
 
 @Component({
   selector: 'app-ui',
@@ -19,17 +20,23 @@ export class UIComponent implements OnInit, OnDestroy {
   isChoiceActive = false;
   choiceSubscription: Subscription;
 
-  isInputReqActive = false
+  isInputReqActive = false;
   inputReqSubscription: Subscription;
 
-  isLoggedIn = false
+  showSettings = false;
+  settingsSubscription: Subscription;
+
+
+  isLoggedIn = false;
+
 
   constructor(
     private rtserv: RuneTempleService,
     private dialogueserv: DialogueService,
     private choiceserv: ChoiceService,
     private inventoryserv: InventoryService,
-    private inputreqserv: InputReqService) { }
+    private inputreqserv: InputReqService,
+    private gs: GameSettingsService) { }
 
   ngOnInit(): void {
     this.dialogueSubscription = this.dialogueserv.activeDialogue
@@ -41,22 +48,28 @@ export class UIComponent implements OnInit, OnDestroy {
     this.inputReqSubscription = this.inputreqserv.activeInputReq
       .subscribe(active => this.isInputReqActive = active ? true : false);
       
+    this.settingsSubscription = this.gs.settingsOpen
+      .subscribe(open => this.showSettings = open);
     this.rtserv.isLoggedIn.subscribe(authed => this.isLoggedIn = authed);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.dialogueSubscription.unsubscribe();
     this.choiceSubscription.unsubscribe();
+    this.inputReqSubscription.unsubscribe();
+    this.settingsSubscription.unsubscribe();
   }
 
   getHint() { }
 
+  viewSettings(): void {
+    this.showSettings = !this.showSettings;
+  }
+
   @HostListener('click', ['$event'])
   onLeftClick() {
     event.stopPropagation();
-    event.preventDefault();
     this.dialogueserv.advance.next();
-    return false;
   }
 
   @HostListener('contextmenu', ['$event'])
@@ -64,7 +77,6 @@ export class UIComponent implements OnInit, OnDestroy {
     event.stopPropagation();
     event.preventDefault();
     this.inventoryserv.deselectItem();
-    return false;
   }
 
 }

@@ -61,7 +61,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   giveDescription(text: string, event: any) {
     event.stopPropagation();
-    this.dialogueserv.setDialogue([new DialogueSnippet('Erin', text)]);
+    this.dialogueserv.setItemDialogue([new DialogueSnippet('Erin', text)]);
     return false;
   }
 

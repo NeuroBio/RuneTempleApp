@@ -32,6 +32,12 @@ export class DialogueService {
     this.activeDialogue.next(dialogue);
   }
 
+  setItemDialogue(dialogue: DialogueSnippet[]): void {
+    if (this.gs.checkSetting('rightClickDescriptions')) {
+      this.setDialogue(dialogue);
+    }
+  }
+
   unsetDialogue(): void {
     this.activeDialogue.next([]);
   }

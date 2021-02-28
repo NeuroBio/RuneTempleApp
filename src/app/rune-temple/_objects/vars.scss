@@ -6,8 +6,10 @@ $item-dimentions: 75px;
 
 $standard-margin: 5px;
 $large-margin: 15px;
+$tab: 20px;
 
 $badges-width: calc(#{$item-dimentions} * 3.5);
+$bottom-section-height: calc(#{$item-dimentions} + #{$standard-margin} * 2 + #{$large-margin} * 2 + 4px);
 
 // Colors
 $almost-black:  #504f54;
@@ -15,3 +17,12 @@ $grey-ish: #bbbbbb;
 $grey-ish-er: #a0a0a0;
 $medium-grey: rgb(110, 110, 110);
 $dark-ish-grey: rgb(94, 94, 94);
+
+.center-align {
+    display: flex;
+    align-items: center;
+}
+
+.tab {
+    margin-left: $tab;
+}

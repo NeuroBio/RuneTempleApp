@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { UIComponent } from './ui/ui.component';
 import { RuneTempleRoutingModule } from './rune-temple-routing.module';
@@ -10,16 +11,18 @@ import { DialogueComponent } from './dialogue/dialogue.component';
 import { BadgesComponent } from './badges/badges.component';
 import { GameComponent } from './game/game.component';
 import { EpilogueSceneComponent } from './epilogue-scene/epilogue-scene.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ChoiceComponent } from './choice/choice.component';
+import { InputReqComponent } from './input-req/input-req.component';
 
 // Material Imports
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
-import { ChoiceComponent } from './choice/choice.component';
-import { InputReqComponent } from './input-req/input-req.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     GameComponent,
     EpilogueSceneComponent,
     ChoiceComponent,
-    InputReqComponent
+    InputReqComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,
@@ -41,9 +45,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
     // Material Imports
     MatButtonModule,
+    MatDividerModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatSlideToggleModule,
     MatTooltipModule
   ],
   exports: [

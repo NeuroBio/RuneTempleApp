@@ -1,0 +1,50 @@
+<div id="settings-frame">
+    <h3>
+        <span id="title">
+            Game Settings
+        </span>
+        <button mat-icon-button
+        (click)="close()"
+        aria-label="close-settings">
+            <mat-icon>close</mat-icon>
+        </button>    
+    </h3>
+
+
+    <form [formGroup]="form">
+        <mat-slide-toggle formControlName="hardMode">
+            <span class="center-align">
+                {{ form.get('hardMode').value ? 'HardMode On' : 'Hard Mode Off' }}
+                <mat-icon class="tab"
+                matTooltipPosition="after"
+                matTooltip="Warning: Once hardmode is disabled, it cannot be reenabled.">
+                    info
+                </mat-icon>
+            </span>
+        </mat-slide-toggle>
+
+        <mat-divider></mat-divider>
+
+        <div class="tab">
+            <mat-slide-toggle formControlName="changeCursorOnHover">
+                <span class="center-align">
+                    {{ form.get('changeCursorOnHover').value ? 'Change cursor on hover' : 'Don\'t change cursor on hover' }}
+                </span>
+            </mat-slide-toggle>
+    
+            <mat-slide-toggle formControlName="rightClickDescriptions">
+                <span class="center-align">
+                    {{ form.get('rightClickDescriptions').value ? 'Show item description on Right Click' : 'Don\'t show item description on Right Click' }}
+                </span>
+            </mat-slide-toggle>
+    
+            <mat-slide-toggle formControlName="enableHints">
+                <span class="center-align">
+                    {{ form.get('enableHints').value ? 'Hints enabled' : 'Hints disabled' }}
+                </span>
+            </mat-slide-toggle>
+        </div>
+    </form>
+
+
+</div>

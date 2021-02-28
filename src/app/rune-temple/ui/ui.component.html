@@ -6,7 +6,8 @@
         (click)=getHint()>
             <mat-icon>help</mat-icon>
         </button>
-        <button mat-mini-fab aria-label="game-options">
+        <button mat-mini-fab aria-label="game-options"
+        (click)="viewSettings()">
             <mat-icon>settings</mat-icon>
         </button>
         <button mat-mini-fab aria-label="save"
@@ -24,6 +25,8 @@
     <app-dialogue *ngIf="isDialogueActive"></app-dialogue>
     <app-choice *ngIf="isChoiceActive"></app-choice>
     <app-input-req *ngIf="isInputReqActive"></app-input-req>
+
+    <app-settings *ngIf="showSettings"></app-settings>
     
 </div>
 

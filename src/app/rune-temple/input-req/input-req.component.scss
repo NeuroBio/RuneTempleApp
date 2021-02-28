@@ -3,7 +3,7 @@
 #input-frame {
     background-color: $almost-black;
     // The + four is for borders ...
-    height: calc(#{$item-dimentions} + #{$standard-margin} * 2 + #{$large-margin} * 2 + 5px);
+    height: $bottom-section-height;
     display: flex;
     flex-direction: column;
     align-items: center;

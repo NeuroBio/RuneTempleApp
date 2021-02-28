@@ -23,3 +23,12 @@ app-main-scene {
 button {
     margin: $standard-margin;
 }
+
+
+app-settings {
+    position: absolute;
+    top: calc(50% - #{$bottom-section-height} / 2);
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+}

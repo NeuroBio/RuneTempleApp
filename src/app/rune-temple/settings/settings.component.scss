@@ -1,0 +1,38 @@
+@import '../_objects/vars.scss';
+
+#settings-frame {
+    position: relative;
+    background-color: $medium-grey;
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $almost-black;
+    color: whitesmoke;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0px;
+}
+
+#title {
+    margin: $standard-margin
+}
+
+mat-slide-toggle {
+    margin: $standard-margin;
+    color: whitesmoke;
+    white-space: pre-wrap !important;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    padding-right: $standard-margin;
+}
+
+mat-divider {
+    padding: $standard-margin;
+    margin: $standard-margin 0px;
+    border-top-color: whitesmoke;
+}
