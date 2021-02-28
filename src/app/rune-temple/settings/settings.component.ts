@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GameSettingsService } from '../_services/game-settings.service';
 import { FormGroup } from '@angular/forms';
 
@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
 export class SettingsComponent implements OnInit {
 
 
+  @ViewChild('settings') settings: ElementRef;
   form: FormGroup;
   onlyOnce = false;
 
@@ -26,6 +27,7 @@ export class SettingsComponent implements OnInit {
         this.form.controls.enableHints.enable();
       }
     });
+    setTimeout(() => this.settings.nativeElement.style.opacity = 1, 10)
   }
 
   close() {
