@@ -26,3 +26,8 @@ $dark-ish-grey: rgb(94, 94, 94);
 .tab {
     margin-left: $tab;
 }
+
+.pop-up {
+    border: $almost-black solid 1px;
+    box-shadow: 2px 4px 4px $medium-grey;
+}

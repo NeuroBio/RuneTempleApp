@@ -26,6 +26,8 @@ export class UIComponent implements OnInit, OnDestroy {
   showSettings = false;
   settingsSubscription: Subscription;
 
+  hint = false;
+  hintSubscription: Subscription;
 
   isLoggedIn = false;
 
@@ -51,6 +53,9 @@ export class UIComponent implements OnInit, OnDestroy {
     this.settingsSubscription = this.gs.settingsOpen
       .subscribe(open => this.showSettings = open);
     this.rtserv.isLoggedIn.subscribe(authed => this.isLoggedIn = authed);
+
+    this.hintSubscription = this.gs.getSetting('enableHints').valueChanges
+      .subscribe(value => this.hint = value);
   }
 
   ngOnDestroy(): void {
@@ -58,6 +63,7 @@ export class UIComponent implements OnInit, OnDestroy {
     this.choiceSubscription.unsubscribe();
     this.inputReqSubscription.unsubscribe();
     this.settingsSubscription.unsubscribe();
+    this.hintSubscription.unsubscribe();
   }
 
   getHint() { }

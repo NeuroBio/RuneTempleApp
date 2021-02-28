@@ -36,3 +36,9 @@ mat-divider {
     margin: $standard-margin 0px;
     border-top-color: whitesmoke;
 }
+
+::ng-deep .mat-tooltip.tooltip {
+    color: whitesmoke;
+    font-size: 12pt;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

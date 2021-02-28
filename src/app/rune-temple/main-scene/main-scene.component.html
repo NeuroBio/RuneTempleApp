@@ -6,9 +6,10 @@
     <div *ngFor="let area of scene.activeAreas">
         <!-- <img src="area.assetKey">
         <img src="area.assetKey"
-        [ngclass]="easyMode ? 'easy-mode' : 'hardmode'"
+        [ngclass]="pointer ? 'easy-mode' : 'hardmode'"
         (click)="interact()"> -->
         <button *ngIf="area.render"
+        [ngClass]="pointer ? 'easymode' : 'hardmode'"
         [disabled]="isDialogueActive"
         (click)="interact(area.assetKey)">
             {{ area.name }}
@@ -20,6 +21,7 @@
     <div *ngFor="let location of scene.locations">
         <button
         *ngIf="location.render"
+        ngClass="easymode"
         [disabled]="isDialogueActive"
         (click)="travel(location.assetKey)">
             {{ location.name }}

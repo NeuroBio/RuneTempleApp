@@ -3,6 +3,7 @@
     <!-- Menu -->
     <div id="menu">
         <button mat-mini-fab aria-label="hint"
+        [disabled]="!hint"
         (click)=getHint()>
             <mat-icon>help</mat-icon>
         </button>

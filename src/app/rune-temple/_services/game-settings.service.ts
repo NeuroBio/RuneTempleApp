@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GameSettings } from '../_objects/GameSettings';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -27,6 +27,10 @@ export class GameSettingsService {
     return this.gameSettings.settings;
   }
 
+  getSetting(key: string): AbstractControl {
+    return this.gameSettings.settings.get(key);
+  }
+
   openSettings():void {
     this.settingsOpen.next(true);
   }
@@ -38,5 +42,6 @@ export class GameSettingsService {
   checkSetting(key: string): boolean {
     return this.gameSettings.settings.get(key).value;
   }
+
   
 }
