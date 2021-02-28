@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { ChoiceService } from '../_services/choice.service';
 import { InputReqService } from '../_services/input-req.service';
+import { InventoryService } from '../_services/inventory.service';
 
 @Component({
   selector: 'app-ui',
@@ -27,6 +28,7 @@ export class UIComponent implements OnInit, OnDestroy {
     private rtserv: RuneTempleService,
     private dialogueserv: DialogueService,
     private choiceserv: ChoiceService,
+    private inventoryserv: InventoryService,
     private inputreqserv: InputReqService) { }
 
   ngOnInit(): void {
@@ -49,9 +51,20 @@ export class UIComponent implements OnInit, OnDestroy {
 
   getHint() { }
 
-  @HostListener('click', ['$event']) onClick() {
+  @HostListener('click', ['$event'])
+  onLeftClick() {
     event.stopPropagation();
+    event.preventDefault();
     this.dialogueserv.advance.next();
+    return false;
+  }
+
+  @HostListener('contextmenu', ['$event'])
+  onRightClick() {
+    event.stopPropagation();
+    event.preventDefault();
+    this.inventoryserv.deselectItem();
+    return false;
   }
 
 }

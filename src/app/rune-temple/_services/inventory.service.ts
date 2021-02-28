@@ -52,4 +52,12 @@ export class InventoryService {
       this.selectedIndex = index;
     }
   }
+
+  deselectItem() {
+    const inventory = this.inventory.value;
+    if (this.selectedIndex) {
+      inventory[this.selectedIndex].selected = false;
+      this.selectedIndex = undefined;  
+    }
+  }
 }

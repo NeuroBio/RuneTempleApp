@@ -16,7 +16,7 @@
         </button>
         <ul id="item-list" #itemBand>
             <li *ngFor="let item of inventoryItems; let index = index"
-            (contextmenu)="giveDescription(item.description)"
+            (contextmenu)="giveDescription(item.description, $event)"
             [class.selected]="item.selected">
                 <button (click)="select(index)">
                     <img [src]="item.assetkey" [alt]="item.name">

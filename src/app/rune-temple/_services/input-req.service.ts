@@ -12,7 +12,7 @@ export class InputReqService {
   activeInputReq = new BehaviorSubject<InputRequest>(undefined);
   private inputRequests = new InputRequests;
 
-  constructor(private gs: GameSettingsService) { this.setInputRequest('dialogue', 'fishName')}
+  constructor(private gs: GameSettingsService) { }
 
   setInputRequest(key: string, subkey: string): void {
     this.activeInputReq.next(this.inputRequests[key][subkey]);
