@@ -39,7 +39,7 @@ export class InputReqComponent implements OnInit, OnDestroy {
   accept() {
     this.inputreqserv.updateData(this.inputReq);
     if (this.inputReq.interaction) {
-      this.triggerserv.triggerInteraction(this.inputReq.interaction);
+      this.triggerserv.triggerUpdate(this.inputReq.interaction);
     }
     this.inputreqserv.unsetInputRequest();
   }

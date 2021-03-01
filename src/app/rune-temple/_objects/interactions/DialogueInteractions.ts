@@ -3,7 +3,6 @@ import { EventFlag } from '../event-types/EventFlag'
 import { Activator } from '../scenes/ActiveArea'
 
 export class DialogueInteractions {
-    private update = new updateDialogueInteractions;
 
     peatStacks =  [
         new InteractionWithKeys(
@@ -12,7 +11,7 @@ export class DialogueInteractions {
                 [new EventFlag('ovenLit', true)], [
                     new Activator('oven', 'peatOven', false),
                     new Activator('oven', 'peatOvenLit', true)
-                ], [], [], this.update.ovenLit),
+                ], [], [], new KeyPair('dialogueUpdates', 'ovenLit')),
             'peat', 'default'
         ),
         undefined
@@ -31,7 +30,7 @@ export class DialogueInteractions {
         new InteractionWithKeys(new Interaction(
             new KeyPair('dialogueEvents', 'mapOven'),
             ['map'], [], [new EventFlag('mapBurned', true)],
-            [], [], [], this.update.mapBurned
+            [], [], [], new KeyPair('dialogueUpdates', 'mapBurned')
         )),
         undefined
     ];
@@ -93,18 +92,3 @@ export class DialogueInteractions {
                 [], [], [], [], [], ['pokemon']))
     ]
 }
-
-class updateDialogueInteractions {
-
-    ovenLit = [
-        new InteractionWithKeys(
-            new Interaction(new KeyPair('dialogueEvents', 'peatStacks2')),
-            'peat', 'default')];
-    
-    mapBurned = [
-        new InteractionWithKeys(
-            new Interaction(new KeyPair('activeAreas', 'charcoal2'),
-                [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)]),
-            'charcoalEnv', 'default')];
-}
-

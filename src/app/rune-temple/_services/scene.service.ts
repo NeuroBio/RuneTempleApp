@@ -2,8 +2,12 @@ import { Injectable } from '@angular/core';
 import { Activator } from '../_objects/scenes/ActiveArea';
 import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
 import { BehaviorSubject } from 'rxjs';
-import { GameScenes } from '../_objects/scenes/Scene';
+import { GameScenes, SceneDisplay, Scene } from '../_objects/scenes/Scene';
 import { SceneUpdates } from '../_objects/interactions/SceneUpdates';
+import { SceneActiveAreas } from '../_objects/scenes/SceneActiveAreas';
+import { SceneLocations } from '../_objects/scenes/SceneLocations';
+import { EventFlagService } from './event-flag.service';
+import { DialogueService } from './dialogue.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,45 +15,57 @@ import { SceneUpdates } from '../_objects/interactions/SceneUpdates';
 export class SceneService {
 
   // mutable
-  gameScenes = new BehaviorSubject<GameScenes>(new GameScenes);
-  activeScene = new BehaviorSubject<string>('pitFloor');
-  sceneUpdates = new SceneUpdates;
+  activeScene = new BehaviorSubject<SceneDisplay>(undefined);
+  private activeKey: string;
+  private gameScenes = new GameScenes;
+  private activeAreas = new SceneActiveAreas;
+  private locations = new SceneLocations;
+
+  // private sceneUpdates = new SceneUpdates;
   
-  constructor() { }
+  constructor() {
+    this.setActiveScene('pitFloor');
+   }
+
+  setActiveScene(key: string): void {
+    this.activeKey = key;
+    this.activeScene.next(new SceneDisplay(
+      this.gameScenes[key],
+      this.activeAreas[key],
+      this.locations[key]));
+  }
+
+  getScene(key: string): Scene {
+    return this.gameScenes[key];
+  }
 
   
   // Scene Control
   modifyAreaActivation(area: Activator[]): void {
-    const scenes = this.gameScenes.value;
     area.forEach(area => {
-      const index = scenes[area.scene].activeAreas.findIndex(act => act.assetKey === area.key)
-      scenes[area.scene].activeAreas[index].render = area.reveal;
+      const index = this.activeAreas[area.scene]
+        .findIndex(act => act.assetKey === area.key);
+      this.activeAreas[area.scene][index].render = area.reveal;
     });
 
-    this.gameScenes.next(scenes);
+    this.setActiveScene(this.activeKey);
   }
 
-  modifyLocation(location: Activator[]): void {
-    const scenes = this.gameScenes.value;
+  modifyLocation(location: Activator[]): void {;
     location.forEach(location => {
-      const index = scenes[location.scene].locations.findIndex(act => act.assetKey === location.key)
-      scenes[location.scene].locations[index].render = location.reveal;
+      const index = this.locations[location.scene]
+        .findIndex(act => act.assetKey === location.key);
+      this.locations[location.scene][index].render = location.reveal;
     });
-
-    this.gameScenes.next(scenes);
+    this.setActiveScene(this.activeKey);
   }
 
   updateScene(scene: string, visited: boolean, dialogue: DialogueSnippet[]): void {
-    const scenes = this.gameScenes.value;
-    scenes[scene].visited = visited;
+    this.gameScenes[scene].visited = visited;
     if (dialogue !== null) {
-      scenes[scene].dialogue = dialogue;
+      this.gameScenes[scene].dialogue = dialogue;
     }
-    this.gameScenes.next(scenes);
-  }
-
-  updateActiveScene(key: string): void {
-    this.activeScene.next(key);
+    this.setActiveScene(this.activeKey);
   }
 
   triggerUpdate(key: string, subkey: string) {
@@ -57,12 +73,26 @@ export class SceneService {
   }
 
   reset() {
-    this.gameScenes.next(new GameScenes);
-    this.activeScene.next('pitFloor');
+    this.gameScenes = new GameScenes;
+    this.activeAreas = new SceneActiveAreas;
+    this.locations = new SceneLocations;
+    this.setActiveScene('pitFloor');
   }
 
-  load(gameSceneData: GameScenes, activeSceneData: string) {
-    this.gameScenes.next(gameSceneData);
-    this.activeScene.next(activeSceneData);
+  save(): any {
+    return {
+      activeKey: this.activeKey,
+      gameScenes: this.gameScenes,
+      activeAreas: this.activeAreas,
+      locations: this.locations
+    }
+  }
+
+  load(sceneData: any): void {
+    this.activeKey = sceneData.activeKey;
+    this.gameScenes = sceneData.gameScenes;
+    this.activeAreas = sceneData.activeAreas;
+    this.locations = sceneData.locations;
+    this.setActiveScene(this.activeKey);
   }
 }

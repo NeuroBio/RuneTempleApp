@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InteractionWithKeys } from '../_objects/interactions/Interaction';
+import { InteractionWithKeys, KeyPair } from '../_objects/interactions/Interaction';
 import { InventoryService } from './inventory.service';
 import { DialogueService } from './dialogue.service';
 import { SceneService } from './scene.service';
@@ -57,7 +57,7 @@ export class TriggerService {
   triggerInteraction(res: InteractionWithKeys) {
     const int = res.interaction
     
-    if (int.updates[0]) {
+    if (int.updates) {
       this.interactionserv.updateInteractions(int.updates);
     }
     if (int.dialogue) {
@@ -79,7 +79,7 @@ export class TriggerService {
       this.gs.addBadges(int.addBadges);
     }
     if (int.moveToScene) {
-      this.sceneserv.activeScene.next(int.moveToScene);
+      this.sceneserv.setActiveScene(int.moveToScene);
     }
     if (int.eventFlags[0]) {
       this.eventserv.updateEvents(int.eventFlags);
@@ -90,6 +90,13 @@ export class TriggerService {
     if (int.requestInput) {
       this.inputReqServ.setInputRequest(int.requestInput.key, int.requestInput.subkey);
     }
+  }
+
+  triggerUpdate(keys: KeyPair) {
+    const interaction = this.interactionserv.getUpdate(keys);
+    interaction.forEach(int => {
+      this.triggerInteraction(int);
+    })
   }
 
 }

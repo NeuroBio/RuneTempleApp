@@ -56,8 +56,7 @@ export class SaveLoadService {
       eventflags: this.eventflagserv.save(),
       interactions: this.interactionserv.save(),
       inventory: this.inventoryserv.inventory.value,
-      scenes: this.sceneserv.gameScenes.value,
-      activeScene: this.sceneserv.activeScene.value
+      scenes: this.sceneserv.save()
     };
     console.log(JSON.stringify(gameData).length)
     localStorage.setItem('rune-temple-game-data', JSON.stringify(gameData));
@@ -70,7 +69,7 @@ export class SaveLoadService {
     this.gs.load(gameData.gs);
     this.interactionserv.load(gameData.interactions);
     this.inventoryserv.load(gameData.inventory);
-    this.sceneserv.load(gameData.scenes, gameData.activeScene);
+    this.sceneserv.load(gameData.scenes);
   }
 
   clearData() {

@@ -18,7 +18,7 @@ export class Interaction {
     changeAreas: Activator[];
     changeLocations: Activator[];
     addBadges: string[];
-    updates: InteractionWithKeys[];
+    updates: KeyPair;
     updateScenes = []
     moveToScene: string;
     loadChoice: KeyPair;
@@ -29,7 +29,7 @@ export class Interaction {
         addItems: string[] = [], eventFlags: EventFlag[] = [],
         changeAreas: Activator[] = [], changeLocations: Activator[] = [],
         addBadges: string[] = [],
-        updates: InteractionWithKeys[] = [], moveToScene: string = undefined,
+        updates: KeyPair = undefined, moveToScene: string = undefined,
         updateScenes = [], loadChoice: KeyPair = undefined,
         requestInput: KeyPair = undefined
     ) {
@@ -63,21 +63,23 @@ export class InteractionWithKeys {
 export class ChoiceInteraction extends InteractionWithKeys {
     constructor(key: string, subkey: string) {
         super(
-            new Interaction(undefined, [], [], [], [], [], [], [], undefined, [], new KeyPair(key, subkey)));
+            new Interaction(undefined, [], [], [], [], [], [],
+                undefined, undefined, [], new KeyPair(key, subkey)));
     }
 }
 
 export class SceneUdateInteraction extends InteractionWithKeys {
     constructor(scenesToUpdate) {
         super(
-            new Interaction(undefined, [], [], [], [], [], [], [], undefined, scenesToUpdate))
+            new Interaction(undefined, [], [], [], [], [], [],
+                undefined, undefined, scenesToUpdate))
     }
 }
 
 export class InputRequestInteraction extends InteractionWithKeys {
     constructor(key: string, subkey: string) {
         super(
-            new Interaction(undefined, [], [], [], [], [], [], [],
+            new Interaction(undefined, [], [], [], [], [], [], undefined,
                 undefined, [], undefined, new KeyPair(key, subkey)));
     }
 }
@@ -86,6 +88,6 @@ export class SceneInteraction extends InteractionWithKeys {
     constructor(activeAreas: Activator[], locations?: Activator[], moveToScene?: string, updateScenes?: []) {
         super(
             new Interaction(undefined, [], [], [], activeAreas, locations,
-                [], [], moveToScene, updateScenes));
+                [], undefined, moveToScene, updateScenes));
     }
 }

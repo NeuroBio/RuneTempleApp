@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { onClickInteractions } from '../_objects/interactions/onClickInteractions';
-import { InteractionWithKeys } from '../_objects/interactions/Interaction';
+import { InteractionWithKeys, KeyPair } from '../_objects/interactions/Interaction';
+import { UpdateInteractions } from '../_objects/interactions/UpdateInteractions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InteractionService {
 
-  private interactions = new onClickInteractions();
+  private interactions = new onClickInteractions;
+  private updates = new UpdateInteractions;
 
   constructor() { }
 
@@ -59,10 +61,24 @@ export class InteractionService {
     return undefined;
   }
 
-  updateInteractions(newInteractions: InteractionWithKeys[]): void {
+  updateInteractions(update: KeyPair): void {
+    console.log(update)
+    console.log(this.updates[update.key])
+    const newInteractions = this.getUpdate(update);
+    console.log(newInteractions)
     newInteractions.forEach(int => {
       this.interactions[int.key][int.subkey] = int.interaction;
     })
+  }
+
+  updateIfExists(update: KeyPair): void {
+    if (this.updates[update.key][update.subkey]) {
+      this.updateInteractions(update);
+    }
+  }
+
+  getUpdate(update: KeyPair): InteractionWithKeys[] {
+    return this.updates[update.key][update.subkey];
   }
 
   reset() {

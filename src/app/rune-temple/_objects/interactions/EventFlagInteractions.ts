@@ -6,12 +6,8 @@ export class EventFlagInteractions {
         new InteractionWithKeys(
             new Interaction(new KeyPair('activeAreas', 'vent1C'),
                 [], ['silverKey'], [], [], [], [],
-                [
-                    new InteractionWithKeys(
-                        new Interaction(new KeyPair('activeAreas', 'vent1B')),
-                        'vent1', 'default')
-                ]
-            ), 'vent1', 'default'
+                new KeyPair('eventFlagUpdates', 'vent1openANDkeyFell')),
+            'vent1', 'default'
         )
     ];
 

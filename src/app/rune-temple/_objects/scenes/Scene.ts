@@ -1,28 +1,28 @@
 import { ActiveArea } from './ActiveArea';
-import { SceneActiveAreas } from './SceneActiveAreas';
-import { SceneLocations } from './SceneLocations';
-import { onClickDialogue } from '../dialogue-snippets/onClickDialogue';
 import { KeyPair } from '../interactions/Interaction';
 
 export class Scene {
-    private dialog = new onClickDialogue;
-    private aa = new SceneActiveAreas;
-    private loc = new SceneLocations;
-
     name: string;
     assetKey: string;
-    activeAreas: ActiveArea[];
-    locations: any[];
     dialogue: KeyPair;
     visited: boolean = false;
 
-    constructor(
-        name: string, key: string) {
+    constructor(name: string, key: string, visited: boolean = false) {
         this.name = name;
         this.assetKey = key;
-        this.activeAreas = this.aa[key] ? this.aa[key] : [];
-        this.locations = this.loc[key] ? this.loc[key] : [];
+        this.visited = false
         this.dialogue = new KeyPair('sceneDefaults', key);
+    }
+}
+
+export class SceneDisplay extends Scene {
+    activeAreas: ActiveArea[];
+    locations: ActiveArea[];
+
+    constructor(scene: Scene, activeAreas: ActiveArea[], locations: ActiveArea[]) {
+        super(scene.name, scene.assetKey, scene.visited)
+        this.activeAreas = activeAreas;
+        this.locations = locations;
     }
 }
 

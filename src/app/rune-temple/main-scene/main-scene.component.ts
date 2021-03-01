@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GameScenes, Scene } from '../_objects/scenes/Scene';
+import { GameScenes, Scene, SceneDisplay } from '../_objects/scenes/Scene';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { SceneService } from '../_services/scene.service';
@@ -14,11 +14,8 @@ import { GameSettingsService } from '../_services/game-settings.service';
 })
 export class MainSceneComponent implements OnInit, OnDestroy {
 
-  activeKey = 'pitFloor';
-  allScenes: GameScenes;
-  scene: Scene;
+  scene: SceneDisplay;
   sceneSubscription: Subscription;
-  activeSceneSubscription: Subscription;
 
   pointer = false;
   pointerSubscription: Subscription;
@@ -30,23 +27,16 @@ export class MainSceneComponent implements OnInit, OnDestroy {
     private triggerserv: TriggerService,
     private sceneserv: SceneService,
     private dialogueserv: DialogueService,
-    private eventserv: EventFlagService,
+    private eventflagserv: EventFlagService,
     private gs: GameSettingsService
   ) { }
 
   ngOnInit(): void {
-    this.dialogueSubscription = this.dialogueserv.activeDialogue.subscribe(dial =>
-      this.isDialogueActive = dial[0] ? true : false);
+    this.dialogueSubscription = this.dialogueserv.activeDialogue
+      .subscribe(dial => this.isDialogueActive = dial[0] ? true : false);
     
-      this.sceneSubscription = this.sceneserv.gameScenes.subscribe(scenes => {
-      this.allScenes = scenes;
-      this.scene = this.allScenes[this.activeKey];
-    });
-
-    this.activeSceneSubscription = this.sceneserv.activeScene.subscribe(active => {
-      this.activeKey = active;
-      this.scene = this.allScenes[this.activeKey];
-    });
+    this.sceneSubscription = this.sceneserv.activeScene
+      .subscribe(active => this.scene = active);
 
     this.pointerSubscription = this.gs.getSetting('changeCursorOnHover').valueChanges
       .subscribe(value => this.pointer = value);
@@ -55,7 +45,6 @@ export class MainSceneComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.dialogueSubscription.unsubscribe();
     this.sceneSubscription.unsubscribe();
-    this.activeSceneSubscription.unsubscribe();
     this.pointerSubscription.unsubscribe();
   }
 
@@ -64,12 +53,12 @@ export class MainSceneComponent implements OnInit, OnDestroy {
   }
 
   travel(key: string): void {
-    this.activeKey = key;
-    this.scene = this.allScenes[key];
-    if (!this.scene.visited) {
-      this.dialogueserv.setDialogue(this.scene.dialogue.key, this.scene.dialogue.subkey);
-      this.sceneserv.updateScene(this.scene.assetKey, true, null);
-      this.eventserv.addMapEvent(this.scene.assetKey);
+    const scene = this.sceneserv.getScene(key);
+    if (!scene.visited) {
+      this.dialogueserv.setDialogue(scene.dialogue.key, scene.dialogue.subkey);
+      this.sceneserv.updateScene(key, true, null);
+      this.eventflagserv.addMapEvent(key);
     }
+    this.sceneserv.setActiveScene(key);
   }
 }

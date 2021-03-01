@@ -3,7 +3,6 @@ import { EventFlag } from '../_objects/event-types/EventFlag';
 import { EventFlags } from '../_objects/event-types/EventFlags';
 import { InteractionService } from './interaction.service';
 import { InteractionWithKeys, Interaction, KeyPair } from '../_objects/interactions/Interaction';
-import { EventFlagInteractions } from '../_objects/interactions/EventFlagInteractions';
 import { SceneService } from './scene.service';
 import { ChoiceService } from './choice.service';
 import { GameSettingsService } from './game-settings.service';
@@ -18,9 +17,7 @@ export class EventFlagService {
   private events = new EventFlags;
 
   // variables
-  private eventInteractions = new EventFlagInteractions;
   private sceneDial = (new onClickDialogue).sceneUpdates;
-  private zhang = (new onClickDialogue).zhangHelp;
 
   constructor(
     private interactionserv: InteractionService,
@@ -32,7 +29,7 @@ export class EventFlagService {
   updateEvents(events: EventFlag[]) {
     events.forEach(event => {
       this.events[event.key] = event.value;
-      this.updateInteraction(this.eventInteractions[event.key]);
+      this.interactionserv.updateIfExists(new KeyPair('eventFlagUpdates', event.key));
       this.checkTriggeredEvents(event.key);
     });
   }
@@ -61,7 +58,7 @@ export class EventFlagService {
       case 'hammerExit' :
         this.addChoice('dialogue', 'zhangConvoTopics', 'about the water', new KeyPair('zhangHelp', 'water'));
         if (this.events.reliefRepaired) {
-          this.updateInteraction(this.eventInteractions.noFishForYou);
+          this.interactionserv.updateInteractions(new KeyPair('eventInteraction', 'noFishForYou'));
         }
       case ('hammerLockBox' || 'hammerPuzzleBox' || 'hammerRustedPanel'
         || 'hammerSpigot' || 'glassShatter' || 'flaskShatter') :
@@ -86,9 +83,9 @@ export class EventFlagService {
         break;
       case ('vent1Open' || 'keyFell') :
         if (this.events.vent1Open && this.events.keyFell) {
-          this.updateInteraction(this.eventInteractions.vent1openANDkeyFell);
+          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'vent1openANDkeyFell'));
         } else if (this.events.vent1Open) {
-          this.updateInteraction(this.eventInteractions.ventOpenOnly);
+          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'ventOpenOnly'));
         }
         break;
       case 'ovenLit' :
@@ -112,15 +109,6 @@ export class EventFlagService {
     const badge = this.gs.getBadge(key);
     if (!badge.earned && condition) {
       this.gs.addBadges([key]);
-    }
-  }
-
-  private updateInteraction(interactions: InteractionWithKeys[]) {
-    if (interactions) {
-      interactions.forEach(int => {
-        this.interactionserv.updateInteractions(interactions);
-
-      });
     }
   }
 
