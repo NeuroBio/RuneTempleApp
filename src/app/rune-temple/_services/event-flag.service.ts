@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 import { EventFlag } from '../_objects/event-types/EventFlag';
 import { EventFlags } from '../_objects/event-types/EventFlags';
 import { InteractionService } from './interaction.service';
-import { InteractionWithKeys, Interaction } from '../_objects/interactions/Interaction';
+import { InteractionWithKeys, Interaction, KeyPair } from '../_objects/interactions/Interaction';
 import { EventFlagInteractions } from '../_objects/interactions/EventFlagInteractions';
-import { ZhangHelp } from '../_objects/dialogue-snippets/onChoiceDialogue'
 import { SceneService } from './scene.service';
-import { SceneDialogue } from '../_objects/dialogue-snippets/sceneDialogue';
 import { ChoiceService } from './choice.service';
-import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
 import { GameSettingsService } from './game-settings.service';
+import { onClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +19,8 @@ export class EventFlagService {
 
   // variables
   private eventInteractions = new EventFlagInteractions;
-  private sceneDial = new SceneDialogue;
-  private zhang = new ZhangHelp;
+  private sceneDial = (new onClickDialogue).sceneUpdates;
+  private zhang = (new onClickDialogue).zhangHelp;
 
   constructor(
     private interactionserv: InteractionService,
@@ -61,7 +59,7 @@ export class EventFlagService {
         this.badgeCheck('random', (this.events.mustacheFish && this.events.barrelPills));
         break;
       case 'hammerExit' :
-        this.addChoice('dialogue', 'zhangConvoTopics', 'about the water', this.zhang.water);
+        this.addChoice('dialogue', 'zhangConvoTopics', 'about the water', new KeyPair('zhangHelp', 'water'));
         if (this.events.reliefRepaired) {
           this.updateInteraction(this.eventInteractions.noFishForYou);
         }
@@ -100,10 +98,10 @@ export class EventFlagService {
         // TODO: trigger effects?
         break;
       case 'wrapilize' :
-        this.updateScene('foyer', this.sceneDial.sceneUpdates.foyerHaunt);
+        this.updateScene('foyer', this.sceneDial.foyerHaunt);
         break;
       case 'zhangSawBook' :
-        this.addChoice('dialogue', 'zhangConvoTopics', 'about the book', this.zhang.book);
+        this.addChoice('dialogue', 'zhangConvoTopics', 'about the book', new KeyPair('zhangHelp', 'book'));
         break;
       default:
         break;
@@ -130,7 +128,7 @@ export class EventFlagService {
     this.sceneserv.updateScene(scene, false, dialog);
   }
 
-  private addChoice(key: string, subkey: string, opt: string, out: DialogueSnippet[]) {
+  private addChoice(key: string, subkey: string, opt: string, out: KeyPair) {
     this.choiceserv.addChoice(key, subkey, opt, new InteractionWithKeys(new Interaction(out)));
   }
 

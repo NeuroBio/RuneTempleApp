@@ -59,9 +59,9 @@ export class InventoryComponent implements OnInit, OnDestroy {
     this.triggerserv.checkClickOrCombo(index);
   }
 
-  giveDescription(text: string, event: any) {
+  giveDescription(key: string, event: any) {
     event.stopPropagation();
-    this.dialogueserv.setItemDialogue([new DialogueSnippet('Erin', text)]);
+    this.dialogueserv.setItemDialogue('itemDescriptions', key);
     return false;
   }
 

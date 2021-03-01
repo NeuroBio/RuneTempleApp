@@ -60,8 +60,8 @@ export class TriggerService {
     if (int.updates[0]) {
       this.interactionserv.updateInteractions(int.updates);
     }
-    if (int.dialogue[0]) {
-      this.dialogueserv.setDialogue(int.dialogue);
+    if (int.dialogue) {
+      this.dialogueserv.setDialogue(int.dialogue.key, int.dialogue.subkey);
     }
     if (int.removeItems[0]) {
       this.inventoryserv.removeItems(int.removeItems);
@@ -84,11 +84,11 @@ export class TriggerService {
     if (int.eventFlags[0]) {
       this.eventserv.updateEvents(int.eventFlags);
     }
-    if (int.loadChoice[0]) {
-      this.choiceserv.setChoice(int.loadChoice[0], int.loadChoice[1]);
+    if (int.loadChoice) {
+      this.choiceserv.setChoice(int.loadChoice.key, int.loadChoice.subkey);
     }
-    if (int.requestInput[0]) {
-      this.inputReqServ.setInputRequest(int.requestInput[0], int.requestInput[1]);
+    if (int.requestInput) {
+      this.inputReqServ.setInputRequest(int.requestInput.key, int.requestInput.subkey);
     }
   }
 

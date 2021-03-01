@@ -1,54 +1,52 @@
 import { Activator } from '../scenes/ActiveArea';
-import { Interaction } from './Interaction';
+import { Interaction, KeyPair } from './Interaction';
 import { EventFlag } from '../event-types/EventFlag';
-import { onClickDialogue } from '../dialogue-snippets/onClickDialogue';
 import { UpdateInteractions } from './updateInteractions';
 
 export class onClickInteractions {
-    private dialog = new onClickDialogue;
     private nested = new UpdateInteractions;
 
     // Active Areas
     rootEnv = {
         default: new Interaction(
-            this.dialog.activeAreas.rootEnv, [], ['root'], [],
+            new KeyPair('activeAreas', 'rootEnv'), [], ['root'], [],
             [new Activator('pitFloor', 'rootEnv', false)]
         )
     };
 
     zhangBuried = {
         default: new Interaction(
-            this.dialog.zhangBuried.zhang1, [], [], [], [], [], [],
+            new KeyPair('zhangBuried', 'zhang1'), [], [], [], [], [], [],
             this.nested.zhangBuried),
-        pills: new Interaction(this.dialog.envCombos.pillsZhang),
-        pole: new Interaction(this.dialog.envCombos.poleZhang),
-        vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaZhangBurried)
+        pills: new Interaction(new KeyPair('envCombos', 'pillsZhang')),
+        pole: new Interaction(new KeyPair('envCombos', 'poleZhang')),
+        vodkaFlask2: new Interaction(new KeyPair('envCombos', 'vodkaZhangBurried'))
     };
 
     zhangFreed = {
-        default: new Interaction(this.dialog.zhangFreed.zhang3),
-        vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaZhangBurried),
-        emptyFlask: new Interaction(this.dialog.envCombos.vodkaZhangBurried),
-        pills: new Interaction(this.dialog.envCombos.pillsZhang2),
+        default: new Interaction(new KeyPair('zhangFreed', 'zhang3')),
+        vodkaFlask2: new Interaction(new KeyPair('envCombos', 'vodkaZhangBurried')),
+        emptyFlask: new Interaction(new KeyPair('envCombos', 'vodkaZhangBurried')),
+        pills: new Interaction(new KeyPair('envCombos', 'pillsZhang2')),
     };
 
     zhangBandaged = {
-        default: new Interaction(this.dialog.zhangFreed.zhang6,
+        default: new Interaction(new KeyPair('zhangFreed', 'zhang6'),
             [], [], [], [], [], [], this.nested.zhangBandagedDefault),
-        emptyFlask: new Interaction(this.dialog.envCombos.emptyFlaskZhang,
+        emptyFlask: new Interaction(new KeyPair('envCombos', 'emptyFlaskZhang'),
             [], [], [new EventFlag('zhangSawBadFlask')], [], [], [],
             this.nested.zhangSawBadFlask),
-        swampFlask: new Interaction(this.dialog.envCombos.swampFlaskZhang,
+        swampFlask: new Interaction(new KeyPair('envCombos', 'swampFlaskZhang'),
             [], [], [new EventFlag('zhangSawBadFlask')], [], [], [],
             this.nested.zhangSawBadFlask),
-        pills: new Interaction(this.dialog.envCombos.pillsZhang3,
+        pills: new Interaction(new KeyPair('envCombos', 'pillsZhang3'),
             ['pills'], [], [new EventFlag('zhangMedicated')],
             [], [], [], this.nested.zhangMedicated),
     };
 
     rubble = { 
-        default: new Interaction(this.dialog.activeAreas.rubble),
-        pole: new Interaction(this.dialog.envCombos.poleRubble,
+        default: new Interaction(new KeyPair('activeAreas', 'rubble')),
+        pole: new Interaction(new KeyPair('envCombos', 'poleRubble'),
             ['pole'], ['poles'], [new EventFlag('zhangFreed', true)], [
                 new Activator('pitFloor', 'zhangBuried', false),
                 new Activator('pitFloor', 'zhangFreed', true),
@@ -57,66 +55,69 @@ export class onClickInteractions {
             [], this.nested.rubblePole),
     };
 
-    food = { default: new Interaction(this.dialog.activeAreas.food) };
-    zhangLighter = { default: new Interaction(this.dialog.activeAreas.zhangLighter) };
+    food = {
+        default: new Interaction(new KeyPair('activeAreas', 'food'))
+    };
+
+    zhangLighter = {
+        default: new Interaction(new KeyPair('activeAreas', 'zhangLighter'))
+    };
+
     vodkaFlaskEnv = { 
-        default: new Interaction(
-            this.dialog.activeAreas.vodkaFlaskEnv, [], ['vodkaFlask'], [],
-            [new Activator('bag', 'vodkaFlaskEnv', false)]
+        default: new Interaction(new KeyPair('activeAreas', 'vodkaFlaskEnv'),
+            [], ['vodkaFlask'], [], [new Activator('bag', 'vodkaFlaskEnv', false)]
         )
     };
     shirtEnv = {
-        default: new Interaction(
-            this.dialog.activeAreas.shirtEnv, [], ['shirt'], [],
-            [new Activator('bag', 'shirtEnv', false)]
+        default: new Interaction(new KeyPair('activeAreas', 'shirtEnv'),
+            [], ['shirt'], [], [new Activator('bag', 'shirtEnv', false)]
         )
     };
     pillsEnv = {
-        default: new Interaction(
-            this.dialog.activeAreas.pillsEnv, [], ['pills'], [],
-            [new Activator('bag', 'pillsEnv', false)]
+        default: new Interaction(new KeyPair('activeAreas', 'pillsEnv'),
+            [], ['pills'], [], [new Activator('bag', 'pillsEnv', false)]
         )
     };
 
     ritualDoor = {
-        default: new Interaction(this.dialog.activeAreas.ritualDoor),
-        knife: new Interaction(this.dialog.envCombos.knifeDoor)
+        default: new Interaction(new KeyPair('activeAreas', 'ritualDoor')),
+        knife: new Interaction(new KeyPair('envCombos', 'knifeDoor'))
     };
 
     // Item Combos
     knife = {
-            compass: new Interaction(this.dialog.combos.compassKnife),
-            shirt: new Interaction(this.dialog.combos.shirtKnife, ['shirt'], ['clothStrips']),
-            dark: new Interaction(this.dialog.envCombos.knifeDark),
-            floor: new Interaction(this.dialog.envCombos.knifeFloor,
+            compass: new Interaction(new KeyPair('combos', 'compassKnife')),
+            shirt: new Interaction(new KeyPair('combos', 'shirtKnife'), ['shirt'], ['clothStrips']),
+            dark: new Interaction(new KeyPair('envCombos', 'knifeDark')),
+            floor: new Interaction(new KeyPair('envCombos', 'knifeFloor'),
                 [], [], [], [], [], [], this.nested.knifeFloor)
     };
 
     clothStrips = {
-        root: new Interaction(this.dialog.combos.rootClothStrips, ['root'], ['torch'])
+        root: new Interaction(new KeyPair('combos', 'rootClothStrips'), ['root'], ['torch'])
     };
 
     vodkaFlask = {
-        torch: new Interaction(this.dialog.combos.dryTorchVodka,
+        torch: new Interaction(new KeyPair('combos', 'dryTorchVodka'),
             ['vodkaFlask', 'torch'], ['vodkaFlask2', 'wetTorch']),
     };
 
     lighter = {
-        default: new Interaction(this.dialog.itemDefaults.lighter),
-        map: new Interaction(this.dialog.combos.mapLighter),
-        dark: new Interaction(this.dialog.envCombos.lighterDark),
-        root: new Interaction(this.dialog.combos.rootLighter),
-        torch: new Interaction(this.dialog.combos.dryTorchLighter),
-        wetTorch: new Interaction(this.dialog.combos.wetTorchLighter,
+        default: new Interaction(new KeyPair('itemDefaults', 'lighter')),
+        map: new Interaction(new KeyPair('combos', 'mapLighter')),
+        dark: new Interaction(new KeyPair('envCombos', 'lighterDark')),
+        root: new Interaction(new KeyPair('combos', 'rootLighter')),
+        torch: new Interaction(new KeyPair('combos', 'dryTorchLighter')),
+        wetTorch: new Interaction(new KeyPair('combos', 'wetTorchLighter'),
             ['wetTorch'], ['litTorch'])
     };
 
     dark = {
-        default: new Interaction(this.dialog.activeAreas.dark),
-        root: new Interaction(this.dialog.envCombos.rootDark),
-        torch: new Interaction(this.dialog.envCombos.unlitTochDark),
-        wetTorch: new Interaction(this.dialog.envCombos.unlitTochDark),
-        litTorch: new Interaction(this.dialog.envCombos.litTorchDark,
+        default: new Interaction(new KeyPair('activeAreas', 'dark')),
+        root: new Interaction(new KeyPair('envCombos', 'rootDark')),
+        torch: new Interaction(new KeyPair('envCombos', 'unlitTochDark')),
+        wetTorch: new Interaction(new KeyPair('envCombos', 'unlitTochDark')),
+        litTorch: new Interaction(new KeyPair('envCombos', 'litTorchDark'),
             ['litTorch'], [], [],
             [
                 new Activator('foyer', 'dark', false),
@@ -132,107 +133,108 @@ export class onClickInteractions {
     };
     
     blackboard = {
-        default: new Interaction(this.dialog.activeAreas.blackboard1,
+        default: new Interaction(new KeyPair('activeAreas', 'blackboard1'),
             [], ['puzzleBox'], [], [] , [], [], this.nested.blackboardDefault)
     };
     
     column = {
-        default: new Interaction(this.dialog.activeAreas.column1,
+        default: new Interaction(new KeyPair('activeAreas', 'column1'),
             [], ['pole'], [], [], [], [], this.nested.columnDefault)
     };
     
     charcoalEnv = {
-        default: new Interaction(this.dialog.activeAreas.charcoal1,
+        default: new Interaction(new KeyPair('activeAreas', 'charcoal1'),
             [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)])
     };
 
     bookEnv = {
-        default: new Interaction(this.dialog.activeAreas.book,
+        default: new Interaction(new KeyPair('activeAreas', 'book'),
             [], ['book'], [new EventFlag('bookGot', true)],
             [new Activator('classroom', 'bookEnv', false)],
             [], [], this.nested.bookEnvDefault)
     };
 
     depression = {
-        default: new Interaction(this.dialog.activeAreas.depression)
+        default: new Interaction(new KeyPair('activeAreas', 'depression'))
     };
 
     relief = {
-        default: new Interaction(this.dialog.activeAreas.relief)
+        default: new Interaction(new KeyPair('activeAreas', 'relief'))
     };
 
     topShelf = {
-        default: new Interaction(this.dialog.activeAreas.topShelf)
+        default: new Interaction(new KeyPair('activeAreas', 'topShelf'))
     };
 
     secondShelf = {
-        default: new Interaction(this.dialog.activeAreas.secondShelf)
+        default: new Interaction(new KeyPair('activeAreas', 'secondShelf'))
     };
 
     thirdShelf = {
-        default: new Interaction(this.dialog.activeAreas.thirdShelf,
+        default: new Interaction(new KeyPair('activeAreas', 'thirdShelf'),
             [], ['twine'], [], [], [], [], this.nested.thirdShelfDefault)
     };
 
     floor = {
-        default: new Interaction(this.dialog.activeAreas.floor,
+        default: new Interaction(new KeyPair('activeAreas', 'floor'),
             [], [], [], [], [], [], this.nested.floorDefault)
     };
 
     handBroom = {
-        default: new Interaction(this.dialog.activeAreas.handBroom)
+        default: new Interaction(new KeyPair('activeAreas', 'handBroom'))
     };
 
     rancidBarrel = {
-        default: new Interaction(this.dialog.activeAreas.rancidBarrel),
-        vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaFlask2Barrel),
-        pills: new Interaction(this.dialog.envCombos.pillsBarrel, ['pills']),
-        glassCap: new Interaction(this.dialog.envCombos.glassCapBarrel,
+        default: new Interaction(new KeyPair('activeAreas', 'rancidBarrel')),
+        vodkaFlask2: new Interaction(new KeyPair('envCombos', 'vodkaFlask2Barrel')),
+        pills: new Interaction(new KeyPair('envCombos', 'pillsBarrel'), ['pills']),
+        glassCap: new Interaction(new KeyPair('envCombos', 'glassCapBarrel'),
             ['glassCap'], ['acidDish']),
-        acidDish: new Interaction(this.dialog.envCombos.acidDishBarrel,
+        acidDish: new Interaction(new KeyPair('envCombos', 'acidDishBarrel'),
             ['acidDish'], ['glassCap'])
     };
 
     glassCap = {
-        vodkaFlask: new Interaction(this.dialog.combos.flaskGlassCap),
-        vodkaFlask2: new Interaction(this.dialog.combos.flaskGlassCap),
-        swampFlask: new Interaction(this.dialog.combos.flaskGlassCap),
+        vodkaFlask: new Interaction(new KeyPair('combos', 'flaskGlassCap')),
+        vodkaFlask2: new Interaction(new KeyPair('combos', 'flaskGlassCap')),
+        swampFlask: new Interaction(new KeyPair('combos', 'flaskGlassCap')),
     };
 
     magnet = {
-        twine: new Interaction(this.dialog.combos.twineMagnet1, ['twine', 'magnet'], ['magnetString'])
+        twine: new Interaction(new KeyPair('combos', 'twineMagnet1'),
+            ['twine', 'magnet'], ['magnetString'])
     };
 
     herbsEnv = {
-        default: new Interaction(this.dialog.activeAreas.herbsEnv,
+        default: new Interaction(new KeyPair('activeAreas', 'herbsEnv'),
             [], ['herbs'], [], [new Activator('exit', 'herbsEnv', false)])
     };
 
     engrave = {
-        default: new Interaction(this.dialog.activeAreas.engrave1),
-        book: new Interaction(this.dialog.envCombos.bookEngrave)
+        default: new Interaction(new KeyPair('activeAreas', 'engrave1')),
+        book: new Interaction(new KeyPair('envCombos', 'bookEngrave'))
     };
 
     exit = {
-        default: new Interaction(this.dialog.activeAreas.exit),
-        rock: new Interaction(this.dialog.envCombos.rockExit,
+        default: new Interaction(new KeyPair('activeAreas', 'exit')),
+        rock: new Interaction(new KeyPair('envCombos', 'rockExit'),
             [], [], [new EventFlag('hammerExit', true)],
             [new Activator('foyer', 'puddle', true)], [] ,[], this.nested.exitRock)
     };
 
     puddle = {
-        default: new Interaction(this.dialog.activeAreas.puddle1,
+        default: new Interaction(new KeyPair('activeAreas', 'puddle1'),
             [], ['fish'], [], [], [], [], this.nested.puddleDefault)
     };
 
     craftDoor = {
-        default: new Interaction(this.dialog.activeAreas.craftDoor),
-        knife: new Interaction(this.dialog.envCombos.knifeDoor)
+        default: new Interaction(new KeyPair('activeAreas', 'craftDoor')),
+        knife: new Interaction(new KeyPair(' envCombos', 'knifeDoor'))
     };
 
     mossBank = {
-        default: new Interaction(this.dialog.activeAreas.mossBank),
-        knife: new Interaction(this.dialog.envCombos.knifeMossBank,
+        default: new Interaction(new KeyPair('activeAreas', 'mossBank')),
+        knife: new Interaction(new KeyPair('envCombos', 'knifeMossBank'),
             [], ['moss'], [], [
                 new Activator('basement', 'mossBank', false),
                 new Activator('basement', 'metalEngrave', true)
@@ -240,108 +242,108 @@ export class onClickInteractions {
     };
 
     metalEngrave = {
-        default: new Interaction(this.dialog.activeAreas.metalEngrave)
+        default: new Interaction(new KeyPair('activeAreas', 'metalEngrave'))
     };
 
     peatOven = {
-        default: new Interaction(this.dialog.activeAreas.peatOven),
-        vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaFlask2Oven),
-        charcoal: new Interaction(this.dialog.envCombos.charcoalOven,
+        default: new Interaction(new KeyPair('activeAreas', 'peatOven')),
+        vodkaFlask2: new Interaction(new KeyPair('envCombos', 'vodkaFlask2Oven')),
+        charcoal: new Interaction(new KeyPair('envCombos', 'charcoalOven'),
             ['charcoal'], [], [new EventFlag('ovenCharcoal', true)] ),
-        lighter: new Interaction(this.dialog.envCombos.lighterOven),
-        herbs: new Interaction(this.dialog.envCombos.herbsOven),
-        moss: new Interaction(this.dialog.envCombos.mossOven),
-        book: new Interaction(this.dialog.envCombos.bookOven)
+        lighter: new Interaction(new KeyPair('envCombos', 'lighterOven')),
+        herbs: new Interaction(new KeyPair('envCombos', 'herbsOven')),
+        moss: new Interaction(new KeyPair('envCombos', 'mossOven')),
+        book: new Interaction(new KeyPair('envCombos', 'bookOven'))
     };
 
     peatOvenLit = {
-        default: new Interaction(this.dialog.activeAreas.peatOvenLit),
-        charcoal: new Interaction(this.dialog.envCombos.charcoalLitOven,
+        default: new Interaction(new KeyPair('activeAreas', 'peatOvenLit')),
+        charcoal: new Interaction(new KeyPair('envCombos', 'charcoalLitOven'),
             ['charcoal'], [], [new EventFlag('charcoalBurned', true)]),
-        map: new Interaction(this.dialog.envCombos.mapLitOven),
-        clothStrips: new Interaction(this.dialog.envCombos.clothStripsLitOven),
-        herbs: new Interaction(this.dialog.envCombos.herbsLitOven),
-        moss: new Interaction(this.dialog.envCombos.mossLitOven,
+        map: new Interaction(new KeyPair('envCombos', 'mapLitOven')),
+        clothStrips: new Interaction(new KeyPair('envCombos', 'clothStripsLitOven')),
+        herbs: new Interaction(new KeyPair('envCombos', 'herbsLitOven')),
+        moss: new Interaction(new KeyPair('envCombos', 'mossLitOven'),
             ['moss'], [], [new EventFlag('mossBurned', true)]),
-        book: new Interaction(this.dialog.envCombos.bookLitOven),
-        puzzleBox: new Interaction(this.dialog.envCombos.puzzleBoxLitOven,)
+        book: new Interaction(new KeyPair('envCombos', 'bookLitOven')),
+        puzzleBox: new Interaction(new KeyPair('envCombos', 'puzzleBoxLitOven'))
     };
 
     peat = {
-        default: new Interaction(this.dialog.activeAreas.peat),
-        lighter: new Interaction(this.dialog.envCombos.lighterPeat)
+        default: new Interaction(new KeyPair('activeAreas', 'peat')),
+        lighter: new Interaction(new KeyPair('envCombos', 'lighterPeat'))
     };
 
     vent1 = {
-        default: new Interaction(this.dialog.activeAreas.vent1A),
-        knife: new Interaction(this.dialog.envCombos.knifeVent1A, [], [],
+        default: new Interaction(new KeyPair('activeAreas', 'vent1A')),
+        knife: new Interaction(new KeyPair('envCombos', 'knifeVent1A'), [], [],
             [ new EventFlag('vent1Open', true) ], [], [], [],
             this.nested.vent1Knife),
-        magnet: new Interaction(this.dialog.envCombos.magnetVent1A, [], [],
-            [ new EventFlag('vent1Open', true) ], [], [], [],
+        magnet: new Interaction(new KeyPair('envCombos', 'magnetVent1A'),
+            [], [], [ new EventFlag('vent1Open', true) ], [], [], [],
             this.nested.vent1Magnet),
-        magnetString: new Interaction(this.dialog.envCombos.magnetVent1A, [], [],
-            [ new EventFlag('vent1Open', true) ], [], [], [],
+        magnetString: new Interaction(new KeyPair('envCombos', 'magnetVent1A')
+            , [], [], [ new EventFlag('vent1Open', true) ], [], [], [],
             this.nested.vent1MagnetString),
     };
 
     tongs = {
-        default: new Interaction(this.dialog.activeAreas.tongs)
+        default: new Interaction(new KeyPair('activeAreas', 'tongs'))
     };
 
     meltPot = {
-        default: new Interaction(this.dialog.activeAreas.meltPot)
+        default: new Interaction(new KeyPair('activeAreas', 'meltPot'))
     };
 
     troth = {
-        default: new Interaction(this.dialog.activeAreas.troth),
-        acidDish: new Interaction(this.dialog.envCombos.acidDishTroth1,
+        default: new Interaction(new KeyPair('activeAreas', 'troth')),
+        acidDish: new Interaction(new KeyPair('envCombos', 'acidDishTroth1'),
             [], [], [], [], [], [], this.nested.trothAcidDish),
-        vodkaFlask2: new Interaction(this.dialog.envCombos.vodkaFlask2Troth),
+        vodkaFlask2: new Interaction(new KeyPair('envCombos', 'vodkaFlask2Troth'))
     };
 
     spigot = {
-        default: new Interaction(this.dialog.activeAreas.spigot)
+        default: new Interaction(new KeyPair('activeAreas', 'spigot'))
     };
 
     rockEnv = {
-        default: new Interaction(this.dialog.activeAreas.rockEnv,
+        default: new Interaction(new KeyPair('activeAreas.', 'rockEnv'),
             [], ['rock'], [], [new Activator('pitFloor', 'rockEnv', false)])
     };
 
     rock = {
-        default: new Interaction(this.dialog.itemDefaults.rock),
-        puzzleBox: new Interaction(this.dialog.combos.rockPuzzle),
-        emptyFlask: new Interaction(this.dialog.combos.rockEmptyFlask),
-        glassCap: new Interaction(this.dialog.combos.rockGlassCap),
-        swampFlask: new Interaction(this.dialog.combos.fluidRock),
-        vodkaFlask2: new Interaction(this.dialog.combos.fluidRock),
-        experiment: new Interaction(this.dialog.combos.fluidRock),
-        acidDish: new Interaction(this.dialog.combos.fluidRock),
-        coffin: new Interaction(this.dialog.combos.fluidRock),
-        waterGlass: new Interaction(this.dialog.combos.fluidRock),
-        fiskTank: new Interaction(this.dialog.combos.fishTankRock),
-        cleanFishTank: new Interaction(this.dialog.combos.fishTankRock),
-        compass: new Interaction(this.dialog.combos.compassRock)      
+        default: new Interaction(new KeyPair('itemDefaults', 'rock')),
+        puzzleBox: new Interaction(new KeyPair('combos' , 'rockPuzzle')),
+        emptyFlask: new Interaction(new KeyPair('combos', 'rockEmptyFlask')),
+        glassCap: new Interaction(new KeyPair('combos', 'rockGlassCap')),
+        swampFlask: new Interaction(new KeyPair('combos', 'fluidRock')),
+        vodkaFlask2: new Interaction(new KeyPair('combos', 'fluidRock')),
+        experiment: new Interaction(new KeyPair('combos', 'fluidRock')),
+        acidDish: new Interaction(new KeyPair('combos', 'fluidRock')),
+        coffin: new Interaction(new KeyPair('combos', 'fluidRock')),
+        waterGlass: new Interaction(new KeyPair('combos', 'fluidRock')),
+        fiskTank: new Interaction(new KeyPair('combos', 'fishTankRock')),
+        cleanFishTank: new Interaction(new KeyPair('combos', 'fishTankRock')),
+        compass: new Interaction(new KeyPair('combos', 'compassRock'))      
     };
 
     injury = {
-        default: new Interaction(this.dialog.activeAreas.injury),
-        lighter: new Interaction(this.dialog.envCombos.lighterInjury),
-        pills: new Interaction(this.dialog.envCombos.pillsInjury),
-        knife: new Interaction(this.dialog.envCombos.knifeInjury),
-        rock: new Interaction(this.dialog.envCombos.rockInjury),
-        vodkaFlask2 : new Interaction(this.dialog.envCombos.vodkaInjury,
+        default: new Interaction(new KeyPair('activeAreas', 'injury')),
+        lighter: new Interaction(new KeyPair('envCombos', 'lighterInjury')),
+        pills: new Interaction(new KeyPair('envCombos', 'pillsInjury')),
+        knife: new Interaction(new KeyPair('envCombos', 'knifeInjury')),
+        rock: new Interaction(new KeyPair('envCombos', 'rockInjury')),
+        vodkaFlask2 : new Interaction(new KeyPair('envCombos', 'vodkaInjury'),
             ['vodkaFlask2'], ['emptyFlask'], [new EventFlag('sterilize', true)],
             [], [], [], this.nested.sterilize),
-        herbs: new Interaction(this.dialog.envCombos.legitItemsInjury),
-        clothStrips: new Interaction(this.dialog.envCombos.legitItemsInjury),
-        poles: new Interaction(this.dialog.envCombos.legitItemsInjury),
-        moss: new Interaction(this.dialog.envCombos.mossInjury)
+        herbs: new Interaction(new KeyPair('envCombos', 'legitItemsInjury')),
+        clothStrips: new Interaction(new KeyPair('envCombos', 'legitItemsInjury')),
+        poles: new Interaction(new KeyPair('envCombos', 'legitItemsInjury')),
+        moss: new Interaction(new KeyPair('envCombos', 'mossInjury'))
     };
 
     haunt = {
-        default: new Interaction(this.dialog.activeAreas.haunt,
+        default: new Interaction(new KeyPair('activeAreas', 'haunt'),
             [], [], [], [
                 new Activator('foyer', 'haunt', false),
                 new Activator('foyer', 'ritualDoor', true)

@@ -1,18 +1,14 @@
-import { InteractionWithKeys, Interaction, InputRequestInteraction } from './Interaction'
+import { InteractionWithKeys, Interaction, InputRequestInteraction, KeyPair } from './Interaction'
 import { EventFlag } from '../event-types/EventFlag'
 import { Activator } from '../scenes/ActiveArea'
-import { ZhangHelp, DIDialogue } from '../dialogue-snippets/onChoiceDialogue';
-import { onClickDialogue } from '../dialogue-snippets/onClickDialogue';
 
 export class DialogueInteractions {
-    private zhangHelp = new ZhangHelp;
-    private DID = new DIDialogue;
     private update = new updateDialogueInteractions;
 
     peatStacks =  [
         new InteractionWithKeys(
             new Interaction(
-                this.DID.peatStacks, [], [],
+                new KeyPair('dialogueEvents', 'peatStacks'), [], [],
                 [new EventFlag('ovenLit', true)], [
                     new Activator('oven', 'peatOven', false),
                     new Activator('oven', 'peatOvenLit', true)
@@ -24,7 +20,7 @@ export class DialogueInteractions {
 
     compassKnife = [
         new InteractionWithKeys(
-            new Interaction(this.DID.compassKnife,
+            new Interaction(new KeyPair('dialogueEvents', 'compassKnife'),
                 ['compass'], ['glassCap', 'magnet'],
                 [new EventFlag('compassBroken', true)] 
         )),
@@ -33,7 +29,7 @@ export class DialogueInteractions {
 
     mapOven = [
         new InteractionWithKeys(new Interaction(
-            this.DID.mapOven,
+            new KeyPair('dialogueEvents', 'mapOven'),
             ['map'], [], [new EventFlag('mapBurned', true)],
             [], [], [], this.update.mapBurned
         )),
@@ -42,49 +38,49 @@ export class DialogueInteractions {
 
     bookOven = [
         new InteractionWithKeys(
-            new Interaction(this.DID.bookOven,
+            new Interaction(new KeyPair('dialogueEvents', 'bookOven'),
             ['book'], [], [new EventFlag('bookBurned', true)]
         )),
         undefined
     ];
 
     zhang = [
-        new InteractionWithKeys(new Interaction(this.zhangHelp.where)),
-        new InteractionWithKeys(new Interaction(this.zhangHelp.what)),
-        new InteractionWithKeys(new Interaction(this.zhangHelp.mission)),
+        new InteractionWithKeys(new Interaction(new KeyPair('zhangHelp', 'where'))),
+        new InteractionWithKeys(new Interaction(new KeyPair('zhangHelp', 'what'))),
+        new InteractionWithKeys(new Interaction(new KeyPair('zhangHelp', 'mission'))),
         undefined
     ];
 
     riskyGambit = [
         new InteractionWithKeys(
-            new Interaction(this.DID.riskyGambit,
+            new Interaction(new KeyPair('dialogueEvents', 'riskyGambit'),
             ['puzzleBox'], [], [new EventFlag('puzzleBoxBurned', true)])),
         undefined
     ];
 
     shatter1 = [
-        new InteractionWithKeys(new Interaction(this.DID.shatter1,
+        new InteractionWithKeys(new Interaction(new KeyPair('dialogueEvents', 'shatter1'),
             ['glassCap'], [], [new EventFlag('gassShatter', true)])),
         undefined
     ];
 
     shatter2 = [
         new InteractionWithKeys(
-            new Interaction(this.DID.shatter2,
+            new Interaction(new KeyPair('dialogueEvents', 'shatter2'),
             ['emptyFlask'], ['scrapMetal'], [new EventFlag('flaskShatter', true)])),
         undefined
     ];
 
     shatter3 = [
         new InteractionWithKeys(
-                new Interaction(this.DID.shatter3,
+                new Interaction(new KeyPair('dialogueEvents', 'shatter3'),
                 ['compass'], ['magnet'], [new EventFlag('glassShatter', true)])),
         undefined
     ];
 
     igniteMap = [
         new InteractionWithKeys(
-                new Interaction(this.DID.igniteMap,
+                new Interaction(new KeyPair('dialogueEvents', 'igniteMap'),
                 ['map'], [], [new EventFlag('mapBurned', true)])),
         undefined
     ];
@@ -93,23 +89,21 @@ export class DialogueInteractions {
         new InputRequestInteraction('dialogue', 'fishName'),
 
         new InteractionWithKeys(
-            new Interaction(this.DID.unnameFish,
+            new Interaction(new KeyPair('dialogueEvents', 'unnameFish'),
                 [], [], [], [], [], ['pokemon']))
     ]
 }
 
 class updateDialogueInteractions {
-    private DID = new DIDialogue;
-    private dialog = new onClickDialogue;
 
     ovenLit = [
         new InteractionWithKeys(
-            new Interaction(this.DID.peatStacks2),
+            new Interaction(new KeyPair('dialogueEvents', 'peatStacks2')),
             'peat', 'default')];
     
     mapBurned = [
         new InteractionWithKeys(
-            new Interaction(this.dialog.activeAreas.charcoal2,
+            new Interaction(new KeyPair('activeAreas', 'charcoal2'),
                 [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)]),
             'charcoalEnv', 'default')];
 }

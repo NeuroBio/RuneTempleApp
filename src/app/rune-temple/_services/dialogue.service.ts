@@ -5,6 +5,8 @@ import { GameSettingsService } from './game-settings.service';
 import { SceneService } from './scene.service';
 import { ChoiceService } from './choice.service';
 import { InputReqService } from './input-req.service';
+import { onClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
+import { KeyPair } from '../_objects/interactions/Interaction';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,8 @@ export class DialogueService {
   advance = new Subject();
   parse = new RegExp('\\${.*?}', 'g');
 
+  private dialog = new onClickDialogue;
+
   constructor(
     private gs: GameSettingsService,
     private sceneserv: SceneService,
@@ -22,7 +26,11 @@ export class DialogueService {
     private inputreqserv: InputReqService
   ) { }
 
-  setDialogue(dialogue: DialogueSnippet[]): void {
+  setDialogue(key: string, subkey: string): void {
+    const dialogue = this.dialog[key][subkey];
+    if (!dialogue) {
+      console.error('dialogue keys incorrect!, key: ', key, ' subkey: ', subkey);
+    } else {
     // replaces vars marked by ${} with their value in game settings
     dialogue.forEach(snip => {
       snip.text = snip.text.replace(this.parse, (parsed) => 
@@ -30,11 +38,12 @@ export class DialogueService {
     });
 
     this.activeDialogue.next(dialogue);
+    }
   }
 
-  setItemDialogue(dialogue: DialogueSnippet[]): void {
+  setItemDialogue(key: string, subkey: string): void {
     if (this.gs.checkSetting('rightClickDescriptions')) {
-      this.setDialogue(dialogue);
+      this.setDialogue(key, subkey);
     }
   }
 

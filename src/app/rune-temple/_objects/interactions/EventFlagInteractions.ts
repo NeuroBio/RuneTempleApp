@@ -1,17 +1,14 @@
-import { Interaction, InteractionWithKeys } from './Interaction';
-import { onClickDialogue } from'../dialogue-snippets/onClickDialogue';
-
+import { Interaction, InteractionWithKeys, KeyPair } from './Interaction';
 
 export class EventFlagInteractions {
-    private dialog = new onClickDialogue;
 
     vent1openANDkeyFell = [
         new InteractionWithKeys(
-            new Interaction(this.dialog.activeAreas.vent1C,
+            new Interaction(new KeyPair('activeAreas', 'vent1C'),
                 [], ['silverKey'], [], [], [], [],
                 [
                     new InteractionWithKeys(
-                        new Interaction(this.dialog.activeAreas.vent1B),
+                        new Interaction(new KeyPair('activeAreas', 'vent1B')),
                         'vent1', 'default')
                 ]
             ), 'vent1', 'default'
@@ -20,13 +17,13 @@ export class EventFlagInteractions {
 
     ventOpenOnly = [
         new InteractionWithKeys(
-            new Interaction(this.dialog.activeAreas.vent1B),
+            new Interaction(new KeyPair('activeAreas', 'vent1B')),
             'vent1', 'default'
         )
     ];
 
     noFishForYou = [
-        new InteractionWithKeys(new Interaction(this.dialog.activeAreas.puddle2))
+        new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'puddle2')))
     ];
 
 }

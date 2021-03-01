@@ -1,11 +1,11 @@
 import { ActiveArea } from './ActiveArea';
-import { DialogueSnippet } from '../dialogue-snippets/DialogueSnippet';
-import { SceneDialogue } from '../dialogue-snippets/sceneDialogue';
 import { SceneActiveAreas } from './SceneActiveAreas';
 import { SceneLocations } from './SceneLocations';
+import { onClickDialogue } from '../dialogue-snippets/onClickDialogue';
+import { KeyPair } from '../interactions/Interaction';
 
 export class Scene {
-    private dialog = (new SceneDialogue).defaults;
+    private dialog = new onClickDialogue;
     private aa = new SceneActiveAreas;
     private loc = new SceneLocations;
 
@@ -13,7 +13,7 @@ export class Scene {
     assetKey: string;
     activeAreas: ActiveArea[];
     locations: any[];
-    dialogue: DialogueSnippet[];
+    dialogue: KeyPair;
     visited: boolean = false;
 
     constructor(
@@ -22,7 +22,7 @@ export class Scene {
         this.assetKey = key;
         this.activeAreas = this.aa[key] ? this.aa[key] : [];
         this.locations = this.loc[key] ? this.loc[key] : [];
-        this.dialogue = this.dialog[key] ? this.dialog[key] : [];
+        this.dialogue = new KeyPair('sceneDefaults', key);
     }
 }
 

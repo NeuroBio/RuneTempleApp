@@ -74,7 +74,7 @@ export class UIComponent implements OnInit, OnDestroy {
   }
 
   getHint() { 
-    this.dialogueserv.setDialogue([new DialogueSnippet('', 'This system is not yet in place, sorry!')])
+    // this.dialogueserv.setDialogue([new DialogueSnippet('', 'This system is not yet in place, sorry!')])
   }
 
   viewSettings(): void {
