@@ -27,14 +27,14 @@ export class UIComponent implements OnInit, OnDestroy {
   showSettings = false;
   settingsSubscription: Subscription;
 
-  hint = false;
-  hintSubscription: Subscription;
-
   showSaveLoad = false;
   savelaodSubscription: Subscription;
 
-  isLoggedIn = false;
+  hint = false;
+  hintSubscription: Subscription;
 
+  pointer = false;
+  pointerSubscription: Subscription;
 
   constructor(
     private dialogueserv: DialogueService,
@@ -46,6 +46,18 @@ export class UIComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    // Menu buttons
+    this.settingsSubscription = this.gs.settingsOpen
+      .subscribe(open => this.showSettings = open);
+ 
+     this.savelaodSubscription = this.saveloadserv.saveloadOpen
+     .subscribe(open => this.showSaveLoad = open);
+ 
+     this.hintSubscription = this.gs.getSetting('enableHints').valueChanges
+       .subscribe(value => this.hint = value);
+ 
+
+    // Bottom bar
     this.dialogueSubscription = this.dialogueserv.activeDialogue
       .subscribe(active => this.isDialogueActive = active[0] ? true : false);
 
@@ -54,15 +66,10 @@ export class UIComponent implements OnInit, OnDestroy {
 
     this.inputReqSubscription = this.inputreqserv.activeInputReq
       .subscribe(active => this.isInputReqActive = active ? true : false);
-      
-    this.settingsSubscription = this.gs.settingsOpen
-      .subscribe(open => this.showSettings = open);
-
-    this.savelaodSubscription = this.saveloadserv.saveloadOpen
-    .subscribe(open => this.showSaveLoad = open);
-
-    this.hintSubscription = this.gs.getSetting('enableHints').valueChanges
-      .subscribe(value => this.hint = value);
+    
+    // Dispaly Control
+    this.pointerSubscription = this.gs.getSetting('changeCursorOnHover').valueChanges
+      .subscribe(value => this.pointer = value);
   }
 
   ngOnDestroy(): void {
@@ -91,6 +98,11 @@ export class UIComponent implements OnInit, OnDestroy {
     } else {
       this.saveloadserv.openSaveLoad();
     }
+  }
+
+  disableInterface() {
+    return (this.showSaveLoad || this.showSettings || this.isChoiceActive
+      || this.isDialogueActive || this.isInputReqActive);
   }
 
   @HostListener('click', ['$event'])

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input } from '@angular/core';
 import { GameItems, InventoryItem } from '../_objects/InventoryItem';
 import { Subscription } from 'rxjs';
 import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
@@ -13,6 +13,7 @@ import { TriggerService } from '../_services/trigger.service';
 })
 export class InventoryComponent implements OnInit, OnDestroy {
 
+  @Input() disable: boolean = false;
   @ViewChild('itemBand') itemBand: ElementRef;
 
   gameItems = new GameItems();

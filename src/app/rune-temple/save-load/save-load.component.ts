@@ -9,10 +9,13 @@ import { SaveLoadService } from '../_services/save-load.service';
 export class SaveLoadComponent implements OnInit {
 
   @ViewChild('saveload') saveload: ElementRef;
+  allowLoad: boolean;
 
   constructor(private saveloadserv: SaveLoadService) { }
 
   ngOnInit(): void {
+    this.allowLoad = this.saveloadserv.loadDataExists();
+    console.log(this.allowLoad)
     setTimeout(() => { this.saveload.nativeElement.style.opacity = 1 }, 10);
   }
 
@@ -22,6 +25,7 @@ export class SaveLoadComponent implements OnInit {
 
   saveGame() {
     this.saveloadserv.saveGame();
+    this.allowLoad = true;
   }
 
   loadGame() {
@@ -30,6 +34,7 @@ export class SaveLoadComponent implements OnInit {
 
   clearData() {
     this.saveloadserv.clearData();
+    this.allowLoad = false;
   }
 
   close() {

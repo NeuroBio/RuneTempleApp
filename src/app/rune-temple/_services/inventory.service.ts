@@ -58,7 +58,7 @@ export class InventoryService {
 
   deselectItem() {
     const inventory = this.inventory.value;
-    if (this.selectedIndex) {
+    if (this.selectedIndex !== undefined) {
       inventory[this.selectedIndex].selected = false;
       this.selectedIndex = undefined;  
     }

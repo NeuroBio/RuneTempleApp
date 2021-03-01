@@ -16,6 +16,8 @@ import { CompressionService } from './compression.service';
 export class SaveLoadService {
 
   saveloadOpen = new BehaviorSubject<boolean>(false);
+  private gameData: string;
+  storageName: string = 'rune-temple-game-data';
 
   constructor(
     private gs: GameSettingsService,
@@ -27,9 +29,14 @@ export class SaveLoadService {
     private inventoryserv: InventoryService,
     private sceneserv: SceneService,
     private compression: CompressionService
-    ) { }
+  ) {
+      const data = localStorage.getItem(this.storageName);
+      if (data) {
+        this.gameData = data;
+      }
+  }
 
-  openSaveLoad():void {
+  openSaveLoad(): void {
     this.saveloadOpen.next(true);
   }
 
@@ -37,7 +44,11 @@ export class SaveLoadService {
     this.saveloadOpen.next(false);
   }
 
-  newGame() {
+  loadDataExists(): boolean {
+    return this.gameData !== null;
+  }
+
+  newGame(): void {
     this.gs.reset();
     this.choiceserv.reset();
     this.dialogueserv.reset();
@@ -48,7 +59,7 @@ export class SaveLoadService {
     this.sceneserv.reset();
   }
 
-  saveGame() {
+  saveGame(): void {
     const gameData = {
       gs: this.gs.save(),
       choices: this.choiceserv.choices,
@@ -59,13 +70,13 @@ export class SaveLoadService {
     };
 
     console.log(new Blob([this.compression.compressObject(gameData)]).size)
-    localStorage.setItem('rune-temple-game-data',
+    localStorage.setItem(this.storageName,
     this.compression.compressObject(gameData));
   }
 
-  loadGame() {
+  loadGame(): void {
     const gameData = this.compression.decompressObject(
-      localStorage.getItem('rune-temple-game-data'));
+      localStorage.getItem(this.storageName));
 
     this.choiceserv.load(gameData.choices);
     this.eventflagserv.load(gameData.eventflags);
@@ -75,7 +86,7 @@ export class SaveLoadService {
     this.sceneserv.load(gameData.scenes);
   }
 
-  clearData() {
+  clearData(): void {
     this.gs.reset(true);
     this.choiceserv.reset();
     this.dialogueserv.reset();
@@ -84,7 +95,7 @@ export class SaveLoadService {
     this.interactionserv.reset();
     this.inventoryserv.reset();
     this.sceneserv.reset();
-    localStorage.removeItem('rune-temple-game-data');
+    localStorage.removeItem(this.storageName);
 
     // TODO: add logic to clear session cookies.
     // TODO: add logic to clear datat from firebase when that is hooked up.

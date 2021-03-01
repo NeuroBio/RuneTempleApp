@@ -1,6 +1,7 @@
 <div id="actions-row">
     <!-- Breaker -->
     <button mat-fab aria-label="use-Breaker"
+    [disabled]="disable"
     class="action-button"
     (click)="castBreaker()">
         <mat-icon>api</mat-icon>
@@ -10,6 +11,7 @@
     <!-- Inventory -->
     <div id="inventory">
         <button mat-mini-fab aria-label="shift-inventory-left"
+        [disabled]="disable"
         class="action-button"
         (click)="shiftInventory(false)">
             <mat-icon>keyboard_arrow_left</mat-icon>
@@ -18,12 +20,14 @@
             <li *ngFor="let item of inventoryItems; let index = index"
             (contextmenu)="giveDescription(item.assetKey, $event)"
             [class.selected]="item.selected">
-                <button (click)="select(index)">
+                <button (click)="select(index)"
+                [disabled]="disable">
                     <img [src]="item.assetkey" [alt]="item.name">
                 </button>
             </li>
         </ul>
         <button mat-mini-fab aria-label="shift-inventory-right"
+        [disabled]="disable"
         class="action-button"
         (click)="shiftInventory(true)">
             <mat-icon>keyboard_arrow_right</mat-icon>

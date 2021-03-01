@@ -18,7 +18,7 @@ export class TriggerService {
     private dialogueserv: DialogueService,
     private interactionserv: InteractionService,
     private inventoryserv: InventoryService,
-    private eventserv: EventFlagService,
+    private eventflagserv: EventFlagService,
     private sceneserv: SceneService,
     private choiceserv: ChoiceService,
     private inputReqServ: InputReqService,
@@ -82,7 +82,7 @@ export class TriggerService {
       this.sceneserv.setActiveScene(int.moveToScene);
     }
     if (int.eventFlags[0]) {
-      this.eventserv.updateEvents(int.eventFlags);
+      this.eventflagserv.updateEvents(int.eventFlags);
     }
     if (int.loadChoice) {
       this.choiceserv.setChoice(int.loadChoice.key, int.loadChoice.subkey);
@@ -97,6 +97,16 @@ export class TriggerService {
     interaction.forEach(int => {
       this.triggerInteraction(int);
     })
+  }
+
+  travel(key: string): void {
+    const scene = this.sceneserv.getScene(key);
+    if (!scene.visited) {
+      this.dialogueserv.setDialogue(scene.dialogue.key, scene.dialogue.subkey);
+      this.sceneserv.updateScene(key, true, null);
+      this.eventflagserv.addMapEvent(key);
+    }
+    this.sceneserv.setActiveScene(key);
   }
 
 }

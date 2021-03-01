@@ -1,7 +1,8 @@
 @import '../_objects/vars.scss';
 
+$button-width: 70;
+
 #save-load-frame {
-    position: relative;
     background-color: $medium-grey;
     display: flex;
     flex-direction: column;
@@ -30,9 +31,10 @@ h3 {
 }
 
 #action-buttons {
+    position: relative;
     margin: $standard-margin;
     align-self: center;
-    width: 70%;
+    width: calc(1% * #{$button-width});
     display: flex;
     flex-direction: column;
     align-content: flex-start;
@@ -43,7 +45,23 @@ h3 {
         margin: $standard-margin;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         font-size: 13pt;
-        color: whitesmoke;
-        background-color: $grey-ish-er;
     }
+}
+
+.mat-active {
+    color: whitesmoke;
+    background-color: $grey-ish-er;
+}
+
+.mat-disabled {
+    color: $grey-ish-er;
+    background-color: $dark-ish-grey;
+}
+
+mat-divider {
+    position: absolute;
+    margin-left: calc((100 - #{$button-width}) / 2 * -1% - #{$standard-margin} * 2 - 1px);
+    top: 72%;
+    border-top-color: whitesmoke;
+    width: calc(100% * 100 / #{$button-width});
 }

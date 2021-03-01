@@ -10,7 +10,7 @@
         (click)="interact()"> -->
         <button *ngIf="area.render"
         [ngClass]="pointer ? 'easymode' : 'hardmode'"
-        [disabled]="isDialogueActive"
+        [disabled]="disable"
         (click)="interact(area.assetKey)">
             {{ area.name }}
         </button>
@@ -22,7 +22,7 @@
         <button
         *ngIf="location.render"
         ngClass="easymode"
-        [disabled]="isDialogueActive"
+        [disabled]="disable"
         (click)="travel(location.assetKey)">
             {{ location.name }}
         </button>

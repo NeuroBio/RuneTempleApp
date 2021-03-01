@@ -3,15 +3,17 @@
     <!-- Menu -->
     <div id="menu">
         <button mat-mini-fab aria-label="hint"
-        [disabled]="!hint"
+        [disabled]="!hint || disableInterface()"
         (click)=getHint()>
             <mat-icon>help</mat-icon>
         </button>
-        <button mat-mini-fab aria-label="game-options"
+        <button mat-mini-fab aria-label="game-settings"
+        [disabled]="disableInterface()"
         (click)="viewSettings()">
             <mat-icon>settings</mat-icon>
         </button>
         <button mat-mini-fab aria-label="save"
+        [disabled]="disableInterface()"
         (click)="viewSaveLoad()">
             <mat-icon>save</mat-icon>
         </button>
@@ -22,11 +24,15 @@
     <app-save-load *ngIf="showSaveLoad"class="floating-element"></app-save-load>
 
     <!-- Main Game stuff -->
-    <app-main-scene></app-main-scene>
+    <app-main-scene
+    [disable]="disableInterface()"
+    [pointer]="pointer"
+    ></app-main-scene>
 
 
     <!-- Inventory -->
-    <app-inventory *ngIf="!isDialogueActive && !isChoiceActive && !isInputReqActive"></app-inventory>
+    <app-inventory *ngIf="!isDialogueActive && !isChoiceActive && !isInputReqActive"
+    [disable]="disableInterface()"></app-inventory>
     <app-dialogue *ngIf="isDialogueActive"></app-dialogue>
     <app-choice *ngIf="isChoiceActive"></app-choice>
     <app-input-req *ngIf="isInputReqActive"></app-input-req>
