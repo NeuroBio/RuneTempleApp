@@ -9,6 +9,7 @@ import { InteractionService } from './interaction.service';
 import { InventoryService } from './inventory.service';
 import { SceneService } from './scene.service';
 import { CookieService } from 'ngx-cookie-service';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -49,12 +50,24 @@ export class SaveLoadService {
   }
 
   saveGame() {
-    this.cookieserv.set('rune-temple-game-data', 'test', {path: '/'});
-    //TODO: requires session cookies
+    const gameDataCookie = {
+      gs: this.gs.save(),
+      choices: this.choiceserv.choices,
+      eventflags: this.eventflagserv.save(),
+      inputReq: this.inputreqserv.save(),
+      interactions: this.interactionserv.save(),
+      inventory: this.inventoryserv.inventory.value,
+      scenes: this.sceneserv.gameScenes.value,
+      activeScene: this.sceneserv.activeScene.value
+    };
+    
+    localStorage.setItem('rune-temple-game-data', JSON.stringify(gameDataCookie));
+    // this.cookieserv.set('rune-temple-game-data', JSON.stringify(this.gs.save()), {path: '/'});
   }
 
   loadGame() {
-    console.log(this.cookieserv.get('rune-temple-game-data'))
+    console.log(localStorage.getItem('rune-temple-game-data'))
+    // console.log(this.cookieserv.get('rune-temple-game-data'))
     // TODO: requires session cookies;
     // this.choiceserv.load()
     // this.eventflagserv.load()

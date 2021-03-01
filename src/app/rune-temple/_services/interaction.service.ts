@@ -7,7 +7,7 @@ import { InteractionWithKeys } from '../_objects/interactions/Interaction';
 })
 export class InteractionService {
 
-  interactions = new onClickInteractions();
+  private interactions = new onClickInteractions();
 
   constructor() { }
 
@@ -71,6 +71,10 @@ export class InteractionService {
 
   load(interactionData: onClickInteractions) {
     this.interactions = interactionData;
+  }
+
+  save() {
+    return this.interactions;
   }
 
 }

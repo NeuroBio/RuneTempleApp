@@ -71,5 +71,16 @@ export class GameSettingsService {
   load(gamesettingsData: GameSettings) {
     this.gameSettings = gamesettingsData;
   }
+
+  save() {
+    const saveGS: any = {};
+    saveGS.settings = this.gameSettings.settings.value;
+    saveGS.textVariables = this.gameSettings.textVariables;
+    saveGS.crossGameEvents = {};
+    Object.keys(this.gameSettings.crossGameEvents).forEach(key => {
+      saveGS.crossGameEvents[key] = this.gameSettings.crossGameEvents[key].value;
+    });
+    return saveGS;
+  }
   
 }

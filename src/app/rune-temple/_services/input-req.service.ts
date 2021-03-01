@@ -33,4 +33,8 @@ export class InputReqService {
   load(inputRequestData: InputRequests) {
     this.inputRequests = inputRequestData;
   }
+
+  save() {
+    return this.inputRequests;
+  }
 }

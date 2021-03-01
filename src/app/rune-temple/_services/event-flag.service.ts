@@ -150,4 +150,8 @@ export class EventFlagService {
   load(eventData: EventFlags) {
     this.events = eventData;
   }
+
+  save() {
+    return this.events;
+  }
 }
