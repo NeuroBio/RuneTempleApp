@@ -1,4 +1,4 @@
-import { Interaction, InteractionWithKeys, KeyPair } from './Interaction'
+import { Interaction, InteractionWithKeys, KeyPair, InputRequestInteraction } from './Interaction'
 import { EventFlag } from '../event-types/EventFlag';
 import { Activator } from '../scenes/ActiveArea';
 
@@ -220,8 +220,15 @@ export class UpdateInteractions {
                 'zhangBandaged', 'book')],
     }
 
-
     dialogueUpdates = {
+    
+        nameFish: [ 
+            new InputRequestInteraction('dialogue', 'fishName'),
+    
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('dialogueEvents', 'unnameFish'),
+                    [], [], [], [], [], ['pokemon']))],
+        
         ovenLit: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'peatStacks2')),

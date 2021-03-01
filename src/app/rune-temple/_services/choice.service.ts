@@ -3,6 +3,7 @@ import { InteractionWithKeys } from '../_objects/interactions/Interaction';
 import { BehaviorSubject } from 'rxjs';
 import { Choice } from '../_objects/choices/Choice';
 import { Choices } from '../_objects/choices/Choices';
+import { ChoiceInteractions } from '../_objects/interactions/ChoiceInteractions';
 
 @Injectable({
   providedIn: 'root'
@@ -22,17 +23,25 @@ export class ChoiceService {
   }
 
   addChoice(key: string, subkey: string, option: string, outcome: InteractionWithKeys) {
-    const index = this.choices[key][subkey].options.length - 1;
-    this.choices[key][subkey].options.splice(index, 0, option);
-    this.choices[key][subkey].outcomes.splice(index, 0, outcome);
-    this.choices[key][subkey].seen.splice(index, 0, false);
+    if (this.choices[key][subkey].immutable) {
+      console.error('Tried to edit choices on immutable choice!  Set the immutable flag for ', [key], ' ', [subkey], ' to false.');
+    } else {
+      const index = this.choices[key][subkey].options.length - 1;
+      this.choices[key][subkey].options.splice(index, 0, option);
+      this.choices[key][subkey].outcomes.splice(index, 0, outcome);
+      this.choices[key][subkey].seen.splice(index, 0, false);
+    }
   }
 
   removeChoice(key: string, subkey: string, option: string): void {
-    const index = this.choices[key].options.findIndex(opt => opt === option);
-    this.choices[key][subkey].options.splice(index, 1);
-    this.choices[key][subkey].outcomes.splice(index, 1);
-    this.choices[key][subkey].seen.splice(index, 1);
+    if (this.choices[key][subkey].immutable) {
+      console.error('Tried to edit choices on immutable choice!  Set the immutable flag for ', [key], ' ', [subkey], ' to false.');
+    } else {
+      const index = this.choices[key].options.findIndex(opt => opt === option);
+      this.choices[key][subkey].options.splice(index, 1);
+      this.choices[key][subkey].outcomes.splice(index, 1);
+      this.choices[key][subkey].seen.splice(index, 1);
+    }
   }
 
   markAsSeen(index: number): void {
@@ -52,11 +61,32 @@ export class ChoiceService {
   }
 
   reset() {
-    this.choices = new Choices;
     this.unsetChoice();
+    this.choices = new Choices;
   }
 
   load(choiceData: Choices) {
-    this.choices = choiceData; 
+    Object.keys(this.choices).forEach(key => {
+      if (choiceData[key]) {
+        Object.keys(this.choices[key]).forEach(subkey => {
+          if (choiceData[key][subkey]) {
+            this.choices[key][subkey] = choiceData[key][subkey];
+          }
+        });
+      }
+    });
+  }
+
+  save() {
+    const choiceData: any = {};
+    Object.keys(this.choices).forEach(key => {
+      choiceData[key] = undefined;
+      Object.keys(this.choices[key]).forEach(subkey => {
+        if (!this.choices[key][subkey].immutable) {
+          choiceData[key][subkey] = this.choices[key][subkey];
+        }
+      });
+    });
+    return choiceData;
   }
 }

@@ -8,8 +8,7 @@ import { InputReqService } from './input-req.service';
 import { InteractionService } from './interaction.service';
 import { InventoryService } from './inventory.service';
 import { SceneService } from './scene.service';
-import { CookieService } from 'ngx-cookie-service';
-import { JsonPipe } from '@angular/common';
+import { CompressionService } from './compression.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,6 @@ export class SaveLoadService {
   saveloadOpen = new BehaviorSubject<boolean>(false);
 
   constructor(
-    private cookieserv: CookieService,
     private gs: GameSettingsService,
     private choiceserv: ChoiceService,
     private dialogueserv: DialogueService,
@@ -27,7 +25,8 @@ export class SaveLoadService {
     private inputreqserv: InputReqService,
     private interactionserv: InteractionService,
     private inventoryserv: InventoryService,
-    private sceneserv: SceneService
+    private sceneserv: SceneService,
+    private compression: CompressionService
     ) { }
 
   openSaveLoad():void {
@@ -58,12 +57,16 @@ export class SaveLoadService {
       inventory: this.inventoryserv.inventory.value,
       scenes: this.sceneserv.save()
     };
-    console.log(JSON.stringify(gameData).length)
-    localStorage.setItem('rune-temple-game-data', JSON.stringify(gameData));
+
+    console.log(new Blob([this.compression.compressObject(gameData)]).size)
+    localStorage.setItem('rune-temple-game-data',
+    this.compression.compressObject(gameData));
   }
 
   loadGame() {
-    const gameData = JSON.parse(localStorage.getItem('rune-temple-game-data'));
+    const gameData = this.compression.decompressObject(
+      localStorage.getItem('rune-temple-game-data'));
+
     this.choiceserv.load(gameData.choices);
     this.eventflagserv.load(gameData.eventflags);
     this.gs.load(gameData.gs);

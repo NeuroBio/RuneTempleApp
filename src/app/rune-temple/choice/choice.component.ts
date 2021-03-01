@@ -30,7 +30,8 @@ export class ChoiceComponent implements OnInit, OnDestroy {
 
   choosen(index: number, event: any) {
     event.stopPropagation();
-    this.choiceserv.markAsSeen(index);      
+    this.choiceserv.markAsSeen(index);
+    console.log(this.choice)     
     const interaction = this.choice.outcomes[index]
 
     if (interaction) {

@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SaveLoadComponent } from './save-load/save-load.component';
+import { CompressionService } from './_services/compression.service';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,6 @@ import { SaveLoadComponent } from './save-load/save-load.component';
   exports: [
     UIComponent
   ],
-  providers: [ CookieService ]
+  providers: [ CompressionService ]
 })
 export class RuneTempleModule { }

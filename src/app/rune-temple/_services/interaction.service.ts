@@ -62,10 +62,7 @@ export class InteractionService {
   }
 
   updateInteractions(update: KeyPair): void {
-    console.log(update)
-    console.log(this.updates[update.key])
     const newInteractions = this.getUpdate(update);
-    console.log(newInteractions)
     newInteractions.forEach(int => {
       this.interactions[int.key][int.subkey] = int.interaction;
     })
