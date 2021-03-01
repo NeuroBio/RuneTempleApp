@@ -50,32 +50,27 @@ export class SaveLoadService {
   }
 
   saveGame() {
-    const gameDataCookie = {
+    const gameData = {
       gs: this.gs.save(),
       choices: this.choiceserv.choices,
       eventflags: this.eventflagserv.save(),
-      inputReq: this.inputreqserv.save(),
       interactions: this.interactionserv.save(),
       inventory: this.inventoryserv.inventory.value,
       scenes: this.sceneserv.gameScenes.value,
       activeScene: this.sceneserv.activeScene.value
     };
-    
-    localStorage.setItem('rune-temple-game-data', JSON.stringify(gameDataCookie));
-    // this.cookieserv.set('rune-temple-game-data', JSON.stringify(this.gs.save()), {path: '/'});
+    console.log(JSON.stringify(gameData).length)
+    localStorage.setItem('rune-temple-game-data', JSON.stringify(gameData));
   }
 
   loadGame() {
-    console.log(localStorage.getItem('rune-temple-game-data'))
-    // console.log(this.cookieserv.get('rune-temple-game-data'))
-    // TODO: requires session cookies;
-    // this.choiceserv.load()
-    // this.eventflagserv.load()
-    // this.gs.load()
-    // this.inputreqserv.load()
-    // this.interactionserv.load()
-    // this.inventoryserv.load();
-    // this.sceneserv.load();
+    const gameData = JSON.parse(localStorage.getItem('rune-temple-game-data'));
+    this.choiceserv.load(gameData.choices);
+    this.eventflagserv.load(gameData.eventflags);
+    this.gs.load(gameData.gs);
+    this.interactionserv.load(gameData.interactions);
+    this.inventoryserv.load(gameData.inventory);
+    this.sceneserv.load(gameData.scenes, gameData.activeScene);
   }
 
   clearData() {
@@ -87,7 +82,7 @@ export class SaveLoadService {
     this.interactionserv.reset();
     this.inventoryserv.reset();
     this.sceneserv.reset();
-    this.cookieserv.delete('rune-temple-game-data', '/');
+    localStorage.removeItem('rune-temple-game-data');
 
     // TODO: add logic to clear session cookies.
     // TODO: add logic to clear datat from firebase when that is hooked up.

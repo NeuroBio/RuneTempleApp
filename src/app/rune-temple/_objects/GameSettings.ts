@@ -38,7 +38,7 @@ export class GameSettings {
 }
 
 export class CrossGameEvents {
-    FishDeaths = { }
+    FishDeaths = new BehaviorSubject([]);
     badges = new BehaviorSubject<GameBadges>(new GameBadges);
 }
 

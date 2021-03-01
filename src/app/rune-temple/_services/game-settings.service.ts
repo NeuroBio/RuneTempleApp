@@ -69,7 +69,11 @@ export class GameSettingsService {
   }
 
   load(gamesettingsData: GameSettings) {
-    this.gameSettings = gamesettingsData;
+    this.gameSettings.settings.patchValue(gamesettingsData.settings);
+    this.gameSettings.textVariables = gamesettingsData.textVariables;
+    Object.keys(this.gameSettings.crossGameEvents).forEach(key => {
+      this.gameSettings.crossGameEvents[key].next(gamesettingsData.crossGameEvents[key]);
+    });
   }
 
   save() {
