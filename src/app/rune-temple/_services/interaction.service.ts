@@ -65,4 +65,8 @@ export class InteractionService {
     })
   }
 
+  reset() {
+    this.interactions = new onClickInteractions;
+  }
+
 }

@@ -50,4 +50,9 @@ export class ChoiceService {
     this.subkey = undefined;
     this.activeChoice.next(undefined);
   }
+
+  reset() {
+    this.choices = new Choices;
+    this.unsetChoice();
+  }
 }

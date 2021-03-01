@@ -10,6 +10,7 @@ import { SceneUpdates } from '../_objects/interactions/SceneUpdates';
 })
 export class SceneService {
 
+  // mutable
   gameScenes = new BehaviorSubject<GameScenes>(new GameScenes);
   activeScene = new BehaviorSubject<string>('pitFloor');
   sceneUpdates = new SceneUpdates;
@@ -53,6 +54,10 @@ export class SceneService {
 
   triggerUpdate(key: string, subkey: string) {
 
+  }
 
+  reset() {
+    this.gameScenes.next(new GameScenes);
+    this.activeScene.next('pitFloor');
   }
 }

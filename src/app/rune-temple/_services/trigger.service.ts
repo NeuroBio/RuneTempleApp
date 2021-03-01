@@ -5,9 +5,9 @@ import { DialogueService } from './dialogue.service';
 import { SceneService } from './scene.service';
 import { InteractionService } from './interaction.service';
 import { EventFlagService } from './event-flag.service';
-import { BadgeService } from './badge.service';
 import { ChoiceService } from './choice.service';
 import { InputReqService } from './input-req.service';
+import { GameSettingsService } from './game-settings.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +19,10 @@ export class TriggerService {
     private interactionserv: InteractionService,
     private inventoryserv: InventoryService,
     private eventserv: EventFlagService,
-    private badgeserv: BadgeService,
     private sceneserv: SceneService,
     private choiceserv: ChoiceService,
-    private inputReqServ: InputReqService
+    private inputReqServ: InputReqService,
+    private gs: GameSettingsService
   ) { }
 
 
@@ -76,7 +76,7 @@ export class TriggerService {
       this.sceneserv.modifyLocation(int.changeLocations);
     }
     if (int.addBadges[0]) {
-      this.badgeserv.addBadges(int.addBadges);
+      this.gs.addBadges(int.addBadges);
     }
     if (int.moveToScene) {
       this.sceneserv.activeScene.next(int.moveToScene);

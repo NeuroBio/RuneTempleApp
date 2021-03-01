@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { RuneTempleService } from '../_services/rune-temple.service';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
 import { ChoiceService } from '../_services/choice.service';
@@ -38,13 +37,13 @@ export class UIComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private rtserv: RuneTempleService,
     private dialogueserv: DialogueService,
     private choiceserv: ChoiceService,
     private inventoryserv: InventoryService,
     private inputreqserv: InputReqService,
     private saveloadserv: SaveLoadService,
-    private gs: GameSettingsService) { }
+    private gs: GameSettingsService
+  ) { }
 
   ngOnInit(): void {
     this.dialogueSubscription = this.dialogueserv.activeDialogue
@@ -64,8 +63,6 @@ export class UIComponent implements OnInit, OnDestroy {
 
     this.hintSubscription = this.gs.getSetting('enableHints').valueChanges
       .subscribe(value => this.hint = value);
-
-    this.rtserv.isLoggedIn.subscribe(authed => this.isLoggedIn = authed);
   }
 
   ngOnDestroy(): void {

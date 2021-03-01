@@ -25,4 +25,8 @@ export class InputReqService {
   updateData(request: InputRequest): void {
     this.gs.setTextVar(request.key, request.control.value);
   }
+
+  reset() {
+    this.inputRequests = new InputRequests;
+  }
 }

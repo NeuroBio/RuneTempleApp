@@ -57,4 +57,8 @@ export class DialogueService {
         console.error('Unknown event type: ', type)
     }
   }
+
+  reset() {
+    this.unsetDialogue();
+  }
 }

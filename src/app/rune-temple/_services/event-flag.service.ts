@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventFlag } from '../_objects/event-types/EventFlag';
 import { EventFlags } from '../_objects/event-types/EventFlags';
-import { BadgeService } from './badge.service';
 import { InteractionService } from './interaction.service';
 import { InteractionWithKeys, Interaction } from '../_objects/interactions/Interaction';
 import { EventFlagInteractions } from '../_objects/interactions/EventFlagInteractions';
@@ -17,17 +16,19 @@ import { GameSettingsService } from './game-settings.service';
 })
 export class EventFlagService {
 
+  // mutable
   private events = new EventFlags;
+
+  // variables
   private eventInteractions = new EventFlagInteractions;
   private sceneDial = new SceneDialogue;
   private zhang = new ZhangHelp;
 
   constructor(
-    private badgeserv: BadgeService,
     private interactionserv: InteractionService,
     private sceneserv: SceneService,
     private choiceserv: ChoiceService,
-    private gamesettingsserv: GameSettingsService
+    private gs: GameSettingsService
   ) { }
 
   updateEvents(events: EventFlag[]) {
@@ -46,12 +47,12 @@ export class EventFlagService {
         }
         break;
       case 'fishNamed' :
-        const name = this.gamesettingsserv.getTextVar('fishName');
+        const name = this.gs.getTextVar('fishName');
         this.badgeCheck('breakfast', (name === 'Fish'));
         this.badgeCheck('enlightenment', (name === 'kArA'));
         break;
       case 'zhangSawFish' :
-        this.badgeCheck('zhangFish', (this.gamesettingsserv.getTextVar('fishName') === 'Zhang' && this.events.zhangSawFish));
+        this.badgeCheck('zhangFish', (this.gs.getTextVar('fishName') === 'Zhang' && this.events.zhangSawFish));
         break;
       case 'trothFullness' :
         this.badgeCheck('stubborn', (this.events.trothFullness === 10));
@@ -110,9 +111,9 @@ export class EventFlagService {
   }
 
   private badgeCheck(key: string, condition: boolean) {
-    const badge = this.badgeserv.getBadge(key);
+    const badge = this.gs.getBadge(key);
     if (!badge.earned && condition) {
-      this.badgeserv.addBadges([key]);
+      this.gs.addBadges([key]);
     }
   }
 
@@ -140,5 +141,9 @@ export class EventFlagService {
   endGameChecks() {
 
 
+  }
+
+  reset() {
+    this.events = new EventFlags;
   }
 }

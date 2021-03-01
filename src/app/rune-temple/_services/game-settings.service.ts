@@ -13,6 +13,8 @@ export class GameSettingsService {
 
   constructor() { }
 
+
+  // Text variables
   getTextVar(key: string): string {
     return this.gameSettings.textVariables[key]
     ? this.gameSettings.textVariables[key]
@@ -23,6 +25,8 @@ export class GameSettingsService {
     this.gameSettings.textVariables[key] = value;
   }
 
+
+  // Settings
   getSettings(): FormGroup {
     return this.gameSettings.settings;
   }
@@ -31,6 +35,27 @@ export class GameSettingsService {
     return this.gameSettings.settings.get(key);
   }
 
+  checkSetting(key: string): boolean {
+    return this.gameSettings.settings.get(key).value;
+  }
+
+  // Cross Game Control
+  getCrossGameEvents(key: string) {
+    return this.gameSettings.crossGameEvents[key];
+  }
+
+  addBadges(badgeKeys: string[]): void {
+    const badges = this.gameSettings.crossGameEvents.badges.value;
+    badgeKeys.forEach(key => badges[key].earned = true);
+    this.gameSettings.crossGameEvents.badges.next(badges);
+  }
+
+  getBadge(badgeKey: string) {
+    return this.gameSettings.crossGameEvents.badges.value[badgeKey];
+  }
+
+
+  // setting controls
   openSettings():void {
     this.settingsOpen.next(true);
   }
@@ -39,8 +64,8 @@ export class GameSettingsService {
     this.settingsOpen.next(false);
   }
 
-  checkSetting(key: string): boolean {
-    return this.gameSettings.settings.get(key).value;
+  reset(wipe: boolean = false) {
+    this.gameSettings.reset(wipe);
   }
 
   

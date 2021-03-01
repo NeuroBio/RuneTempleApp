@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Epilogue } from '../_objects/Eplilogues';
-import { RuneTempleService } from '../_services/rune-temple.service';
 
 @Component({
   selector: 'app-epilogue-scene',
@@ -11,11 +10,9 @@ export class EpilogueSceneComponent implements OnInit {
 
   epilogue: Epilogue;
 
-  constructor(private rtserv: RuneTempleService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.rtserv.setEpilogue(4);
-    this.epilogue = this.rtserv.epilogue;
   }
 
 }

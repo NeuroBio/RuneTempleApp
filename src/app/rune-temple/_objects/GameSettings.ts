@@ -1,4 +1,6 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { GameBadges } from './Badge';
+import { BehaviorSubject } from 'rxjs';
 
 export class GameSettings {
 
@@ -19,19 +21,28 @@ export class GameSettings {
             enableHints: { value: false, disabled: true }
         });
     }
+
+    reset(wipe: boolean = false) {
+        this.textVariables = new TextVariables;
+        this.settings.reset({
+            hardMode: true,
+            changeCursorOnHover: false,
+            rightClickDescriptions: false,
+            enableHints: false
+        });
+
+        if (wipe) {
+            this.crossGameEvents = new CrossGameEvents;
+        }
+    }
 }
 
 export class CrossGameEvents {
-    FishDeaths = {
-
-    }
+    FishDeaths = { }
+    badges = new BehaviorSubject<GameBadges>(new GameBadges);
 }
 
 export class TextVariables {
     fishName: string;
     fishNameDefault = 'the fish';
-}
-
-export class Settings {
-    settings
 }

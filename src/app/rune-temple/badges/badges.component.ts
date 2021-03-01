@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Badge } from '../_objects/Badge';
-import { BadgeService } from '../_services/badge.service';
 import { Subscription } from 'rxjs';
+import { GameSettingsService } from '../_services/game-settings.service';
 
 @Component({
   selector: 'app-badges',
@@ -13,10 +13,11 @@ export class BadgesComponent implements OnInit, OnDestroy {
   earnedBadges: Badge[];
   badgeSubscription: Subscription
 
-  constructor(private badgeserv: BadgeService) { }
+  constructor(private gs: GameSettingsService) { }
 
   ngOnInit(): void {
-    this.badgeSubscription = this.badgeserv.earnedBadges.subscribe(badges => {
+    this.badgeSubscription = this.gs.getCrossGameEvents('badges')
+    .subscribe(badges => {
       const earned: Badge[] = [];
       Object.keys(badges).forEach(key => earned.push(badges[key]));
       this.earnedBadges = earned;

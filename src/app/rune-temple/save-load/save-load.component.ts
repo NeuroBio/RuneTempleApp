@@ -16,6 +16,22 @@ export class SaveLoadComponent implements OnInit {
     setTimeout(() => { this.saveload.nativeElement.style.opacity = 1 }, 10);
   }
 
+  newGame() {
+    this.saveloadserv.newGame();
+  }
+
+  saveGame() {
+    this.saveloadserv.saveGame();
+  }
+
+  loadGame() {
+    this.saveloadserv.loadGame();
+  }
+
+  clearData() {
+    this.saveloadserv.clearData();
+  }
+
   close() {
     this.saveloadserv.closeSaveLoad();
   }

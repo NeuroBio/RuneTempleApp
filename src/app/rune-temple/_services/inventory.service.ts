@@ -7,13 +7,16 @@ import { InventoryItem, GameItems } from '../_objects/InventoryItem';
 })
 export class InventoryService {
 
+  // mutable
   inventory = new BehaviorSubject<InventoryItem[]>([]);
   private selectedIndex: number;
+
+  // static variables
   private gameItems = new GameItems;
+  private initialInventory = [ 'knife', 'lighter', 'compass', 'map' ];
 
   constructor() { 
-    const initialInventory = [ 'knife', 'lighter', 'compass', 'map' ];
-    this.addItems(initialInventory);
+    this.addItems(this.initialInventory);
     const cheating = ['litTorch', 'rock'];
     this.addItems(cheating);
   }
@@ -59,5 +62,11 @@ export class InventoryService {
       inventory[this.selectedIndex].selected = false;
       this.selectedIndex = undefined;  
     }
+  }
+
+  reset() {
+    this.inventory.next([]);
+    this.addItems(this.initialInventory);
+    this.selectedIndex = undefined;
   }
 }

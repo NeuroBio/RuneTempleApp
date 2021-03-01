@@ -10,4 +10,31 @@
         </button>
     </h3>
 
+    <div id="action-buttons">
+    
+        <button mat-flat-button
+        (click)="saveGame()">
+            <mat-icon>save</mat-icon>
+            Save Game
+        </button>
+    
+        <button mat-flat-button
+        (click)="loadGame()">
+            <mat-icon>get_app</mat-icon>
+            Load Last
+        </button>
+
+        <button mat-flat-button
+        (click)="newGame()">
+            <mat-icon>refresh</mat-icon>
+            New Game
+        </button> <br>
+
+        <button mat-flat-button
+        (click)="clearData()">
+            <mat-icon>delete_outline</mat-icon>
+            Clear Data
+        </button>
+    </div>
+
 </div>
