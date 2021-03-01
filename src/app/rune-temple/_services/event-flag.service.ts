@@ -146,4 +146,8 @@ export class EventFlagService {
   reset() {
     this.events = new EventFlags;
   }
+
+  load(eventData: EventFlags) {
+    this.events = eventData;
+  }
 }

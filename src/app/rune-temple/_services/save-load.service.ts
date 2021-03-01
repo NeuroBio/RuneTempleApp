@@ -47,11 +47,18 @@ export class SaveLoadService {
   }
 
   saveGame() {
-
+    //TODO: requires session cookies
   }
 
   loadGame() {
-
+    // TODO: requires session cookies;
+    // this.choiceserv.load()
+    // this.eventflagserv.load()
+    // this.gs.load()
+    // this.inputreqserv.load()
+    // this.interactionserv.load()
+    // this.inventoryserv.load();
+    // this.sceneserv.load();
   }
 
   clearData() {
@@ -63,5 +70,8 @@ export class SaveLoadService {
     this.interactionserv.reset();
     this.inventoryserv.reset();
     this.sceneserv.reset();
+
+    // TODO: add logic to clear session cookies.
+    // TODO: add logic to clear datat from firebase when that is hooked up.
   }
 }

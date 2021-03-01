@@ -55,4 +55,8 @@ export class ChoiceService {
     this.choices = new Choices;
     this.unsetChoice();
   }
+
+  load(choiceData: Choices) {
+    this.choices = choiceData; 
+  }
 }

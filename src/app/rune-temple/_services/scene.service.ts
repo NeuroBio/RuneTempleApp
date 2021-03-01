@@ -60,4 +60,9 @@ export class SceneService {
     this.gameScenes.next(new GameScenes);
     this.activeScene.next('pitFloor');
   }
+
+  load(gameSceneData: GameScenes, activeSceneData: string) {
+    this.gameScenes.next(gameSceneData);
+    this.activeScene.next(activeSceneData);
+  }
 }

@@ -69,4 +69,8 @@ export class InteractionService {
     this.interactions = new onClickInteractions;
   }
 
+  load(interactionData: onClickInteractions) {
+    this.interactions = interactionData;
+  }
+
 }

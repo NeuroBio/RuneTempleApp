@@ -29,4 +29,8 @@ export class InputReqService {
   reset() {
     this.inputRequests = new InputRequests;
   }
+
+  load(inputRequestData: InputRequests) {
+    this.inputRequests = inputRequestData;
+  }
 }

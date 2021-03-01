@@ -68,5 +68,8 @@ export class GameSettingsService {
     this.gameSettings.reset(wipe);
   }
 
+  load(gamesettingsData: GameSettings) {
+    this.gameSettings = gamesettingsData;
+  }
   
 }

@@ -69,4 +69,8 @@ export class InventoryService {
     this.addItems(this.initialInventory);
     this.selectedIndex = undefined;
   }
+
+  load(inventoryData: InventoryItem[]) {
+    this.inventory.next(inventoryData);
+  }
 }
