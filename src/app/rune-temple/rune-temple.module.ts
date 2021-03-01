@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
+// misc Imports
+import { CookieService } from 'ngx-cookie-service';
+
+// Declarations
 import { UIComponent } from './ui/ui.component';
 import { RuneTempleRoutingModule } from './rune-temple-routing.module';
 import { MainSceneComponent } from './main-scene/main-scene.component';
@@ -56,6 +60,7 @@ import { SaveLoadComponent } from './save-load/save-load.component';
   ],
   exports: [
     UIComponent
-  ]
+  ],
+  providers: [ CookieService ]
 })
 export class RuneTempleModule { }
