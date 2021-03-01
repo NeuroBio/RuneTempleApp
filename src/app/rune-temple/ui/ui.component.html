@@ -3,16 +3,19 @@
     <!-- Menu -->
     <div id="menu">
         <button mat-mini-fab aria-label="hint"
+        [color]="!hint ||disableInterface() ? 'fade' : 'normal'"
         [disabled]="!hint || disableInterface()"
         (click)=getHint()>
             <mat-icon>help</mat-icon>
         </button>
         <button mat-mini-fab aria-label="game-settings"
+        [color]="disableInterface() ? 'fade' : 'normal'"
         [disabled]="disableInterface()"
         (click)="viewSettings()">
             <mat-icon>settings</mat-icon>
         </button>
         <button mat-mini-fab aria-label="save"
+        [color]="disableInterface() ? 'fade' : 'normal'"
         [disabled]="disableInterface()"
         (click)="viewSaveLoad()">
             <mat-icon>save</mat-icon>

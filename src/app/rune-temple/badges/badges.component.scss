@@ -8,23 +8,27 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
     width: $badges-width;
+    height: calc(#{$game-height} + #{$banner-height} + #{$standard-margin} * 5 + 4px);
 }
 
 h3 {
     margin: $standard-margin;
     font-size: 20pt;
+    padding-bottom: $standard-margin;
 }
 
 #badge-list {
-    margin: 0px;
+    margin: 0px $standard-margin;
     flex-grow: 1;
     display: flex;
     flex-flow: column;
     padding: 0;
     list-style-type: none;
     overflow-y: auto;
+    background-color: $medium-grey;
+    background-color: $grey-ish-er;
     // manually set based on the height of the text :<
-    max-height: calc(#{$max-game-height} - 40px);
+    max-height: calc(#{$game-height} + #{$banner-height} - 30px)
 }
 
 li {
@@ -36,7 +40,9 @@ li {
     display: flex;
     align-items: center;
     font-size: 14pt;
+    background-color: $grey-ish-er;
     background-color: $medium-grey;
+
 }
 
 img {

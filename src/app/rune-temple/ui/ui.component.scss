@@ -4,7 +4,7 @@
     position: relative;
     border: 1px solid black;
     width: $game-width;
-    height: 80vh;
+    height: $game-height;
     max-width: $max-game-width;
     max-height: $max-game-height;
     display: flex;
@@ -22,6 +22,16 @@ app-main-scene {
 
 button {
     margin: $standard-margin;
+}
+
+.mat-fade:disabled {
+    color: $medium-grey;
+    background-color: lightgrey;
+}
+
+.mat-normal {
+    color: black;
+    background-color: lightgrey;
 }
 
 

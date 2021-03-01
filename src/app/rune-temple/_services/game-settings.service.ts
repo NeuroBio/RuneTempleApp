@@ -41,7 +41,7 @@ export class GameSettingsService {
   }
 
   // Cross Game Control
-  getCrossGameEvents(key: string): void {
+  getCrossGameEvents(key: string): BehaviorSubject<any> {
     return this.gameSettings.crossGameEvents[key];
   }
 
