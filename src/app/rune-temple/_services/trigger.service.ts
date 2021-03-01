@@ -26,7 +26,7 @@ export class TriggerService {
   ) { }
 
 
-  checkClickOrCombo(index: number) {
+  checkClickOrCombo(index: number): void {
     const select = this.inventoryserv.getSelectedItem();
     const key = this.inventoryserv.inventory.value[index].assetKey;
     if (select && select.assetKey !== key) {
@@ -44,19 +44,19 @@ export class TriggerService {
     }
   }
 
-  private getSubkey(subkey) {
+  private getSubkey(subkey): string {
     if (!subkey) {
       const select = this.inventoryserv.getSelectedItem();
       if (select) {
         return select.assetKey;
       }
     }
-    return subkey
+    return subkey;
   }
 
-  triggerInteraction(res: InteractionWithKeys) {
-    const int = res.interaction
-    
+  triggerInteraction(res: InteractionWithKeys): void {
+    const int = res.interaction;
+
     if (int.updates) {
       this.interactionserv.updateInteractions(int.updates);
     }
@@ -92,11 +92,11 @@ export class TriggerService {
     }
   }
 
-  triggerUpdate(keys: KeyPair) {
+  triggerUpdate(keys: KeyPair): void {
     const interaction = this.interactionserv.getUpdate(keys);
     interaction.forEach(int => {
       this.triggerInteraction(int);
-    })
+    });
   }
 
   travel(key: string): void {

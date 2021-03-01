@@ -9,7 +9,7 @@ export class GameComponent implements OnInit {
 
   intro = false;
   epilogue = false;
-  
+
   constructor() { }
 
   ngOnInit(): void {

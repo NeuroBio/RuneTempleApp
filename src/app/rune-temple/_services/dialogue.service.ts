@@ -5,8 +5,7 @@ import { GameSettingsService } from './game-settings.service';
 import { SceneService } from './scene.service';
 import { ChoiceService } from './choice.service';
 import { InputReqService } from './input-req.service';
-import { onClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
-import { KeyPair } from '../_objects/interactions/Interaction';
+import { OnClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class DialogueService {
   advance = new Subject();
   parse = new RegExp('\\${.*?}', 'g');
 
-  private dialog = new onClickDialogue;
+  private dialog = new OnClickDialogue();
 
   constructor(
     private gs: GameSettingsService,
@@ -33,7 +32,7 @@ export class DialogueService {
     } else {
     // replaces vars marked by ${} with their value in game settings
     dialogue.forEach(snip => {
-      snip.text = snip.text.replace(this.parse, (parsed) => 
+      snip.text = snip.text.replace(this.parse, (parsed) =>
         this.gs.getTextVar(parsed.match('[a-zA-Z0-9]+')[0]));
     });
 
@@ -51,7 +50,7 @@ export class DialogueService {
     this.activeDialogue.next([]);
   }
 
-  triggerEvent(type: string, key: string) {
+  triggerEvent(type: string, key: string): void {
     switch (type) {
       case 'choice' :
         this.choiceserv.setChoice('dialogue', key);
@@ -63,11 +62,11 @@ export class DialogueService {
         this.sceneserv.triggerUpdate('dialogue', key);
         break;
       default:
-        console.error('Unknown event type: ', type)
+        console.error('Unknown event type: ', type);
     }
   }
 
-  reset() {
+  reset(): void {
     this.unsetDialogue();
   }
 }

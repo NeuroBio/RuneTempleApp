@@ -10,7 +10,7 @@ import { GameSettingsService } from './game-settings.service';
 export class InputReqService {
 
   activeInputReq = new BehaviorSubject<InputRequest>(undefined);
-  private inputRequests = new InputRequests;
+  private inputRequests = new InputRequests();
 
   constructor(private gs: GameSettingsService) { }
 
@@ -26,15 +26,15 @@ export class InputReqService {
     this.gs.setTextVar(request.key, request.control.value);
   }
 
-  reset() {
-    this.inputRequests = new InputRequests;
+  reset(): void {
+    this.inputRequests = new InputRequests();
   }
 
-  load(inputRequestData: InputRequests) {
+  load(inputRequestData: InputRequests): void {
     this.inputRequests = inputRequestData;
   }
 
-  save() {
+  save(): InputRequests {
     return this.inputRequests;
   }
 }

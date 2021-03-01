@@ -32,11 +32,11 @@ export class InputReqComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.inputReqSubsciption.unsubscribe();
   }
 
-  accept() {
+  accept(): void {
     this.inputreqserv.updateData(this.inputReq);
     if (this.inputReq.interaction) {
       this.triggerserv.triggerUpdate(this.inputReq.interaction);

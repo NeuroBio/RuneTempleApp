@@ -20,10 +20,10 @@ export class ActiveArea {
 export class Activator {
     scene: string;
     key: string;
-    newKey: string;
+    newKey?: string;
     reveal: boolean;
 
-    constructor(scene: string, key: string, reveal: boolean, newKey: string = undefined) {
+    constructor(scene: string, key: string, reveal: boolean, newKey?: string) {
         this.scene = scene;
         this.key = key;
         this.reveal = reveal;

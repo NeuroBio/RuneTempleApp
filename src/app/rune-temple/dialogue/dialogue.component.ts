@@ -15,7 +15,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
 
   allDialogue: DialogueSnippet[];
   dialogueSubscription: Subscription;
-  dialogue:  DialogueSnippet;
+  dialogue: DialogueSnippet;
 
   index = 0;
   skip = true;
@@ -30,24 +30,24 @@ export class DialogueComponent implements OnInit, OnDestroy {
       this.index = 0;
     });
     this.advanceSubscription = this.dialogueserv.advance.subscribe(() => this.next());
-    setTimeout(() => { this.skip = false }, 10)
+    setTimeout(() => { this.skip = false; }, 10);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.dialogueSubscription.unsubscribe();
     this.advanceSubscription.unsubscribe();
   }
 
-  next() {
+  next(): void {
     if (!this.skip) {
       if (this.dialogue.eventKey) {
-        this.dialogueserv.triggerEvent(this.dialogue.eventType, this.dialogue.eventKey)
+        this.dialogueserv.triggerEvent(this.dialogue.eventType, this.dialogue.eventKey);
       }
-      this.advance();  
+      this.advance();
     }
   }
 
-  advance() {
+  advance(): void {
     this.index ++;
     if (this.allDialogue[this.index]) {
       this.dialogue = this.allDialogue[this.index];

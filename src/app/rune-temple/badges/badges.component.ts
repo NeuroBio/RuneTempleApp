@@ -11,7 +11,7 @@ import { GameSettingsService } from '../_services/game-settings.service';
 export class BadgesComponent implements OnInit, OnDestroy {
 
   earnedBadges: Badge[];
-  badgeSubscription: Subscription
+  badgeSubscription: Subscription;
 
   constructor(private gs: GameSettingsService) { }
 
@@ -24,7 +24,7 @@ export class BadgesComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.badgeSubscription.unsubscribe();
   }
 

@@ -17,7 +17,7 @@ export class SaveLoadService {
 
   saveloadOpen = new BehaviorSubject<boolean>(false);
   private gameData: string;
-  storageName: string = 'rune-temple-game-data';
+  storageName = 'rune-temple-game-data';
 
   constructor(
     private gs: GameSettingsService,
@@ -69,9 +69,10 @@ export class SaveLoadService {
       scenes: this.sceneserv.save()
     };
 
-    console.log(new Blob([this.compression.compressObject(gameData)]).size)
-    localStorage.setItem(this.storageName,
-    this.compression.compressObject(gameData));
+    console.log(new Blob([this.compression.compressObject(gameData)]).size / 1000);
+    localStorage.setItem(
+      this.storageName,
+      this.compression.compressObject(gameData));
   }
 
   loadGame(): void {

@@ -11,18 +11,18 @@ import { ChoiceInteractions } from '../_objects/interactions/ChoiceInteractions'
 export class ChoiceService {
 
   activeChoice = new BehaviorSubject<Choice>(undefined);
-  choices = new Choices;
+  choices = new Choices();
 
   private key: string;
   private subkey: string;
 
   constructor() { }
 
-  getChoice(key: string, subkey: string) {
+  getChoice(key: string, subkey: string): Choice {
     return this.choices[key][subkey];
   }
 
-  addChoice(key: string, subkey: string, option: string, outcome: InteractionWithKeys) {
+  addChoice(key: string, subkey: string, option: string, outcome: InteractionWithKeys): void {
     if (this.choices[key][subkey].immutable) {
       console.error('Tried to edit choices on immutable choice!  Set the immutable flag for ', [key], ' ', [subkey], ' to false.');
     } else {
@@ -48,7 +48,7 @@ export class ChoiceService {
     this.choices[this.key][this.subkey].seen[index] = true;
   }
 
-  setChoice(key: string, subkey: string,): void {
+  setChoice(key: string, subkey: string): void {
     this.key = key;
     this.subkey = subkey;
     this.activeChoice.next(this.choices[key][subkey]);
@@ -60,12 +60,12 @@ export class ChoiceService {
     this.activeChoice.next(undefined);
   }
 
-  reset() {
+  reset(): void {
     this.unsetChoice();
-    this.choices = new Choices;
+    this.choices = new Choices();
   }
 
-  load(choiceData: Choices) {
+  load(choiceData: Choices): void {
     Object.keys(this.choices).forEach(key => {
       if (choiceData[key]) {
         Object.keys(this.choices[key]).forEach(subkey => {
@@ -77,7 +77,7 @@ export class ChoiceService {
     });
   }
 
-  save() {
+  save(): any {
     const choiceData: any = {};
     Object.keys(this.choices).forEach(key => {
       choiceData[key] = undefined;

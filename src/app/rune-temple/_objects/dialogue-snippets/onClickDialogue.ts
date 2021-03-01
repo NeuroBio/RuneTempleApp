@@ -1,6 +1,6 @@
 import { DialogueSnippet } from './DialogueSnippet';
 
-export class onClickDialogue {
+export class OnClickDialogue {
 
     breaker = {
         envDefault: [new DialogueSnippet('', 'Erin feels the crackle of Breaker rising in her finger tips, but nothing happens.')],
@@ -162,7 +162,8 @@ export class onClickDialogue {
             new DialogueSnippet('', 'Zhang shrugs.  He sits up and carefully tries to put weight on his leg.  He abruptly stops and flops back onto his side with his teeth grit.   He recovers after a few deep breaths.'),
             new DialogueSnippet('Zhang', 'Nope.'),
             new DialogueSnippet('Erin', 'Maybe I can find something you can use as a crutch?'),
-            new DialogueSnippet('Zhang', 'Just find a way for us to get out of here.  We can make a crutch once we’re back up in the swamp.'),
+            new DialogueSnippet('Zhang',
+                'Just find a way for us to get out of here.  We can make a crutch once we’re back up in the swamp.'),
             new DialogueSnippet('Erin', 'Okay.')
         ]
     };
@@ -201,9 +202,11 @@ export class onClickDialogue {
             new DialogueSnippet('Zhang', 'A lot of people.  For some reason everyone who tries gives up.  Or goes insane.  Or dies.  The legend is that swamp is the Core\'s turf, and it doesn\'t want us in there.  It especially doesn\'t want Hunters there.'),
             new DialogueSnippet('Erin', 'Why not?'),
             new DialogueSnippet('Zhang', 'I don\'t know.'),
-            new DialogueSnippet('Erin', 'You sound like one of the charm crafters from the coasts, you know that?'),
+            new DialogueSnippet('Erin',
+                'You sound like one of the charm crafters from the coasts, you know that?'),
             new DialogueSnippet('Zhang', 'Look, I don\'t know if I believe the legends or not, but I do know it\'s bad turf for Hunters.  The Ghosts are stronger and a lot of Hunters that go into that swamp don\'t come back.  We may not be in Mikania proper, but we\'re close enough, and I don\'t like it.'),
-            new DialogueSnippet('', 'The finality in Zhang\'s tone makes it clear that Erin should not question him further about the book.')
+            new DialogueSnippet('',
+                'The finality in Zhang\'s tone makes it clear that Erin should not question him further about the book.')
         ],
         water: [
             new DialogueSnippet('Erin', 'Zhang, can you swim?'),
@@ -227,7 +230,7 @@ export class onClickDialogue {
             new DialogueSnippet('Zhang', 'Why would I know?  Why does this even matter?  Go find a way to get us out!'),
             new DialogueSnippet('', 'Erin sighs and returns to the task at hand.')
         ]
-    }
+    };
 
     activeAreas = {
         // pitFloor
@@ -339,7 +342,8 @@ export class onClickDialogue {
     };
 
     combos = {
-        compassKnife: [new DialogueSnippet('Erin', 'I\'m not sure I want to do that.  I might not be able to put the compass back together.', 'choice', 'compassKnife')],
+        compassKnife: [new DialogueSnippet('Erin',
+            'I\'m not sure I want to do that.  I might not be able to put the compass back together.', 'choice', 'compassKnife')],
 
         shirtKnife: [new DialogueSnippet('', 'Erin cuts the shirt into strips.')],
         rootLighter: [new DialogueSnippet('Erin', 'I think I can make a better torch than this...')],
@@ -356,7 +360,8 @@ export class onClickDialogue {
         flaskGlassCap: [new DialogueSnippet('Erin', 'The fluid in the flask is already contained.')],
         rockPuzzle: [new DialogueSnippet('', 'Erin holds the two items in her hands, unsure where to hit the puzzle box with the rock.  There are no visible seams or hinges.  Erin decides this must be the wrong course of action and puts the two items away.')],
 
-        rockGlassCap: [new DialogueSnippet('', 'Erin looks between the rock and the glass cap.  There is wanton destruction to be had here.', 'choice', 'shatter1')],
+        rockGlassCap: [new DialogueSnippet('',
+            'Erin looks between the rock and the glass cap.  There is wanton destruction to be had here.', 'choice', 'shatter1')],
         rockEmptyFlask: [new DialogueSnippet('', 'Erin looks between the rock and the flask.  Yes, the flask is Zhang\'s but this would not be the first of his things she destoroyed today.', 'choice', 'shatter2')],
         mapLighter: [new DialogueSnippet('', 'Erin considers the lighter and the map.  Yes, the map is made of paper, and paper is very flammable, but it has also proved... somewhat useful as a navigation tool.', 'choice', 'igniteMap')],
         fluidRock: [new DialogueSnippet('Erin', 'Mmm... I don\'t think so.  If I break that with the rock, I\'ll get the fluid all over my hands.')],
@@ -375,7 +380,7 @@ export class onClickDialogue {
         lighterDark: [new DialogueSnippet('Erin', 'It\'s too dark.  My lighter isn\'t going to be enough.')],
         rootDark: [new DialogueSnippet('Erin', 'It\'s not a terrible weapon for fighting off creatures in the darkness, but my knife would be a better choice')],
         knifeDark: [new DialogueSnippet('Erin', 'They\'ll never see me coming.')],
-        unlitTochDark: [new DialogueSnippet('', 'Yep.  The unlit torch does not provide light.  Glad we confirmed that.')], 
+        unlitTochDark: [new DialogueSnippet('', 'Yep.  The unlit torch does not provide light.  Glad we confirmed that.')],
         litTorchDark: [
             new DialogueSnippet('', 'The torch provides enough light to see the Foyer.'),
             new DialogueSnippet('Erin', 'This place is huge… What is this?  A Rune Temple?  This far north?')
@@ -389,10 +394,10 @@ export class onClickDialogue {
         glassCapBarrel: [new DialogueSnippet('', 'Erin carefully dips the glass into the barrel to get a sample of the water.')],
         acidDishBarrel: [new DialogueSnippet('', 'Erin decided that carrying around the filthy water was probably a terrible idea and poured it back into the barrel.')],
         bookEngrave: [new DialogueSnippet('', 'Erin opens to a random page and looks from the book to the metal engraving.  She turns another page and then again.  Each engraving matches one of the creatures featured on one of the book\'s pages.')],
-        
+
         knifeMossBank: [new DialogueSnippet('', 'Erin pulls out her pocketknife and wiggles the tip deeper into the plants until she feels stone.  She cuts through the plants, slicing at their short roots to peel off a strip.  Underneath is a metal engraving.')],
         knifeDoor: [new DialogueSnippet('Erin', 'My knife is not a lockpick...')],
-        
+
         knifeVent1A: [new DialogueSnippet('', 'Erin pulls out her pocketknife and uses it like a screwdriver to remove the screws.  She peers into the vent, but there is nothing there.')],
         magnetVent1A: [new DialogueSnippet('', 'Erin pulls out her magnetic disk and uses it like a screwdriver to remove the screws.  She peers into the vent, but there is nothing there.')],
         screwVent1: [new DialogueSnippet('Erin', 'There\'s nothing else to unscrew.')],
@@ -409,7 +414,7 @@ export class onClickDialogue {
         acidDishTroth3: [new DialogueSnippet('', 'Erin sighs.  Her compulsion to ruin nice things is simply too great.')],
         acidDishTroth4: [new DialogueSnippet('', 'Erin pours more of the acrid water onto the troth.  It fizzles.')],
         vodkaFlask2Troth: [new DialogueSnippet('Erin', 'If I was that desparate to get rid of the Vodka, I would just drink it.')],
-        lighterPeat: [new DialogueSnippet('Erin', 'I do not intend to die in a massive fire.')], 
+        lighterPeat: [new DialogueSnippet('Erin', 'I do not intend to die in a massive fire.')],
         mapLitOven: [new DialogueSnippet('', 'Erin stares down at the map.', 'mapOven')],
         clothStripsLitOven: [new DialogueSnippet('Erin', 'Zhang\'s going to be annoyed enough that I cut up his shirt.  I don\'t want to image how he\'ll scream if I burn it.')],
         herbsOven: [new DialogueSnippet('Erin', 'The herbs are too fresh.  They won\'t make for good kindling.')],
@@ -438,12 +443,12 @@ export class onClickDialogue {
         legitItemsInjury: [new DialogueSnippet('Erin', 'I\'ll need these soon.')],
         vodkaInjury: [new DialogueSnippet('', 'Erin pours the vodka over the wound.  Zhang swears under his breath.')],
         herbsInjury: [
-            new DialogueSnippet('Erin','Zhang, I think some of these herbs are medicinal.'),
-            new DialogueSnippet('','Zhang silently takes sprigs of the plant with tiny leaves, plucks off the leaves, and smashes them.  He applies the mush to his cuts.'),
-            new DialogueSnippet('Zhang','I would say good eye, but the broad leaf one is you\'re holding is poisonous.'),
-            new DialogueSnippet('','Erin drops the plants and rubs her hand on her slacks.'),
-            new DialogueSnippet('Erin','Do you think your leg is broken?'),
-            new DialogueSnippet('Zhang','No idea.  Better stabilize it just in case.'),
+            new DialogueSnippet('Erin', 'Zhang, I think some of these herbs are medicinal.'),
+            new DialogueSnippet('', 'Zhang silently takes sprigs of the plant with tiny leaves, plucks off the leaves, and smashes them.  He applies the mush to his cuts.'),
+            new DialogueSnippet('Zhang', 'I would say good eye, but the broad leaf one is you\'re holding is poisonous.'),
+            new DialogueSnippet('', 'Erin drops the plants and rubs her hand on her slacks.'),
+            new DialogueSnippet('Erin', 'Do you think your leg is broken?'),
+            new DialogueSnippet('Zhang', 'No idea.  Better stabilize it just in case.'),
         ],
         polesInjury: [new DialogueSnippet('', 'Erin places the poles on either side of Zhang’s leg')],
         clothInjury: [new DialogueSnippet('', 'Erin ties the stripes together to make a long make-shift bandage and wraps it carefully around the wound and the metal poles.')],
@@ -541,29 +546,29 @@ export class onClickDialogue {
 
     dialogueEvents = {
         peatStacks: [
-            new DialogueSnippet('','Erin tosses a few armfuls of peat into the oven\'s mouth.  She ignites the fuel.  The peat quickly smokes up into a roaring fire.  Erin steps back to admire her handiwork.'),
+            new DialogueSnippet('', 'Erin tosses a few armfuls of peat into the oven\'s mouth.  She ignites the fuel.  The peat quickly smokes up into a roaring fire.  Erin steps back to admire her handiwork.'),
             new DialogueSnippet('', 'The entire room lights up, and Erin hears a distant whooshing sound.  She looks out into the hallway.  It is now lit.'),
             new DialogueSnippet('Erin', 'Perfect.'),
             new DialogueSnippet('', 'Erin tosses the torch into the fire.  She won\'t need it anymore.')
         ],
-    
+
         peatStacks2: [new DialogueSnippet('Erin', 'The fire is strong enough.  I don\'t need to add more peat.')],
-    
+
         compassKnife: [new DialogueSnippet('', 'Erin prizes open the compass, splitting it into two pieces.')],
-    
+
         mapOven: [new DialogueSnippet('', 'Erin tosses Zhang\'s map into the fire.  He... probably won\'t notice.  Hopefully.')],
-    
+
         bookOven: [new DialogueSnippet('', 'Erin tosses the book into the fire without further thought.')],
-    
+
         riskyGambit: [new DialogueSnippet('', 'Erin tosses the box into the fire.  She watches intently as it is reduced to ash.  Whatever was inside did not survive the blaze.')],
-    
+
         shatter1: [new DialogueSnippet('', 'Erin places the glass on the ground and smashes it into dust with the stone.')],
-    
+
         shatter2: [new DialogueSnippet('', 'Erin gives the flask a good whack with the stone and it dents.  Disappointed with that, she places the flask on the ground and beats it into scrap metal.')],
         shatter3: [new DialogueSnippet('', 'Erin cracks the compass glass with her rock.  She shakes off the glass shards, leaving her with teh metal disk.')],
-    
+
         igniteMap: [new DialogueSnippet('', 'Erin flicks the lighter to life and sets the map ablaze.  It\'s not long before all that remains is a tiny scroched corner where her thumb was.  She drops that scrap.')],
-    
+
         unnameFish: [new DialogueSnippet('', 'Erin chose to not name the fish')]
     };
 
@@ -587,15 +592,15 @@ export class onClickDialogue {
     itemDescriptions = {
         lighter: [new DialogueSnippet('Erin', 'An accessible source of fire.')],
         knife: [new DialogueSnippet('Erin', 'For cutting things.')],
-    
-    // Compass Pieces
+
+        // Compass Pieces
         compass: [new DialogueSnippet('Erin', 'It\'s just a glass cover with a magnetic disk, but it does the job.')],
-       
+
         // Magnet States
         magnet: [new DialogueSnippet('Erin', 'It\'s not a powerful magnet, but it\'s better than nothing.')],
         twine: [new DialogueSnippet('Erin', 'Could be useful.  If not, it doesn\'t take up that much space.')],
         magnetString: [new DialogueSnippet('Erin', 'The preferred build for picking up paperclips.')],
-    
+
         // Glass States
         glassCap: [new DialogueSnippet('Erin', 'A dish-shaped hunk of glass.')],
         fish: [new DialogueSnippet('Erin', 'I should not keep it out of water for long.  It\'s gasping.')],
@@ -606,33 +611,33 @@ export class onClickDialogue {
         acidDish: [new DialogueSnippet('Erin', 'This stuff is bad news...')],
         experiment: [new DialogueSnippet('Erin', 'The things we do in the pursuit of knowledge...')],
         coffin: [new DialogueSnippet('Erin', 'The tiny fish was just not meant to live in a tiny fishbowl')],
-    
+
         map: [new DialogueSnippet('Erin', 'I\'m starting to question how accurate this thing is...')],
-    
-    // Flask States
+
+        // Flask States
         vodkaFlask: [new DialogueSnippet('Erin', 'Zhang\'s drink of choice.')],
         vodkaFlask2: [new DialogueSnippet('Erin', 'I hope I have enough...')],
         emptyFlask: [new DialogueSnippet('Erin', 'It\'s ready to hold something else')],
         swampFlask: [new DialogueSnippet('Erin', 'It kinda smells.  Hopefully, Zhang will wash this thuroughly before he uses it again.')],
         scrapMetal: [new DialogueSnippet('Erin', 'Don\'t tell Zhang.  Don\'t show Zhang.')],
-    
-    // Shirt States
+
+        // Shirt States
         shirt: [new DialogueSnippet('Erin', 'Sorry, Zhang.  We\'re going to have to sacrifice this one.')],
         clothStrips: [new DialogueSnippet('Erin' , 'We\'ll see if Zhang notices what I just did...')],
-        
+
         // Torch States
         root: [new DialogueSnippet('Erin', 'A hunk of wood.  It might come in handy.')],
         torch: [new DialogueSnippet('Erin', 'This is a good start.')],
         wetTorch: [new DialogueSnippet('Erin', 'Now, this will burn brightly!')],
         litTorch: [new DialogueSnippet('Erin', 'It\'s nice to get some real light in here.')],
-        cryptidKey: [new DialogueSnippet('Erin', 'This will keep that door open.')], 
-    
+        cryptidKey: [new DialogueSnippet('Erin', 'This will keep that door open.')],
+
         // Poles
         pole: [new DialogueSnippet('Erin', 'Could make a good lever.  Or a weapon.')],
         poles: [new DialogueSnippet('Erin', 'It broke in half while I was helping Zhang...')],
         charcoal: [new DialogueSnippet('Erin', 'Charcoal has a few uses, but this was obviously intended for writing.')],
-    
-    // Clay
+
+        // Clay
         dryClay: [new DialogueSnippet('Erin', 'It just needs a little moisure to be moldable again.')],
         wetClay: [new DialogueSnippet('Erin', 'It\'s moldable now.')],
         roughwetClayKey: [new DialogueSnippet('Erin', 'A rough, clay copy of the original.')],
@@ -640,10 +645,10 @@ export class onClickDialogue {
         clayKey: [new DialogueSnippet('Erin', 'A clay replica of a key.')],
         wetMold: [new DialogueSnippet('Erin', 'This looks promising...')],
         keyMold: [new DialogueSnippet('Erin', 'This can be used to make a tougher key.')],
-    
+
         book: [new DialogueSnippet('Erin', 'A museum or private collector would shell out a fortune for this.')],
         puzzleBox: [new DialogueSnippet('Erin', 'It has five spherical slots in it.')],
-        pills: [new DialogueSnippet('Erin', 'What it says on the... tin...  Ehhh.')],  
+        pills: [new DialogueSnippet('Erin', 'What it says on the... tin...  Ehhh.')],
         herbs: [new DialogueSnippet('Erin', 'Some of these could be medicinal.')],
         moss: [new DialogueSnippet('Erin', 'It\'s green and springy.')],
         rock: [new DialogueSnippet('Erin', 'The ideal solution to problems that look like nails')],
@@ -661,6 +666,6 @@ export class onClickDialogue {
         marbles: [new DialogueSnippet('Erin', 'Five spheres.  Interesting...')],
         smallKey: [new DialogueSnippet('Erin', 'It\'s a small key.  It\'ll fit somewhere.')],
         purpleCrystal: [new DialogueSnippet('Erin', 'I\'m not sure what this is.')],
-    }
+    };
 
 }

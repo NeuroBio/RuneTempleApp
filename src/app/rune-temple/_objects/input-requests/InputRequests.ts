@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { KeyPair } from '../interactions/Interaction';
 
 export class InputRequests {
-    dialogue = new DialogueInputRequests;
+    dialogue = new DialogueInputRequests();
 }
 
 export class DialogueInputRequests {

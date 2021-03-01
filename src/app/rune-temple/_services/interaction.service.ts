@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { onClickInteractions } from '../_objects/interactions/onClickInteractions';
+import { OnClickInteractions } from '../_objects/interactions/onClickInteractions';
 import { InteractionWithKeys, KeyPair } from '../_objects/interactions/Interaction';
 import { UpdateInteractions } from '../_objects/interactions/UpdateInteractions';
 
@@ -8,8 +8,8 @@ import { UpdateInteractions } from '../_objects/interactions/UpdateInteractions'
 })
 export class InteractionService {
 
-  private interactions = new onClickInteractions;
-  private updates = new UpdateInteractions;
+  private interactions = new OnClickInteractions();
+  private updates = new UpdateInteractions();
 
   constructor() { }
 
@@ -42,16 +42,16 @@ export class InteractionService {
     return undefined;
   }
 
-  private checkKeys(key: string, subkey: string) {
+  private checkKeys(key: string, subkey: string): InteractionWithKeys {
     if (this.interactions[key]) {
-      if (this.interactions[key][subkey]) { //assetKey is subkey
+      if (this.interactions[key][subkey]) { // assetKey is subkey
           return new InteractionWithKeys(this.interactions[key][subkey], key, subkey);
       }
     }
     return undefined;
   }
 
-  private returnDefault(key: string) {
+  private returnDefault(key: string): InteractionWithKeys {
     if (this.interactions[key]
       && this.interactions[key].default) {
       return new InteractionWithKeys(
@@ -65,7 +65,7 @@ export class InteractionService {
     const newInteractions = this.getUpdate(update);
     newInteractions.forEach(int => {
       this.interactions[int.key][int.subkey] = int.interaction;
-    })
+    });
   }
 
   updateIfExists(update: KeyPair): void {
@@ -78,15 +78,15 @@ export class InteractionService {
     return this.updates[update.key][update.subkey];
   }
 
-  reset() {
-    this.interactions = new onClickInteractions;
+  reset(): void {
+    this.interactions = new OnClickInteractions();
   }
 
-  load(interactionData: onClickInteractions) {
+  load(interactionData: OnClickInteractions): void {
     this.interactions = interactionData;
   }
 
-  save() {
+  save(): OnClickInteractions {
     return this.interactions;
   }
 

@@ -6,7 +6,7 @@ import { InteractionWithKeys, Interaction, KeyPair } from '../_objects/interacti
 import { SceneService } from './scene.service';
 import { ChoiceService } from './choice.service';
 import { GameSettingsService } from './game-settings.service';
-import { onClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
+import { OnClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +14,10 @@ import { onClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
 export class EventFlagService {
 
   // mutable
-  private events = new EventFlags;
+  private events = new EventFlags();
 
   // variables
-  private sceneDial = (new onClickDialogue).sceneUpdates;
+  private sceneDial = new OnClickDialogue().sceneUpdates;
 
   constructor(
     private interactionserv: InteractionService,
@@ -26,7 +26,7 @@ export class EventFlagService {
     private gs: GameSettingsService
   ) { }
 
-  updateEvents(events: EventFlag[]) {
+  updateEvents(events: EventFlag[]): void {
     events.forEach(event => {
       this.events[event.key] = event.value;
       this.interactionserv.updateIfExists(new KeyPair('eventFlagUpdates', event.key));
@@ -34,7 +34,7 @@ export class EventFlagService {
     });
   }
 
-  private checkTriggeredEvents(key: string) {
+  private checkTriggeredEvents(key: string): void {
     switch (key) {
       case ('enteredFoyer' || 'mapBurned'):
         if (this.events.mapBurned && !this.events.foyerMap) {
@@ -60,6 +60,7 @@ export class EventFlagService {
         if (this.events.reliefRepaired) {
           this.interactionserv.updateInteractions(new KeyPair('eventInteraction', 'noFishForYou'));
         }
+         /* falls through */
       case ('hammerLockBox' || 'hammerPuzzleBox' || 'hammerRustedPanel'
         || 'hammerSpigot' || 'glassShatter' || 'flaskShatter') :
         this.badgeCheck('hammer',
@@ -71,7 +72,7 @@ export class EventFlagService {
           && this.events.glassShatter
           && this.events.flaskShatter));
         break;
-      case 'bookBurned' : 
+      case 'bookBurned' :
         if (this.events.reliefRepaired) {
           // TODO: remove relief dialogue option
         }
@@ -105,39 +106,39 @@ export class EventFlagService {
     }
   }
 
-  private badgeCheck(key: string, condition: boolean) {
+  private badgeCheck(key: string, condition: boolean): void {
     const badge = this.gs.getBadge(key);
     if (!badge.earned && condition) {
       this.gs.addBadges([key]);
     }
   }
 
-  private updateScene(scene: string, dialog) {
+  private updateScene(scene: string, dialog): void {
     this.sceneserv.updateScene(scene, false, dialog);
   }
 
-  private addChoice(key: string, subkey: string, opt: string, out: KeyPair) {
+  private addChoice(key: string, subkey: string, opt: string, out: KeyPair): void {
     this.choiceserv.addChoice(key, subkey, opt, new InteractionWithKeys(new Interaction(out)));
   }
 
-  addMapEvent(key: string) {
+  addMapEvent(key: string): void {
     this.events[`${key}Map`] = true;
   }
 
-  endGameChecks() {
+  endGameChecks(): void {
 
 
   }
 
-  reset() {
-    this.events = new EventFlags;
+  reset(): void {
+    this.events = new EventFlags();
   }
 
-  load(eventData: EventFlags) {
+  load(eventData: EventFlags): void {
     this.events = eventData;
   }
 
-  save() {
+  save(): EventFlags {
     return this.events;
   }
 }

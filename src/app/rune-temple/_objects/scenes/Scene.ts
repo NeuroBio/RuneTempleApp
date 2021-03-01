@@ -5,12 +5,12 @@ export class Scene {
     name: string;
     assetKey: string;
     dialogue: KeyPair;
-    visited: boolean = false;
+    visited = false;
 
     constructor(name: string, key: string, visited: boolean = false) {
         this.name = name;
         this.assetKey = key;
-        this.visited = false
+        this.visited = visited;
         this.dialogue = new KeyPair('sceneDefaults', key);
     }
 }
@@ -20,7 +20,7 @@ export class SceneDisplay extends Scene {
     locations: ActiveArea[];
 
     constructor(scene: Scene, activeAreas: ActiveArea[], locations: ActiveArea[]) {
-        super(scene.name, scene.assetKey, scene.visited)
+        super(scene.name, scene.assetKey, scene.visited);
         this.activeAreas = activeAreas;
         this.locations = locations;
     }

@@ -15,29 +15,28 @@ export class SaveLoadComponent implements OnInit {
 
   ngOnInit(): void {
     this.allowLoad = this.saveloadserv.loadDataExists();
-    console.log(this.allowLoad)
-    setTimeout(() => { this.saveload.nativeElement.style.opacity = 1 }, 10);
+    setTimeout(() => { this.saveload.nativeElement.style.opacity = 1; }, 10);
   }
 
-  newGame() {
+  newGame(): void {
     this.saveloadserv.newGame();
   }
 
-  saveGame() {
+  saveGame(): void {
     this.saveloadserv.saveGame();
     this.allowLoad = true;
   }
 
-  loadGame() {
+  loadGame(): void {
     this.saveloadserv.loadGame();
   }
 
-  clearData() {
+  clearData(): void {
     this.saveloadserv.clearData();
     this.allowLoad = false;
   }
 
-  close() {
+  close(): void {
     this.saveloadserv.closeSaveLoad();
   }
 }

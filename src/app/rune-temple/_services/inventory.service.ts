@@ -12,10 +12,10 @@ export class InventoryService {
   private selectedIndex: number;
 
   // static variables
-  private gameItems = new GameItems;
+  private gameItems = new GameItems();
   private initialInventory = [ 'knife', 'lighter', 'compass', 'map' ];
 
-  constructor() { 
+  constructor() {
     this.addItems(this.initialInventory);
     const cheating = ['litTorch', 'rock'];
     this.addItems(cheating);
@@ -27,7 +27,7 @@ export class InventoryService {
 
   addItems(items: string[]): void {
     const invent = this.inventory.value;
-    items.forEach(item => invent.push(this.gameItems[item]))
+    items.forEach(item => invent.push(this.gameItems[item]));
     this.inventory.next(invent);
   }
 
@@ -38,7 +38,7 @@ export class InventoryService {
     }
     items.forEach(key => {
       const index = invent.findIndex(item => item.assetKey === key);
-      invent.splice(index, 1);  
+      invent.splice(index, 1);
     });
     this.inventory.next(invent);
     this.selectedIndex = undefined;
@@ -56,21 +56,21 @@ export class InventoryService {
     }
   }
 
-  deselectItem() {
+  deselectItem(): void {
     const inventory = this.inventory.value;
     if (this.selectedIndex !== undefined) {
       inventory[this.selectedIndex].selected = false;
-      this.selectedIndex = undefined;  
+      this.selectedIndex = undefined;
     }
   }
 
-  reset() {
+  reset(): void {
     this.inventory.next([]);
     this.addItems(this.initialInventory);
     this.selectedIndex = undefined;
   }
 
-  load(inventoryData: InventoryItem[]) {
+  load(inventoryData: InventoryItem[]): void {
     this.inventory.next(inventoryData);
   }
 }

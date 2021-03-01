@@ -1,4 +1,4 @@
-import { Interaction, InteractionWithKeys, KeyPair, InputRequestInteraction } from './Interaction'
+import { Interaction, InteractionWithKeys, KeyPair, InputRequestInteraction } from './Interaction';
 import { EventFlag } from '../event-types/EventFlag';
 import { Activator } from '../scenes/ActiveArea';
 
@@ -9,12 +9,12 @@ export class UpdateInteractions {
             new InteractionWithKeys(
                 new Interaction(new KeyPair('zhangBuried', 'zhang2')),
                 'zhangBuried', 'default')],
-    
+
         zhangBandagedDefault: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('zhangFreed', 'zhang4')),
                 'zhangBandaged', 'default')],
-    
+
         knifeFloor: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'knifeFloor2'),
@@ -26,56 +26,56 @@ export class UpdateInteractions {
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'knifeFloor3'), ['knife']),
                 'knife', 'floor')],
-        
+
         blackboardDefault: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'blackboard2')),
                 'blackboard', 'default')],
-    
+
         columnDefault: [
                 new InteractionWithKeys(
                     new Interaction(new KeyPair('activeAreas', 'column2')),
                     'column', 'default')],
-    
+
         thirdShelfDefault: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'thirdShelf2')),
                 'thirdShelf', 'default')],
-    
+
         floorDefault: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeArea', 'floor2')),
                 'floor', 'default')],
-        
+
         exitRock: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'rockExit2')),
                 'exit', 'rock'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'exit2')),
                 'exit', 'default')],
-        
+
         puddleDefault: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'puddle2')),
                 'puddle', 'default')],
-    
+
         vent1Knife: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'screwVent1')),
                 'vent1', 'knife')],
-    
+
         vent1Magnet: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'screwVent1')),
                 'vent1', 'magnet')],
-    
+
         vent1MagnetString: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'screwVent1')),
                 'vent1', 'magnetString')],
-    
+
         trothAcidDish: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'acidDishTroth2'),
@@ -94,16 +94,16 @@ export class UpdateInteractions {
                 new Interaction(new KeyPair('envCombos', 'acidDishTroth4'),
                     ['acidDish'], ['glassCap'], [], [], [], ['nice']),
                 'troth', 'acidDish'),
-            
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'brokenTroth')),
                 'troth', 'default')],
-        
+
         bookEnvDefault: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'engrave2')),
                 'engrave', 'default')],
-    
+
         peatOvenCharcoal: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'lighterCharcoalOven'),
@@ -115,36 +115,36 @@ export class UpdateInteractions {
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'lighterOven')),
                 'peatOven', 'lighter')],
-    
+
         rubblePole: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'rubble2')),
                 'rubble', 'default')],
-    
+
         zhangSawCompass: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'compassParts')),
                 'zhangBandaged', 'glassCap'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'compassParts')),
                 'zhangBandaged', 'magnet'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'compassPartsString')),
                 'zhangBandaged', 'magnetString')
         ],
-    
+
         zhangSawBadFlask: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'badFlaskZhang')),
                 'zhangBandaged', 'emptyFlask'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'badFlaskZhang')),
                 'zhangBandaged', 'swampFlask')
         ],
-    
+
         sterilize: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'herbsInjury'),
@@ -158,7 +158,7 @@ export class UpdateInteractions {
                     ['poles'], [], [new EventFlag('stabilize', true)],
                     [], [], [], new KeyPair('onClickUpdates', 'stabilize')),
                 'injury', 'poles')],
-        
+
         stabilize: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'clothInjury'),
@@ -178,38 +178,38 @@ export class UpdateInteractions {
                     ],
                     [], undefined, 'pitFloor'),
                 'injury', 'clothStrips')],
-    
+
         zhangMedicated: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('zhangFreed', 'zhang5')),
                 'zhangBandaged', 'default'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'bookZhang1'),
                     [], [], [new EventFlag('zhangSawBook', true)],
                     [], [], [], new KeyPair ('onClickUpdates', 'zhangBook')),
                 'zhangBandaged', 'book'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'glassZhang'),
                     [], [], [new EventFlag('zhangSawCompass', true)]),
                 'zhangBandaged', 'glassCap'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'magnetZhang'),
                     [], [], [new EventFlag('zhangSawCompass', true)]),
                 'zhangBandaged', 'magnet'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'magnetZhang'),
                     [], [], [new EventFlag('zhangSawCompass', true)]),
                 'zhangBandaged', 'magnetString'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'badFlaskZhang'),
                 [], [], [new EventFlag('zhangSawBadFlask', true)]),
                 'zhangBandaged', 'swampFlask'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'puzzleBoxZhang')),
                 'zhangBandaged', 'puzzlebox')],
@@ -218,28 +218,28 @@ export class UpdateInteractions {
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'bookZhang2')),
                 'zhangBandaged', 'book')],
-    }
+    };
 
     dialogueUpdates = {
-    
-        nameFish: [ 
+
+        nameFish: [
             new InputRequestInteraction('dialogue', 'fishName'),
-    
+
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'unnameFish'),
                     [], [], [], [], [], ['pokemon']))],
-        
+
         ovenLit: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'peatStacks2')),
                 'peat', 'default')],
-        
+
         mapBurned: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'charcoal2'),
                     [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)]),
                 'charcoalEnv', 'default')]
-    }
+    };
 
     eventFlagUpdates = {
         vent1openANDkeyFell: [
@@ -253,15 +253,15 @@ export class UpdateInteractions {
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'vent1B')),
                 'vent1', 'default')],
-    
+
         noFishForYou: [
             new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'puddle2')))],
-    }
+    };
 
     inputReqUpdates = {
         fishName: [
             new InteractionWithKeys(new Interaction(
                 new KeyPair('inputRequest', 'fishName'),
                 [], [], [new EventFlag('fishNamed')]))]
-    }
+    };
 }

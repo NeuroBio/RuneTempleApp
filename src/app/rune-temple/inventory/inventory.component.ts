@@ -13,7 +13,7 @@ import { TriggerService } from '../_services/trigger.service';
 })
 export class InventoryComponent implements OnInit, OnDestroy {
 
-  @Input() disable: boolean = false;
+  @Input() disable = false;
   @ViewChild('itemBand') itemBand: ElementRef;
 
   gameItems = new GameItems();
@@ -33,12 +33,12 @@ export class InventoryComponent implements OnInit, OnDestroy {
       .subscribe(update => this.inventoryItems = update);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.inventorySubscription.unsubscribe();
   }
 
   // left and right arrow keys
-  shiftInventory(right: boolean) {
+  shiftInventory(right: boolean): void {
     if (right) {
       this.animate(this.itemLength);
     } else {
@@ -46,7 +46,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
     }
   }
 
-  animate(amount: number) {
+  animate(amount: number): void {
     if (HTMLElement.prototype.scrollTo) {
       this.itemBand.nativeElement.scrollTo(
         { left: (this.itemBand.nativeElement.scrollLeft + amount), behavior: 'smooth' });
@@ -56,17 +56,17 @@ export class InventoryComponent implements OnInit, OnDestroy {
   }
 
   // Actions
-  select(index: number) {
+  select(index: number): void {
     this.triggerserv.checkClickOrCombo(index);
   }
 
-  giveDescription(key: string, event: any) {
+  giveDescription(key: string, event: any): boolean {
     event.stopPropagation();
     this.dialogueserv.setItemDialogue('itemDescriptions', key);
     return false;
   }
 
-  castBreaker() {
+  castBreaker(): void {
     if (this.breakerNeeded) {
 
     } else {

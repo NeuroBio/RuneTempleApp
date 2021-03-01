@@ -8,15 +8,17 @@ export class Choice {
     chooseAgain: boolean;
     immutable: boolean;
 
-    constructor(question: string, options: string[],
+    constructor(
+        question: string, options: string[],
         outcomes: InteractionWithKeys[],
-        chooseAgain: boolean = false, immutable: boolean = true) {
+        chooseAgain: boolean = false, immutable: boolean = true
+    ) {
         this.question = question;
         this.options = options;
         this.seen = Array(options.length).fill(false);
         this.outcomes = outcomes;
         this.chooseAgain = chooseAgain;
-        this.immutable = immutable
+        this.immutable = immutable;
     }
 }
 

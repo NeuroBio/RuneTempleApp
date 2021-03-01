@@ -4,16 +4,17 @@ import { BehaviorSubject } from 'rxjs';
 
 export class GameSettings {
 
-    private formbuilder = new FormBuilder;
-    settings: FormGroup
-    textVariables = new TextVariables;
-    crossGameEvents = new CrossGameEvents;
+    private formbuilder = new FormBuilder();
+    settings: FormGroup;
+    textVariables = new TextVariables();
+    crossGameEvents = new CrossGameEvents();
 
     constructor() {
         this.settings = this.settigsForm();
+        delete this.formbuilder;
     }
 
-    private settigsForm() {
+    private settigsForm(): FormGroup {
         return this.formbuilder.group({
             hardMode: true,
             changeCursorOnHover: { value: false, disabled: true },
@@ -22,8 +23,8 @@ export class GameSettings {
         });
     }
 
-    reset(wipe: boolean = false) {
-        this.textVariables = new TextVariables;
+    reset(wipe: boolean = false): void {
+        this.textVariables = new TextVariables();
         this.settings.reset({
             hardMode: true,
             changeCursorOnHover: false,
@@ -32,14 +33,14 @@ export class GameSettings {
         });
 
         if (wipe) {
-            this.crossGameEvents = new CrossGameEvents;
+            this.crossGameEvents = new CrossGameEvents();
         }
     }
 }
 
 export class CrossGameEvents {
     FishDeaths = new BehaviorSubject([]);
-    badges = new BehaviorSubject<GameBadges>(new GameBadges);
+    badges = new BehaviorSubject<GameBadges>(new GameBadges());
 }
 
 export class TextVariables {

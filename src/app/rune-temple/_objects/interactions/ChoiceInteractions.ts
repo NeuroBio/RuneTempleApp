@@ -4,7 +4,7 @@ import { Activator } from '../scenes/ActiveArea';
 
 export class ChoiceInteractions {
     immutable = {
-        peatStacks: [ 
+        peatStacks: [
             new InteractionWithKeys(
                 new Interaction(
                     new KeyPair('dialogueEvents', 'peatStacks'), [], [],
@@ -14,57 +14,57 @@ export class ChoiceInteractions {
                     ], [], [], new KeyPair('dialogueUpdates', 'ovenLit')),
                 'peat', 'default'),
             undefined],
-    
-        compassKnife: [ 
+
+        compassKnife: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'compassKnife'),
                     ['compass'], ['glassCap', 'magnet'],
                     [new EventFlag('compassBroken', true)] )),
             undefined],
-    
-        mapOven: [ 
+
+        mapOven: [
             new InteractionWithKeys(new Interaction(
                 new KeyPair('dialogueEvents', 'mapOven'),
                 ['map'], [], [new EventFlag('mapBurned', true)],
                 [], [], [], new KeyPair('dialogueUpdates', 'mapBurned'))),
             undefined],
-    
-        bookOven: [ 
+
+        bookOven: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'bookOven'),
                 ['book'], [], [new EventFlag('bookBurned', true)])),
             undefined],
-    
-        riskyGambit: [ 
+
+        riskyGambit: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'riskyGambit'),
                 ['puzzleBox'], [], [new EventFlag('puzzleBoxBurned', true)])),
             undefined],
-    
-        shatter1: [ 
+
+        shatter1: [
             new InteractionWithKeys(new Interaction(new KeyPair('dialogueEvents', 'shatter1'),
                 ['glassCap'], [], [new EventFlag('gassShatter', true)])),
             undefined],
-    
-        shatter2: [ 
+
+        shatter2: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'shatter2'),
                 ['emptyFlask'], ['scrapMetal'], [new EventFlag('flaskShatter', true)])),
             undefined],
-    
-        shatter3: [ 
+
+        shatter3: [
             new InteractionWithKeys(
                     new Interaction(new KeyPair('dialogueEvents', 'shatter3'),
                     ['compass'], ['magnet'], [new EventFlag('glassShatter', true)])),
             undefined],
-    
-        igniteMap: [ 
+
+        igniteMap: [
             new InteractionWithKeys(
                     new Interaction(new KeyPair('dialogueEvents', 'igniteMap'),
                     ['map'], [], [new EventFlag('mapBurned', true)])),
             undefined],
 
-        nameFish: [ 
+        nameFish: [
         new InputRequestInteraction('dialogue', 'fishName'),
 
         new InteractionWithKeys(
@@ -73,7 +73,7 @@ export class ChoiceInteractions {
     };
 
     mutable =  {
-        zhang: [ 
+        zhang: [
             new InteractionWithKeys(new Interaction(new KeyPair('zhangHelp', 'where'))),
             new InteractionWithKeys(new Interaction(new KeyPair('zhangHelp', 'what'))),
             new InteractionWithKeys(new Interaction(new KeyPair('zhangHelp', 'mission'))),

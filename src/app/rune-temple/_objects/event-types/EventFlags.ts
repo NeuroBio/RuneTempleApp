@@ -26,7 +26,7 @@ export class EventFlags {
 
     // Troth Hell
     trothFullness = 0;
-    
+
     // Fishy
     zhangSawFish = false;
     mustacheFish = false;
@@ -46,7 +46,7 @@ export class EventFlags {
     vent1Open = false;
     keyFell = false;
 
-    //Endings 
+    // Endings
     reliefDestroyed = false;
     muralDestroyed = false;
     murderAttempt = false;

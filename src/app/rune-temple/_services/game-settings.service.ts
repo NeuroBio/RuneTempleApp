@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { GameSettings } from '../_objects/GameSettings';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { Badge } from '../_objects/Badge';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class GameSettingsService {
 
   settingsOpen = new BehaviorSubject<boolean>(false);
-  private gameSettings = new GameSettings;
+  private gameSettings = new GameSettings();
 
   constructor() { }
 
@@ -18,7 +19,7 @@ export class GameSettingsService {
   getTextVar(key: string): string {
     return this.gameSettings.textVariables[key]
     ? this.gameSettings.textVariables[key]
-    :this.gameSettings.textVariables[`${key}Default`];
+    : this.gameSettings.textVariables[`${key}Default`];
   }
 
   setTextVar(key: string, value: string): void {
@@ -40,7 +41,7 @@ export class GameSettingsService {
   }
 
   // Cross Game Control
-  getCrossGameEvents(key: string) {
+  getCrossGameEvents(key: string): void {
     return this.gameSettings.crossGameEvents[key];
   }
 
@@ -50,13 +51,13 @@ export class GameSettingsService {
     this.gameSettings.crossGameEvents.badges.next(badges);
   }
 
-  getBadge(badgeKey: string) {
+  getBadge(badgeKey: string): Badge {
     return this.gameSettings.crossGameEvents.badges.value[badgeKey];
   }
 
 
   // setting controls
-  openSettings():void {
+  openSettings(): void {
     this.settingsOpen.next(true);
   }
 
@@ -64,11 +65,11 @@ export class GameSettingsService {
     this.settingsOpen.next(false);
   }
 
-  reset(wipe: boolean = false) {
+  reset(wipe: boolean = false): void {
     this.gameSettings.reset(wipe);
   }
 
-  load(gamesettingsData: GameSettings) {
+  load(gamesettingsData: GameSettings): void {
     this.gameSettings.settings.patchValue(gamesettingsData.settings);
     this.gameSettings.textVariables = gamesettingsData.textVariables;
     Object.keys(this.gameSettings.crossGameEvents).forEach(key => {
@@ -76,7 +77,7 @@ export class GameSettingsService {
     });
   }
 
-  save() {
+  save(): void {
     const saveGS: any = {};
     saveGS.settings = this.gameSettings.settings.value;
     saveGS.textVariables = this.gameSettings.textVariables;
@@ -86,5 +87,5 @@ export class GameSettingsService {
     });
     return saveGS;
   }
-  
+
 }

@@ -2,10 +2,10 @@ import { ActiveArea } from './ActiveArea';
 
 export class SceneLocations {
     pitFloor = [
-        new ActiveArea('Look Up', 'pitCeiling', 0, 0,),
-        new ActiveArea('Zhang\'s Bag', 'bag', 0, 0,),
+        new ActiveArea('Look Up', 'pitCeiling', 0, 0),
+        new ActiveArea('Zhang\'s Bag', 'bag', 0, 0),
         new ActiveArea('Zhang\'s Leg', 'leg', 0, 0, false),
-        new ActiveArea('Foyer', 'foyer', 0, 0,)
+        new ActiveArea('Foyer', 'foyer', 0, 0)
     ];
 
     pitCeiling = [new ActiveArea('Go Back', 'pitFloor', 0, 0)];

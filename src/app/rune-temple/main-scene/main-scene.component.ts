@@ -11,8 +11,8 @@ import { TriggerService } from '../_services/trigger.service';
 })
 export class MainSceneComponent implements OnInit, OnDestroy {
 
-  @Input() disable: boolean = false;
-  @Input() pointer: boolean = false;
+  @Input() disable = false;
+  @Input() pointer = false;
 
   scene: SceneDisplay;
   sceneSubscription: Subscription;
@@ -22,12 +22,12 @@ export class MainSceneComponent implements OnInit, OnDestroy {
     private sceneserv: SceneService,
   ) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.sceneSubscription = this.sceneserv.activeScene
       .subscribe(active => this.scene = active);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.sceneSubscription.unsubscribe();
   }
 

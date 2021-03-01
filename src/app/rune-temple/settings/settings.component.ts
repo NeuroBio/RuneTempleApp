@@ -12,7 +12,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
 
   @ViewChild('settings') settings: ElementRef;
-  
+
   form: FormGroup;
   onlyOnce = false;
   hardModeSubsciption: Subscription;
@@ -24,21 +24,21 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.hardModeSubsciption = this.form.controls.hardMode.valueChanges
       .subscribe(enabled => {
         if (!enabled && !this.onlyOnce) {
-          this.onlyOnce = true; //THIS IS CRITICAL TO AVOID A MAXSTACK ERROR
+          this.onlyOnce = true; // THIS IS CRITICAL TO AVOID A MAXSTACK ERROR
           this.form.controls.hardMode.disable();
           this.form.controls.changeCursorOnHover.enable();
           this.form.controls.rightClickDescriptions.enable();
           this.form.controls.enableHints.enable();
         }
     });
-    setTimeout(() => { this.settings.nativeElement.style.opacity = 1 }, 10);
+    setTimeout(() => { this.settings.nativeElement.style.opacity = 1; }, 10);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.hardModeSubsciption.unsubscribe();
   }
 
-  close() {
+  close(): void {
     this.gs.closeSettings();
   }
 

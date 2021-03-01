@@ -2,7 +2,7 @@ import { Activator } from '../scenes/ActiveArea';
 import { Interaction, KeyPair } from './Interaction';
 import { EventFlag } from '../event-types/EventFlag';
 
-export class onClickInteractions {
+export class OnClickInteractions {
 
     // Active Areas
     rootEnv = {
@@ -42,14 +42,14 @@ export class onClickInteractions {
             [], [], [], new KeyPair('onClickUpdates', 'zhangMedicated')),
     };
 
-    rubble = { 
+    rubble = {
         default: new Interaction(new KeyPair('activeAreas', 'rubble')),
         pole: new Interaction(new KeyPair('envCombos', 'poleRubble'),
             ['pole'], ['poles'], [new EventFlag('zhangFreed', true)], [
                 new Activator('pitFloor', 'zhangBuried', false),
                 new Activator('pitFloor', 'zhangFreed', true),
                 new Activator('pitFloor', 'rockEnv', true)
-            ], [new Activator('pitFloor', 'leg', true)], 
+            ], [new Activator('pitFloor', 'leg', true)],
             [], new KeyPair('onClickUpdates', 'rubblePole')),
     };
 
@@ -61,7 +61,7 @@ export class onClickInteractions {
         default: new Interaction(new KeyPair('activeAreas', 'zhangLighter'))
     };
 
-    vodkaFlaskEnv = { 
+    vodkaFlaskEnv = {
         default: new Interaction(new KeyPair('activeAreas', 'vodkaFlaskEnv'),
             [], ['vodkaFlask'], [], [new Activator('bag', 'vodkaFlaskEnv', false)]
         )
@@ -129,17 +129,17 @@ export class onClickInteractions {
 
             ])
     };
-    
+
     blackboard = {
         default: new Interaction(new KeyPair('activeAreas', 'blackboard1'),
             [], ['puzzleBox'], [], [] , [], [], new KeyPair('onClickUpdates', 'blackboardDefault'))
     };
-    
+
     column = {
         default: new Interaction(new KeyPair('activeAreas', 'column1'),
             [], ['pole'], [], [], [], [], new KeyPair('onClickUpdates', 'columnDefault'))
     };
-    
+
     charcoalEnv = {
         default: new Interaction(new KeyPair('activeAreas', 'charcoal1'),
             [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)])
@@ -217,7 +217,7 @@ export class onClickInteractions {
         default: new Interaction(new KeyPair('activeAreas', 'exit')),
         rock: new Interaction(new KeyPair('envCombos', 'rockExit'),
             [], [], [new EventFlag('hammerExit', true)],
-            [new Activator('foyer', 'puddle', true)], [] ,[], new KeyPair('onClickUpdates', 'exitRock'))
+            [new Activator('foyer', 'puddle', true)], [], [], new KeyPair('onClickUpdates', 'exitRock'))
     };
 
     puddle = {
@@ -322,7 +322,7 @@ export class onClickInteractions {
         waterGlass: new Interaction(new KeyPair('combos', 'fluidRock')),
         fiskTank: new Interaction(new KeyPair('combos', 'fishTankRock')),
         cleanFishTank: new Interaction(new KeyPair('combos', 'fishTankRock')),
-        compass: new Interaction(new KeyPair('combos', 'compassRock'))      
+        compass: new Interaction(new KeyPair('combos', 'compassRock'))
     };
 
     injury = {
@@ -352,5 +352,5 @@ export class onClickInteractions {
                 new Activator('foyer', 'exit', true),
                 new Activator('foyer', 'pitFloor', true)
             ], [], undefined, 'pitFloor')
-    }
+    };
 }

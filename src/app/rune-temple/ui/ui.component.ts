@@ -48,13 +48,12 @@ export class UIComponent implements OnInit, OnDestroy {
     // Menu buttons
     this.settingsSubscription = this.gs.settingsOpen
       .subscribe(open => this.showSettings = open);
- 
-     this.savelaodSubscription = this.saveloadserv.saveloadOpen
-     .subscribe(open => this.showSaveLoad = open);
- 
-     this.hintSubscription = this.gs.getSetting('enableHints').valueChanges
+
+    this.savelaodSubscription = this.saveloadserv.saveloadOpen
+      .subscribe(open => this.showSaveLoad = open);
+
+    this.hintSubscription = this.gs.getSetting('enableHints').valueChanges
        .subscribe(value => this.hint = value);
- 
 
     // Bottom bar
     this.dialogueSubscription = this.dialogueserv.activeDialogue
@@ -65,7 +64,7 @@ export class UIComponent implements OnInit, OnDestroy {
 
     this.inputReqSubscription = this.inputreqserv.activeInputReq
       .subscribe(active => this.isInputReqActive = active ? true : false);
-    
+
     // Dispaly Control
     this.pointerSubscription = this.gs.getSetting('changeCursorOnHover').valueChanges
       .subscribe(value => this.pointer = value);
@@ -79,7 +78,7 @@ export class UIComponent implements OnInit, OnDestroy {
     this.hintSubscription.unsubscribe();
   }
 
-  getHint() { 
+  getHint(): void {
     // this.dialogueserv.setDialogue([new DialogueSnippet('', 'This system is not yet in place, sorry!')])
   }
 
@@ -99,19 +98,19 @@ export class UIComponent implements OnInit, OnDestroy {
     }
   }
 
-  disableInterface() {
+  disableInterface(): boolean {
     return (this.showSaveLoad || this.showSettings || this.isChoiceActive
       || this.isDialogueActive || this.isInputReqActive);
   }
 
   @HostListener('click', ['$event'])
-  onLeftClick() {
+  onLeftClick(event: any): void {
     event.stopPropagation();
     this.dialogueserv.advance.next();
   }
 
   @HostListener('contextmenu', ['$event'])
-  onRightClick() {
+  onRightClick(event: any): void {
     event.stopPropagation();
     event.preventDefault();
     this.inventoryserv.deselectItem();

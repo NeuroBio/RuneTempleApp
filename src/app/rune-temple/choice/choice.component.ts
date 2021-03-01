@@ -28,10 +28,10 @@ export class ChoiceComponent implements OnInit, OnDestroy {
     this.choiceSubsciption.unsubscribe();
   }
 
-  choosen(index: number, event: any) {
+  choosen(index: number, event: any): void {
     event.stopPropagation();
     this.choiceserv.markAsSeen(index);
-    const interaction = this.choice.outcomes[index]
+    const interaction = this.choice.outcomes[index];
 
     if (interaction) {
       this.triggerserv.triggerInteraction(interaction);
