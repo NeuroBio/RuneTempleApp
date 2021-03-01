@@ -5,7 +5,6 @@ import { ChoiceService } from '../_services/choice.service';
 import { InputReqService } from '../_services/input-req.service';
 import { InventoryService } from '../_services/inventory.service';
 import { GameSettingsService } from '../_services/game-settings.service';
-import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
 import { SaveLoadService } from '../_services/save-load.service';
 
 @Component({

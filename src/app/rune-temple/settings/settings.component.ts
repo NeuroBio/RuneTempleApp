@@ -12,6 +12,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
 
   @ViewChild('settings') settings: ElementRef;
+  
   form: FormGroup;
   onlyOnce = false;
   hardModeSubsciption: Subscription;

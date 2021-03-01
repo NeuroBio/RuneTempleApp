@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { InputRequest } from '../_objects/input-requests/InputRequest';
 import { Subscription } from 'rxjs';
 import { InputReqService } from '../_services/input-req.service';
-import { AbstractControl, FormControl } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 import { TriggerService } from '../_services/trigger.service';
 
 @Component({
