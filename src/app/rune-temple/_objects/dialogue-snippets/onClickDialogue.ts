@@ -377,6 +377,7 @@ export class OnClickDialogue {
             new DialogueSnippet('', 'Erin looks at the panic in the fish’s eyes and wants to do something to make it feel better.  Using her charcoal, she draws a happy moustache on the fish’s face.  Now, the fish looks excited!'),
             new DialogueSnippet('', 'The charcoal doesn’t stick well to the fish’s slick scales.  The charcoal runs and starts to coat the fish’s gills.  Erin only realizes too late what she has done.  She tries to wipe the charcoal off, but that seems to only make things worse.  The fish gives a final desperate heave, then falls still.  Erin gently lays the fish on the ground.  There is nothing more she can do.')
         ],
+        fishRock: [new DialogueSnippet('', 'Erin decides that letting the fish slowly suffocate is the wrong thing to do.  Better to give it a quick merciful death.  Erin puts the fish out of it\'s misery with her rock.')],
 
     };
 
@@ -562,6 +563,18 @@ export class OnClickDialogue {
             new DialogueSnippet('Erin', 'I found a pet!'),
             new DialogueSnippet('Zhang', 'Is this a bad joke?'),
             new DialogueSnippet('', 'Erin takes back the tank without answering.'),
+        ],
+        fishPuddle: [new DialogueSnippet('', 'Erin decides that the fish should be let go.  She places it back in the puddle.  The fish flops about until it finds a tiny crack to wedge itself into.  It would be impossible for Erin to coax it back out with her fingers.')],
+        knifePuddle1: [new DialogueSnippet('', 'Erin decides she wants the fish back.  She tries to prod it out of its hiding place using the knife.  As she wiggles the knife about, the fish tries to dart away.  The knife splits the fish down its spine.  Erin puts the knife away again.')],
+        knifePuddle2: [new DialogueSnippet('', 'Erin cannot wash the shame of what she has done off the knife.')],
+        smackVase: [
+            new DialogueSnippet('', 'Erin gives the lid of the vase a good whack and it shatters.  Inside she finds a thick, shiny ooze.  She touches it.  As she pulls her finger away, a sticky string pulls away from the bulk of the substance.'),
+            new DialogueSnippet('Erin', 'No wonder the lid wouldn’t come off.  This stuff is like glue.'),
+            new DialogueSnippet('', 'Erin takes a shard of the vase lid and scoops up some of the glue.')
+        ],
+        vaseBroken: [
+            new DialogueSnippet('', 'The shiny ooze belches out a bubble of foul smelling air.'),
+            new DialogueSnippet('Erin', 'If I really need more, I can come back...')
         ]
     };
 
@@ -600,6 +613,7 @@ export class OnClickDialogue {
         igniteMap: [new DialogueSnippet('', 'Erin flicks the lighter to life and sets the map ablaze.  It\'s not long before all that remains is a tiny scroched corner where her thumb was.  She drops that scrap.')],
 
         unnameFish: [new DialogueSnippet('', 'Erin chose to not name the fish')]
+
     };
 
     sceneDefaults = {
@@ -636,20 +650,20 @@ export class OnClickDialogue {
         fish: [new DialogueSnippet('Erin', 'I should not keep it out of water for long.  It\'s gasping.')],
         waterGlass: [new DialogueSnippet('Erin', 'It\'s kinda like a petrie dish now.')],
         deadFish: [new DialogueSnippet('Erin', 'I don\'t understand why this happened.')],
-        fishTank: [new DialogueSnippet('Erin', 'The fish seems to be doing okay-ish.')],
-        cleanFishtank: [new DialogueSnippet('Erin', 'cleanFishtank', 'The fish seems to be doing well for now.')],
+        fishtank: [new DialogueSnippet('Erin', '${fishName} seems to be doing okay-ish.')],
+        cleanFishtank: [new DialogueSnippet('Erin', 'cleanFishtank', '${fishName} seems to be doing well for now.')],
         acidDish: [new DialogueSnippet('Erin', 'This stuff is bad news...')],
         experiment: [new DialogueSnippet('Erin', 'The things we do in the pursuit of knowledge...')],
-        coffin: [new DialogueSnippet('Erin', 'The tiny fish was just not meant to live in a tiny fishbowl')],
+        coffin: [new DialogueSnippet('Erin', '${fishName} was just not meant to live in a tiny fishbowl...')],
 
         map: [new DialogueSnippet('Erin', 'I\'m starting to question how accurate this thing is...')],
 
         // Flask States
         vodkaFlask: [new DialogueSnippet('Erin', 'Zhang\'s drink of choice.')],
         vodkaFlask2: [new DialogueSnippet('Erin', 'I hope I have enough...')],
-        emptyFlask: [new DialogueSnippet('Erin', 'It\'s ready to hold something else')],
+        emptyFlask: [new DialogueSnippet('Erin', 'It\'s ready to hold something else.')],
         swampFlask: [new DialogueSnippet('Erin', 'It kinda smells.  Hopefully, Zhang will wash this thuroughly before he uses it again.')],
-        scrapMetal: [new DialogueSnippet('Erin', 'Don\'t tell Zhang.  Don\'t show Zhang.')],
+        scrapMetal: [new DialogueSnippet('Erin', 'Don\'t show Zhang.  Don\'t tell Zhang.')],
 
         // Shirt States
         shirt: [new DialogueSnippet('Erin', 'Sorry, Zhang.  We\'re going to have to sacrifice this one.')],
@@ -665,7 +679,7 @@ export class OnClickDialogue {
         // Poles
         pole: [new DialogueSnippet('Erin', 'Could make a good lever.  Or a weapon.')],
         poles: [new DialogueSnippet('Erin', 'It broke in half while I was helping Zhang...')],
-        charcoal: [new DialogueSnippet('Erin', 'Charcoal has a few uses, but this was obviously intended for writing.')],
+        charcoal: [new DialogueSnippet('Erin', 'Charcoal has a few uses, but this piece was obviously intended for writing.')],
 
         // Clay
         dryClay: [new DialogueSnippet('Erin', 'It just needs a little moisure to be moldable again.')],
@@ -677,22 +691,22 @@ export class OnClickDialogue {
         keyMold: [new DialogueSnippet('Erin', 'This can be used to make a tougher key.')],
 
         book: [new DialogueSnippet('Erin', 'A museum or private collector would shell out a fortune for this.')],
-        puzzleBox: [new DialogueSnippet('Erin', 'It has five spherical slots in it.')],
+        puzzleBox: [new DialogueSnippet('Erin', 'The puzzle box has five spherical slots in it.')],
         pills: [new DialogueSnippet('Erin', 'What it says on the... tin...  Ehhh.')],
         herbs: [new DialogueSnippet('Erin', 'Some of these could be medicinal.')],
         moss: [new DialogueSnippet('Erin', 'It\'s green and springy.')],
-        rock: [new DialogueSnippet('Erin', 'The ideal solution to problems that look like nails')],
+        rock: [new DialogueSnippet('Erin', 'The ideal solution to problems that look like nails.')],
         glue: [new DialogueSnippet('Erin', 'This could help me if I need to fix something.')],
         oilBottle: [new DialogueSnippet('Erin', 'This is the kind for lubrcating, not for eating.')],
-        nails: [new DialogueSnippet('Erin', 'My hammering stone\'s true calling')],
+        nails: [new DialogueSnippet('Erin', 'My hammering stone\'s true calling.')],
         chalk: [new DialogueSnippet('Erin', 'I can feel the flecks of Siphoid Metal in the chalk resonating.')],
         silverKey: [new DialogueSnippet('Silver Key', 'silverKey', 'This will fit somewhere...')],
         redKey: [new DialogueSnippet('Erin', 'This has to go to something.')],
         rag: [new DialogueSnippet('Erin', 'Might be helpful if I mess up.')],
-        glove: [new DialogueSnippet('Erin', 'Hopefully I won\'t need it\'s mate.')],
-        candles: [new DialogueSnippet('Erin', 'Perfect for the next time I want to perform a potentially life threatening ritual.')],
+        glove: [new DialogueSnippet('Erin', 'Hopefully, I won\'t need the glove\'s mate.')],
+        candles: [new DialogueSnippet('Erin', 'Perfect for the next time I want to perform a potentially life threatening ritual!')],
         siphoid: [new DialogueSnippet('Erin', 'It looks like raw Siphoid.')],
-        relic: [new DialogueSnippet('Erin', 'It has slots for... something.  I\'ve filled 0/17.')],
+        relic: [new DialogueSnippet('Erin', 'It has slots for... something.  I\'ve filled ${runeCount}/17.')],
         marbles: [new DialogueSnippet('Erin', 'Five spheres.  Interesting...')],
         smallKey: [new DialogueSnippet('Erin', 'It\'s a small key.  It\'ll fit somewhere.')],
         purpleCrystal: [new DialogueSnippet('Erin', 'I\'m not sure what this is.')],

@@ -39,11 +39,24 @@ export class GameSettings {
 }
 
 export class CrossGameEvents {
-    FishDeaths = new BehaviorSubject([]);
+    FishDeaths = new BehaviorSubject(new FishDeaths());
     badges = new BehaviorSubject<GameBadges>(new GameBadges());
 }
 
 export class TextVariables {
     fishName: string;
     fishNameDefault = 'the fish';
+    runeCount: string;
+    runeCountDefault = '0';
+}
+
+export class FishDeaths {
+    mustacheFish = false;
+    ovenFish = false;
+    fishSacrifice = false;
+    flaskFish = false;
+    fishNamed = false;
+    knifeFish1 = false;
+    knifeFish2 = false;
+    hammerFish = false;
 }

@@ -218,6 +218,26 @@ export class UpdateInteractions {
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'bookZhang2')),
                 'zhangBandaged', 'book')],
+
+        fishCrack: [
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'knifePuddle'),
+                [], [], [new EventFlag('knifeFish2')], [], [], [], new KeyPair('onClickUpdates', 'knifePuddle')),
+            'knife', 'puddle')],
+
+        knifePuddle: [
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'knifePuddle2')),
+            'knife', 'puddle')],
+
+        vaseBroken: [
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'vaseBroken')),
+            'rock', 'floor'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'vaseBroken')),
+            'floor', 'pole'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'vaseBroken')),
+            'floor', 'poles'),
+        ]
     };
 
     dialogueUpdates = {

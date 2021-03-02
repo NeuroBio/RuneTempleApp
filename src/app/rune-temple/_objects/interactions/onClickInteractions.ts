@@ -178,7 +178,13 @@ export class OnClickInteractions {
 
     floor = {
         default: new Interaction(new KeyPair('activeAreas', 'floor'),
-            [], [], [], [], [], [], new KeyPair('onClickUpdates', 'floorDefault'))
+            [], [], [], [], [], [], new KeyPair('onClickUpdates', 'floorDefault')),
+        pole: new Interaction(new KeyPair('envCombos', 'smackVase'),
+            [], ['glue'], [], [], [], [],
+            new KeyPair('onClickUpdates', 'vaseBroken')),
+        poles: new Interaction(new KeyPair('envCombos', 'smackVase'),
+            [], ['glue'], [], [], [], [],
+            new KeyPair('onClickUpdates', 'vaseBroken'))
     };
 
     handBroom = {
@@ -327,7 +333,10 @@ export class OnClickInteractions {
         waterGlass: new Interaction(new KeyPair('combos', 'fluidRock')),
         fiskTank: new Interaction(new KeyPair('combos', 'fishTankRock')),
         cleanFishtank: new Interaction(new KeyPair('combos', 'fishTankRock')),
-        compass: new Interaction(new KeyPair('combos', 'compassRock'))
+        compass: new Interaction(new KeyPair('combos', 'compassRock')),
+        floor: new Interaction(new KeyPair('envCombos', 'smackVase'),
+            [], ['glue'], [new EventFlag('hammerVase')], [], [], [],
+            new KeyPair('onClickUpdates', 'vaseBroken'))
     };
 
     injury = {
@@ -366,14 +375,20 @@ export class OnClickInteractions {
 
     fish = {
         swampFlask: new Interaction(new KeyPair('combos', 'flaskFish'),
-        ['fish', 'swampFlask'], ['emptyFlask'], [new EventFlag('flaskFish')]),
+            ['fish', 'swampFlask'], ['emptyFlask'], [new EventFlag('flaskFish')]),
         waterGlass: new Interaction(new KeyPair('combos', 'dishFish'),
-        ['fish', 'glassCap'], ['fishtank']),
-        charcoal: new Interaction(new KeyPair('combos', 'charcoalFish'))
+            ['fish', 'glassCap'], ['fishtank']),
+        charcoal: new Interaction(new KeyPair('combos', 'charcoalFish')),
+        rock: new Interaction(new KeyPair('combos', 'fishRock'),
+            ['fish'], [], [new EventFlag('hammerFish')]),
+        puddle: new Interaction(new KeyPair('envCombos', 'fishPuddle'),
+            ['fish'], [], [], [], [], [], new KeyPair('onClickUpdates', 'fishCrack')),
+        knife: new Interaction(new KeyPair('combos', 'fishFood'),
+            ['fish'], [], [new EventFlag('knifeFish1')])
     };
 
     fishtank = {
         charcoal: new Interaction(new KeyPair('combos', 'cleanTank'),
-        ['fishtank'], ['cleanFishtank'])
+            ['fishtank'], ['cleanFishtank'])
     }
 }

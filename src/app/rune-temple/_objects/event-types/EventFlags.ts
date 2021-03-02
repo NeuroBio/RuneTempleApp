@@ -32,12 +32,25 @@ export class EventFlags {
     // Fishy
     mustacheFish = false;
     ovenFish = false;
-    ovenCharcoal = false;
     fishSacrifice = false;
     flaskFish = false;
     fishNamed = false;
+    knifeFish1 = false;
+    knifeFish2 = false;
+    hammerFish = false;
+
+    // HAMMER EVERYTHING
+    hammerExit = false;
+    hammerSpigot = false;
+    hammerLockBox = false;
+    hammerRustedPanel = false;
+    hammerPuzzleBox = false;
+    hammerVase = false;
+    glassShatter = false;
+    flaskShatter = false;
 
     // Firestarter
+    ovenCharcoal = false;
     charcoalBurned = false;
     mapBurned = false;
     mossBurned = false;
@@ -53,14 +66,7 @@ export class EventFlags {
     muralDestroyed = false;
     murderAttempt = false;
 
-    // HAMMER EVERYTHING
-    hammerExit = false;
-    hammerSpigot = false;
-    hammerLockBox = false;
-    hammerRustedPanel = false;
-    hammerPuzzleBox = false;
-    glassShatter = false;
-    flaskShatter = false;
+   
 
     // Map Segments
     pitFloorMap = false;
