@@ -233,12 +233,15 @@ export class UpdateInteractions {
 
         vaseBroken: [
             new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'vaseBroken')),
+            'floor', 'default'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'smackVase2')),
             'rock', 'floor'),
 
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'vaseBroken')),
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'smackVase2')),
             'floor', 'pole'),
 
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'vaseBroken')),
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'smackVase2')),
             'floor', 'poles'),
 
             new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'makeMagnetSticky'),
@@ -247,8 +250,14 @@ export class UpdateInteractions {
 
             new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'makeMagnetSticky'),
                 ['magnetString'], ['stickyMagnetString'], [], [], [], [], new KeyPair('envCombos', 'makeMagnetSticky2')),
-            'floor', 'magnetString'),
-        ]
+            'floor', 'magnetString')],
+
+        barrelFish: [
+            new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'barrelFish')),
+            'rancidBarrel', 'default')],
+        
+        hauntedRelief: [
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'glueRelief2')))]
     };
 
     dialogueUpdates = {
@@ -304,7 +313,57 @@ export class UpdateInteractions {
 
             new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
                 [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
-                'zhangBandaged', 'cleanFishtank')]
+                'zhangBandaged', 'cleanFishtank')],
+
+        dampTroth: [
+            new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'trothSemiFilled')),
+            'troth', 'default'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
+                ['fish'], [], [new EventFlag('fishInTroth')]),
+            'troth', 'fish'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
+                ['fishtank'], ['glassCap'], [new EventFlag('fishInTroth')]),
+            'troth', 'fishtank'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
+                ['cleanFishtank'], ['glassCap'], [new EventFlag('fishInTroth')]),
+            'troth', 'cleanFishtank')],
+
+        swampTrothAlmostFilled: [
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fillSwampTroth2'))),
+            'troth', 'swampFlask'],
+
+        swampTrothFilled: [
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fillSwampTroth2')),
+            'troth', 'swampFlask'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'fullTroth')),
+            'troth', 'default')],
+
+        flaskFishOvenLit: [
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fishFlaskPot1'),
+                ['emptyFlask'], [], [], [
+                    new Activator('oven', 'meltPot', false),
+                    new Activator('oven', 'metalPot', true)
+                ]),
+            'meltPot', 'emptyFlask'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fishFlaskPot1'),
+                ['swampFlask'], [], [], [
+                    new Activator('oven', 'meltPot', false),
+                    new Activator('oven', 'metalPot', true)
+                ]),
+            'meltPot', 'swampFlask'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'scrapMetalFishPotLit'),
+                ['scrapMetal'], [], [], [
+                    new Activator('oven', 'meltPot', false),
+                    new Activator('oven', 'metalPot', true)
+                ]),
+            'meltPot', 'scrapMetal')
+        ]
     };
 
     inputReqUpdates = {

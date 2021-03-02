@@ -48,15 +48,18 @@ export class TextVariables {
     fishNameDefault = 'the fish';
     runeCount: string;
     runeCountDefault = '0';
+    trothFullness = '0';
 }
 
 export class FishDeaths {
     mustacheFish = false;
-    ovenFish = false;
-    fishSacrifice = false;
+    ashFish = false;
+    sacrificeFish = false;
     flaskFish = false;
-    fishNamed = false;
     knifeFish1 = false;
     knifeFish2 = false;
+    acidFish1 = false;
+    acidFish2 = false;
+    trothFish = false;
     hammerFish = false;
 }

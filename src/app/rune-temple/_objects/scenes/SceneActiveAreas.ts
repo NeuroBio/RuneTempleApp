@@ -62,8 +62,10 @@ export class SceneActiveAreas {
         new ActiveArea('Vent', 'vent1', 0, 0),
         new ActiveArea('Tongs', 'tongs', 0, 0),
         new ActiveArea('Melting Pot', 'meltPot', 0, 0),
+        new ActiveArea('Melting Pot', 'metalPot', 0, 0, false),
         new ActiveArea('Cooling Troth', 'troth', 0, 0),
-        new ActiveArea('Spigot', 'spigot', 0, 0)
+        new ActiveArea('Spigot', 'spigot', 0, 0),
+        new ActiveArea('Spigot', 'dripSpigot', 0, 0, false)
     ];
 
     leg = [new ActiveArea('Injury', 'injury', 0, 0)];

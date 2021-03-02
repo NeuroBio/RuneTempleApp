@@ -155,7 +155,10 @@ export class OnClickInteractions {
     };
 
     relief = {
-        default: new Interaction(new KeyPair('activeAreas', 'relief'))
+        default: new Interaction(new KeyPair('activeAreas', 'relief')),
+        glue: new Interaction(new KeyPair('envCombos', 'glueRelief'),
+            [], [], [], [], [], [], new KeyPair('onClickUpdates', 'hauntedRelief')),
+        breaker: new Interaction(new KeyPair('envCombos', 'breakerPuzzleRelief'))
     };
 
     topShelf = {
@@ -195,7 +198,18 @@ export class OnClickInteractions {
         glassCap: new Interaction(new KeyPair('envCombos', 'glassCapBarrel'),
             ['glassCap'], ['acidDish']),
         acidDish: new Interaction(new KeyPair('envCombos', 'acidDishBarrel'),
-            ['acidDish'], ['glassCap'])
+            ['acidDish'], ['glassCap']),
+        fish: new Interaction(new KeyPair('envCombos', 'acidFish1'),
+            ['fish'], [], [new EventFlag('acidFish1')], [], [], [],
+            new KeyPair('onClickUpdates', 'barrelFish')),
+        fishtank: new Interaction(new KeyPair('envCombos', 'acidFish1'),
+            ['fishtank'], [], [new EventFlag('acidFish1')], [], [], [],
+            new KeyPair('onClickUpdates', 'barrelFish')),
+        cleanFishtank: new Interaction(new KeyPair('envCombos', 'acidFish1'),
+            ['cleanFishtank'], [], [new EventFlag('acidFish1')], [], [], [],
+            new KeyPair('onClickUpdates', 'barrelFish')),
+        emptyFlask: new Interaction(new KeyPair('envCombos', 'noAcidFlask')),
+
     };
 
     glassCap = {
@@ -259,12 +273,18 @@ export class OnClickInteractions {
     peatOven = {
         default: new Interaction(new KeyPair('activeAreas', 'peatOven')),
         vodkaFlask2: new Interaction(new KeyPair('envCombos', 'vodkaFlask2Oven')),
+        emptyFlask: new Interaction(new KeyPair('envCombos', 'emptyFlaskPotUnlit')),
+        swampFlask: new Interaction(new KeyPair('envCombos', 'swampFlaskPotUnlit'),
+            ['swampFlask'], ['emptyFlask']),
+        scrapMetal: new Interaction(new KeyPair('envCombos', 'scrapMetalPotUnlit')),
         charcoal: new Interaction(new KeyPair('envCombos', 'charcoalOven'),
             ['charcoal'], [], [new EventFlag('ovenCharcoal', true)] ),
         lighter: new Interaction(new KeyPair('envCombos', 'lighterOven')),
         herbs: new Interaction(new KeyPair('envCombos', 'herbsOven')),
         moss: new Interaction(new KeyPair('envCombos', 'mossOven')),
-        book: new Interaction(new KeyPair('envCombos', 'bookOven'))
+        book: new Interaction(new KeyPair('envCombos', 'bookOven')),
+        fish: new Interaction(new KeyPair('envCombos', 'ashFish'),
+            ['fish'], [], [new EventFlag('ashFish')]),
     };
 
     peatOvenLit = {
@@ -277,7 +297,21 @@ export class OnClickInteractions {
         moss: new Interaction(new KeyPair('envCombos', 'mossLitOven'),
             ['moss'], [], [new EventFlag('mossBurned', true)]),
         book: new Interaction(new KeyPair('envCombos', 'bookLitOven')),
-        puzzleBox: new Interaction(new KeyPair('envCombos', 'puzzleBoxLitOven'))
+        puzzleBox: new Interaction(new KeyPair('envCombos', 'puzzleBoxLitOven')),
+        fish: new Interaction(new KeyPair('envCombos', 'sacrifice'),
+            ['fish'], [], [new EventFlag('sacrificeFish')]),
+        emptyFlask: new Interaction(new KeyPair('envCombos', 'emptyFlaskPot'),
+            ['emptyFlask'], [], [], [
+                new Activator('oven', 'meltPot', false),
+                new Activator('oven', 'metalPot', true)]),
+        swampFlask: new Interaction(new KeyPair('envCombos', 'swampFlaskPot'),
+            ['swampFlask'], [], [], [
+                new Activator('oven', 'meltPot', false),
+                new Activator('oven', 'metalPot', true)]),
+        scrapMetal: new Interaction(new KeyPair('envCombos', 'scrapMetalPotLit'),
+            ['scrapMetal'], [], [], [
+                new Activator('oven', 'meltPot', false),
+                new Activator('oven', 'metalPot', true)]),
     };
 
     peat = {
@@ -310,12 +344,32 @@ export class OnClickInteractions {
         default: new Interaction(new KeyPair('activeAreas', 'troth')),
         acidDish: new Interaction(new KeyPair('envCombos', 'acidDishTroth1'),
             [], [], [], [], [], [], new KeyPair('onClickUpdates', 'trothAcidDish')),
-        vodkaFlask2: new Interaction(new KeyPair('envCombos', 'vodkaFlask2Troth'))
+        waterGlass: new Interaction(new KeyPair('envCombos', 'glassTroth')),
+        vodkaFlask2: new Interaction(new KeyPair('envCombos', 'vodkaFlask2Troth')),
+        swampFlask: new Interaction(new KeyPair('envCombos', 'swampFlaskTroth'),
+            ['swampFlask'], ['emptyFlask'], [new EventFlag('trothFullness')]),
+        fish: new Interaction(new KeyPair('envCombos', 'fishDryTroth'),
+            ['fish'], [], [new EventFlag('trothFish')]),
+        fishtank: new Interaction(new KeyPair('envCombos', 'fishDryTroth2'),
+            ['fishtank'], ['glassCap'], [new EventFlag('trothFish')]),
+        cleanFishtank: new Interaction(new KeyPair('envCombos', 'fishDryTroth2'),
+            ['cleanFishtank'], ['glassCap'], [new EventFlag('trothFish')]),
     };
 
     spigot = {
-        default: new Interaction(new KeyPair('activeAreas', 'spigot'))
+        default: new Interaction(new KeyPair('activeAreas', 'spigot')),
+        rock: new Interaction(new KeyPair('envCombos', 'rockSpigot'),
+            [], [], [new EventFlag('HammerSpigot'), new EventFlag('trothFullnss')],
+            [
+                new Activator('oven', 'spigot', false),
+                new Activator('oven', 'dripSpigot', true)
+            ])
     };
+
+    dripSpigot = {
+        default: new Interaction(new KeyPair('activeAreas', 'dripSpigot')),
+        rock: new Interaction(new KeyPair('envCombos', 'rockSpigot2'))
+    }
 
     rockEnv = {
         default: new Interaction(new KeyPair('activeAreas.', 'rockEnv'),
@@ -386,7 +440,9 @@ export class OnClickInteractions {
         puddle: new Interaction(new KeyPair('envCombos', 'fishPuddle'),
             ['fish'], [], [], [], [], [], new KeyPair('onClickUpdates', 'fishCrack')),
         knife: new Interaction(new KeyPair('combos', 'fishFood'),
-            ['fish'], [], [new EventFlag('knifeFish1')])
+            ['fish'], [], [new EventFlag('knifeFish1')]),
+        acidDish: new Interaction(new KeyPair('combos', 'experiment'),
+            ['fish'], ['experiment'], [new EventFlag('acidFish2')])
     };
 
     fishtank = {

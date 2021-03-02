@@ -339,6 +339,13 @@ export class OnClickDialogue {
             new DialogueSnippet('Erin', 'Is there a whole lake beyond that door?', 'choice')
         ],
         puddle2: [new DialogueSnippet('Erin', 'This is REALLY not good.')],
+        experiment: [
+            new DialogueSnippet('', 'Erin carefully lays the fish into the glass.  For a moment, the water seems to invigorate it.  The fish swims several quick laps around its tiny tank before stopping suddenly. '),
+            new DialogueSnippet('', '.  The fish convulses then breaks into a fin trembling seizure.  It slowly rolls onto its back and sinks.  Bubbles form all over the fish.  The acrid smell of rotting fish flesh assaults Erin’s nose.  The water is decidedly acidic.')
+        ],
+        barrelFish: [new DialogueSnippet('', 'Erin is tempted to reach her hand into the barrel to pull out the fish, perhaps to save it if it were still alive or at least give it a proper burial if not; however, after seeing the effect the water had on the fish, Erin fears how the water would affect her.  The fish will remain in its watery grave.')],
+        dripSpigot: [new DialogueSnippet('', 'A puny stream of water burbles into the troth')],
+        fullTroth: [new DialogueSnippet('', 'The troth is filled with water.')],
     };
 
     combos = {
@@ -576,10 +583,70 @@ export class OnClickDialogue {
             new DialogueSnippet('', 'The shiny ooze belches out a bubble of foul smelling air.'),
             new DialogueSnippet('Erin', 'If I really need more, I can come back...')
         ],
+        smackVase2: [new DialogueSnippet('Erin', 'The vase is broken enough.')],
 
         magnetFloor: [new DialogueSnippet('Erin', 'The magnetic disk is too flimsy to help here.')],
         makeMagnetSticky: [new DialogueSnippet('', 'Erin dips the magnet into the goo.')],
         makeMagnetSticky2: [new DialogueSnippet('Erin', 'It\'s sticky enough...')],
+
+        acidFish1: [
+            new DialogueSnippet('', 'Erin releases the poor creature into the ancient water.  For a moment it stops flopping and gasping.  It swims serenely in a circle, as if to calm itself down.'),
+            new DialogueSnippet('', 'The fish’s tail kinks oddly to the side.'),
+            new DialogueSnippet('', 'Its pectoral fins sweep through the water erratically.  Its eyes bulge out of its head as its gills desperately try to pump in more oxygen.  As Erin watches in horror, the fish gives one last desperate gulp of air then stills and slowly sinks to the bottom.  Erin’s attempt to do a good deed only hastened the creature’s terrifying end.')
+        ],
+        noAcidFlask: [new DialogueSnippet('Erin', 'Zhang would be pissed if I put that in his flask.')],
+
+        rockSpigot: [new DialogueSnippet('', 'Erin pounds on the spigot with the rock, knocking the handle off entirely.  The pipe burbles water pathetically.  Maybe this wasn’t the best idea.')],
+        rockSpigot2: [new DialogueSnippet('Erin', 'The handle is already midding.  What will that accomplish?')],
+        swampFlaskTroth: [
+            new DialogueSnippet('', 'Erin pours the contents of the flask into the troth.  It is now slightly fuller.'),
+            new DialogueSnippet('Erin', 'There has got to be a better way to do this...')
+        ],
+        fillSwampTroth: [new DialogueSnippet('', 'Erin pours the contents of the flask into the troth.  It is finally full.  Erin smiles smugly.  No amount of inconvenience would parallel her sense of victory in completing this mundane task')],
+        fillSwampTroth2: [new DialogueSnippet('', 'Erin can do this all day long, but the full troth is full.')],
+        ashFish: [
+            new DialogueSnippet('', 'Erin tosses the fish into the peat oven.  The oven wasn’t on, so the fish just continues to flop desperately in the dust and char.  Soon it is covered in filth and its movement stills.  Erin would not be able to retrieve the fish if she had tried; it is now a part of the oven.  If she felt any remorse, Erin showed no sign of it.')
+        ],
+        sacrifice: [
+            new DialogueSnippet('', 'Erin tosses the fish into the peat oven.  Its wet body does not burn easily.  It flops in terror, questioning whatever divine forces fish believe in to save it from this awful fate, then cursing those same entities for the injustice of it all.  What had the tiny fish ever done to deserve this horror?'),
+            new DialogueSnippet('', 'Erin nods.  It was a small sacrifice, but all she had access to for the moment.  Hopefully, it will be sufficient.'),
+        ],
+        fishDryTroth: [
+            new DialogueSnippet('', 'Erin tosses the fish into the troth.'),
+            new DialogueSnippet('', 'The fish flops futilely for a few more moments, then stills.  Maybe fish need water?  Nah.  This fish must have just been weak.')
+        ],
+        fishDryTroth2: [
+            new DialogueSnippet('', 'Erin tosses ${fishName} into the troth.'),
+            new DialogueSnippet('', 'The water from the glass splats in all directions, and ${fishName} flops futilely for a few more moments before going still.  Maybe fish need water?  Nah.  This fish must have just been weak.')
+        ],
+        fishWetTroth: [
+            new DialogueSnippet('', 'Erin tosses ${fishName} into the troth.'),
+            new DialogueSnippet('', 'After a flurry of terrified swimming, ${fishName} lays at the bottom of the troth, scared, but alive.  Erin reaches in to pet it, but ${fishName} darts away.')
+        ],
+        glassTroth: [ new DialogueSnippet('', 'Erin almost pours the water into the troth but stops herself.  She will die of starvation before she sucessfully fills the troth like this.')],
+
+        emptyFlaskPotUnlit: [new DialogueSnippet('', 'Erin drops the vodka flask into the pot and places the pot into the unlit oven.  Nothing happens.  It’s not clear why Erin thought anything would happen.')],
+        swampFlaskPotUnlit: [new DialogueSnippet('', 'Erin dumps the water out of the flask, drops it into the pot, and places the pot into the unlit oven.  Nothing happens.  It’s not clear why Erin thought anything would happen.')],
+        emptyFlaskPot: [new DialogueSnippet('', 'Erin drops the vodka flask into the pot and places the pot into the oven.  The flask melts into shimmering, molten metal.')],
+        swampFlaskPot: [new DialogueSnippet('', 'Erin dumps the water out of the flask, drops it into the pot, and places the pot into the oven.  The flask melts into shimmering, molten metal.')],
+        fishFlaskPot1: [
+            new DialogueSnippet('', 'Erin drops the vodka flask into the pot and places the pot into the oven.  The flask melts into shimmering, molten metal.'),
+            new DialogueSnippet('', 'The fish’s head swirls around in the fluid.  Its dead eyes stare accusingly at Erin.  She picks the head out with the tongs and flicks it into the fire.'),
+        ],
+        fishFlaskPot2: [
+            new DialogueSnippet('', 'Erin dumps the water out of the flask, drops it into the pot, and places the pot into the oven.  The flask melts into shimmering, molten metal.'),
+            new DialogueSnippet('', 'The fish’s head swirls around in the fluid.  Its dead eyes stare accusingly at Erin.  She picks the head out with the tongs and flicks it into the fire.'),
+        ],
+
+        scrapMetalPotUnlit: [new DialogueSnippet('', 'Erin drops the scrap metal into the pot and places the pot into the unlit oven.  Nothing happens.  It’s not clear why Erin thought anything would happen.')],
+        scrapMetalPotLit: [new DialogueSnippet('', 'Erin drops the scrap metal into the pot and places the pot into the oven.  The scrap melts into shimmering, molten metal.')],
+        scrapMetalFishPotLit: [
+            new DialogueSnippet('', 'Erin drops the scrap metal into the pot and places the pot into the oven.  The scrap melts into shimmering, molten metal.'),
+            new DialogueSnippet('', 'A lump of squish fish head floats to teh surface of the metal.  Erin picks it out with the tongs and tosses it into the fire.')
+        ],
+        glueRelief: [new DialogueSnippet('', 'Erin picks up a shard of the relief and dabs it in the glue.  She adds it to the relief in its proper place.  As she bends down to get another, a flash of teal catches her eye, and the glued piece of the relief falls back onto the ground.')],
+        glueRelief2: [new DialogueSnippet('Erin', 'There no way I can fix the relief while these Ghosts are taking it back apart.')],
+        breakRelief:[new DialogueSnippet('', 'Erin gathers Source in her hand and converts it into a Breaker haze.  The Ghost in the relief strikes back.', 'miniGame', 'breakerPuzzleRelief')],
     };
 
     itemDefaults = {

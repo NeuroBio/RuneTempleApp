@@ -54,21 +54,43 @@ export class EventFlagService {
         }
         break;
       case 'trothFullness' :
-        this.badgeCheck('stubborn', (this.events.trothFullness === 10));
+        this.gs.setCountVar('trothFullness', 1);
+        switch (+this.gs.getTextVar('trothFullness')) {
+          case 1 :
+            this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'dampTroth'));
+            break;
+          case 9:
+            this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'swampTrothAlmostFilled'));
+            break;
+          case 10:
+            this.badgeCheck('stubborn', true);
+            this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'swampTrothFilled'));
+            break;
+        }
         break;
-      case ('mustacheFish' || 'barrelPills') :
+      case 'mustacheFish':
+        this.fishDeath('mustacheFish');
+        /* falls through */ 
+      case 'barrelPills' :
         this.badgeCheck('random', (this.events.mustacheFish && this.events.barrelPills));
         break;
-      case 'hammerExit' :
-        this.addChoice('dialogue', 'zhangConvoTopics', 'about the water', new KeyPair('zhangHelp', 'water'));
-        if (this.events.reliefRepaired) {
-          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'noFishForYou'));
+      case 'hammerExit' || 'hammerFish' :
+        if (key === 'hammerExit') {
+          this.addChoice('dialogue', 'zhangConvoTopics', 'about the water', new KeyPair('zhangHelp', 'water'));
+          if (this.events.reliefRepaired) {
+            this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'noFishForYou'));
+          }  
+        } else {
+          this.fishDeath('hammerFish');
         }
         /* falls through */
       case ('hammerLockBox' || 'hammerPuzzleBox' || 'hammerRustedPanel'
+        || 'hammerVase'
         || 'hammerSpigot' || 'glassShatter' || 'flaskShatter') :
         this.badgeCheck('hammer',
           (  this.events.hammerExit
+          && this.events.hammerFish
+          && this.events.hammerVase
           && this.events.hammerLockBox
           && this.events.hammerPuzzleBox
           && this.events.hammerRustedPanel
@@ -97,6 +119,10 @@ export class EventFlagService {
         if (this.events.ovenCharcoal) {
           this.events.charcoalBurned = true;
         }
+
+        if (this.events.flaskFish) {
+          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'flaskFishOvenLit'))
+        }
         // TODO: trigger effects?
         break;
       case 'wrapilize' :
@@ -104,6 +130,33 @@ export class EventFlagService {
         break;
       case 'zhangSawBook' :
         this.addChoice('dialogue', 'zhangConvoTopics', 'about the book', new KeyPair('zhangHelp', 'book'));
+        break;
+      case 'ashFish':
+        this.fishDeath('ashFish');
+        break;
+      case 'sacrificeFish':
+          this.fishDeath('sacrificeFish');
+          break;
+      case 'flaskFish':
+        this.fishDeath('flaskFish');
+        if (this.events.ovenLit) {
+          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'flaskFishOvenLit'))
+        }
+        break;
+      case 'knifeFish1':
+        this.fishDeath('knifeFish1');
+        break;
+      case 'knifeFish2':
+        this.fishDeath('knifeFish2');
+        break;
+      case 'acidFish1':
+        this.fishDeath('acidFish1');
+        break;
+      case 'acidFish2':
+        this.fishDeath('acidFish2');
+        break;
+      case 'trothFish':
+        this.fishDeath('trothFish');
         break;
       default:
         break;
@@ -115,6 +168,18 @@ export class EventFlagService {
     if (!badge.earned && condition) {
       this.gs.addBadges([key]);
     }
+  }
+
+  private fishDeath(key: string) {
+    this.gs.updateCrossGameEvent('fishDeaths', key);
+    const deaths = this.gs.getCrossGameEvents('fishDeaths').value;
+    const deathKeys = Object.keys(deaths);
+    for(const deathKey of deathKeys) {
+      if (!deaths[key]) {
+        return;
+      }
+    }
+    this.badgeCheck('deadFish', true);
   }
 
   private updateScene(scene: string, dialog): void {

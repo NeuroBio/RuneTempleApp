@@ -6,6 +6,7 @@ import { SceneService } from './scene.service';
 import { ChoiceService } from './choice.service';
 import { InputReqService } from './input-req.service';
 import { OnClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
+import { MiniGameService } from 'src/app/mini-games/_services/mini-game.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,8 @@ export class DialogueService {
     private gs: GameSettingsService,
     private sceneserv: SceneService,
     private choiceserv: ChoiceService,
-    private inputreqserv: InputReqService
+    private inputreqserv: InputReqService,
+    private minigameserv: MiniGameService
   ) { }
 
   setDialogue(key: string, subkey: string): void {
@@ -60,6 +62,9 @@ export class DialogueService {
         break;
       case 'scene' :
         this.sceneserv.triggerUpdate('dialogue', key);
+        break;
+      case 'miniGame' :
+        this.minigameserv.setMiniGame('key');
         break;
       default:
         console.error('Unknown event type: ', type);

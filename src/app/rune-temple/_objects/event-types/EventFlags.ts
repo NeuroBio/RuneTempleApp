@@ -5,8 +5,8 @@ export class EventFlags {
     bookGot = false;
     ovenLit = false;
     zhangFreed = false;
-    reliefRepaired = false;
     wetKeyMade = false;
+    reliefRepaired = false;
 
     // help Zhang
     sterilize = false;
@@ -27,16 +27,21 @@ export class EventFlags {
     barrelPills = false;
 
     // Troth Hell
-    trothFullness = 0;
+    trothFullness = false;
 
+
+    fishNamed = false;
+    fishInTroth = true;
     // Fishy
     mustacheFish = false;
-    ovenFish = false;
-    fishSacrifice = false;
+    ashFish = false;
+    sacrificeFish = false;
     flaskFish = false;
-    fishNamed = false;
     knifeFish1 = false;
     knifeFish2 = false;
+    acidFish1 = false;
+    acidFish2 = false;
+    trothFish = false;
     hammerFish = false;
 
     // HAMMER EVERYTHING
