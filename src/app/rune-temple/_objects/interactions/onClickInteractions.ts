@@ -39,11 +39,6 @@ export class OnClickInteractions {
         pills: new Interaction(new KeyPair('envCombos', 'pillsZhang3'),
             ['pills'], [], [new EventFlag('zhangMedicated')],
             [], [], [], new KeyPair('onClickUpdates', 'zhangMedicated')),
-        fish: new Interaction(new KeyPair('envCombos', 'zhangFish')),
-        fishtank: new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
-            [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
-        cleanFishtank: new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
-            [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
     };
 
     rubble = {
@@ -179,12 +174,14 @@ export class OnClickInteractions {
     floor = {
         default: new Interaction(new KeyPair('activeAreas', 'floor'),
             [], [], [], [], [], [], new KeyPair('onClickUpdates', 'floorDefault')),
-        pole: new Interaction(new KeyPair('envCombos', 'smackVase'),
+        pole: new Interaction(new KeyPair('envCombos', 'vaseBroken'),
             [], ['glue'], [], [], [], [],
             new KeyPair('onClickUpdates', 'vaseBroken')),
-        poles: new Interaction(new KeyPair('envCombos', 'smackVase'),
+        poles: new Interaction(new KeyPair('envCombos', 'vaseBroken'),
             [], ['glue'], [], [], [], [],
-            new KeyPair('onClickUpdates', 'vaseBroken'))
+            new KeyPair('onClickUpdates', 'vaseBroken')),
+        magnet: new Interaction(new KeyPair('envCombos', 'magnetFloor')),
+        magnetString: new Interaction(new KeyPair('envCombos', 'magnetFloor')),
     };
 
     handBroom = {
@@ -212,6 +209,11 @@ export class OnClickInteractions {
     magnet = {
         twine: new Interaction(new KeyPair('combos', 'twineMagnet1'),
             ['twine', 'magnet'], ['magnetString'])
+    };
+
+    stickyMagnet = {
+        twine: new Interaction(new KeyPair('combos', 'twineMagnet1'),
+            ['twine', 'stickyMagnet'], ['stickyMagnetString'])
     };
 
     herbsEnv = {

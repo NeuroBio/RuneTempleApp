@@ -575,7 +575,11 @@ export class OnClickDialogue {
         vaseBroken: [
             new DialogueSnippet('', 'The shiny ooze belches out a bubble of foul smelling air.'),
             new DialogueSnippet('Erin', 'If I really need more, I can come back...')
-        ]
+        ],
+
+        magnetFloor: [new DialogueSnippet('Erin', 'The magnetic disk is too flimsy to help here.')],
+        makeMagnetSticky: [new DialogueSnippet('', 'Erin dips the magnet into the goo.')],
+        makeMagnetSticky2: [new DialogueSnippet('Erin', 'It\'s sticky enough...')],
     };
 
     itemDefaults = {
@@ -642,8 +646,10 @@ export class OnClickDialogue {
 
         // Magnet States
         magnet: [new DialogueSnippet('Erin', 'It\'s not a powerful magnet, but it\'s better than nothing.')],
+        stickyMagnet: [new DialogueSnippet('Erin', 'This is so disgusting...')],
         twine: [new DialogueSnippet('Erin', 'Could be useful.  If not, it doesn\'t take up that much space.')],
         magnetString: [new DialogueSnippet('Erin', 'The preferred build for picking up paperclips.')],
+        stickyMagnetString : [new DialogueSnippet('Erin', 'This is so disgusting... but it\'s on a string now.')],
 
         // Glass States
         glassCap: [new DialogueSnippet('Erin', 'A dish-shaped hunk of glass.')],

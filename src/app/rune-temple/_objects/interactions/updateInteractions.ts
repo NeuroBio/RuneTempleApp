@@ -44,7 +44,7 @@ export class UpdateInteractions {
 
         floorDefault: [
             new InteractionWithKeys(
-                new Interaction(new KeyPair('activeArea', 'floor2')),
+                new Interaction(new KeyPair('activeAreas', 'floor2')),
                 'floor', 'default')],
 
         exitRock: [
@@ -212,7 +212,10 @@ export class UpdateInteractions {
 
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'puzzleBoxZhang')),
-                'zhangBandaged', 'puzzlebox')],
+                'zhangBandaged', 'puzzlebox'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangFish')),
+                'zhangBandaged', 'fish')],
 
         zhangBook: [
             new InteractionWithKeys(
@@ -237,6 +240,14 @@ export class UpdateInteractions {
 
             new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'vaseBroken')),
             'floor', 'poles'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'makeMagnetSticky'),
+                ['magnet'], ['stickyMagnet'], [], [], [], [], new KeyPair('envCombos', 'makeMagnetSticky2')),
+            'floor', 'magnet'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'makeMagnetSticky'),
+                ['magnetString'], ['stickyMagnetString'], [], [], [], [], new KeyPair('envCombos', 'makeMagnetSticky2')),
+            'floor', 'magnetString'),
         ]
     };
 
@@ -284,6 +295,15 @@ export class UpdateInteractions {
 
                 new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangZhangFish'),
                 [], [], [new EventFlag('envCombos', 'zhangSawFish')], [], [], ['zhangFish']),
+                'zhangBandaged', 'cleanFishtank')],
+
+        zhangNoZhangFish: [
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
+                [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
+                'zhangBandaged', 'fishtank'),
+
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
+                [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
                 'zhangBandaged', 'cleanFishtank')]
     };
 

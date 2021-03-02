@@ -21,8 +21,10 @@ export class GameItems {
 
     // Magnet States
     magnet = new InventoryItem('Magnetic Disk', 'magnet');
+    stickyMagnet = new InventoryItem('Magnetic Disk', 'magnet');
     twine = new InventoryItem('Twine', 'twine');
     magnetString = new InventoryItem('Magnet on a String', 'magnetString');
+    stickyMagnetString = new InventoryItem('Sticky Magnet on a String', 'stickyMagnetString')
 
     // Glass States
     glassCap = new InventoryItem('Glass Cap', 'glassCap');
@@ -70,7 +72,7 @@ export class GameItems {
     keyMold = new InventoryItem('Keymold', 'keyMold');
 
     book = new InventoryItem('Runic Book', 'book');
-    puzzleBox = new InventoryItem('Puzzel Box', 'puzzleBox');
+    puzzleBox = new InventoryItem('Puzzle Box', 'puzzleBox');
     pills = new InventoryItem('Tin of Pain Killers', 'pills');
     herbs = new InventoryItem('Wild Herbs', 'herbs');
     moss = new InventoryItem('Moss', 'moss');
