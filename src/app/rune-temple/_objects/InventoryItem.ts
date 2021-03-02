@@ -29,7 +29,7 @@ export class GameItems {
     fish = new InventoryItem('Tiny, Desperate Fish', 'fish');
     waterGlass = new InventoryItem('Tiny, Awkward Water Glass', 'waterGlass');
     deadFish = new InventoryItem('Tiny, Dead Fish', 'dead-fish');
-    fishTank = new InventoryItem('Tiny, Official Fishtank', 'fishtank');
+    fishtank = new InventoryItem('Tiny, Official Fishtank', 'fishtank');
     cleanFishtank = new InventoryItem('Tiny, Purified, Official Fishtank', 'cleanFishtank');
     acidDish = new InventoryItem('Makeshift Petri Dish of Suspicious Water', 'acidDish');
     experiment = new InventoryItem('Science Experiment', 'experiment');

@@ -45,9 +45,9 @@ export class EventFlagService {
         const name = this.gs.getTextVar('fishName');
         this.badgeCheck('breakfast', (name === 'Fish'));
         this.badgeCheck('enlightenment', (name === 'kArA'));
-        break;
-      case 'zhangSawFish' :
-        this.badgeCheck('zhangFish', (this.gs.getTextVar('fishName') === 'Zhang' && this.events.zhangSawFish));
+        if (name === 'Zhang') {
+          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'zhangZhangFish'));
+        }
         break;
       case 'trothFullness' :
         this.badgeCheck('stubborn', (this.events.trothFullness === 10));
@@ -58,7 +58,7 @@ export class EventFlagService {
       case 'hammerExit' :
         this.addChoice('dialogue', 'zhangConvoTopics', 'about the water', new KeyPair('zhangHelp', 'water'));
         if (this.events.reliefRepaired) {
-          this.interactionserv.updateInteractions(new KeyPair('eventInteraction', 'noFishForYou'));
+          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'noFishForYou'));
         }
          /* falls through */
       case ('hammerLockBox' || 'hammerPuzzleBox' || 'hammerRustedPanel'

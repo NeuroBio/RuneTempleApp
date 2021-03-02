@@ -8,7 +8,7 @@ export class InputRequests {
 
 export class DialogueInputRequests {
 
-    fishName = new InputRequest(
+    nameFish = new InputRequest(
         'fishName',
         'What should the fish be called?',
         new FormControl(null, Validators.compose([

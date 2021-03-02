@@ -4,7 +4,6 @@ import { EventFlag } from '../event-types/EventFlag';
 
 export class OnClickInteractions {
 
-    // Active Areas
     rootEnv = {
         default: new Interaction(
             new KeyPair('activeAreas', 'rootEnv'), [], ['root'], [],
@@ -40,6 +39,11 @@ export class OnClickInteractions {
         pills: new Interaction(new KeyPair('envCombos', 'pillsZhang3'),
             ['pills'], [], [new EventFlag('zhangMedicated')],
             [], [], [], new KeyPair('onClickUpdates', 'zhangMedicated')),
+        fish: new Interaction(new KeyPair('envCombos', 'zhangFish')),
+        fishtank: new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
+            [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
+        cleanFishtank: new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
+            [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
     };
 
     rubble = {
@@ -82,7 +86,6 @@ export class OnClickInteractions {
         knife: new Interaction(new KeyPair('envCombos', 'knifeDoor'))
     };
 
-    // Item Combos
     knife = {
             compass: new Interaction(new KeyPair('combos', 'compassKnife')),
             shirt: new Interaction(new KeyPair('combos', 'shirtKnife'), ['shirt'], ['clothStrips']),
@@ -196,6 +199,8 @@ export class OnClickInteractions {
         vodkaFlask: new Interaction(new KeyPair('combos', 'flaskGlassCap')),
         vodkaFlask2: new Interaction(new KeyPair('combos', 'flaskGlassCap')),
         swampFlask: new Interaction(new KeyPair('combos', 'flaskGlassCap')),
+        puddle: new Interaction(new KeyPair('envCombos', 'puddleGlass'),
+        ['glassCap'], ['waterGlass'])
     };
 
     magnet = {
@@ -321,7 +326,7 @@ export class OnClickInteractions {
         coffin: new Interaction(new KeyPair('combos', 'fluidRock')),
         waterGlass: new Interaction(new KeyPair('combos', 'fluidRock')),
         fiskTank: new Interaction(new KeyPair('combos', 'fishTankRock')),
-        cleanFishTank: new Interaction(new KeyPair('combos', 'fishTankRock')),
+        cleanFishtank: new Interaction(new KeyPair('combos', 'fishTankRock')),
         compass: new Interaction(new KeyPair('combos', 'compassRock'))
     };
 
@@ -353,4 +358,22 @@ export class OnClickInteractions {
                 new Activator('foyer', 'pitFloor', true)
             ], [], undefined, 'pitFloor')
     };
+
+    emptyFlask = {
+        puddle : new Interaction(new KeyPair('envCombos', 'puddleFlask'),
+        ['emptyFlask'], ['swampFlask'])
+    };
+
+    fish = {
+        swampFlask: new Interaction(new KeyPair('combos', 'flaskFish'),
+        ['fish', 'swampFlask'], ['emptyFlask'], [new EventFlag('flaskFish')]),
+        waterGlass: new Interaction(new KeyPair('combos', 'dishFish'),
+        ['fish', 'glassCap'], ['fishtank']),
+        charcoal: new Interaction(new KeyPair('combos', 'charcoalFish'))
+    };
+
+    fishtank = {
+        charcoal: new Interaction(new KeyPair('combos', 'cleanTank'),
+        ['fishtank'], ['cleanFishtank'])
+    }
 }

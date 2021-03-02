@@ -336,7 +336,7 @@ export class OnClickDialogue {
 
         puddle1: [
             new DialogueSnippet('', 'Erin looks at the pooling water with growing concern.  She sees a tiny fish, smaller than her finger.  She scoops the fragile creature up with her hands.'),
-            new DialogueSnippet('Erin', 'Is there a whole lake beyond that door?', 'choice', 'nameFish')
+            new DialogueSnippet('Erin', 'Is there a whole lake beyond that door?', 'choice')
         ],
         puddle2: [new DialogueSnippet('Erin', 'This is REALLY not good.')],
     };
@@ -366,7 +366,18 @@ export class OnClickDialogue {
         mapLighter: [new DialogueSnippet('', 'Erin considers the lighter and the map.  Yes, the map is made of paper, and paper is very flammable, but it has also proved... somewhat useful as a navigation tool.', 'choice', 'igniteMap')],
         fluidRock: [new DialogueSnippet('Erin', 'Mmm... I don\'t think so.  If I break that with the rock, I\'ll get the fluid all over my hands.')],
         fishTankRock: [new DialogueSnippet('Erin', 'NO.  Not while ${fishName} is still in it.')],
-        compassRock: [new DialogueSnippet('', 'Erin considers the rock and the compass.  The rock could certainly smash through the glass, but that seems like a violent way to deal with the compass.', 'choice', 'shatter3')]
+        compassRock: [new DialogueSnippet('', 'Erin considers the rock and the compass.  The rock could certainly smash through the glass, but that seems like a violent way to deal with the compass.', 'choice', 'shatter3')],
+        flaskFish: [
+            new DialogueSnippet('', 'Erin shoves the tiny fish into the Vodka Flash, not thinking to first compare the circumference of the flask’s opening to the circumference of the fish.  The fish’s head gets stuck, and it trashes around madly.  '),
+            new DialogueSnippet('', 'Erin tries to pull the fish back out but tugs too hard.  The fish’s head is severed from its body.  Erin holds the twitching body in her fist for only a moment before dropping it.  She turns the flask upside down to shake the head out to no avail.  The water pours out of the flask, but the head is now permanently trapped inside.  Erin vows to buy Zhang a new Flask.')
+        ],
+        dishFish: [new DialogueSnippet('', 'Erin plonks the tiny fish into the glass of water.  It freezes for a moment, not understanding.  Then, the fish realizes it was safely underwater again.  It begins to circle its temporary home with only mild concern.', 'inputRequest', 'nameFish')],
+        cleanTank: [new DialogueSnippet('', 'Erin swirls the charcoal around in the water quickly.  This both oxygenates the water and deactivates any impurities.  ${fishName} takes a big happy gulp of water.')],
+        charcoalFish: [
+            new DialogueSnippet('', 'Erin looks at the panic in the fish’s eyes and wants to do something to make it feel better.  Using her charcoal, she draws a happy moustache on the fish’s face.  Now, the fish looks excited!'),
+            new DialogueSnippet('', 'The charcoal doesn’t stick well to the fish’s slick scales.  The charcoal runs and starts to coat the fish’s gills.  Erin only realizes too late what she has done.  She tries to wipe the charcoal off, but that seems to only make things worse.  The fish gives a final desperate heave, then falls still.  Erin gently lays the fish on the ground.  There is nothing more she can do.')
+        ],
+
     };
 
     envCombos = {
@@ -466,7 +477,7 @@ export class OnClickDialogue {
         swampFlaskZhang: [
             new DialogueSnippet('', 'Erin offers Zhang the swamp water flask.'),
             new DialogueSnippet('Zhang', 'Thanks Erin, I—'),
-            new DialogueSnippet('', 'Zhange makes a disgusted expression as he catches a whiff of the flask\'s contents.'),
+            new DialogueSnippet('', 'Zhang makes a disgusted expression as he catches a whiff of the flask\'s contents.'),
             new DialogueSnippet('Zhang', 'What did you put in here?'),
             new DialogueSnippet('Erin', 'Swamp water.'),
             new DialogueSnippet('', 'Zhang shoves the flask back into Erin\'s hands.')
@@ -530,9 +541,28 @@ export class OnClickDialogue {
             new DialogueSnippet('', 'Erin pounds viciously on the stone door with the rock.  The door chips, and then the chip widens into a dent.  As she hammers, a squirt of water splashes her face, and Erin stops.  A fast trickle of water streams through a finger’s-width hole.'),
             new DialogueSnippet('Erin', 'That... that\'s not good.'),
         ],
-        rockExit2: [new DialogueSnippet('Erin', 'That seems like a REALLY bad idea.')]
+        rockExit2: [new DialogueSnippet('Erin', 'That seems like a REALLY bad idea.')],
 
-
+        puddleFlask: [new DialogueSnippet('', 'Erin lays the flask in the pooling water.  It bubbles and burbles before becoming completely full of water.')],
+        puddleGlass: [new DialogueSnippet('', 'Erin scoops up some water in the glass cap, creating a makeshift glass of water.')],
+        zhangFish: [
+            new DialogueSnippet('', 'Erin offers Zhang the tiny, desperate fish.'),
+            new DialogueSnippet('Zhang', 'Zhang: Put that poor thing in some water!  What are you thinking?!')
+        ],
+        zhangZhangFish: [
+            new DialogueSnippet('', 'Erin offers Zhang the Tiny, Official Fishtank of Zhang.'),
+            new DialogueSnippet('Erin', 'I named it after you.'),
+            new DialogueSnippet('Zhang', 'Why?'),
+            new DialogueSnippet('Erin', 'It seemed appropriate.'),
+            new DialogueSnippet('Zhang', 'What does that even mean?'),
+            new DialogueSnippet('', 'Erin takes back the tank without answering.'),
+        ],
+        zhangFishtank: [
+            new DialogueSnippet('', 'Erin offers Zhang the Tiny, Official Fishtank of ${fishName}.'),
+            new DialogueSnippet('Erin', 'I found a pet!'),
+            new DialogueSnippet('Zhang', 'Is this a bad joke?'),
+            new DialogueSnippet('', 'Erin takes back the tank without answering.'),
+        ]
     };
 
     itemDefaults = {

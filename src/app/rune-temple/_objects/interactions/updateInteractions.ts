@@ -223,7 +223,7 @@ export class UpdateInteractions {
     dialogueUpdates = {
 
         nameFish: [
-            new InputRequestInteraction('dialogue', 'fishName'),
+            new InputRequestInteraction('inputReqUpdates', 'fishName'),
 
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'unnameFish'),
@@ -256,6 +256,15 @@ export class UpdateInteractions {
 
         noFishForYou: [
             new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'puddle2')))],
+
+        zhangZhangFish: [
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangZhangFish'),
+                [], [], [new EventFlag('envCombos', 'zhangSawFish')], [], [], ['zhangFish']),
+                'zhangBandaged', 'fishtank'),
+
+                new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangZhangFish'),
+                [], [], [new EventFlag('envCombos', 'zhangSawFish')], [], [], ['zhangFish']),
+                'zhangBandaged', 'cleanFishtank')]
     };
 
     inputReqUpdates = {

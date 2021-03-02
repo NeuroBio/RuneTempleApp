@@ -19,6 +19,8 @@ export class EventFlags {
     zhangSawBook = false;
     zhangSawCompass = false;
     zhangSawBadFlask = false;
+    zhangSawFish = false;
+
 
     // misc badge things
     quickBreak = false;
@@ -28,11 +30,11 @@ export class EventFlags {
     trothFullness = 0;
 
     // Fishy
-    zhangSawFish = false;
     mustacheFish = false;
     ovenFish = false;
     ovenCharcoal = false;
     fishSacrifice = false;
+    flaskFish = false;
     fishNamed = false;
 
     // Firestarter
