@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { GamePieces, GamePiece } from '../_objects/GamePiece';
 import { GameBoard, GameTile } from '../_objects/GameBoard';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { MovementService } from './movement.service';
+import { ControllerService } from '../../_services/controller.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,16 @@ export class AIService {
   private pieceTypes = new GamePieces();
   private activePuzzle: GameBoard;
 
-  constructor(private movementserv: MovementService) {
+  constructor(
+    private movementserv: MovementService,
+    private controller: ControllerService
+  ) {
     this.setGameBoard(new GameBoard(
       8, 8,
       [
-        new GameTile(3, 5, 'fizzle'),
-        new GameTile(1, 5, 'fizzle'),
-        new GameTile(5, 5, 'fizzle'),
+        // new GameTile(3, 7, 'fizzle'),
+        // new GameTile(1, 7, 'fizzle'),
+        new GameTile(5, 7, 'fizzle'),
         // new GameTile(3, 3, 'buzz')
       ],
       new GameTile(3, 0, 'player')));
@@ -50,14 +54,11 @@ export class AIService {
       const initialCoords = board.getPlayerCoords();
       const middlex = ((coords[0] - initialCoords[0]) / 2) + initialCoords[0];
       const middley = ((coords[1] - initialCoords[1]) / 2) + initialCoords[1];
-      console.log(middlex, middley)
       board.removeTile(new GameTile(middlex, middley, ''));
     }
   }
 
   aiTurn(): void {
-    console.log('turn')
-
     const board = this.gameBoard.value;
     const player = board.getPlayer();
     const playerMoves = this.movementserv.getAllowedMoves(player, board);;
@@ -88,6 +89,7 @@ export class AIService {
       });
     } else {
       this.gameBoard.next(board);
+      this.controller.setVictory(true);
       // victory!
     }
 

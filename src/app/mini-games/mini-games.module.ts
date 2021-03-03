@@ -6,18 +6,22 @@ import { BreakerPuzzleComponent } from './breaker-puzzle/breaker-puzzle.componen
 // Material Imports
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ControlsComponent } from './controls/controls.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
   declarations: [
     MiniGameComponent,
     BreakerPuzzleComponent,
+    ControlsComponent,
   ],
   imports: [
     CommonModule,
 
     MatButtonModule,
     MatGridListModule,
+    MatIconModule
 
   ],
   exports: [

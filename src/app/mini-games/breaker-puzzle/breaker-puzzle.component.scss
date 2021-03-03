@@ -1,5 +1,12 @@
 @import '../../rune-temple/_objects/vars.scss';
 
+.grid-box {
+    position: relative;
+    height: 70vmin;
+    width: 70vmin;
+    margin: auto;
+}
+
 mat-grid-list {
     width: inherit;
     height: inherit;
@@ -24,14 +31,6 @@ mat-grid-tile {
 
 .mat-normalMove {
     background-color: $lighter-grey;
-}
-
-
-.grid-box {
-    position: relative;
-    height: 80vmin;
-    width: 80vmin;
-    // margin: auto;
 }
 
 // piece display

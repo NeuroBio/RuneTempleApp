@@ -4,7 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class MiniGameService {
 
-  activeGame = new BehaviorSubject<string>(undefined)
+  activeGame = new BehaviorSubject<string>(undefined);
+
   constructor() { }
 
   setMiniGame(key: string): void {
@@ -13,5 +14,12 @@ export class MiniGameService {
 
   unsetMiniGame(): void {
     this.activeGame.next(undefined);
+  }
+
+  markGameAsSkipped() {
+  }
+
+  markGameAsCompleted() {
+
   }
 }

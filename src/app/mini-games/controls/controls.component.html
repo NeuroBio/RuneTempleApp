@@ -1,0 +1,44 @@
+<div id="control-frame">
+
+    <div *ngIf="victoryAchieved; else controls" class="victory-box">
+        <span id="victory">Puzzle solved!</span>
+        <button mat-flat-button (click)="continue()"
+        color="active">
+            Continue
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
+
+    <ng-template #controls>
+        <button mat-flat-button (click)="leave()"
+        [color]="allowLeave ? 'active' : 'disabled'"
+        [disabled]="!allowLeave">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+            Leave
+        </button>
+    
+        <div class="action-box">
+            <button mat-flat-button (click)="reset()"
+            color="active">
+                <mat-icon>autorenew</mat-icon>
+                Reset
+            </button>
+    
+            <!-- to set  as right justified -->
+            <div class="spacer">
+                <button mat-flat-button (click)="info()"
+                color="active">
+                    <mat-icon>help</mat-icon>
+                    Info
+                </button>
+                <button mat-flat-button (click)="skip()"
+                [color]="allowSkip ? 'active' : 'disabled'"
+                [disabled]="!allowSkip">
+                    Skip
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </div>
+        </div>
+    </ng-template>
+   
+</div>

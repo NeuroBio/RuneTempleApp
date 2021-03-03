@@ -8,8 +8,18 @@
     max-width: $max-game-width;
     max-height: $max-game-height;
     background-color: $medium-grey;
+
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: stretch;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+}
+
+app-breaker-puzzle {
+    flex-grow: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
-
 }
