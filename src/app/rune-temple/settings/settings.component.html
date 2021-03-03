@@ -45,6 +45,12 @@
                     {{ form.get('enableHints').value ? 'Hints enabled' : 'Hints disabled' }}
                 </span>
             </mat-slide-toggle>
+
+            <mat-slide-toggle formControlName="allowSkip">
+                <span class="center-align">
+                    {{ form.get('allowSkip').value ? 'Puzzles can be skipped' : 'Puzzles cannot be skipped' }}
+                </span>
+            </mat-slide-toggle>
         </div>
     </form>
 

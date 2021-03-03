@@ -29,6 +29,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
           this.form.controls.changeCursorOnHover.enable();
           this.form.controls.rightClickDescriptions.enable();
           this.form.controls.enableHints.enable();
+          this.form.controls.allowSkip.enable();
         }
     });
     setTimeout(() => { this.settings.nativeElement.style.opacity = 1; }, 10);

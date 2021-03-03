@@ -375,7 +375,7 @@ export class UpdateInteractions {
     };
 
     miniGames = {
-        BreakerPuzzle1: [
+        breakerPuzzle1: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'breakerRelief2')),
                 'relief', 'breaker'),

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { InteractionWithKeys } from 'src/app/rune-temple/_objects/interactions/Interaction';
 import { EventFlag } from 'src/app/rune-temple/_objects/event-types/EventFlag';
 import { MiniGameVictoryInteractions } from 'src/app/rune-temple/_objects/interactions/MiniGameVictoryInteractions';
 import { MiniGames, MiniGame } from '../_objects/MiniGames';
 import { EventFlagService } from './event-flag.service';
+import { GameSettingsService } from './game-settings.service';
 
 
 @Injectable()
@@ -12,11 +13,19 @@ export class MiniGameService {
 
   activeGame = new BehaviorSubject<MiniGame>(undefined);
   miniGameBroadcast = new BehaviorSubject<InteractionWithKeys>(undefined);
+  allowSkip = new BehaviorSubject<boolean>(undefined);
+
+  private skipSubscription: Subscription;
   private victoryEvents = new MiniGameVictoryInteractions();
   private gameKey: string;
   private miniGames = new MiniGames();
 
-  constructor(private eventflagserv: EventFlagService) { }
+  constructor(
+    private eventflagserv: EventFlagService,
+    private gs: GameSettingsService) { 
+      this.skipSubscription = this.gs.getSetting('allowSkip').valueChanges
+      .subscribe(setting => this.allowSkip.next(setting));
+    }
 
   setMiniGame(key: string): void {
     this.gameKey = key;

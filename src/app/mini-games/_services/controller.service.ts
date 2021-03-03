@@ -13,7 +13,9 @@ export class ControllerService {
   allowLeave = new BehaviorSubject<boolean>(true);
   allowSkip = new BehaviorSubject<boolean>(false);
   victoryAchieved = new BehaviorSubject<boolean>(false);
+
   gameSubscription = new Subscription;
+  allowSkipSubscription = new Subscription;
 
   constructor(
     private minigameserv: MiniGameService,
@@ -21,6 +23,8 @@ export class ControllerService {
   ) {
     this.gameSubscription = this.minigameserv.activeGame
       .subscribe(game => this.routeGame(game));
+    this.allowSkipSubscription = this.minigameserv.allowSkip
+      .subscribe(skip => this.allowSkip.next(skip));
   }
 
   setVictory(victorious: boolean) {
@@ -49,10 +53,11 @@ export class ControllerService {
 
   private routeGame(game: MiniGame) {
     this.setVictory(false);
-    
-    switch (game.type) {
-      case 'breaker':
-        this.breakergame.setGameBoard(game.game);
+    if (game) {
+      switch (game.type) {
+        case 'breaker':
+          this.breakergame.setGameBoard(game.game);
+      }  
     }
   }
 

@@ -19,7 +19,8 @@ export class GameSettings {
             hardMode: true,
             changeCursorOnHover: { value: false, disabled: true },
             rightClickDescriptions: { value: false, disabled: true },
-            enableHints: { value: false, disabled: true }
+            enableHints: { value: false, disabled: true },
+            allowSkip: { value: false, disabled: true },
         });
     }
 
@@ -29,7 +30,8 @@ export class GameSettings {
             hardMode: true,
             changeCursorOnHover: false,
             rightClickDescriptions: false,
-            enableHints: false
+            enableHints: false,
+            allowSkip: false
         });
 
         if (wipe) {
