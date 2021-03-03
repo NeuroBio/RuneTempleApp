@@ -14,12 +14,15 @@ export class GameBoard {
     dimx: number;
     dimy: number;
     pieces: any;
+    private playerCoords: string;
 
-    constructor(x: number, y: number, pieces: GameTile[]) {
+    constructor(x: number, y: number, pieces: GameTile[], player: GameTile) {
         this.dimx = x;
         this.dimy = y;
         this.pieces = {};
+        this.playerCoords = `x${player.xcoord}y${player.ycoord}`;
         pieces.forEach(piece => this.addTile(piece));
+        this.addTile(player);
     }
 
     addTile(tile: GameTile): void {
@@ -39,6 +42,15 @@ export class GameBoard {
 
     checkForTile(xcoord: number, ycoord: number): GameTile {
         return this.pieces[`x${xcoord}y${ycoord}`];
+    }
+
+    updatePlayer(tile: GameTile, newX: number, newY: number) {
+        this.moveTile(tile, newX, newY);
+        this.playerCoords = `x${newX}y${newY}`;
+    }
+
+    getPlayer() {
+        return this.pieces[this.playerCoords];
     }
 
 }

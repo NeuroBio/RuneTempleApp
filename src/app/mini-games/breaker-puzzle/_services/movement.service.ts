@@ -80,11 +80,15 @@ export class MovementService {
     const destroy = this.pieceTypes[piece.pieceType].canDestroy
     const valid = [];
     possible.forEach(move => {
-      // check if without board bounds
+      // check if within board bounds
       if (move[0] > -1 && move[0] < board.dimx
         && move[1] > -1 && move[1] < board.dimy) {
           const tile = board.checkForTile(move[0], move[1]);
-          if(destroy || !tile || tile.pieceType === 'player') {
+          // check if tile is another enemy ai tile (if the piece type cares)
+          if (!tile || tile.pieceType === 'player') {
+            valid.push(move);
+          } else if (destroy) { // mark as ocupied tile
+            move.push[0];
             valid.push(move);
           }
         }

@@ -10,12 +10,26 @@ mat-grid-list {
 
 mat-grid-tile {
     width:5vw; height:5vw;
-    background-color: $grey-ish;
+    button {
+        background-color: $grey-ish;
+        width: 100%;
+        height: 100%;
+    }
 }
 
-.fuck-this {
-    // display: inline-block;
+.grid-box {
+    position: relative;
     height: 80vmin;
     width: 80vmin;
     margin: auto;
 }
+
+// piece display
+.piece {
+    top: 0;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: lightseagreen;
+}
+

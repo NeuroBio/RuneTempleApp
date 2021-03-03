@@ -2,9 +2,9 @@ export class GamePiece {
     assetKey: string;
     directions: AllowedDirections;
     patterns: string[][];
-    attraction: string[];
+    attractions?: string[];
     canDestroy: boolean;
-    avoidPlayer: boolean;
+    avoidPlayer?: boolean;
 
     constructor() {
 
@@ -34,7 +34,7 @@ export class GamePieces {
         assetKey: 'fizzle',
         directions: new AllowedDirections(true, true, true, true,  true),
         patterns: [['straight']],
-        attraction: ['edge', 'player'],
+        attractions: ['edge', 'player'],
         canDestroy: false,
         avoidPlayer: false
     }
@@ -43,20 +43,27 @@ export class GamePieces {
         assetKey: 'buzz',
         directions: new AllowedDirections(true, true, true, true,  false),
         patterns: [
-            ['stright', 'straight', 'left'],
-            ['stright', 'straight', 'right'],
+            ['straight', 'straight', 'left'],
+            ['straight', 'straight', 'right'],
         ],
-        attraction: ['player'],
+        attractions: ['player'],
         canDestroy: false,
-        avoidPlayer: false
+        avoidPlayer: true
     }
     
     shriek: GamePiece = {
         assetKey: 'shriek',
         directions: new AllowedDirections(true, true, true, true,  true),
-        patterns: [['stright', 'straight', 'straight']],
-        attraction: ['player'],
+        patterns: [['straight', 'straight', 'straight']],
+        attractions: ['player'],
         canDestroy: true,
         avoidPlayer: true
+    }
+
+    player: GamePiece = {
+        assetKey: 'player',
+        directions: new AllowedDirections(true, true, true, true,  true),
+        patterns: [['straight']],
+        canDestroy: true,
     }
 }

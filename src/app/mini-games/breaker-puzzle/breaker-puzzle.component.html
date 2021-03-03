@@ -1,8 +1,18 @@
-<div class="fuck-this">
+<div class="grid-box">
     <mat-grid-list [cols]="gridCols" rowHeight="fit"
     >
-        <mat-grid-tile *ngFor="let tile of tiles"
-        >{{ tile }}</mat-grid-tile>
+        <mat-grid-tile *ngFor="let tile of tiles">
+            <button aria-label="move-or-attack"
+            (click)="action()"
+            ></button>
+        </mat-grid-tile>
     </mat-grid-list>
+
+    <div class="piece"
+    *ngFor="let piece of pieces"
+    [ngStyle]="returnAttributes(piece)">
+        {{ piece.xcoord }}, {{ piece.ycoord }}
+        {{ piece.pieceType }}
+    </div>
     
 </div>

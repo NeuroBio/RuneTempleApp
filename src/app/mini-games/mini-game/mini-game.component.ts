@@ -15,9 +15,8 @@ export class MiniGameComponent implements OnInit, OnDestroy {
   constructor(private minigameserv: MiniGameService) { }
 
   ngOnInit(): void {
-    console.log('init')
     this.miniGameSubscription = this.minigameserv.activeGame
-      .subscribe(active => {console.log('active');this.activeMiniGame = active});
+      .subscribe(active => this.activeMiniGame = active);
   }
 
   ngOnDestroy(): void {
