@@ -9,7 +9,7 @@ import { OnClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
 import { MiniGameService } from 'src/app/mini-games/_services/mini-game.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class DialogueService {
 
@@ -64,7 +64,7 @@ export class DialogueService {
         this.sceneserv.triggerUpdate('dialogue', key);
         break;
       case 'miniGame' :
-        this.minigameserv.setMiniGame('key');
+        this.minigameserv.setMiniGame(key);
         break;
       default:
         console.error('Unknown event type: ', type);

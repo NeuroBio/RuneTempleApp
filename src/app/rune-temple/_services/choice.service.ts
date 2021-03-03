@@ -3,10 +3,9 @@ import { InteractionWithKeys } from '../_objects/interactions/Interaction';
 import { BehaviorSubject } from 'rxjs';
 import { Choice } from '../_objects/choices/Choice';
 import { Choices } from '../_objects/choices/Choices';
-import { ChoiceInteractions } from '../_objects/interactions/ChoiceInteractions';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class ChoiceService {
 

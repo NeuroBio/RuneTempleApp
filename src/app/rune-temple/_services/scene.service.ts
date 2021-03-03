@@ -7,7 +7,7 @@ import { SceneActiveAreas } from '../_objects/scenes/SceneActiveAreas';
 import { SceneLocations } from '../_objects/scenes/SceneLocations';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class SceneService {
 

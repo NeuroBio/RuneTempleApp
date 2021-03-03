@@ -11,7 +11,7 @@ import { SceneService } from './scene.service';
 import { CompressionService } from './compression.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class SaveLoadService {
 

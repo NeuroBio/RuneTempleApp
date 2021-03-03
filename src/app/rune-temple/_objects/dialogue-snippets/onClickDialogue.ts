@@ -646,7 +646,7 @@ export class OnClickDialogue {
         ],
         glueRelief: [new DialogueSnippet('', 'Erin picks up a shard of the relief and dabs it in the glue.  She adds it to the relief in its proper place.  As she bends down to get another, a flash of teal catches her eye, and the glued piece of the relief falls back onto the ground.')],
         glueRelief2: [new DialogueSnippet('Erin', 'There no way I can fix the relief while these Ghosts are taking it back apart.')],
-        breakRelief:[new DialogueSnippet('', 'Erin gathers Source in her hand and converts it into a Breaker haze.  The Ghost in the relief strikes back.', 'miniGame', 'breakerPuzzleRelief')],
+        breakerRelief: [new DialogueSnippet('', 'Erin gathers Source in her hand and converts it into a Breaker haze.  The Ghost in the relief strikes back.', 'miniGame', 'breakerPuzzleRelief')],
     };
 
     itemDefaults = {

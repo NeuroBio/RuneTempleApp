@@ -1,12 +1,13 @@
 <div id="actions-row">
     <!-- Breaker -->
     <button mat-fab aria-label="use-Breaker"
+    [disableRipple]="true"
     [disabled]="disable"
     class="action-button"
+    [color]="breakerActive ? 'active' : 'inactive'"
     (click)="castBreaker()">
         <mat-icon>api</mat-icon>
-    </button>
-    
+    </button>   
 
     <!-- Inventory -->
     <div id="inventory">

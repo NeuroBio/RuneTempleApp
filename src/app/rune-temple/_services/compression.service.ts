@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { compress, decompress } from 'lz-string';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CompressionService {
   compressString(data: string): string {
     return compress(data);

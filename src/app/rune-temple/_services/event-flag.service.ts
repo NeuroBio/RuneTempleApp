@@ -9,7 +9,7 @@ import { GameSettingsService } from './game-settings.service';
 import { OnClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class EventFlagService {
 

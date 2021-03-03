@@ -1,0 +1,21 @@
+@import '../../rune-temple/_objects/vars.scss';
+
+mat-grid-list {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    background-color: rgba(70, 100, 150, .3);
+    background-color: $medium-grey;
+}
+
+mat-grid-tile {
+    width:5vw; height:5vw;
+    background-color: $grey-ish;
+}
+
+.fuck-this {
+    // display: inline-block;
+    height: 80vmin;
+    width: 80vmin;
+    margin: auto;
+}

@@ -6,7 +6,8 @@
         </h2>
         
         <div id="game-container">
-            <app-ui *ngIf="!intro && !epilogue"></app-ui>
+            <app-ui *ngIf="!intro && !epilogue && !miniGame"></app-ui>
+            <app-mini-game></app-mini-game>
             <app-epilogue-scene *ngIf="epilogue"></app-epilogue-scene>
         </div>    
     </div>

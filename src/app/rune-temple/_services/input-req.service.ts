@@ -5,7 +5,7 @@ import { InputRequests } from '../_objects/input-requests/InputRequests';
 import { GameSettingsService } from './game-settings.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class InputReqService {
 

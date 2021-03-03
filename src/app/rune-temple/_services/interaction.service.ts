@@ -4,7 +4,7 @@ import { InteractionWithKeys, KeyPair } from '../_objects/interactions/Interacti
 import { UpdateInteractions } from '../_objects/interactions/UpdateInteractions';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class InteractionService {
 

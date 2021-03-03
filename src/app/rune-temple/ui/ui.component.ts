@@ -114,6 +114,7 @@ export class UIComponent implements OnInit, OnDestroy {
     event.stopPropagation();
     event.preventDefault();
     this.inventoryserv.deselectItem();
+    this.inventoryserv.deselectBreaker();
   }
 
 }

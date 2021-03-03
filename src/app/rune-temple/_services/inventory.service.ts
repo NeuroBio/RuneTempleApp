@@ -3,13 +3,15 @@ import { BehaviorSubject } from 'rxjs';
 import { InventoryItem, GameItems } from '../_objects/InventoryItem';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class InventoryService {
 
   // mutable
   inventory = new BehaviorSubject<InventoryItem[]>([]);
+  breakerActive = new BehaviorSubject<boolean>(false);
   private selectedIndex: number;
+  
 
   // static variables
   private gameItems = new GameItems();
@@ -17,10 +19,11 @@ export class InventoryService {
 
   constructor() {
     this.addItems(this.initialInventory);
-    // const cheating = ['fish', 'waterGlass'];
-    // this.addItems(cheating);
+    const cheating = ['glue', 'litTorch'];
+    this.addItems(cheating);
   }
 
+  // Items
   getSelectedItem(): InventoryItem {
     return this.inventory.value.find(item => item.selected);
   }
@@ -64,6 +67,22 @@ export class InventoryService {
     }
   }
 
+  // Special
+  useBreaker(): void {
+    if (this.breakerActive.value) {
+      this.deselectBreaker();
+    } else {
+      this.breakerActive.next(true);
+      this.deselectItem();
+    }
+  }
+
+  deselectBreaker() {
+    this.breakerActive.next(false);
+  }
+
+
+  // SavLoad
   reset(): void {
     this.inventory.next([]);
     this.addItems(this.initialInventory);

@@ -18,7 +18,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.miniGameSubscription = this.minigameserv.activeGame
-      .subscribe(active => this.miniGame = active ? true : false);
+      .subscribe(active => {console.log(active);this.miniGame = active ? true : false});
   }
 
   ngOnDestroy(): void {

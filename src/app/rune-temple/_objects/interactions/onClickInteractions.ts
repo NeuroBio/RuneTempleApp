@@ -158,7 +158,7 @@ export class OnClickInteractions {
         default: new Interaction(new KeyPair('activeAreas', 'relief')),
         glue: new Interaction(new KeyPair('envCombos', 'glueRelief'),
             [], [], [], [], [], [], new KeyPair('onClickUpdates', 'hauntedRelief')),
-        breaker: new Interaction(new KeyPair('envCombos', 'breakerPuzzleRelief'))
+        breaker: new Interaction(new KeyPair('envCombos', 'breakerRelief'))
     };
 
     topShelf = {
@@ -448,5 +448,9 @@ export class OnClickInteractions {
     fishtank = {
         charcoal: new Interaction(new KeyPair('combos', 'cleanTank'),
             ['fishtank'], ['cleanFishtank'])
+    }
+
+    breaker = {
+        default: new Interaction(new KeyPair('breaker', 'envDefault')),
     }
 }

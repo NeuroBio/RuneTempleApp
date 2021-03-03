@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { GameSettings } from '../_objects/GameSettings';
-import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Badge } from '../_objects/Badge';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class GameSettingsService {
 

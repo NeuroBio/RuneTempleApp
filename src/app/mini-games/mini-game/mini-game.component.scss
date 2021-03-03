@@ -1,0 +1,15 @@
+@import '../../rune-temple/_objects/vars.scss';
+
+#mini-game-frame {
+    position: relative;
+    border: 1px solid black;
+    width: $game-width;
+    height: $game-height;
+    max-width: $max-game-width;
+    max-height: $max-game-height;
+    background-color: $medium-grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

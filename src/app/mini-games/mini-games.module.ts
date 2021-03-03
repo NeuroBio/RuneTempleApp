@@ -1,22 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MiniGameComponent } from './mini-game/mini-game.component';
-import { MiniGameService } from './_services/mini-game.service';
+import { BreakerPuzzleComponent } from './breaker-puzzle/breaker-puzzle.component';
 
+// Material Imports
+import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
   declarations: [
     MiniGameComponent,
+    BreakerPuzzleComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+
+    MatButtonModule,
+    MatGridListModule,
+
   ],
   exports: [
     MiniGameComponent,
-  ],
-  providers: [
-    MiniGameService
   ]
 })
 export class MiniGamesModule { }

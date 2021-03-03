@@ -59,3 +59,17 @@
 .action-button {
     margin: $standard-margin;
 }
+
+.mat-active {
+    background-image:
+    radial-gradient(rgba(2, 44, 42, 0.1) 40%, transparent 40%),
+    radial-gradient(rgb(185, 248, 245), rgb(2, 133, 126));
+    background-size: 5px 5px, 100px 100px;
+    background-position: 0, 0 0 0 0;
+    background-repeat: round;
+    box-shadow: 0px 0px 5px 3px rgb(103, 243, 236);
+}
+
+.mat-inactive {
+    background-color: $lighter-grey;
+}

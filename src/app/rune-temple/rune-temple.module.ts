@@ -37,6 +37,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SaveLoadComponent } from './save-load/save-load.component';
+import { MiniGameService } from '../mini-games/_services/mini-game.service';
+import { MiniGamesModule } from '../mini-games/mini-games.module';
 
 
 @NgModule({
@@ -57,7 +59,10 @@ import { SaveLoadComponent } from './save-load/save-load.component';
     CommonModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+
+    // Custom Imports
     RuneTempleRoutingModule,
+    MiniGamesModule,
 
     // Material Imports
     MatButtonModule,
@@ -81,7 +86,9 @@ import { SaveLoadComponent } from './save-load/save-load.component';
     InteractionService,
     InventoryService,
     SaveLoadService,
-    TriggerService
+    TriggerService,
+
+    MiniGameService
   ]
 })
 

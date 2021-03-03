@@ -9,9 +9,7 @@ import { ChoiceService } from './choice.service';
 import { InputReqService } from './input-req.service';
 import { GameSettingsService } from './game-settings.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TriggerService {
 
   constructor(
@@ -29,8 +27,11 @@ export class TriggerService {
   checkClickOrCombo(index: number): void {
     const select = this.inventoryserv.getSelectedItem();
     const key = this.inventoryserv.inventory.value[index].assetKey;
+    
     if (select && select.assetKey !== key) {
       this.checkInteraction(key, select.assetKey);
+    } else if(this.inventoryserv.breakerActive.value) {
+      this.checkInteraction('breaker', key);
     } else {
       this.inventoryserv.selectItem(index);
     }
@@ -50,11 +51,15 @@ export class TriggerService {
       if (select) {
         return select.assetKey;
       }
+      if (this.inventoryserv.breakerActive) {
+        return 'breaker';
+      }
     }
     return subkey;
   }
 
   triggerInteraction(res: InteractionWithKeys): void {
+    console.log(res.interaction)
     const int = res.interaction;
 
     if (int.updates) {

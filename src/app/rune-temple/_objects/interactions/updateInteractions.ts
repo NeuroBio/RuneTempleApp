@@ -257,7 +257,8 @@ export class UpdateInteractions {
             'rancidBarrel', 'default')],
         
         hauntedRelief: [
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'glueRelief2')))]
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'glueRelief2')),
+            'relief', 'glue')]
     };
 
     dialogueUpdates = {

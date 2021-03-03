@@ -16,11 +16,14 @@ export class InventoryComponent implements OnInit, OnDestroy {
   @Input() disable = false;
   @ViewChild('itemBand') itemBand: ElementRef;
 
-  gameItems = new GameItems();
   inventoryItems: InventoryItem[];
   inventorySubscription: Subscription;
+
+  breakerActive = false;
+  breakerSubscription: Subscription;
+
   itemLength = 85 + 2;
-  breakerNeeded = false;
+
 
   constructor(
     private dialogueserv: DialogueService,
@@ -31,10 +34,13 @@ export class InventoryComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.inventorySubscription = this.inventoryserv.inventory
       .subscribe(update => this.inventoryItems = update);
+    this.breakerSubscription = this.inventoryserv.breakerActive
+      .subscribe(active => this.breakerActive = active)
   }
 
   ngOnDestroy(): void {
     this.inventorySubscription.unsubscribe();
+    this.breakerSubscription.unsubscribe();
   }
 
   // left and right arrow keys
@@ -67,11 +73,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
   }
 
   castBreaker(): void {
-    if (this.breakerNeeded) {
-
-    } else {
-      console.log('quick help');
-    }
+    this.inventoryserv.useBreaker();
   }
 
 }
