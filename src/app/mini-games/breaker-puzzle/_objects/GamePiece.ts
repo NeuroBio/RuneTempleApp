@@ -32,7 +32,7 @@ export class AllowedDirections {
 export class GamePieces {
     fizzle: GamePiece =  {
         assetKey: 'fizzle',
-        directions: new AllowedDirections(true, true, true, true,  true),
+        directions: new AllowedDirections(true, true, true, true, true),
         patterns: [['straight']],
         attractions: ['edge', 'player'],
         canDestroy: false,
@@ -41,7 +41,7 @@ export class GamePieces {
     
     buzz: GamePiece = {
         assetKey: 'buzz',
-        directions: new AllowedDirections(true, true, true, true,  false),
+        directions: new AllowedDirections(true, true, true, true, false),
         patterns: [
             ['straight', 'straight', 'left'],
             ['straight', 'straight', 'right'],
@@ -53,7 +53,7 @@ export class GamePieces {
     
     shriek: GamePiece = {
         assetKey: 'shriek',
-        directions: new AllowedDirections(true, true, true, true,  true),
+        directions: new AllowedDirections(true, true, true, true, true),
         patterns: [['straight', 'straight', 'straight']],
         attractions: ['player'],
         canDestroy: true,
@@ -62,8 +62,15 @@ export class GamePieces {
 
     player: GamePiece = {
         assetKey: 'player',
-        directions: new AllowedDirections(true, true, true, true,  true),
+        directions: new AllowedDirections(true, true, true, true, true),
         patterns: [['straight']],
+        canDestroy: true,
+    }
+
+    playerDash: GamePiece = {
+        assetKey: 'player',
+        directions: new AllowedDirections(true, true, true, true, false),
+        patterns: [['straight', 'straight']],
         canDestroy: true,
     }
 }

@@ -37,10 +37,22 @@ export class AIService {
     this.lost.next(false);
   }
 
-  playerTurn(tile: number): void {
+  playerTurn(tile: number, dash: boolean): void {
     const board = this.gameBoard.value;
     const coords = this.tileNumbertoCoord(tile, board.dimx, board.dimy);
+    this.dashKill(coords, dash);
     board.updatePlayer(board.getPlayer(), coords[0], coords[1]);
+  }
+
+  dashKill(coords: number[], dash: boolean) {
+    if (dash) {
+      const board = this.gameBoard.value;
+      const initialCoords = board.getPlayerCoords();
+      const middlex = ((coords[0] - initialCoords[0]) / 2) + initialCoords[0];
+      const middley = ((coords[1] - initialCoords[1]) / 2) + initialCoords[1];
+      console.log(middlex, middley)
+      board.removeTile(new GameTile(middlex, middley, ''));
+    }
   }
 
   aiTurn(): void {
@@ -50,27 +62,35 @@ export class AIService {
     const player = board.getPlayer();
     const playerMoves = this.movementserv.getAllowedMoves(player, board);;
     const pieces: GameTile[] = [];
+
     Object.keys(board.pieces).forEach(pieceID => {
       const piece = board.pieces[pieceID]; 
       if (piece.pieceType !== 'player') {
         pieces.push(board.pieces[pieceID])
       }
     });
-    this.shuffleArray(pieces).forEach((piece, index) => {
-      setTimeout(() => {
-        if (!this.lost.value) {
-          const board = this.gameBoard.value;
-          const move = this.calculateMove(piece, player, playerMoves);
-          board.moveTile(this.promote(piece, move[1]), move[0], move[1]);
-          if (player.xcoord === move[0] && player.ycoord === move[1]) {
-            this.lost.next(true);
+
+    if (pieces[0]) {
+      this.shuffleArray(pieces).forEach((piece, index) => {
+        setTimeout(() => {
+          if (!this.lost.value) {
+            const board = this.gameBoard.value;
+            const move = this.calculateMove(piece, player, playerMoves);
+            board.moveTile(this.promote(piece, move[1]), move[0], move[1]);
+            if (player.xcoord === move[0] && player.ycoord === move[1]) {
+              this.lost.next(true);
+            }
           }
-        }
-        if (index === pieces.length -1) {
-          this.gameBoard.next(board);
-        }
-      }, index * 200);
-    });
+          if (index === pieces.length -1) {
+            this.gameBoard.next(board);
+          }
+        }, index * 200);
+      });
+    } else {
+      this.gameBoard.next(board);
+      // victory!
+    }
+
   }
 
   getPlayerMoves(): number[] {
@@ -79,6 +99,22 @@ export class AIService {
     return this.coordsToTileNumbers(
       this.movementserv.getAllowedMoves(player, board),
       board.dimx, board.dimy);
+  }
+
+  getPlayerDashMoves(): number[] {
+    const board = this.gameBoard.value;
+    const coords = board.getPlayerCoords();
+    return this.coordsToTileNumbers(
+      this.movementserv.getAllowedMoves(
+        new GameTile(coords[0],coords[1],'playerDash'),
+        board),
+        board.dimx, board.dimy);
+  }
+
+  getPlayerMovesWithDash(): any {
+    const moves = this.getPlayerMoves();
+    let dashMoves: number[] = this.getPlayerDashMoves();
+    return { moves, dashMoves }
   }
 
   calculateMove(piece: GameTile, player: GameTile, playerMoves: number[][]): number[] {

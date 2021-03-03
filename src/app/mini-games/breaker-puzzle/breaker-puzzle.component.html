@@ -4,9 +4,9 @@
     gutterSize="1px">
         <mat-grid-tile *ngFor="let tile of tiles; let index = index">
             <button mat-flat-button aria-label="move-or-attack"
-            [color]="checkLegal(index) ? 'disallow' : 'allow'"
-            [disabled]="checkLegal(index)"
-            (click)="action(index)"
+            [color]="tile.move ? 'normalMove' : ''"
+            [disabled]="tile.disabled"
+            (click)="action(index, tile.dash)"
             ></button>
         </mat-grid-tile>
     </mat-grid-list>

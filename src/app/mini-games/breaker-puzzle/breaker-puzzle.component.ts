@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AIService } from './_services/ai.service';
-import { GameBoard, GameTile } from './_objects/GameBoard';
+import { GameBoard, GameTile, DisplayTile } from './_objects/GameBoard';
 import { Subscription } from 'rxjs';
+import { MatGridTile } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-breaker-puzzle',
@@ -18,7 +19,9 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
 
   lost = false;
   lostSubscription:Subscription;
-  legalMoves: number[];
+
+  dash = true;
+  dashCoolDown = false;
 
   constructor(private ai: AIService) { }
 
@@ -27,9 +30,11 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
       .subscribe(board => this.updateGame(board));
     this.lostSubscription = this.ai.lost
       .subscribe(lost => this.lost = lost);
-    this.legalMoves = this.ai.getPlayerMoves();
+
     this.gridCols = this.board.dimx;
-    this.tiles = Array(this.board.dimy * this.gridCols).fill('test');
+    this.tiles = Array(this.board.dimy * this.gridCols)
+      .fill(undefined).map(() => new DisplayTile);
+    this.getMoves();
   }
 
   ngOnDestroy(): void {
@@ -42,7 +47,12 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
     this.pieces = [];
     Object.keys(board.pieces).forEach(piece => this.pieces.push(board.pieces[piece]));
     if (!this.lost) {
-      setTimeout(() => { this.legalMoves = this.ai.getPlayerMoves(); }, 200);
+      if (!this.dashCoolDown) {
+        this.dash = true;
+      } else {
+        this.dashCoolDown = false;
+      }
+      setTimeout(() => { this.getMoves(); }, 200);
     } else {
       this.lose();
     }
@@ -57,22 +67,43 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
     };
   }
 
-  checkLegal(index: number): boolean {
-    return !this.legalMoves.includes(index);
+  action(index: number, dash: boolean): void {
+    if (dash) {
+      this.dash = false
+      this.dashCoolDown = true;
+    }
+    this.tiles.forEach(tile => tile.reset());
+    this.ai.playerTurn(index, dash);
+    this.ai.aiTurn();
   }
 
-  action(index: number): void {
-    this.legalMoves = [];
-    this.ai.playerTurn(index);
-    this.ai.aiTurn();
+  getMoves(): void {
+    if (this.dash) {
+      const moves = this.ai.getPlayerMovesWithDash();
+      moves.moves.forEach(tile => {
+        this.tiles[tile].move = true;
+        this.tiles[tile].disabled = false;
+      });
+      moves.dashMoves.forEach(tile => {
+        this.tiles[tile].dash = true;
+        this.tiles[tile].disabled = false;
+      })
+    } else {
+      this.ai.getPlayerMoves().forEach(tile => {
+        this.tiles[tile].move = true;
+        this.tiles[tile].disabled = false;
+      });
+    }
   }
 
   lose() {
 
   }
 
+
   reset() {
     this.ai.reset();
+    this.getMoves();
   }
 
   info() {}

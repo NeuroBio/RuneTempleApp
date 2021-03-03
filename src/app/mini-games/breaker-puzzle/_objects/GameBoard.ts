@@ -10,6 +10,18 @@ export class GameTile {
     }
 }
 
+export class DisplayTile {
+    dash: boolean = false;
+    move: boolean = false;
+    disabled: boolean = true;
+
+    reset() {
+        this.dash = false;
+        this.move = false;
+        this.disabled = true;
+    }
+}
+
 export class GameBoard {
     dimx: number;
     dimy: number;
@@ -51,6 +63,11 @@ export class GameBoard {
 
     getPlayer(): GameTile {
         return this.pieces[this.playerCoords];
+    }
+
+    getPlayerCoords(): number[] {
+        const player = this.pieces[this.playerCoords];
+        return [player.xcoord, player.ycoord];
     }
 
 }
