@@ -3,8 +3,8 @@
     rowHeight="fit"
     gutterSize="1px">
         <mat-grid-tile *ngFor="let tile of tiles; let index = index">
-            <button aria-label="move-or-attack"
-            [color]="checkLegal(index) ? 'allow' : 'disallow'"
+            <button mat-flat-button aria-label="move-or-attack"
+            [color]="checkLegal(index) ? 'disallow' : 'allow'"
             [disabled]="checkLegal(index)"
             (click)="action(index)"
             ></button>
@@ -18,4 +18,13 @@
         {{ piece.pieceType }}
     </div>
     
+</div>
+
+<div>
+    <button
+    (click)="reset()">Reset</button>
+    <button
+    (click)="info()">Info</button>
+    <button
+    (click)="skip()">Skip</button>
 </div>

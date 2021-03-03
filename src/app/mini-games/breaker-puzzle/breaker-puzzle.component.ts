@@ -10,11 +10,14 @@ import { Subscription } from 'rxjs';
 })
 export class BreakerPuzzleComponent implements OnInit, OnDestroy {
 
-  gridCols: number;
   board: GameBoard;
+  gridCols: number;
+  tiles: any[] = [];
   pieces: GameTile[];
   boardSubscription: Subscription;
-  tiles: any[] = [];
+
+  lost = false;
+  lostSubscription:Subscription;
   legalMoves: number[];
 
   constructor(private ai: AIService) { }
@@ -22,19 +25,27 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.boardSubscription = this.ai.gameBoard
       .subscribe(board => this.updateGame(board));
+    this.lostSubscription = this.ai.lost
+      .subscribe(lost => this.lost = lost);
+    this.legalMoves = this.ai.getPlayerMoves();
     this.gridCols = this.board.dimx;
     this.tiles = Array(this.board.dimy * this.gridCols).fill('test');
   }
 
   ngOnDestroy(): void {
     this.boardSubscription.unsubscribe();
+    this.lostSubscription.unsubscribe();
   }
 
   updateGame(board: GameBoard): void {
     this.board = board;
     this.pieces = [];
     Object.keys(board.pieces).forEach(piece => this.pieces.push(board.pieces[piece]));
-    this.legalMoves = this.ai.getPlayerMoves();
+    if (!this.lost) {
+      setTimeout(() => { this.legalMoves = this.ai.getPlayerMoves(); }, 200);
+    } else {
+      this.lose();
+    }
   }
 
   returnAttributes(piece: GameTile): any {
@@ -51,7 +62,20 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
   }
 
   action(index: number): void {
+    this.legalMoves = [];
     this.ai.playerTurn(index);
     this.ai.aiTurn();
   }
+
+  lose() {
+
+  }
+
+  reset() {
+    this.ai.reset();
+  }
+
+  info() {}
+
+  skip() {}
 }

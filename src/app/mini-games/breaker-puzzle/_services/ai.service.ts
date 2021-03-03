@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GamePieces, GamePiece } from '../_objects/GamePiece';
 import { GameBoard, GameTile } from '../_objects/GameBoard';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MovementService } from './movement.service';
 
 @Injectable({
@@ -10,33 +10,42 @@ import { MovementService } from './movement.service';
 export class AIService {
 
   gameBoard = new BehaviorSubject<GameBoard>(undefined);
+  lost = new BehaviorSubject<boolean>(false);
   private pieceTypes = new GamePieces();
-  
+  private activePuzzle: GameBoard;
+
   constructor(private movementserv: MovementService) {
     this.setGameBoard(new GameBoard(
-      6, 6,
+      8, 8,
       [
         new GameTile(3, 5, 'fizzle'),
         new GameTile(1, 5, 'fizzle'),
         new GameTile(5, 5, 'fizzle'),
-        new GameTile(3, 3, 'buzz')
+        // new GameTile(3, 3, 'buzz')
       ],
       new GameTile(3, 0, 'player')));
     // this.aiTurn();
    }
 
   setGameBoard(board: GameBoard): void {
-    this.gameBoard.next(board);
+    this.activePuzzle = board;
+    this.gameBoard.next(this.copyInstance(board));
+  }
+
+  reset() {
+    this.gameBoard.next(this.copyInstance(this.activePuzzle));
+    this.lost.next(false);
   }
 
   playerTurn(tile: number): void {
     const board = this.gameBoard.value;
     const coords = this.tileNumbertoCoord(tile, board.dimx, board.dimy);
     board.updatePlayer(board.getPlayer(), coords[0], coords[1]);
-    this.setGameBoard(board);
   }
 
   aiTurn(): void {
+    console.log('turn')
+
     const board = this.gameBoard.value;
     const player = board.getPlayer();
     const playerMoves = this.movementserv.getAllowedMoves(player, board);;
@@ -44,14 +53,24 @@ export class AIService {
     Object.keys(board.pieces).forEach(pieceID => {
       const piece = board.pieces[pieceID]; 
       if (piece.pieceType !== 'player') {
-        pieces.push(Object.assign({}, board.pieces[pieceID]))
+        pieces.push(board.pieces[pieceID])
       }
     });
-    this.shuffleArray(pieces).forEach(piece => {
-      const move = this.calculateMove(piece, player, playerMoves);
-      board.moveTile(piece, move[0], move[1]);
+    this.shuffleArray(pieces).forEach((piece, index) => {
+      setTimeout(() => {
+        if (!this.lost.value) {
+          const board = this.gameBoard.value;
+          const move = this.calculateMove(piece, player, playerMoves);
+          board.moveTile(this.promote(piece, move[1]), move[0], move[1]);
+          if (player.xcoord === move[0] && player.ycoord === move[1]) {
+            this.lost.next(true);
+          }
+        }
+        if (index === pieces.length -1) {
+          this.gameBoard.next(board);
+        }
+      }, index * 200);
     });
-    this.setGameBoard(board);
   }
 
   getPlayerMoves(): number[] {
@@ -95,15 +114,13 @@ export class AIService {
           moves, edge));
       }
     });
-
     
     // pick the keys closest to attraction
     const closest: number[] = [];
     attractions.forEach(attraction => {
       closest.push(Math.min.apply(Math, attraction))});
-    
     let key: number;
-    if(closest[1]) {
+    if(closest[1] !== undefined) {
       key = this.indexOfSmallest(closest);
     } else {
       key = 0;
@@ -154,6 +171,13 @@ export class AIService {
     return moves;
   }
 
+  promote(piece: GameTile, newy: number) {
+    if (piece.pieceType === 'fizzle' && newy === 0) {
+      piece.pieceType = 'shriek';
+    } 
+    return piece;
+  }
+
   // biased towards first smallest element (wanted for key attraction)
   indexOfSmallest(array: number[]): number {
     let lowest = 0;
@@ -183,6 +207,18 @@ export class AIService {
     const x = tile % dimx;
     const y = dimy - Math.floor(tile / dimx) - 1;
     return [x, y];
+  }
+
+  copyInstance(original: GameBoard) {
+    const pieces: GameTile[] = [];
+    Object.keys(original.pieces).forEach(key =>
+      pieces.push(Object.assign({}, original.pieces[key])));
+
+    return new GameBoard(
+      original.dimx,
+      original.dimy,
+      pieces,
+      Object.assign({}, original.getPlayer()));
   }
 
 }
