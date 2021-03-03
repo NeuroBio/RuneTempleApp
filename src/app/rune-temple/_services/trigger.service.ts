@@ -8,9 +8,13 @@ import { EventFlagService } from './event-flag.service';
 import { ChoiceService } from './choice.service';
 import { InputReqService } from './input-req.service';
 import { GameSettingsService } from './game-settings.service';
+import { MiniGameService } from './mini-game.service';
+import { Subscription } from 'rxjs';
 
 @Injectable()
 export class TriggerService {
+
+  minigameSubscription: Subscription;
 
   constructor(
     private dialogueserv: DialogueService,
@@ -20,8 +24,16 @@ export class TriggerService {
     private sceneserv: SceneService,
     private choiceserv: ChoiceService,
     private inputReqServ: InputReqService,
+    private minigameserv: MiniGameService,
     private gs: GameSettingsService
-  ) { }
+  ) { 
+    this.minigameSubscription = this.minigameserv.miniGameBroadcast
+      .subscribe(interaction => {
+        if (interaction) {
+          this.triggerInteraction(interaction);
+        }
+      });
+  }
 
 
   checkClickOrCombo(index: number): void {

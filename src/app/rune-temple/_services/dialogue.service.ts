@@ -6,7 +6,7 @@ import { SceneService } from './scene.service';
 import { ChoiceService } from './choice.service';
 import { InputReqService } from './input-req.service';
 import { OnClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
-import { MiniGameService } from 'src/app/mini-games/_services/mini-game.service';
+import { MiniGameService } from 'src/app/rune-temple/_services/mini-game.service';
 
 @Injectable({
   providedIn: 'any'

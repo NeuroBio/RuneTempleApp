@@ -3,12 +3,11 @@ import { GamePieces, GamePiece } from '../_objects/GamePiece';
 import { GameBoard, GameTile } from '../_objects/GameBoard';
 import { BehaviorSubject } from 'rxjs';
 import { MovementService } from './movement.service';
-import { ControllerService } from '../../_services/controller.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AIService {
+export class BreakerPuzzleService {
 
   gameBoard = new BehaviorSubject<GameBoard>(undefined);
   lost = new BehaviorSubject<boolean>(false);
@@ -17,17 +16,8 @@ export class AIService {
 
   constructor(
     private movementserv: MovementService,
-    private controller: ControllerService
   ) {
-    this.setGameBoard(new GameBoard(
-      8, 8,
-      [
-        // new GameTile(3, 7, 'fizzle'),
-        // new GameTile(1, 7, 'fizzle'),
-        new GameTile(5, 7, 'fizzle'),
-        // new GameTile(3, 3, 'buzz')
-      ],
-      new GameTile(3, 0, 'player')));
+    // this.setGameBoard();
     // this.aiTurn();
    }
 
@@ -89,7 +79,6 @@ export class AIService {
       });
     } else {
       this.gameBoard.next(board);
-      this.controller.setVictory(true);
       // victory!
     }
 

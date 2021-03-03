@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AIService } from './_services/ai.service';
+import { BreakerPuzzleService } from './_services/breaker-puzzle.service';
 import { GameBoard, GameTile, DisplayTile } from './_objects/GameBoard';
 import { Subscription } from 'rxjs';
 import { ControllerService } from '../_services/controller.service';
@@ -26,7 +26,7 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
   resetSubscruption: Subscription;
 
   constructor(
-    private ai: AIService,
+    private ai: BreakerPuzzleService,
     private controller: ControllerService
   ) { }
 
@@ -36,7 +36,7 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
     this.lostSubscription = this.ai.lost
       .subscribe(lost => this.lost = lost);
     
-    this.resetSubscruption = this.controller.resertAlert.subscribe(() => this.reset());
+    this.resetSubscruption = this.controller.resetAlert.subscribe(() => this.reset());
 
     this.gridCols = this.board.dimx;
     this.tiles = Array(this.board.dimy * this.gridCols)
@@ -54,6 +54,9 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
     this.board = board;
     this.pieces = [];
     Object.keys(board.pieces).forEach(piece => this.pieces.push(board.pieces[piece]));
+    if (this.pieces.length === 1 && this.pieces[0].pieceType === 'player') {
+      this.controller.setVictory(true);
+    }
     if (!this.lost) {
       if (!this.dashCoolDown) {
         this.dash = true;

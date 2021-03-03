@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MiniGameService } from 'src/app/mini-games/_services/mini-game.service';
+import { MiniGameService } from 'src/app/rune-temple/_services/mini-game.service';
 import { Subscription } from 'rxjs';
 
 @Component({

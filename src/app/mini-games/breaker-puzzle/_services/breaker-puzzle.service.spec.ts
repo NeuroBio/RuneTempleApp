@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AIService } from './ai.service';
+import { BreakerPuzzleService } from './breaker-puzzle.service';
 
-describe('AIService', () => {
-  let service: AIService;
+describe('BreakerPuzzleService', () => {
+  let service: BreakerPuzzleService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AIService);
+    service = TestBed.inject(BreakerPuzzleService);
   });
 
   it('should be created', () => {

@@ -1,4 +1,6 @@
 <div id="mini-game-frame">
-    <app-breaker-puzzle></app-breaker-puzzle>
+    <app-breaker-puzzle *ngIf="activeMiniGame && activeMiniGame.type === 'breaker'">
+    </app-breaker-puzzle>
+    
     <app-controls></app-controls>
 </div>

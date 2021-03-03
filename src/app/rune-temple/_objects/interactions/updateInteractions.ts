@@ -373,4 +373,16 @@ export class UpdateInteractions {
                 new KeyPair('inputRequest', 'fishName'),
                 [], [], [new EventFlag('fishNamed')]))]
     };
+
+    miniGames = {
+        BreakerPuzzle1: [
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'breakerRelief2')),
+                'relief', 'breaker'),
+    
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'glueRelief3')),
+                'relief', 'glue')
+        ]
+    };
 }

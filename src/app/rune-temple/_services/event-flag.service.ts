@@ -100,12 +100,15 @@ export class EventFlagService {
         break;
       case 'bookBurned' :
         if (this.events.reliefRepaired) {
-          // TODO: remove relief dialogue option
+          this.removeChoice('dialogue', 'zhangConvoTopics', 'about the relief');
         }
         break;
       case 'reliefRepaired' :
         if (!this.events.bookBurned) {
-          // TODO: add dialogue for Zhang
+          this.addChoice('dialogue', 'zhangConvoTopics', 'about the relief', new KeyPair('zhangHelp', 'relief'));
+        }
+        if (!this.events.ovenLit) {
+
         }
         break;
       case ('vent1Open' || 'keyFell') :
@@ -174,6 +177,7 @@ export class EventFlagService {
     this.gs.updateCrossGameEvent('fishDeaths', key);
     const deaths = this.gs.getCrossGameEvents('fishDeaths').value;
     const deathKeys = Object.keys(deaths);
+    
     for(const deathKey of deathKeys) {
       if (!deaths[key]) {
         return;
@@ -190,8 +194,16 @@ export class EventFlagService {
     this.choiceserv.addChoice(key, subkey, opt, new InteractionWithKeys(new Interaction(out)));
   }
 
+  private removeChoice(key: string, subkey: string, opt: string): void {
+    this.choiceserv.removeChoice(key, subkey, opt);
+  }
+
   addMapEvent(key: string): void {
     this.events[`${key}Map`] = true;
+  }
+
+  checkEventFlag(key: string) {
+    return this.events[key];
   }
 
   endGameChecks(): void {

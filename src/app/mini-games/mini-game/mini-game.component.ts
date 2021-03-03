@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MiniGameService } from '../_services/mini-game.service';
+import { MiniGameService } from '../../rune-temple/_services/mini-game.service';
 import { Subscription } from 'rxjs';
+import { MiniGame } from 'src/app/rune-temple/_objects/MiniGames';
 
 @Component({
   selector: 'app-mini-game',
@@ -9,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class MiniGameComponent implements OnInit, OnDestroy {
 
-  activeMiniGame: string;
+  activeMiniGame: MiniGame;
   miniGameSubscription: Subscription;
 
   constructor(private minigameserv: MiniGameService) { }

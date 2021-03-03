@@ -1,22 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
-import { MiniGameService } from './mini-game.service';
+import { Subject, BehaviorSubject, Subscription } from 'rxjs';
+import { MiniGameService } from '../../rune-temple/_services/mini-game.service';
+import { MiniGame } from 'src/app/rune-temple/_objects/MiniGames';
+import { BreakerPuzzleService } from '../breaker-puzzle/_services/breaker-puzzle.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ControllerService {
 
-  resertAlert = new Subject();
+  resetAlert = new Subject();
   allowLeave = new BehaviorSubject<boolean>(true);
   allowSkip = new BehaviorSubject<boolean>(false);
   victoryAchieved = new BehaviorSubject<boolean>(false);
+  gameSubscription = new Subscription;
 
-  constructor(private minigameserv: MiniGameService) { }
+  constructor(
+    private minigameserv: MiniGameService,
+    private breakergame: BreakerPuzzleService
+  ) {
+    this.gameSubscription = this.minigameserv.activeGame
+      .subscribe(game => this.routeGame(game));
+  }
 
   setVictory(victorious: boolean) {
     this.victoryAchieved.next(victorious);
   }
+
   displayInfo() {}
 
   skip() {
@@ -29,12 +39,21 @@ export class ControllerService {
   }
 
   reset() {
-    this.resertAlert.next();
+    this.resetAlert.next();
   }
 
   victory() {
     this.minigameserv.markGameAsCompleted();
     this.minigameserv.unsetMiniGame();
+  }
+
+  private routeGame(game: MiniGame) {
+    this.setVictory(false);
+    
+    switch (game.type) {
+      case 'breaker':
+        this.breakergame.setGameBoard(game.game);
+    }
   }
 
 }
