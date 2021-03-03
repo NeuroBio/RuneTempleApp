@@ -44,12 +44,12 @@ export class GameBoard {
         return this.pieces[`x${xcoord}y${ycoord}`];
     }
 
-    updatePlayer(tile: GameTile, newX: number, newY: number) {
+    updatePlayer(tile: GameTile, newX: number, newY: number): void {
         this.moveTile(tile, newX, newY);
         this.playerCoords = `x${newX}y${newY}`;
     }
 
-    getPlayer() {
+    getPlayer(): GameTile {
         return this.pieces[this.playerCoords];
     }
 

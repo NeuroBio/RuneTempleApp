@@ -1,9 +1,12 @@
 <div class="grid-box">
-    <mat-grid-list [cols]="gridCols" rowHeight="fit"
-    >
-        <mat-grid-tile *ngFor="let tile of tiles">
+    <mat-grid-list [cols]="gridCols"
+    rowHeight="fit"
+    gutterSize="1px">
+        <mat-grid-tile *ngFor="let tile of tiles; let index = index">
             <button aria-label="move-or-attack"
-            (click)="action()"
+            [color]="checkLegal(index) ? 'allow' : 'disallow'"
+            [disabled]="checkLegal(index)"
+            (click)="action(index)"
             ></button>
         </mat-grid-tile>
     </mat-grid-list>

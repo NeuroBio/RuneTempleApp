@@ -25,14 +25,21 @@ export class AIService {
     // this.aiTurn();
    }
 
-  setGameBoard(board: GameBoard) {
+  setGameBoard(board: GameBoard): void {
     this.gameBoard.next(board);
   }
 
-  aiTurn() {
+  playerTurn(tile: number): void {
+    const board = this.gameBoard.value;
+    const coords = this.tileNumbertoCoord(tile, board.dimx, board.dimy);
+    board.updatePlayer(board.getPlayer(), coords[0], coords[1]);
+    this.setGameBoard(board);
+  }
+
+  aiTurn(): void {
     const board = this.gameBoard.value;
     const player = board.getPlayer();
-    const playerMoves = this.movementserv.getAllowedMoves(player, board);
+    const playerMoves = this.movementserv.getAllowedMoves(player, board);;
     const pieces: GameTile[] = [];
     Object.keys(board.pieces).forEach(pieceID => {
       const piece = board.pieces[pieceID]; 
@@ -44,15 +51,23 @@ export class AIService {
       const move = this.calculateMove(piece, player, playerMoves);
       board.moveTile(piece, move[0], move[1]);
     });
-    this.gameBoard.next(board);
+    this.setGameBoard(board);
   }
 
-  calculateMove(piece: GameTile, player: GameTile, playerMoves: number[][]) {
+  getPlayerMoves(): number[] {
+    const board = this.gameBoard.value;
+    const player = board.getPlayer();
+    return this.coordsToTileNumbers(
+      this.movementserv.getAllowedMoves(player, board),
+      board.dimx, board.dimy);
+  }
+
+  calculateMove(piece: GameTile, player: GameTile, playerMoves: number[][]): number[] {
     const moves = this.movementserv.getAllowedMoves(piece, this.gameBoard.value);
     return this.checkbehavior(this.pieceTypes[piece.pieceType], moves, player, playerMoves);
   }
 
-  shuffleArray(array) {
+  shuffleArray(array): any[] {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
@@ -61,7 +76,7 @@ export class AIService {
   }
 
   checkbehavior(pieceType: GamePiece, moves: number[][],
-    player: GameTile, playerMoves: number[][]) {
+    player: GameTile, playerMoves: number[][]): number[] {
     // remove moves that will result in death if possible
     if (pieceType.avoidPlayer) {
       moves = this.checkAvoidance(moves, playerMoves);
@@ -104,7 +119,7 @@ export class AIService {
     return moves[this.shuffleArray(moveIndex)[0]];
   }
 
-  makeAttractionArray(moves: number[][], checks: number[][]) {
+  makeAttractionArray(moves: number[][], checks: number[][]): number[] {
     const attraction: number [] = [];
 
     moves.forEach((move, index) => {
@@ -114,14 +129,21 @@ export class AIService {
     return attraction;
   }
 
-  calculateDistance(x0: number, y0: number, x1: number, y1: number) {
+  calculateDistance(x0: number, y0: number, x1: number, y1: number): number {
     return Math.abs(x0 - x1) + Math.abs(y0 - y1);
   }
 
-  checkAvoidance(moves: number[][], playerMoves: number[][]) {
+  checkAvoidance(moves: number[][], playerMoves: number[][]): number[][] {
     const avoidMoves: number[][] = [];
     moves.forEach(move => {
-      if (!playerMoves.includes(move)) {
+      let included = false;
+      for (const pMove of playerMoves) {
+        if (this.arraysEqual(pMove, move)) {
+          included = true;
+          break;
+        } 
+      }
+      if (!included) {
         avoidMoves.push(move);
       }
     });
@@ -133,12 +155,34 @@ export class AIService {
   }
 
   // biased towards first smallest element (wanted for key attraction)
-  indexOfSmallest(array: number[]) {
+  indexOfSmallest(array: number[]): number {
     let lowest = 0;
     for (let i = 1; i < array.length; i++) {
      if (array[i] < array[lowest]) lowest = i;
     }
     return lowest;
+  }
+
+  arraysEqual(a, b): boolean {
+    return Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((val, index) => val === b[index]);
+  }
+
+  coordsToTileNumbers(coords: number[][], dimx: number, dimy: number): number[] {
+    const tiles: number[] = [];
+    const numTiles = dimx * dimy;
+    coords.forEach(coord => {
+      tiles.push(numTiles - ((coord[1] * dimx) + (dimx - coord[0])));
+    });
+    return tiles;
+  }
+
+  tileNumbertoCoord(tile: number, dimx: number, dimy: number): number[] {
+    const x = tile % dimx;
+    const y = dimy - Math.floor(tile / dimx) - 1;
+    return [x, y];
   }
 
 }
