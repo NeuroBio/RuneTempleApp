@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
 import { Subscription } from 'rxjs';
 import { DialogueService } from '../_services/dialogue.service';
-import { TriggerService } from '../_services/trigger.service';
-import { InputRequest } from '../_objects/input-requests/InputRequest';
 
 @Component({
   selector: 'app-dialogue',

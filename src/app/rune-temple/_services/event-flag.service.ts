@@ -8,6 +8,7 @@ import { ChoiceService } from './choice.service';
 import { GameSettingsService } from './game-settings.service';
 import { OnClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
 import { Subject } from 'rxjs';
+import { EpilogueService } from './epilogue.service';
 
 @Injectable({
   providedIn: 'any'
@@ -26,6 +27,7 @@ export class EventFlagService {
     private interactionserv: InteractionService,
     private sceneserv: SceneService,
     private choiceserv: ChoiceService,
+    private epilogueserv: EpilogueService,
     private gs: GameSettingsService
   ) { }
 
@@ -174,8 +176,18 @@ export class EventFlagService {
           this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'boardsArrangedAllowNails'));
         }
         break;
+      case 'endGame' :
+        this.triggerEndGame();
+        break;
       default:
         break;
+    }
+  }
+
+  triggerEndGame() {
+    const finalDialog = this.epilogueserv.setEnding(this.events);
+    if (finalDialog) {
+      this.triggerNow.next(finalDialog);
     }
   }
 
@@ -217,11 +229,6 @@ export class EventFlagService {
 
   checkEventFlag(key: string) {
     return this.events[key];
-  }
-
-  endGameChecks(): void {
-
-
   }
 
   reset(): void {

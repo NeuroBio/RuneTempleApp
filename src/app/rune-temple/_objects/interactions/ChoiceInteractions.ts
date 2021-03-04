@@ -73,6 +73,12 @@ export class ChoiceInteractions {
         new InteractionWithKeys(
             new Interaction(new KeyPair('dialogueEvents', 'unnameFish'),
                 [], [], [], [], [], ['pokemon']))],
+
+        ladderExit: [
+            new InteractionWithKeys(
+                new Interaction(undefined, [], [], [new EventFlag('endGame')])),
+            undefined
+        ]
     };
 
     mutable =  {

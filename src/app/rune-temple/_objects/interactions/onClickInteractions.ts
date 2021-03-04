@@ -631,9 +631,13 @@ export class OnClickInteractions {
         default: new Interaction(new KeyPair('activeAreas', 'boardsLadder')),
         rock: new Interaction(new KeyPair('envCombos', 'rockBoards')),
         glue: new Interaction(new KeyPair('envCombos', 'glueBoardsLadder')),
-        nails: new Interaction(new KeyPair('envCombos', 'boardsNails'),
+        nails: new Interaction(new KeyPair('envCombos', 'nailsBoard'),
         ['nails'], [], [], [], [], [], new KeyPair('onClickUpdates', 'nailedBoards')),
     };
+
+    ladder = {
+        default: new Interaction(new KeyPair('activeAreas', 'ladder'))
+    }
 
     poisonPlant = {
         default: new Interaction(new KeyPair('activeAreas', 'poisonPlant')),

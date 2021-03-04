@@ -20,19 +20,30 @@ export class OnClickDialogue {
             new DialogueSnippet('Zhang', 'But I don\'t like this.  We don\'t normally patrol here.  It\'s-  Whoa-!'),
             new DialogueSnippet('Erin', 'Ah, my head...')
         ],
-        ending1: [
+        dutyOverCuriosityA: [
             new DialogueSnippet('Erin', 'Zhang!  I made a ladder.'),
             new DialogueSnippet('Zhang', 'About time!'),
             new DialogueSnippet('', 'Despite his words, Zhang sounds relieved.'),
             new DialogueSnippet('', 'Erin helps Zhang onto the ladder and half carries him out of the pit.'),
             new DialogueSnippet('Zhang', 'We need to go back south.  Where\'s the compass?'),
-            new DialogueSnippet('Erin', 'Uhm...'),
+            new DialogueSnippet('Erin', 'Uh, I may have... Uhm...'),
             new DialogueSnippet('Zhang', '...'),
             new DialogueSnippet('', 'Zhang sighs and looks up at the sky toward the setting sun.'),
             new DialogueSnippet('Zhang', 'Well, if that\'s east, then we know where south is.  Find me a walking stick, so we get going.'),
             new DialogueSnippet('Erin', 'Yessir.')
         ],
-        ending2: [
+        dutyOverCuriosityB: [
+            new DialogueSnippet('Erin', 'Zhang!  I made a ladder.'),
+            new DialogueSnippet('Zhang', 'About time!'),
+            new DialogueSnippet('', 'Despite his words, Zhang sounds relieved.'),
+            new DialogueSnippet('', 'Erin helps Zhang onto the ladder and half carries him out of the pit.'),
+            new DialogueSnippet('Zhang', 'We need to go back south.  Where\'s the comp—'),
+            new DialogueSnippet('', 'Zhang gives a blank look to Erin.  Erin shrugs sheepishly.'),
+            new DialogueSnippet('', 'Zhang sighs and looks up at the sky toward the setting sun.'),
+            new DialogueSnippet('Zhang', 'Well, if that\'s east, then we know where south is.  Find me a walking stick, so we get going.'),
+            new DialogueSnippet('Erin', 'Yessir.')
+        ],
+        deathWish: [
             new DialogueSnippet('Erin', 'Zhang!  I made a ladder.'),
             new DialogueSnippet('', 'Zhang gives a mildly approving “hm,” but says nothing more.'),
             new DialogueSnippet('', 'Erin helps Zhang onto the ladder and half carried him out of the pit.'),
@@ -123,6 +134,15 @@ export class OnClickDialogue {
             new DialogueSnippet('', 'The Core nods, then turns towards the classroom.  Erin collapses on the ground, breathing shallowly.  She sees Zhang mirroring her expression from the entrance to the foyer.  As she puts a finger to her lips to signal for quiet, they hear a loud tapping, as The Core probes for an escape.'),
             new DialogueSnippet('', 'The tapping grows louder and louder until it busts through the wall and burrows its way to the surface.  Erin peaks into the classroom.  She can see a point of light at the end of the tunnel.'),
             new DialogueSnippet('Erin', 'Well... we have a way out now.')
+        ],
+        forgotSomeone: [
+            new DialogueSnippet('', 'Erin brings the ladder back to the hole that she and Zhang had fallen through.'),
+            new DialogueSnippet('Zhang', 'Thank goodness, we have a way out.'),
+            new DialogueSnippet('', 'Erin nods as she sets up the ladder.'),
+            new DialogueSnippet('Zhang', 'Did you find anything to help me get out?'),
+            new DialogueSnippet('', 'Erin doesn’t answer.  She starts climbing up the ladder.'),
+            new DialogueSnippet('Zhang', 'Erin?  Do you think there will be something in the swamp that can help?'),
+            new DialogueSnippet('', 'Erin is already out of sight in the open air above.  She picks a direction and starts walking.', 'ending'),
         ]
     };
 
@@ -370,7 +390,8 @@ export class OnClickDialogue {
         ],
         boardsLadder: [new DialogueSnippet('', 'I just need a way to hold the boards in place.')],
         boardsLadder2: [new DialogueSnippet('', 'Just gotta hammer the nails down.')],
-        poisonPlant: [new DialogueSnippet('Erin', 'Zhang warned me not to touch those anymore.')]
+        poisonPlant: [new DialogueSnippet('Erin', 'Zhang warned me not to touch those anymore.')],
+        ladder: [new DialogueSnippet('', 'The ladder is complete.', 'choice', 'ladderEscape')]
     };
 
     combos = {

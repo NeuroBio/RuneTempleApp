@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, Subject } from 'rxjs';
 import { InteractionWithKeys } from 'src/app/rune-temple/_objects/interactions/Interaction';
 import { EventFlag } from 'src/app/rune-temple/_objects/event-types/EventFlag';
 import { MiniGameVictoryInteractions } from 'src/app/rune-temple/_objects/interactions/MiniGameVictoryInteractions';
@@ -12,7 +12,7 @@ import { GameSettingsService } from './game-settings.service';
 export class MiniGameService {
 
   activeGame = new BehaviorSubject<MiniGame>(undefined);
-  miniGameBroadcast = new BehaviorSubject<InteractionWithKeys>(undefined);
+  miniGameBroadcast = new Subject<InteractionWithKeys>();
   allowSkip = new BehaviorSubject<boolean>(undefined);
 
   private skipSubscription: Subscription;

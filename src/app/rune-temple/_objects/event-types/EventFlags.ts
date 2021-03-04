@@ -4,15 +4,6 @@ export class EventFlags {
     compassBroken = false;
     ovenLit = false;
     zhangFreed = false;
-    wetKeyMade = false;
-    reliefRepaired = false;
-    boardsArranged = false;
-    ladderMade = false;
-
-    // Items
-    haveFish = false;
-    haveBook = false;
-    haveNails = false;
 
     // help Zhang
     sterilize = false;
@@ -20,6 +11,22 @@ export class EventFlags {
     stabilize = false;
     wrapilize = false;
     zhangMedicated = false;
+
+    // Game Events continued
+    reliefRepaired = false;
+    boardsArranged = false;
+    ladderMade = false;
+    wetKeyMade = false;
+    coreMet = false;
+    coreDefeated = false;
+    delay = false;
+    endGame = false;
+
+    // Items
+    haveFish = false;
+    haveBook = false;
+    haveNails = false;
+
 
     // Zhang sees...
     zhangSawBook = false;

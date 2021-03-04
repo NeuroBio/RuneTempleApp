@@ -295,10 +295,10 @@ export class UpdateInteractions {
                     new Activator('craft', 'boardsLadder', false),
                     new Activator('craft', 'ladder', true),
                 ]),
-                'boards', 'rock'),
+                'boardsLadder', 'rock'),
 
             new InteractionWithKeys(
-                    new Interaction(new KeyPair('envCombos', 'boardsLadder2')),
+                    new Interaction(new KeyPair('activeAreas', 'boardsLadder2')),
                     'boardsLadder', 'default')]
 
 

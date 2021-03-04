@@ -19,7 +19,7 @@ export class InventoryService {
 
   constructor() {
     this.addItems(this.initialInventory);
-    const cheating = ['glue', 'litTorch'];
+    const cheating = ['litTorch', 'silverKey', 'rock', 'nails'];
     this.addItems(cheating);
   }
 

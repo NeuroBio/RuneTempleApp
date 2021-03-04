@@ -10,6 +10,7 @@ import { InputReqService } from './input-req.service';
 import { GameSettingsService } from './game-settings.service';
 import { MiniGameService } from './mini-game.service';
 import { Subscription } from 'rxjs';
+import { EpilogueService } from './epilogue.service';
 
 @Injectable()
 export class TriggerService {
@@ -22,24 +23,27 @@ export class TriggerService {
     private interactionserv: InteractionService,
     private inventoryserv: InventoryService,
     private eventflagserv: EventFlagService,
+    private epilogueserv: EpilogueService,
     private sceneserv: SceneService,
     private choiceserv: ChoiceService,
-    private inputReqServ: InputReqService,
+    private inputreqserv: InputReqService,
     private minigameserv: MiniGameService,
     private gs: GameSettingsService
   ) { 
+    // Trigger on MiniGame Victory
     this.minigameSubscription = this.minigameserv.miniGameBroadcast
-      .subscribe(interaction => {
-        if (interaction) {
-          this.triggerInteraction(interaction);
-        }
-    });
+      .subscribe(interaction => this.triggerInteraction(interaction));
 
+    this.dialogueserv.postDialogueInteraction
+      .subscribe(keys => this.triggerPostDialogue(keys.key, keys.subkey));
+
+    // Trigger on Event Flag
     this.triggerNowSubscription = this.eventflagserv.triggerNow
       .subscribe(interaction => this.triggerInteraction(interaction));
   }
 
 
+  // Trigger On Click
   checkClickOrCombo(index: number): void {
     const select = this.inventoryserv.getSelectedItem();
     const key = this.inventoryserv.inventory.value[index].assetKey;
@@ -50,6 +54,32 @@ export class TriggerService {
       this.checkInteraction('breaker', key);
     } else {
       this.inventoryserv.selectItem(index);
+    }
+  }
+
+  // Trigger on Dialogue
+  private triggerPostDialogue(type: string, key: string): void {
+    switch (type) {
+      case 'choice' :
+        this.choiceserv.setChoice('dialogue', key);
+        break;
+      case 'inputRequest' :
+        this.inputreqserv.setInputRequest('dialogue', key);
+        break;
+      case 'scene' :
+        this.sceneserv.triggerUpdate('dialogue', key);
+        break;
+      case 'miniGame' :
+        this.minigameserv.setMiniGame(key);
+        break;
+      case 'itemLost':
+        this.inventoryserv.removeItems([key]);
+        break;
+      case 'ending' :
+        this.epilogueserv.loadEpilogue();
+        break;
+      default:
+        console.error('Unknown event type: ', type);
     }
   }
 
@@ -109,7 +139,7 @@ export class TriggerService {
       this.choiceserv.setChoice(int.loadChoice.key, int.loadChoice.subkey);
     }
     if (int.requestInput) {
-      this.inputReqServ.setInputRequest(int.requestInput.key, int.requestInput.subkey);
+      this.inputreqserv.setInputRequest(int.requestInput.key, int.requestInput.subkey);
     }
   }
 

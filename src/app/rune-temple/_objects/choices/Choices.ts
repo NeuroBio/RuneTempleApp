@@ -59,6 +59,12 @@ export class Choices {
             'Will Erin name the fish?',
             ['Yes', 'No'],
             this.int.immutable.nameFish),
+
+        ladderEscape: new Choice(
+            'Are you sure you want to escape now?',
+            ['Yes', 'No'],
+            this.int.immutable.ladderExit
+        )
     };
 
     constructor() {
