@@ -26,10 +26,11 @@ h3 {
 }
 
 #title {
-    margin: $standard-margin
+    margin: $standard-margin;
 }
 
 #info-text {
+    padding: $standard-margin;
     overflow-y: auto;
     color: whitesmoke;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

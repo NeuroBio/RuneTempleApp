@@ -1,5 +1,6 @@
 import { KeyPair, InteractionWithKeys, Interaction } from './Interaction';
 import { EventFlag } from '../event-types/EventFlag';
+import { Activator } from '../scenes/ActiveArea';
 
 export class MiniGameVictoryInteractions {
     breakerPuzzle1 = new InteractionWithKeys(
@@ -7,7 +8,15 @@ export class MiniGameVictoryInteractions {
             [], [], [], [], [], [],
             new KeyPair('miniGames', 'breakerPuzzle1')));
 
-    // breakerPuzzle1 = new InteractionWithKeys(
-    //     new Interaction(new KeyPair('envCombos', 'reliefUNVictory'),
-    //         [], [], [new EventFlag('deathInDarkness')]));
+    assemblePuzzleA = new InteractionWithKeys(
+        new Interaction(new KeyPair('envCombos', 'reliefVictory2'),
+            [], [], [new EventFlag('reliefRepaired')], [
+                new Activator('classroom', 'vent2', true),
+                new Activator('classroom', 'reliefRepaired', true)]));
+
+    assemblePuzzleB = new InteractionWithKeys(
+        new Interaction(new KeyPair('envCombos', 'reliefUNVictory'),
+            [], [], [new EventFlag('deathInDarkness')], [
+                new Activator('classroom', 'vent2', true),
+                new Activator('classroom', 'reliefRepaired', true)]));
 }

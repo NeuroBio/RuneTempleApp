@@ -7,6 +7,7 @@ import { ChoiceService } from './choice.service';
 import { InputReqService } from './input-req.service';
 import { OnClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
 import { MiniGameService } from 'src/app/rune-temple/_services/mini-game.service';
+import { InventoryService } from './inventory.service';
 
 @Injectable({
   providedIn: 'any'
@@ -24,7 +25,8 @@ export class DialogueService {
     private sceneserv: SceneService,
     private choiceserv: ChoiceService,
     private inputreqserv: InputReqService,
-    private minigameserv: MiniGameService
+    private minigameserv: MiniGameService,
+    private inventoryserv: InventoryService
   ) { }
 
   setDialogue(key: string, subkey: string): void {
@@ -65,6 +67,9 @@ export class DialogueService {
         break;
       case 'miniGame' :
         this.minigameserv.setMiniGame(key);
+        break;
+      case 'itemLost':
+        this.inventoryserv.removeItems([key]);
         break;
       default:
         console.error('Unknown event type: ', type);

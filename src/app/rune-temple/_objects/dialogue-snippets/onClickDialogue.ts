@@ -272,6 +272,8 @@ export class OnClickDialogue {
         ],
         depression: [new DialogueSnippet('Erin', 'Maybe the students sat here?')],
         relief: [new DialogueSnippet('', 'On the far wall there was once a relief of something.  Now, most of its pieces lie on the floor, chipped and dusty.  Erin has no way of making out what it used to be in this state.')],
+        relief1: [new DialogueSnippet('', 'The newly repaired relief gives a hint to the regal air that the temple must have had in its hay day.  However, the glue seams make recreating that atmosphere impossible.  The relief depicts some sort of creature.')],
+        relief2: [new DialogueSnippet('', 'It\'s impossble to make out what the relief once dipected, but that is okay.  It was not supposed to be intact.  It COULD NOT be whole.')],
         topShelf: [new DialogueSnippet('', 'The shelf is filled with flour and grains.  It is unlikely that they are any good at this point.')],
         secondShelf: [
             new DialogueSnippet('', 'The shelf is lined with boxes of screws, nails, and other bits of hardware.'),
@@ -297,6 +299,7 @@ export class OnClickDialogue {
 
         engrave1: [new DialogueSnippet('Erin', 'What is this?  It\'s pretty whatever it is.')],
         engrave2: [new DialogueSnippet('Erin', 'What is this?  It\'s pretty whatever it is.  It reminds me of something...')],
+        engrave3: [new DialogueSnippet('', 'Erin places her hand on the metal engraving.  She carefully feels around the engraving of the creature she had seen in the relief, but finds nothing of interest.')],
         herbsEnv: [new DialogueSnippet('Erin', 'I wonder if any of those are medicinal...')],
         exit: [
             new DialogueSnippet('', 'Erin presses her ear to the door and hears the sound of water'),
@@ -307,13 +310,20 @@ export class OnClickDialogue {
         craftDoor: [new DialogueSnippet('Erin', 'It\'s locked.')],
         mossBank: [new DialogueSnippet('', 'Erin makes a face at the offending bryophytes, but a strange lump in the plant lawn catches her attention.  She reaches her hand out to scrap away some of the moss, but it is thick and well attached to whatever lies beneath it.')],
         metalEngrave: [new DialogueSnippet('', 'The metal engraving Erin revealed earlier is still there.')],
-
+        metalEngrave2: [
+            new DialogueSnippet('', 'Erin runs her hand over the metal engraving, stopping at the creature that matched the one she had seen in the relief.  On closer inspection, she notices seams between the effigy of the creature and the rock.  She pushes it.'),
+            new DialogueSnippet('', 'The sound of scraping startles Erin as a hidden door opens.  Erin takes a step towards it, but as soon as she takes her hand off the engraving, the door drops closed.'),
+            new DialogueSnippet('', 'Confused, Erin pushes the engraving again.  As the hidden door raises, she notices a set of hooks come out, as if to hold a “key” in the shape of the creature.'),
+        ],
+        metalEngrave3: [new DialogueSnippet('', 'Erin presses the creature in the engraving again.  The door opens again.  As soon as she moves her hand, the door shuts again.  Erin huffs.')],
         peatOven: [new DialogueSnippet('', 'The old, stone peat oven is unlit.  The ash from the last time it was used has settled deeply into the stone, staining it black.')],
         peatOvenLit: [new DialogueSnippet('', 'The fire in the oven crackles softly, bringing warmth into the damp air.')],
         peat: [new DialogueSnippet('', 'Layers and layers of compacted peat.', 'choice', 'peatStacks')],
         vent1A: [new DialogueSnippet('', 'Erin tries to pull the metal grate off, but it is screwed firmly in place.')],
         vent1B: [new DialogueSnippet('', 'Erin peers into the vent, but there is nothing there.')],
         vent1C: [new DialogueSnippet('', 'Erin peers into the vent.  The metal object from the classroom vent, now identifiable as a key, fell within reach.  Erin snags the key.')],
+        vent2A: [new DialogueSnippet('', 'The vent had been hidden by the broken pieces of the relief.  Erin kneels to examine it.  The metal grate is securely screwed in place')],
+        vent2B: [new DialogueSnippet('', 'She peers into the vent and sees the glint of something at the bottom, just out of reach.  It looks metal.')],
         tongs: [new DialogueSnippet('Erin', 'If I needed these, I would probably be using the oven.   They can stay here.')],
         meltPot: [new DialogueSnippet('Erin', 'If I needed this, I would probably be using the oven.   It can stay here.')],
         troth: [new DialogueSnippet('', 'The troth is bone dry.')],
@@ -346,6 +356,7 @@ export class OnClickDialogue {
         barrelFish: [new DialogueSnippet('', 'Erin is tempted to reach her hand into the barrel to pull out the fish, perhaps to save it if it were still alive or at least give it a proper burial if not; however, after seeing the effect the water had on the fish, Erin fears how the water would affect her.  The fish will remain in its watery grave.')],
         dripSpigot: [new DialogueSnippet('', 'A puny stream of water burbles into the troth')],
         fullTroth: [new DialogueSnippet('', 'The troth is filled with water.')],
+        hiddenDoor: [new DialogueSnippet('Erin', 'I need to find a way to keep this door open.')],
     };
 
     combos = {
@@ -417,9 +428,18 @@ export class OnClickDialogue {
         knifeMossBank: [new DialogueSnippet('', 'Erin pulls out her pocketknife and wiggles the tip deeper into the plants until she feels stone.  She cuts through the plants, slicing at their short roots to peel off a strip.  Underneath is a metal engraving.')],
         knifeDoor: [new DialogueSnippet('Erin', 'My knife is not a lockpick...')],
 
-        knifeVent1A: [new DialogueSnippet('', 'Erin pulls out her pocketknife and uses it like a screwdriver to remove the screws.  She peers into the vent, but there is nothing there.')],
-        magnetVent1A: [new DialogueSnippet('', 'Erin pulls out her magnetic disk and uses it like a screwdriver to remove the screws.  She peers into the vent, but there is nothing there.')],
-        screwVent1: [new DialogueSnippet('Erin', 'There\'s nothing else to unscrew.')],
+        knifeVent: [new DialogueSnippet('', 'Erin pulls out her pocketknife and uses it like a screwdriver to remove the screws.')],
+        magnetVentA: [new DialogueSnippet('', 'Erin pulls out her magnetic disk and uses it like a screwdriver to remove the screws.')],
+        magnetVentB: [new DialogueSnippet('', 'Erin pulls out her sticky magnetic disk and uses it like a screwdriver to remove the screws.  Erin\s fingers are now sticky.')],
+        screwVent: [new DialogueSnippet('Erin', 'There\'s nothing else to unscrew.')],
+        silverKeyMoved: [new DialogueSnippet('Erin', 'There\'s nothign in the vent anymore.')],
+
+        magnetNoReach: [new DialogueSnippet('', 'Erin jams her arm into the vent, but she can\t quite get in reach orthe metal object.')],
+        magnetLoseKey: [
+            new DialogueSnippet('', 'Erin carefully lowers the magnetic disk to the piece of metal.  It doesn’t stick at first, but eventually she feels the extra weight of the metal object and starts to lift it.  The metal object falls off the magnet and clatters down deeper into the vent.'),
+            new DialogueSnippet('Erin', 'Seriously?')
+        ],
+        magnetCatchKey: [new DialogueSnippet('', 'Erin carefully lowers the magnetic disk to the piece of metal.  It doesn’t stick at first, but eventually she feels the extra weight of the metal object and starts to lift it.  She pulls out a key.  It\'s a little sticky now, but it should function just fine.')],
         vodkaFlask2Oven: [new DialogueSnippet('Erin', 'That would be a terrible waste of vodka.')],
         lighterOven: [new DialogueSnippet('Erin', 'There\'s nothing in the furnace to light.')],
         charcoalOven: [
@@ -647,11 +667,19 @@ export class OnClickDialogue {
         glueRelief: [new DialogueSnippet('', 'Erin picks up a shard of the relief and dabs it in the glue.  She adds it to the relief in its proper place.  As she bends down to get another, a flash of teal catches her eye, and the glued piece of the relief falls back onto the ground.')],
         glueRelief2: [new DialogueSnippet('Erin', 'There no way I can fix the relief while these Ghosts are taking it back apart.')],
         glueRelief3: [new DialogueSnippet('', 'Erin begins to reassemble the relief.')],
+        glueRelief4: [new DialogueSnippet('Erin', 'It\'s repaied enough.')],
+        glueRelief5: [new DialogueSnippet('Erin', 'There isn\'t enough glue in the work to fix this now.')],
         breakerRelief: [new DialogueSnippet('', 'Erin gathers Source in her hand and converts it into a Breaker haze.  The Ghost in the relief strikes back.', 'miniGame', 'breakerPuzzle1')],
         breakerRelief2: [new DialogueSnippet('Erin', 'There are no more Ghosts here.')],
         reliefVictory: [new DialogueSnippet('', 'The weak Ghost dissipates, and Erin mentally pats herself on the back.')],
-        reliefUNVictory: [new DialogueSnippet('', 'She doesn\'t even notice how low her torch is until it fizzles out.')]
-
+        reliefVictory2: [new DialogueSnippet('', 'Erin steps back to admire her handywork.  She wishes Zhang could see it.')],
+        reliefUNVictory: [new DialogueSnippet('', 'She doesn\'t even notice how low her torch is until it fizzles out.')],
+        rockRelief: [new DialogueSnippet('Erin', 'It\'s already broken.')],
+        rockRelief2: [new DialogueSnippet('', 'Erin continues to stare at the relief.  It seems wrong to leave it intact.  Why not just…?  Erin’s hand mechanically beats the rock against the relief until nothing remained but dust.  Erin stares at the rock in her hand, then slowly puts it away.')],
+        rockRelief3: [new DialogueSnippet('Erin', 'It\'s dust now.')],
+        reliefBook: [new DialogueSnippet('Erin', 'Yeah, this is definitely the creature on page 4.  What does that mean though?')],
+        wrongKey: [new DialogueSnippet('', 'Erin tries to put the key into the lock, but it doesn\'t fit.')],
+        openCraftDoor: [new DialogueSnippet('', 'Erin tries to put the key into the lock.  The door unlocks.')],
     };
 
     itemDefaults = {
@@ -707,6 +735,7 @@ export class OnClickDialogue {
 
     sceneUpdates = {
         foyerHaunt: [new DialogueSnippet('Erin', 'What the...')],
+        deadFish: [new DialogueSnippet('', 'A strange smell catches Erin’s attention.  She looks at the tiny fish only to realize it has passed on while waiting in her inventory.  Erin sighs.  She tosses the fish into a discrete corner of the room.', 'lostItem', 'fish')]
     };
 
     itemDescriptions = {

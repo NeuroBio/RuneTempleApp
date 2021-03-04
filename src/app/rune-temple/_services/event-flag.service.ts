@@ -7,11 +7,14 @@ import { SceneService } from './scene.service';
 import { ChoiceService } from './choice.service';
 import { GameSettingsService } from './game-settings.service';
 import { OnClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'any'
 })
 export class EventFlagService {
+
+  triggerNow = new Subject<InteractionWithKeys>();
 
   // mutable
   private events = new EventFlags();
@@ -38,16 +41,19 @@ export class EventFlagService {
     switch (key) {
       case ('enteredFoyer' || 'mapBurned'):
         if (this.events.mapBurned && !this.events.foyerMap) {
-          this.events.quickBreak = true;
+          this.updateEvents([new EventFlag('quickBreak', true)]);
         }
         break;
       case 'fishNamed' :
         const name = this.gs.getTextVar('fishName');
         this.badgeCheck('breakfast', (name === 'Fish'));
         this.badgeCheck('enlightenment', (name === 'kArA'));
+        if(this.events.reliefRepaired) {
+          this.updateScene('foyer', []);
+        }
         /* falls through */
       case 'zhangMedicated' :
-        if (name === 'Zhang' && this.events.zhangMedicated) {
+        if (this.gs.getTextVar('fishName') === 'Zhang' && this.events.zhangMedicated) {
           this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'zhangZhangFish'));
         } else if(this.events.zhangMedicated) {
           this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'zhangNoZhangFish'));
@@ -99,28 +105,24 @@ export class EventFlagService {
           && this.events.flaskShatter));
         break;
       case 'bookBurned' :
-        if (this.events.reliefRepaired) {
+        if (this.events.reliefRepaired && this.events.zhangSawBook) {
           this.removeChoice('dialogue', 'zhangConvoTopics', 'about the relief');
         }
         break;
       case 'reliefRepaired' :
-        if (!this.events.bookBurned) {
+        if (this.events.haveBook && this.events.zhangSawBook) {
           this.addChoice('dialogue', 'zhangConvoTopics', 'about the relief', new KeyPair('zhangHelp', 'relief'));
         }
-        if (!this.events.ovenLit) {
-
+        if (!this.events.fishNamed && this.events.haveFish) {
+          this.updateScene('Foyer', this.sceneDial.deadFish);
         }
-        break;
-      case ('vent1Open' || 'keyFell') :
-        if (this.events.vent1Open && this.events.keyFell) {
-          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'vent1openANDkeyFell'));
-        } else if (this.events.vent1Open) {
-          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'ventOpenOnly'));
+        if(!this.events.haveFish && this.events.hammerExit) {
+          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'deadFish'));
         }
         break;
       case 'ovenLit' :
         if (this.events.ovenCharcoal) {
-          this.events.charcoalBurned = true;
+          this.updateEvents([new EventFlag('charcoalBurned')]);
         }
 
         if (this.events.flaskFish) {
@@ -133,6 +135,9 @@ export class EventFlagService {
         break;
       case 'zhangSawBook' :
         this.addChoice('dialogue', 'zhangConvoTopics', 'about the book', new KeyPair('zhangHelp', 'book'));
+        if (this.events.reliefRepaired) {
+          this.addChoice('dialogue', 'zhangConvoTopics', 'about the relief', new KeyPair('zhangHelp', 'relief'));
+        }
         break;
       case 'ashFish':
         this.fishDeath('ashFish');
@@ -161,6 +166,8 @@ export class EventFlagService {
       case 'trothFish':
         this.fishDeath('trothFish');
         break;
+      case 'neglectFish':
+        this.fishDeath('neglectFish');
       default:
         break;
     }

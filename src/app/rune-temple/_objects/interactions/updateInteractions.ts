@@ -61,21 +61,6 @@ export class UpdateInteractions {
                 new Interaction(new KeyPair('activeAreas', 'puddle2')),
                 'puddle', 'default')],
 
-        vent1Knife: [
-            new InteractionWithKeys(
-                new Interaction(new KeyPair('envCombos', 'screwVent1')),
-                'vent1', 'knife')],
-
-        vent1Magnet: [
-            new InteractionWithKeys(
-                new Interaction(new KeyPair('envCombos', 'screwVent1')),
-                'vent1', 'magnet')],
-
-        vent1MagnetString: [
-            new InteractionWithKeys(
-                new Interaction(new KeyPair('envCombos', 'screwVent1')),
-                'vent1', 'magnetString')],
-
         trothAcidDish: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'acidDishTroth2'),
@@ -258,7 +243,21 @@ export class UpdateInteractions {
         
         hauntedRelief: [
             new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'glueRelief2')),
-            'relief', 'glue')]
+            'relief', 'glue')],
+
+        silverKeyMoved: [
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'silverKeyMoved')),
+            'vent2Open', 'magnet'),
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'silverKeyMoved')),
+            'vent2Open', 'magnetString'),
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'silverKeyMoved')),
+            'vent2Open', 'stickyMagnet'),
+            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'silverKeyMoved')),
+            'vent2Open', 'stickyMagnetString'),
+            // The 1c is correct.  I just haven't updated it to just VENT everywhere.
+            new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'vent1C')),
+            'vent2Open', 'default')
+        ]
     };
 
     dialogueUpdates = {
@@ -283,54 +282,68 @@ export class UpdateInteractions {
     };
 
     eventFlagUpdates = {
-        vent1openANDkeyFell: [
+        keyFell: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'vent1C'),
                     [], ['silverKey'], [], [], [], [],
-                    new KeyPair('eventFlagUpdates', 'ventOpenOnly')),
+                    new KeyPair('eventFlagUpdates', 'vent1OpenOnly')),
                 'vent1', 'default')],
 
-        ventOpenOnly: [
+        vent1OpenOnly: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('activeAreas', 'vent1B')),
                 'vent1', 'default')],
 
         noFishForYou: [
-            new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'puddle2')))],
+            new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'puddle2')),
+            'puddle', 'default')],
+        
+        deadFish: [
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('activeAreas', 'puddle3'),
+                [], [], [new EventFlag('neglectFish')]),
+                'puddle', 'default')],
 
         zhangZhangFish: [
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangZhangFish'),
-                [], [], [new EventFlag('envCombos', 'zhangSawFish')], [], [], ['zhangFish']),
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'zhangZhangFish'),
+                    [], [], [new EventFlag('envCombos', 'zhangSawFish')], [], [], ['zhangFish']),
                 'zhangBandaged', 'fishtank'),
 
-                new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangZhangFish'),
-                [], [], [new EventFlag('envCombos', 'zhangSawFish')], [], [], ['zhangFish']),
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'zhangZhangFish'),
+                    [], [], [new EventFlag('envCombos', 'zhangSawFish')], [], [], ['zhangFish']),
                 'zhangBandaged', 'cleanFishtank')],
 
         zhangNoZhangFish: [
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
-                [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
+                    [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
                 'zhangBandaged', 'fishtank'),
 
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
-                [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'zhangFishtank'),
+                    [], [], [new EventFlag('envCombos', 'zhangSawFish')]),
                 'zhangBandaged', 'cleanFishtank')],
 
         dampTroth: [
             new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'trothSemiFilled')),
             'troth', 'default'),
 
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
-                ['fish'], [], [new EventFlag('fishInTroth')]),
-            'troth', 'fish'),
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
+                    ['fish'], [], [new EventFlag('fishInTroth')]),
+                'troth', 'fish'),
 
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
-                ['fishtank'], ['glassCap'], [new EventFlag('fishInTroth')]),
-            'troth', 'fishtank'),
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
+                    ['fishtank'], ['glassCap'], [new EventFlag('fishInTroth')]),
+                'troth', 'fishtank'),
 
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
-                ['cleanFishtank'], ['glassCap'], [new EventFlag('fishInTroth')]),
-            'troth', 'cleanFishtank')],
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
+                    ['cleanFishtank'], ['glassCap'], [new EventFlag('fishInTroth')]),
+                'troth', 'cleanFishtank')],
 
         swampTrothAlmostFilled: [
             new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fillSwampTroth2'))),
@@ -344,26 +357,39 @@ export class UpdateInteractions {
             'troth', 'default')],
 
         flaskFishOvenLit: [
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fishFlaskPot1'),
-                ['emptyFlask'], [], [], [
-                    new Activator('oven', 'meltPot', false),
-                    new Activator('oven', 'metalPot', true)
-                ]),
-            'meltPot', 'emptyFlask'),
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'fishFlaskPot1'),
+                    ['emptyFlask'], [], [], [
+                        new Activator('oven', 'meltPot', false),
+                        new Activator('oven', 'metalPot', true)
+                    ]),
+                'meltPot', 'emptyFlask'),
 
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fishFlaskPot1'),
-                ['swampFlask'], [], [], [
-                    new Activator('oven', 'meltPot', false),
-                    new Activator('oven', 'metalPot', true)
-                ]),
-            'meltPot', 'swampFlask'),
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'fishFlaskPot1'),
+                    ['swampFlask'], [], [], [
+                        new Activator('oven', 'meltPot', false),
+                        new Activator('oven', 'metalPot', true)
+                    ]),
+                'meltPot', 'swampFlask'),
 
-            new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'scrapMetalFishPotLit'),
-                ['scrapMetal'], [], [], [
-                    new Activator('oven', 'meltPot', false),
-                    new Activator('oven', 'metalPot', true)
-                ]),
-            'meltPot', 'scrapMetal')
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'scrapMetalFishPotLit'),
+                    ['scrapMetal'], [], [], [
+                        new Activator('oven', 'meltPot', false),
+                        new Activator('oven', 'metalPot', true)
+                    ]),
+                'meltPot', 'scrapMetal')],
+
+        reliefRepaired: [
+            new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'engrave3')),
+            'engrave', 'default'),
+            new InteractionWithKeys(
+                new Interaction(
+                    new KeyPair('activeAreas', 'metalEngrave2'), [], [], [],
+                    [new Activator('basement', 'hiddenDoor', true)], [], [],
+                    new KeyPair('onClickUpdates', 'metalEngrave3')),
+                'metalEngrave', 'default'),
         ]
     };
 
@@ -383,6 +409,6 @@ export class UpdateInteractions {
             new InteractionWithKeys(
                 new Interaction(new KeyPair('envCombos', 'glueRelief3')),
                 'relief', 'glue')
-        ]
+        ],
     };
 }

@@ -2,11 +2,14 @@ export class EventFlags {
 
     // Game Events
     compassBroken = false;
-    bookGot = false;
     ovenLit = false;
     zhangFreed = false;
     wetKeyMade = false;
     reliefRepaired = false;
+
+    // Items
+    haveFish = false;
+    haveBook = false;
 
     // help Zhang
     sterilize = false;
@@ -43,6 +46,7 @@ export class EventFlags {
     acidFish2 = false;
     trothFish = false;
     hammerFish = false;
+    neglectFish = false;
 
     // HAMMER EVERYTHING
     hammerExit = false;

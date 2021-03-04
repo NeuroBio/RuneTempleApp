@@ -64,4 +64,5 @@ export class FishDeaths {
     acidFish2 = false;
     trothFish = false;
     hammerFish = false;
+    neglectFish = false;
 }

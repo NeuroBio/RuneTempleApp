@@ -19,6 +19,6 @@ export class MiniGames {
               new GameTile(3, 3, 'buzz')
             ],
             new GameTile(3, 0, 'player')),
-        info: "test"
+        info: 'Destroy the Ghosts:  Erin can destroy a Ghost by landing on its tile.  If a Ghost takes Erin’s tile, she’ll be defeated instead.  Erin can move in two ways: a normal move (one square) and dash (two squares).  After Erin has used a dash move, there is a one-turn cooldown before she can dash again.  The squares Erin can move to every turn are highlighted on the board.'
     }
 }

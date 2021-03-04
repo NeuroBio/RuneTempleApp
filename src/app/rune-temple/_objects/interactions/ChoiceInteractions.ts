@@ -19,37 +19,40 @@ export class ChoiceInteractions {
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'compassKnife'),
                     ['compass'], ['glassCap', 'magnet'],
-                    [new EventFlag('compassBroken', true)] )),
+                    [new EventFlag('compassBroken')] )),
             undefined],
 
         mapOven: [
             new InteractionWithKeys(new Interaction(
                 new KeyPair('dialogueEvents', 'mapOven'),
-                ['map'], [], [new EventFlag('mapBurned', true)],
+                ['map'], [], [new EventFlag('mapBurned')],
                 [], [], [], new KeyPair('dialogueUpdates', 'mapBurned'))),
             undefined],
 
         bookOven: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'bookOven'),
-                ['book'], [], [new EventFlag('bookBurned', true)])),
+                ['book'], [], [
+                    new EventFlag('bookBurned'),
+                    new EventFlag('haveBook', false)
+                ])),
             undefined],
 
         riskyGambit: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'riskyGambit'),
-                ['puzzleBox'], [], [new EventFlag('puzzleBoxBurned', true)])),
+                ['puzzleBox'], [], [new EventFlag('puzzleBoxBurned')])),
             undefined],
 
         shatter1: [
             new InteractionWithKeys(new Interaction(new KeyPair('dialogueEvents', 'shatter1'),
-                ['glassCap'], [], [new EventFlag('gassShatter', true)])),
+                ['glassCap'], [], [new EventFlag('gassShatter')])),
             undefined],
 
         shatter2: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'shatter2'),
-                ['emptyFlask'], ['scrapMetal'], [new EventFlag('flaskShatter', true)])),
+                ['emptyFlask'], ['scrapMetal'], [new EventFlag('flaskShatter')])),
             undefined],
 
         shatter3: [
@@ -61,7 +64,7 @@ export class ChoiceInteractions {
         igniteMap: [
             new InteractionWithKeys(
                     new Interaction(new KeyPair('dialogueEvents', 'igniteMap'),
-                    ['map'], [], [new EventFlag('mapBurned', true)])),
+                    ['map'], [], [new EventFlag('mapBurned')])),
             undefined],
 
         nameFish: [

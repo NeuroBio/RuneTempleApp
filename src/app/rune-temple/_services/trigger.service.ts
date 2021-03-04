@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 export class TriggerService {
 
   minigameSubscription: Subscription;
+  triggerNowSubscription: Subscription;
 
   constructor(
     private dialogueserv: DialogueService,
@@ -32,7 +33,10 @@ export class TriggerService {
         if (interaction) {
           this.triggerInteraction(interaction);
         }
-      });
+    });
+
+    this.triggerNowSubscription = this.eventflagserv.triggerNow
+      .subscribe(interaction => this.triggerInteraction(interaction));
   }
 
 

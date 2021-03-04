@@ -32,6 +32,10 @@ export class SceneActiveAreas {
         new ActiveArea('Book', 'bookEnv', 0, 0),
         new ActiveArea('Central Depression', 'depression', 0, 0),
         new ActiveArea('Broken Relief', 'relief', 0, 0),
+        new ActiveArea('Repaired Relief', 'reliefRepaired', 0, 0, false),
+        new ActiveArea('Destroyed Relief', 'reliefDestroyed', 0, 0, false),
+        new ActiveArea('Vent', 'vent2', 0, 0, false),
+        new ActiveArea('VentOpen', 'vent2Open', 0, 0, false)
     ];
 
     closet = [
