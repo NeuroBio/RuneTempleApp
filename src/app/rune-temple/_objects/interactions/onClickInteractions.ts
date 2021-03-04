@@ -187,7 +187,8 @@ export class OnClickInteractions {
     };
 
     secondShelf = {
-        default: new Interaction(new KeyPair('activeAreas', 'secondShelf'))
+        default: new Interaction(new KeyPair('activeAreas', 'secondShelf'),
+            [], [], [], [], [], [], new KeyPair('onClickUpdates', 'secondShelf'))
     };
 
     thirdShelf = {
@@ -238,6 +239,9 @@ export class OnClickInteractions {
             ], [], [], [],
             new KeyPair('onClickUpdates', 'barrelFish')),
         emptyFlask: new Interaction(new KeyPair('envCombos', 'noAcidFlask')),
+        dryClay: new Interaction(new KeyPair('envCombos', 'barrelClay'),
+            ['dryClay'], ['wetClay']),
+        wetClay: new Interaction(new KeyPair('envCombos', 'wetEnough'))
 
     };
 
@@ -251,12 +255,14 @@ export class OnClickInteractions {
 
     magnet = {
         twine: new Interaction(new KeyPair('combos', 'twineMagnet1'),
-            ['twine', 'magnet'], ['magnetString'])
+            ['twine', 'magnet'], ['magnetString'],
+            [new EventFlag('earlyMagnetString')])
     };
 
     stickyMagnet = {
         twine: new Interaction(new KeyPair('combos', 'twineMagnet1'),
-            ['twine', 'stickyMagnet'], ['stickyMagnetString'])
+            ['twine', 'stickyMagnet'], ['stickyMagnetString'],
+            [new EventFlag('earlyMagnetString')])
     };
 
     herbsEnv = {
@@ -278,7 +284,12 @@ export class OnClickInteractions {
 
     puddle = {
         default: new Interaction(new KeyPair('activeAreas', 'puddle1'),
-            [], ['fish'], [], [], [], [], new KeyPair('onClickUpdates', 'puddleDefault'))
+            [], ['fish'], [], [], [], [], new KeyPair('onClickUpdates', 'puddleDefault')),
+        emptyFlask: new Interaction(new KeyPair('envCombos', 'puddleFlask'),
+            ['emptyFlask'], ['swampFlask']),
+        dryClay: new Interaction(new KeyPair('envCombos', 'puddleClay'),
+            ['dryClay'], ['wetClay']),
+        wetClay: new Interaction(new KeyPair('envCombos', 'wetEnough'))
     };
 
     craftDoor = {
@@ -415,7 +426,8 @@ export class OnClickInteractions {
     };
 
     vent2Open = {
-        default:  new Interaction(new KeyPair('activeAreas', 'vent2B')),
+        default:  new Interaction(new KeyPair('activeAreas', 'vent2B'),
+            [], [], [], [], [], [], new KeyPair('onClickUpdates', 'magStringSensible')),
         knife: new Interaction(new KeyPair('envCombos', 'screwVent')),
 
         magnet: new Interaction(new KeyPair('envCombos', 'magnetNoReach')),
@@ -525,11 +537,6 @@ export class OnClickInteractions {
             ], [], undefined, 'pitFloor')
     };
 
-    emptyFlask = {
-        puddle : new Interaction(new KeyPair('envCombos', 'puddleFlask'),
-        ['emptyFlask'], ['swampFlask'])
-    };
-
     fish = {
         swampFlask: new Interaction(new KeyPair('combos', 'flaskFish'),
             ['fish', 'swampFlask'], ['emptyFlask'], [
@@ -568,5 +575,67 @@ export class OnClickInteractions {
 
     hiddenDoor = {
         default: new Interaction(new KeyPair('actionAreas', 'hiddenDoor'))
-    }
+    };
+
+    cabinet1 = {
+        default: new Interaction(new KeyPair('activeAreas', 'cabinet1A'),
+            [], ['dryClay'], [], [], [], [],
+            new KeyPair('onClickUpdates', 'cabinet1')),
+    };
+    
+    cabinet2 = {
+        default: new Interaction(new KeyPair('activeAreas', 'cabinet2')),
+    };
+    
+    table = {
+        default: new Interaction(new KeyPair('activeAreas', 'table')),
+    };
+    
+    jars = {
+        default: new Interaction(new KeyPair('activeAreas', 'jars'),
+            [], ['oilBottle'], [], [], [], [],
+            new KeyPair('onClickUpdates', 'jar'))
+    };
+    
+    vent3 = {
+        default: new Interaction(new KeyPair('activeAreas', 'vent1A')),
+        knife: new Interaction(new KeyPair('envCombos', 'knifeVent'),
+            [], [], [new EventFlag('vent3Open', true)], [
+                new Activator('oven', 'vent3', false),
+                new Activator('oven', 'vent3Open', true)]),
+        magnetString: new Interaction(new KeyPair('envCombos', 'magnetVentA'),
+            [], [], [new EventFlag('vent3Open', true)], [
+                new Activator('craft', 'vent3', false),
+                new Activator('craft', 'vent3Open', true)]),
+        stickyMagnetString: new Interaction(new KeyPair('envCombos', 'magnetVentB'),
+            [], [], [new EventFlag('vent3Open', true)], [
+                new Activator('craft', 'vent3', false),
+                new Activator('craft', 'vent3Open', true)]),
+    };
+
+    vent3Open = {
+        default:  new Interaction(new KeyPair('activeAreas', 'vent1B')),
+        knife: new Interaction(new KeyPair('envCombos', 'screwVent')),
+        magnetString: new Interaction(new KeyPair('envCombos', 'screwVent')),
+        stickyMagnetString: new Interaction(new KeyPair('envCombos', 'screwVent'))
+    };
+    
+    boards = {
+        default: new Interaction(new KeyPair('activeAreas', 'boards'),
+            [], [], [new EventFlag('boardsArranged')], [
+                new Activator('craft', 'boards', false),
+                new Activator('craft', 'boardsLadder', true)]),
+    };
+
+    boardsLadder = {
+        default: new Interaction(new KeyPair('activeAreas', 'boardsLadder')),
+        rock: new Interaction(new KeyPair('envCombos', 'rockBoards')),
+        glue: new Interaction(new KeyPair('envCombos', 'glueBoardsLadder')),
+        nails: new Interaction(new KeyPair('envCombos', 'boardsNails'),
+        ['nails'], [], [], [], [], [], new KeyPair('onClickUpdates', 'nailedBoards')),
+    };
+
+    poisonPlant = {
+        default: new Interaction(new KeyPair('activeAreas', 'poisonPlant')),
+    };
 }

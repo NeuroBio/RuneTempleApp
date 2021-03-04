@@ -168,6 +168,12 @@ export class EventFlagService {
         break;
       case 'neglectFish':
         this.fishDeath('neglectFish');
+        break;
+      case 'boardsArranged' : 
+        if (!this.events.haveNails) {
+          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'boardsArrangedAllowNails'));
+        }
+        break;
       default:
         break;
     }

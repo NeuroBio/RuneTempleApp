@@ -6,10 +6,13 @@ export class EventFlags {
     zhangFreed = false;
     wetKeyMade = false;
     reliefRepaired = false;
+    boardsArranged = false;
+    ladderMade = false;
 
     // Items
     haveFish = false;
     haveBook = false;
+    haveNails = false;
 
     // help Zhang
     sterilize = false;
@@ -23,6 +26,10 @@ export class EventFlags {
     zhangSawCompass = false;
     zhangSawBadFlask = false;
     zhangSawFish = false;
+
+    // PNC Expert
+    earlyNails = false;
+    earlyMagnetString = false;
 
 
     // misc badge things

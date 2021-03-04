@@ -36,4 +36,6 @@ export class SceneLocations {
     oven = [new ActiveArea('Go Back', 'basement', 0, 0)];
 
     leg = [new ActiveArea('Go Back', 'pitFloor', 0, 0)];
+
+    craft = [new ActiveArea('Go Back', 'basement', 0, 0)];
 }

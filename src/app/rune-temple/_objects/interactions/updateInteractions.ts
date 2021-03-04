@@ -256,8 +256,52 @@ export class UpdateInteractions {
             'vent2Open', 'stickyMagnetString'),
             // The 1c is correct.  I just haven't updated it to just VENT everywhere.
             new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'vent1C')),
-            'vent2Open', 'default')
-        ]
+            'vent2Open', 'default')],
+
+        cabinet1: [
+            new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'cabinet1B')),
+            'cabinet1', 'default')],
+
+        jars: [new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'jars')),
+            'jars', 'default')],
+
+        secondShelf: [new InteractionWithKeys(
+            new Interaction(new KeyPair('activeAreas', 'secondShelf2'),
+                [], ['nails'], [
+                    new EventFlag('haveNails'),
+                    new EventFlag('earlyNails')
+                ], [], [], [], new KeyPair('onClickUpdates', 'secondShelfNoNails')),
+            'secondShelf', 'default')],
+
+        secondShelfNoNails: [new InteractionWithKeys(
+            new Interaction(new KeyPair('activeAreas', 'secondShelf4')),
+            'secondShelf', 'default')],
+
+        magStringSensible: [
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('combos', 'twineMagnet2'),
+                    ['twine', 'magnet'], ['magnetString']),
+                'magnet', 'twine'),
+
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('combos', 'twineMagnet2'),
+                    ['twine', 'stickyMagnet'], ['stickyMagnetString']),
+                'stickyMagnet', 'twine')],
+
+        nailedBoards: [
+            new InteractionWithKeys(
+                new Interaction(new KeyPair('envCombos', 'rockBoards2'),
+                [], [], [new EventFlag('ladderMade')], [
+                    new Activator('craft', 'boardsLadder', false),
+                    new Activator('craft', 'ladder', true),
+                ]),
+                'boards', 'rock'),
+
+            new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'boardsLadder2')),
+                    'boardsLadder', 'default')]
+
+
     };
 
     dialogueUpdates = {
@@ -389,8 +433,13 @@ export class UpdateInteractions {
                     new KeyPair('activeAreas', 'metalEngrave2'), [], [], [],
                     [new Activator('basement', 'hiddenDoor', true)], [], [],
                     new KeyPair('onClickUpdates', 'metalEngrave3')),
-                'metalEngrave', 'default'),
-        ]
+                'metalEngrave', 'default')],
+
+        boardsArrangedAllowNails: [new InteractionWithKeys(
+            new Interaction(new KeyPair('acitiveAreas', 'secondShelf3'),
+                [], ['nails'], [new EventFlag('haveNails')], [], [], [],
+                new KeyPair('onClickUpdates', 'secondShelfNoNails')),
+                'secondShelf', 'default')],        
     };
 
     inputReqUpdates = {

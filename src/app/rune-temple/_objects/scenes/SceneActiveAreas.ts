@@ -73,4 +73,17 @@ export class SceneActiveAreas {
     ];
 
     leg = [new ActiveArea('Injury', 'injury', 0, 0)];
+
+    craft = [
+        new ActiveArea('Lower Cabinet', 'cabinet1', 0, 0),
+        new ActiveArea('Upper Cabinet', 'cabinet2', 0, 0),
+        new ActiveArea('Table', 'table', 0, 0),
+        new ActiveArea('Bottles and Jars', 'jars', 0, 0),
+        new ActiveArea('Vent', 'vent3', 0, 0),
+        new ActiveArea('Vent', 'vent3Open', 0, 0, false),
+        new ActiveArea('Pile of Boards', 'boards', 0, 0),
+        new ActiveArea('Pile of Boards', 'boardsLadder', 0, 0, false),
+        new ActiveArea('Ladder', 'ladder', 0, 0, false),
+        new ActiveArea('Poisonous Plants', 'poisonPlant', 0, 0),
+    ];
 }

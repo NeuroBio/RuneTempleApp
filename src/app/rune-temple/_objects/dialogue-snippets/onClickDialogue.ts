@@ -281,7 +281,7 @@ export class OnClickDialogue {
         ],
         secondShelf2: [new DialogueSnippet('Erin', 'I don\'t really need any of this right now, but I guess grabbing a few nails won\'t hurt?')],
         secondShelf3: [new DialogueSnippet('Erin', 'Nails.  Just what I needed!')],
-        secondShelf4: [new DialogueSnippet('', 'The shelf is lined with boxes of screws, nails, and other bits of hardware.')],
+        secondShelf4: [new DialogueSnippet('', 'The shelf is lined with boxes of screws, nails, and other bits of hardware, but Erin has everything she needs already.')],
         thirdShelf: [
             new DialogueSnippet('', 'On this shelf are boxes of fabric scraps, string, needles, buttons, twine...'),
             new DialogueSnippet('Erin', 'The twine might be useful.')
@@ -357,6 +357,20 @@ export class OnClickDialogue {
         dripSpigot: [new DialogueSnippet('', 'A puny stream of water burbles into the troth')],
         fullTroth: [new DialogueSnippet('', 'The troth is filled with water.')],
         hiddenDoor: [new DialogueSnippet('Erin', 'I need to find a way to keep this door open.')],
+
+        cabinet1A: [new DialogueSnippet('', 'Inside the cabinet are leaf-wrapped lumps of clay.  Most of them have hardened into crumbly blocks, but one lump still has some give.  With a little water, it would become workable again.')],
+        cabinet1B: [new DialogueSnippet('Erin', 'I have enough clay.')],
+        cabinet2: [new DialogueSnippet('', 'Various art supplies.  Nothing immediately sticks out as valuable.')],
+        table: [new DialogueSnippet('', 'There is a mess of half-finished/half-rotted projects strewn about the table.  One is obviously the beginnings of a new ceramic vase.  Another few pieces could be moldering baskets.  It is less clear what the rest are.')],
+        jars: [new DialogueSnippet('', 'There are no labels on the jars, but most of their contents are obvious.  Erin was unsure what liquid resided in the smallest jar, however.  She picks it up, feeling a gummy residue on it.  She opens it and takes a sniff.  Oil.  There’s enough left for one use.')],
+        jars2: [new DialogueSnippet('', 'There are no labeled on the jars, but most of their contents are obvious')],
+        boards: [
+            new DialogueSnippet('', 'Erin moves picks up the boards one-by-one and places them in the shape of a ladder'),
+            new DialogueSnippet('Erin', 'Perfect.')
+        ],
+        boardsLadder: [new DialogueSnippet('', 'I just need a way to hold the boards in place.')],
+        boardsLadder2: [new DialogueSnippet('', 'Just gotta hammer the nails down.')],
+        poisonPlant: [new DialogueSnippet('Erin', 'Zhang warned me not to touch those anymore.')]
     };
 
     combos = {
@@ -680,6 +694,14 @@ export class OnClickDialogue {
         reliefBook: [new DialogueSnippet('Erin', 'Yeah, this is definitely the creature on page 4.  What does that mean though?')],
         wrongKey: [new DialogueSnippet('', 'Erin tries to put the key into the lock, but it doesn\'t fit.')],
         openCraftDoor: [new DialogueSnippet('', 'Erin tries to put the key into the lock.  The door unlocks.')],
+        rockBoards: [new DialogueSnippet('Erin', 'I just need to find some nails.')],
+        rockBoards2: [new DialogueSnippet('', 'Erin hammers the nails into place.  The ladder is complete.')],
+        glueBoardsLadder: [new DialogueSnippet('Erin', 'There is no way it\'ll hold even my weight if I try to glue it together.')],
+        puddleClay: [new DialogueSnippet('', 'Erin rolls the lump of clay around in the pooling water and then kneads it back into a good consistency.  On one hand, the ever-growing pool distresses her.  On the other hand, it was a convenient source of water.  Perhaps it works out to net neutral in the end?')],
+        wetEnough: [new DialogueSnippet('Erin', 'The clay is wet enough.')],
+        barrelClay: [new DialogueSnippet('', 'Erin looks dubiously at the barrel of rancid water.  Whatever is in that water might damage the clay.  Or, worse, it might damage Erin’s hands…  Erin decides against using this source of water.')],
+        nailsBoard: [new DialogueSnippet('', 'Erin placed the nails on the pile of boards')],
+
     };
 
     itemDefaults = {
