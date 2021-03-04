@@ -1,3 +1,5 @@
+<app-info *ngIf="displayInfo" class="floating-element"></app-info>
+
 <div id="control-frame">
 
     <div *ngIf="victoryAchieved; else controls" class="victory-box">
@@ -11,15 +13,16 @@
 
     <ng-template #controls>
         <button mat-flat-button (click)="leave()"
-        [color]="allowLeave ? 'active' : 'disabled'"
-        [disabled]="!allowLeave">
+        [color]="allowLeave && !displayInfo ? 'active' : 'disabled'"
+        [disabled]="!allowLeave || displayInfo">
             <mat-icon>keyboard_arrow_left</mat-icon>
             Leave
         </button>
     
         <div class="action-box">
             <button mat-flat-button (click)="reset()"
-            color="active">
+            [color]="!displayInfo ? 'active' : 'disabled'"
+            [disabled]="displayInfo">
                 <mat-icon>autorenew</mat-icon>
                 Reset
             </button>
@@ -27,13 +30,14 @@
             <!-- to set  as right justified -->
             <div class="spacer">
                 <button mat-flat-button (click)="info()"
-                color="active">
+                [color]="!displayInfo ? 'active' : 'disabled'"
+                [disabled]="displayInfo">
                     <mat-icon>help</mat-icon>
                     Info
                 </button>
                 <button mat-flat-button (click)="skip()"
-                [color]="allowSkip ? 'active' : 'disabled'"
-                [disabled]="!allowSkip">
+                [color]="allowSkip && !displayInfo ? 'active' : 'disabled'"
+                [disabled]="!allowSkip || displayInfo">
                     Skip
                     <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>

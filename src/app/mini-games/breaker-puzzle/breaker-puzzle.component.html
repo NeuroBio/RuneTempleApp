@@ -5,7 +5,7 @@
         <mat-grid-tile *ngFor="let tile of tiles; let index = index">
             <button mat-flat-button aria-label="move-or-attack"
             [color]="tile.move ? 'normalMove' : ''"
-            [disabled]="tile.disabled"
+            [disabled]="tile.disabled || disable"
             (click)="action(index, tile.dash)"
             ></button>
         </mat-grid-tile>

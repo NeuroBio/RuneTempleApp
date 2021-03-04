@@ -1,0 +1,36 @@
+@import '../../rune-temple/_objects/vars.scss';
+
+#info-frame {
+    background-color: $medium-grey;;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    max-height: 60vh;    
+
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $almost-black;
+    color: whitesmoke;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0px;
+}
+
+#title {
+    margin: $standard-margin
+}
+
+#info-text {
+    overflow-y: auto;
+    color: whitesmoke;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

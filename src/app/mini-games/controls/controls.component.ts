@@ -18,6 +18,9 @@ export class ControlsComponent implements OnInit, OnDestroy {
   victoryAchieved: boolean;
   victorySubscription: Subscription;
 
+  displayInfo: boolean;
+  infoSubscription: Subscription;
+
   constructor(private controller: ControllerService) { }
 
   ngOnInit(): void {
@@ -26,18 +29,23 @@ export class ControlsComponent implements OnInit, OnDestroy {
 
     this.leaveSubscription = this.controller.allowLeave
       .subscribe(leave => this.allowLeave = leave);
+
     this.victorySubscription = this.controller.victoryAchieved
       .subscribe(victory => this.victoryAchieved = victory);
+
+    this.infoSubscription = this.controller.displayInfo
+      .subscribe(info => this.displayInfo = info);
   }
 
   ngOnDestroy() {
     this.skipSubscription.unsubscribe();
     this.leaveSubscription.unsubscribe();
     this.victorySubscription.unsubscribe();
+    this.infoSubscription.unsubscribe();
   }
 
   info() {
-    this.controller.displayInfo();
+    this.controller.setDisplayInfo(!this.displayInfo);
   }
 
   skip() {

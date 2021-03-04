@@ -2,6 +2,7 @@ import { GameBoard, GameTile } from '../../mini-games/breaker-puzzle/_objects/Ga
 
 export class MiniGame {
     type: string;
+    info: string;
     game: any;
     eventKeys?: string;
 }
@@ -18,5 +19,6 @@ export class MiniGames {
               new GameTile(3, 3, 'buzz')
             ],
             new GameTile(3, 0, 'player')),
+        info: "test"
     }
 }

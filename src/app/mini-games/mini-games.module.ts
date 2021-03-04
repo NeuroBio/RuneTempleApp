@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ControlsComponent } from './controls/controls.component';
 import { MatIconModule } from '@angular/material/icon';
+import { InfoComponent } from './info/info.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
     MiniGameComponent,
     BreakerPuzzleComponent,
     ControlsComponent,
+    InfoComponent,
   ],
   imports: [
     CommonModule,

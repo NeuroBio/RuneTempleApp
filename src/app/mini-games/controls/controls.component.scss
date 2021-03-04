@@ -45,3 +45,12 @@ button {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+app-info {
+    position: absolute;
+}
+
+.floating-element {
+    max-height: 55vh;
+    // overflow-y: auto;
+}
+

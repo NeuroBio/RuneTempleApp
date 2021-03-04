@@ -1,0 +1,15 @@
+<div id="info-frame" class="pop-up" #info>
+    <h3>
+        <span id="title">
+            Game Info
+        </span>
+        <button mat-icon-button
+        (click)="close()"
+        aria-label="close-game-info">
+            <mat-icon>close</mat-icon>
+        </button>    
+    </h3>
+    <div id="info-text">
+        {{ gameInfo }}
+    </div>
+</div>

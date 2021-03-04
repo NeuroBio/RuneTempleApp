@@ -33,15 +33,3 @@ button {
     color: black;
     background-color: $lighter-grey;
 }
-
-
-.floating-element {
-    position: absolute;
-    top: calc(50% - #{$bottom-section-height} / 2);
-    left: 50%;
-    -webkit-transform: translate(-50%,-50%);
-    -moz-transform: translate(-50%,-50%);
-    -o-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-
-}

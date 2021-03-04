@@ -12,10 +12,12 @@ export class ControllerService {
   resetAlert = new Subject();
   allowLeave = new BehaviorSubject<boolean>(true);
   allowSkip = new BehaviorSubject<boolean>(false);
+  displayInfo = new BehaviorSubject<boolean>(false);
   victoryAchieved = new BehaviorSubject<boolean>(false);
 
-  gameSubscription = new Subscription;
-  allowSkipSubscription = new Subscription;
+  private gameSubscription = new Subscription;
+  private allowSkipSubscription = new Subscription;
+  private game: MiniGame;
 
   constructor(
     private minigameserv: MiniGameService,
@@ -31,7 +33,13 @@ export class ControllerService {
     this.victoryAchieved.next(victorious);
   }
 
-  displayInfo() {}
+  setDisplayInfo(setAs: boolean) {
+    this.displayInfo.next(setAs);
+  }
+
+  getInfo() {
+    return this.game.info;
+  }
 
   skip() {
     this.minigameserv.markGameAsSkipped();
@@ -52,6 +60,7 @@ export class ControllerService {
   }
 
   private routeGame(game: MiniGame) {
+    this.game = game;
     this.setVictory(false);
     if (game) {
       switch (game.type) {

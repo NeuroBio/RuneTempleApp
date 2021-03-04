@@ -25,6 +25,9 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
 
   resetSubscruption: Subscription;
 
+  disable: boolean;
+  disableSubscription: Subscription;
+
   constructor(
     private ai: BreakerPuzzleService,
     private controller: ControllerService
@@ -35,6 +38,8 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
       .subscribe(board => this.updateGame(board));
     this.lostSubscription = this.ai.lost
       .subscribe(lost => this.lost = lost);
+    this.disableSubscription = this.controller.displayInfo
+      .subscribe(disable => this.disable = disable)
     
     this.resetSubscruption = this.controller.resetAlert.subscribe(() => this.reset());
 
@@ -48,6 +53,7 @@ export class BreakerPuzzleComponent implements OnInit, OnDestroy {
     this.boardSubscription.unsubscribe();
     this.lostSubscription.unsubscribe();
     this.resetSubscruption.unsubscribe();
+    this.disableSubscription.unsubscribe();
   }
 
   updateGame(board: GameBoard): void {
