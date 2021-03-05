@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { GameSettingsService } from './game-settings.service';
 import { ChoiceService } from './choice.service';
 import { DialogueService } from './dialogue.service';
@@ -16,6 +16,7 @@ import { CompressionService } from './compression.service';
 export class SaveLoadService {
 
   saveloadOpen = new BehaviorSubject<boolean>(false);
+  resetAlert = new Subject();
   private gameData: string;
   storageName = 'rune-temple-game-data';
 
@@ -50,21 +51,16 @@ export class SaveLoadService {
 
   newGame(): void {
     this.gs.reset();
-    this.choiceserv.reset();
-    this.dialogueserv.reset();
-    this.eventflagserv.reset();
-    this.inputreqserv.reset();
-    this.interactionserv.reset();
-    this.inventoryserv.reset();
-    this.sceneserv.reset();
+    this.resetAlert.next();
   }
 
   saveGame(): void {
     const gameData = {
       gs: this.gs.save(),
+      choices: this.choiceserv.save(),
       eventflags: this.eventflagserv.save(),
       interactions: this.interactionserv.save(),
-      inventory: this.inventoryserv.inventory.value,
+      inventory: this.inventoryserv.save(),
       scenes: this.sceneserv.save()
     };
 
@@ -77,8 +73,10 @@ export class SaveLoadService {
   loadGame(): void {
     const gameData = this.compression
       .decompressObject(localStorage.getItem(this.storageName));
-    this.eventflagserv.load(gameData.eventflags);
+
     this.gs.load(gameData.gs);
+    this.choiceserv.load(gameData.choices);
+    this.eventflagserv.load(gameData.eventflags);
     this.interactionserv.load(gameData.interactions);
     this.inventoryserv.load(gameData.inventory);
     this.sceneserv.load(gameData.scenes);
@@ -86,13 +84,7 @@ export class SaveLoadService {
 
   clearData(): void {
     this.gs.reset(true);
-    this.choiceserv.reset();
-    this.dialogueserv.reset();
-    this.eventflagserv.reset();
-    this.inputreqserv.reset();
-    this.interactionserv.reset();
-    this.inventoryserv.reset();
-    this.sceneserv.reset();
+    this.resetAlert.next();
     localStorage.removeItem(this.storageName);
   }
 }

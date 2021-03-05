@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Interaction } from '../_objects/interactions/Interaction';
+import { KeyPair } from '../_objects/interactions/Interaction';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Choice, GameChoices } from '../_objects/Choice';
 
@@ -9,7 +9,7 @@ import { Choice, GameChoices } from '../_objects/Choice';
 export class ChoiceService {
 
   activeChoice = new BehaviorSubject<Choice>(undefined);
-  broadcast = new Subject<Interaction>()
+  broadcast = new Subject<KeyPair>()
   choices: GameChoices;
 
   private key: string;
@@ -20,7 +20,7 @@ export class ChoiceService {
     return this.choices[key];
   }
 
-  addChoice(key: string, option: string, outcome: Interaction): void {
+  addChoice(key: string, option: string, outcome: KeyPair): void {
       const index = this.choices[key].options.length - 1;
       this.choices[key].options.splice(index, 0, option);
       this.choices[key].seen.splice(index, 0, false);
@@ -40,7 +40,7 @@ export class ChoiceService {
     this.choices[this.key].seen[index] = true;
   }
 
-  triggerEvent(interaction: Interaction) {
+  triggerEvent(interaction: KeyPair) {
     this.broadcast.next(interaction);
   }
 
@@ -55,13 +55,18 @@ export class ChoiceService {
   }
 
   // Save Load
+  save(): GameChoices {
+    return this.choices;
+  }
 
-  // TODO: you DO have to save choices, but make then have keypair[] instead of intercation array!  taht is the secret sauce
-  reset(): void {
+  reset(choices: GameChoices): void {
+    this.choices = choices;
     this.unsetChoice();
   }
 
-  loadStaic(choices: GameChoices) {
+  load(choices: GameChoices): void {
     this.choices = choices;
+    this.unsetChoice();
   }
+
 }

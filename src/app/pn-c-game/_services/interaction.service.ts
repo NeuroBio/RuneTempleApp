@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { OnClickInteractions } from '../_objects/interactions/RTInteractions';
-import { InteractionWithKeys, KeyPair, Interaction } from '../_objects/interactions/Interaction';
-import { UpdateInteractions } from '../_objects/interactions/UpdateInteractions';
+import { InteractionWithKeys, KeyPair, Interaction, GameInteractions, GameUpdateInteractions } from '../_objects/interactions/Interaction';
 
 @Injectable({
   providedIn: 'any'
 })
 export class InteractionService {
 
-  private interactions = new OnClickInteractions();
-  private updates = new UpdateInteractions();
+  private interactions: GameInteractions;
+  private updates: GameUpdateInteractions;
 
   constructor() { }
 
@@ -76,15 +74,17 @@ export class InteractionService {
     return this.updates[update.key][update.subkey];
   }
 
-  reset(): void {
-    this.interactions = new OnClickInteractions();
+  reset(interactions: GameInteractions,
+    updates: GameUpdateInteractions): void {
+    this.interactions = interactions;
+    this.updates = updates;
   }
 
-  load(interactionData: OnClickInteractions): void {
+  load(interactionData: GameInteractions): void {
     this.interactions = interactionData;
   }
 
-  save(): OnClickInteractions {
+  save(): GameInteractions {
     return this.interactions;
   }
 

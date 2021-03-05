@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { InventoryItem, GameItems } from '../_objects/InventoryItem';
 import { KeyPair } from '../_objects/interactions/Interaction';
+import { GameDataService } from 'src/app/rune-temple/_services/game-data.service';
 
 @Injectable({
   providedIn: 'any'
@@ -93,9 +94,11 @@ export class InventoryService {
   }
 
   // SavLoad
-  reset(): void {
+  reset(gameItems: GameItems, initialInventory: string[]): void {
     this.inventory.next([]);
-    this.addItems(this.initialInventory);
+    this.gameItems = gameItems;
+    this.initialInventory = initialInventory;
+    this.addItems(initialInventory);
     this.selectedIndex = undefined;
   }
 
@@ -103,9 +106,8 @@ export class InventoryService {
     this.inventory.next(inventoryData);
   }
 
-  loadStatic(gameItems: GameItems, initialInventory: string[]) {
-    this.gameItems = gameItems;
-    this.initialInventory = initialInventory;
-    this.addItems(initialInventory);
+  save(): InventoryItem[] {
+    return this.inventory.value;
   }
+
 }

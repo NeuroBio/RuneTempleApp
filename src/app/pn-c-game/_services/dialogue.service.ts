@@ -49,11 +49,9 @@ export class DialogueService {
     this.broadcast.next(new KeyPair('dialogue', key));
   }
 
-  reset(): void {
+  // Save Load
+  reset(dialogue): void {
+    this.dialog = dialogue;
     this.unsetDialogue();
-  }
-
-  loadStatic(dialog): void {
-    this.dialog = dialog;
   }
 }

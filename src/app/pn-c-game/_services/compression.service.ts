@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { compress, decompress } from 'lz-string';
 
 @Injectable({

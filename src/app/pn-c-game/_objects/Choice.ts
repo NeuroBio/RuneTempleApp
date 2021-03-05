@@ -1,16 +1,15 @@
-import { Interaction } from './interactions/Interaction';
+import { Interaction, KeyPair } from './interactions/Interaction';
 
 export class Choice {
     question: string;
     options: string[];
     seen: boolean[];
-    outcomes: Interaction[];
+    outcomes: KeyPair[];
     chooseAgain: boolean;
 
     constructor(
         question: string, options: string[],
-        outcomes: Interaction[],
-        chooseAgain: boolean = false, immutable: boolean = true
+        outcomes: KeyPair[], chooseAgain: boolean = false
     ) {
         this.question = question;
         this.options = options;

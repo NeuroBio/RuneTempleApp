@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GameComponent } from '../pn-c-game/game/game.component';
+import { GameDataService } from './_services/game-data.service';
 
 const routes: Routes = [
   { path: '', component: GameComponent }
@@ -10,4 +11,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RuneTempleRoutingModule { }
+export class RuneTempleRoutingModule {
+  constructor(private gamedataserv: GameDataService) {}
+ }

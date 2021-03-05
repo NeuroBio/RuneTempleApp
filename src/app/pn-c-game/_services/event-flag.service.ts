@@ -16,7 +16,6 @@ export class EventFlagService {
   // mutable
   private events: GameEventFlags;
   // immutable
-  private eventsUntouched: GameEventFlags;
   private key = 'eventFlagUpdates';
 
   constructor(
@@ -82,7 +81,7 @@ export class EventFlagService {
         break;
       case 'hammerExit' || 'hammerFish' :
         if (key === 'hammerExit') {
-          this.addChoice('zhangConvoTopics', 'about the water', new KeyPair('zhangHelp', 'water'));
+          this.addChoice('zhangConvoTopics', 'about the water', 'zhangWater');
           if (this.events.reliefRepaired) {
             updates.push(new KeyPair(this.key, 'noFishForYou'));
           }  
@@ -111,7 +110,7 @@ export class EventFlagService {
         break;
       case 'reliefRepaired' :
         if (this.events.haveBook && this.events.zhangSawBook) {
-          this.addChoice('zhangConvoTopics', 'about the relief', new KeyPair('zhangHelp', 'relief'));
+          this.addChoice('zhangConvoTopics', 'about the relief', 'zhangRelief');
         }
         if (!this.events.fishNamed && this.events.haveFish) {
           updates.push(new KeyPair(this.key, 'suffocateFish'));
@@ -134,9 +133,9 @@ export class EventFlagService {
         updates.push(new KeyPair(this.key, 'foyerHaunt'));
         break;
       case 'zhangSawBook' :
-        this.addChoice('zhangConvoTopics', 'about the book', new KeyPair('zhangHelp', 'book'));
+        this.addChoice('zhangConvoTopics', 'about the book', 'zhangBook');
         if (this.events.reliefRepaired) {
-          this.addChoice('zhangConvoTopics', 'about the relief', new KeyPair('zhangHelp', 'relief'));
+          this.addChoice('zhangConvoTopics', 'about the relief', 'zhangRelief');
         }
         break;
       case 'ashFish':
@@ -211,8 +210,8 @@ export class EventFlagService {
     this.badgeCheck(key, true);
   }
 
-  private addChoice(key: string, opt: string, out: KeyPair): void {
-    this.choiceserv.addChoice(key, opt, new Interaction(out));
+  private addChoice(key: string, opt: string, out: string): void {
+    this.choiceserv.addChoice(key, opt, new KeyPair('choices', out));
   }
 
   private removeChoice(key: string, opt: string): void {
@@ -220,8 +219,8 @@ export class EventFlagService {
   }
   
   // SaveLoad Functions
-  reset(): void {
-    this.events = Object.assign({}, this.eventsUntouched);
+  reset(events: GameEventFlags): void {
+    this.events = events;
   }
 
   load(eventData: GameEventFlags): void {
@@ -232,8 +231,4 @@ export class EventFlagService {
     return this.events;
   }
 
-  loadStatic(events: GameEventFlags): void {
-    this.eventsUntouched = events;
-    this.events = Object.assign({}, events);
-  }
 }

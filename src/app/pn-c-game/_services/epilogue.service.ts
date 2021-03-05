@@ -48,7 +48,8 @@ export class EpilogueService {
     this.ending.next(this.epiloguePostCinematic);
   }
 
-  loadStatic(epilogues: Epilogue[]): void {
+  // save load
+  reset(epilogues: Epilogue[]): void {
     this.epilogues = epilogues;
   }
 

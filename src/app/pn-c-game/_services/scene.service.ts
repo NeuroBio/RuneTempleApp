@@ -19,12 +19,6 @@ export class SceneService {
   private locations: GameAreas;
   mapKeys: string[] = [];
 
-  // immutable
-  private gameScenesUntouched: GameScenes;
-  private activeAreasUntouched: GameAreas;
-  private locationsUntouched: GameAreas;
-  private startScene: string;
-
   constructor() { }
 
   setActiveScene(key: string): void {
@@ -86,11 +80,12 @@ export class SceneService {
 
 
   // save data
-  reset(): void {
-    this.gameScenes = Object.assign({}, this.gameScenesUntouched);
-    this.activeAreas = Object.assign({}, this.activeAreasUntouched);
-    this.locations = Object.assign({}, this.locationsUntouched);
-    this.setActiveScene(this.startScene);
+  reset(gameScenes: GameScenes, activeAreas: GameAreas,
+    locations: GameAreas, startScene: string): void {
+      this.gameScenes = gameScenes;
+      this.activeAreas = activeAreas;
+      this.locations = locations;
+      this.setActiveScene(startScene);
   }
 
   save(): any {
@@ -108,18 +103,5 @@ export class SceneService {
     this.activeAreas = sceneData.activeAreas;
     this.locations = sceneData.locations;
     this.setActiveScene(this.activeKey);
-  }
-
-  loadStatic(gameScenes: GameScenes, activeAreas: GameAreas,
-    locations: GameAreas, startScene: string): void {
-    this.gameScenesUntouched = gameScenes;
-    this.activeAreasUntouched = activeAreas;
-    this.locationsUntouched = locations;
-    this.startScene = startScene;
-
-    this.gameScenes = Object.assign({}, gameScenes);
-    this.activeAreas = Object.assign({}, activeAreas);
-    this.locations = Object.assign({}, locations);
-    this.setActiveScene(startScene);
   }
 }

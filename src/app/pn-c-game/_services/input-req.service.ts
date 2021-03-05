@@ -32,11 +32,9 @@ export class InputReqService {
     this.broadcast.next(keys);
   }
 
-  loadStatic(inputReq: GameInputRequests) {
+  // save Load
+  reset(inputReq: GameInputRequests) {
     this.inputRequests = inputReq;
-  }
-
-  reset() {
     this.activeInputReq.next(undefined);
   }
 }

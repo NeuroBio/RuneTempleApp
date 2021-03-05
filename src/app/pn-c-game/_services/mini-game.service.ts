@@ -45,7 +45,7 @@ export class MiniGameService {
     this.skipSubscription.unsubscribe();
   }
 
-  loadStatic(minigames: MiniGames): void {
+  reset(minigames: MiniGames): void {
     this.miniGames = minigames;
   }
 }

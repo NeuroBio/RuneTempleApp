@@ -65,6 +65,14 @@ export class Interaction {
     }
 }
 
+export class GameInteractions {
+    [key: string]: InteractionChunk;
+}
+
+export class InteractionChunk {
+    [subkey: string]: Interaction;
+}
+
 export class InteractionWithKeys {
     interaction: Interaction;
     key?: string;
@@ -75,6 +83,14 @@ export class InteractionWithKeys {
         this.key = key;
         this.subkey = subkey;
     }
+}
+
+export class GameUpdateInteractions {
+    [key: string]: UpdateInteractionChunk;
+}
+
+export class UpdateInteractionChunk {
+    [subkey: string]: InteractionWithKeys[];
 }
 
 export class ChoiceInteraction extends Interaction {

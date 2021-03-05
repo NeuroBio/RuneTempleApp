@@ -42,9 +42,6 @@ export class TriggerService {
   ) {
 
     // Interaction Known in Advance
-    this.choiceservSubscription = this.choiceserv.broadcast
-      .subscribe(interaction => this.triggerInteraction(interaction));
-
     this.eventflagSubscription = this.eventflagserv.broadcast
       .subscribe(interaction => this.triggerInteraction(interaction));
 
@@ -52,6 +49,9 @@ export class TriggerService {
       .subscribe(interaction => this.triggerInteraction(interaction));
 
     // only Keys Known in Advance
+    this.choiceservSubscription = this.choiceserv.broadcast
+      .subscribe(keys => this.getInteraction(keys.key, keys.subkey));
+
     this.clickSubscription = this.clickserv.broadcast
       .subscribe(keys => this.getInteraction(keys.key, keys.subkey));
 
