@@ -52,6 +52,9 @@ export class EventFlagService {
         this.removeChoice(update);
       }
     })
+    if (key === 'endGame') {
+      this.triggerEndGame();
+    }
     return triggered.updates;
   }
 

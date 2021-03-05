@@ -65,7 +65,7 @@ export class GameDataService {
     )
     this.inventoryserv.reset(
       new RuneTempleGameItems().gameItems,
-      ['map', 'compass', 'knife', 'lighter', 'litTorch']);
+      ['map', 'compass', 'knife', 'lighter', 'litTorch', 'rock', 'nails', 'silverKey']);
     this.minigameserv.reset(new RuneTempleMiniGames().miniGames);
     this.sceneserv.reset(
       new RuneTempleGameScenes().gameScenes,

@@ -121,3 +121,9 @@ export class MiniGameInteraction extends Interaction {
     }
 }
 
+export class EndingInteraction extends Interaction {
+    constructor() {
+        super(undefined, [], [], [], [], [], [], undefined,
+            undefined, undefined, undefined, undefined, undefined, true);
+    }
+}

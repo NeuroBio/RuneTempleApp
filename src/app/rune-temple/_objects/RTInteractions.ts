@@ -1,7 +1,8 @@
 import { Activator } from '../../pn-c-game/_objects/ActiveArea';
 import { Interaction, KeyPair, ChoiceInteraction,
     InputRequestInteraction, MiniGameInteraction,
-    GameInteractions } from '../../pn-c-game/_objects/interactions/Interaction';
+    GameInteractions, 
+    EndingInteraction} from '../../pn-c-game/_objects/interactions/Interaction';
 import { EventFlag } from '../../pn-c-game/_objects/EventFlag';
 
 export class RuneTempleInteractions {
@@ -663,7 +664,8 @@ export class RuneTempleInteractions {
             nameFish: new InputRequestInteraction('nameFish'),
             riskyGambit: new ChoiceInteraction('riskyGambit'),
             breakerPuzzle1: new MiniGameInteraction('breakerPuzzle1'),
-            suffocation: new Interaction(undefined, ['fish'], [], [new EventFlag('suffocationFish')])
+            suffocation: new Interaction(undefined, ['fish'], [], [new EventFlag('suffocationFish')]),
+            ending: new EndingInteraction()
         },
     
         miniGames: {
