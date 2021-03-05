@@ -99,12 +99,6 @@ export class InputRequestInteraction extends Interaction {
     }
 }
 
-export class DialogueInteraction extends Interaction {
-    constructor(dial: KeyPair) {
-        super(dial);
-    }
-}
-
 export class SceneDialogueInteraction extends Interaction {
     constructor(where: string, keys: KeyPair, visited?: boolean) {
         super(undefined, [], [], [], [], [], [], undefined,

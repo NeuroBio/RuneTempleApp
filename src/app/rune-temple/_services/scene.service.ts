@@ -4,7 +4,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { GameScenes, SceneDisplay, Scene } from '../_objects/scenes/Scene';
 import { SceneActiveAreas } from '../_objects/scenes/SceneActiveAreas';
 import { SceneLocations } from '../_objects/scenes/SceneLocations';
-import { Interaction, DialogueInteraction, KeyPair } from '../_objects/interactions/Interaction';
+import { Interaction, KeyPair } from '../_objects/interactions/Interaction';
 
 @Injectable({
   providedIn: 'any'
@@ -44,7 +44,7 @@ export class SceneService {
   travel(key: string): void {
     const scene = this.getScene(key);
     if (!scene.visited) {
-      this.broadcast.next(new DialogueInteraction(scene.dialogue));
+      this.broadcast.next(new Interaction(scene.dialogue));
       this.updateScene(key, true, null);
       this.mapKeys.push(key);
     }

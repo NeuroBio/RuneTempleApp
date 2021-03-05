@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { GameBadges } from './Badge';
 import { BehaviorSubject } from 'rxjs';
 
@@ -41,7 +41,7 @@ export class GameSettings {
 }
 
 export class CrossGameEvents {
-    FishDeaths = new BehaviorSubject(new FishDeaths());
+    deadFish = new BehaviorSubject(new FishDeaths());
     badges = new BehaviorSubject<GameBadges>(new GameBadges());
 }
 

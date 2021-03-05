@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EventFlags } from '../_objects/event-types/EventFlags';
 import { BehaviorSubject } from 'rxjs';
 import { Epilogue, Epilogues } from '../_objects/Eplilogues';
-import { Interaction, InteractionWithKeys } from '../_objects/interactions/Interaction';
+import { Interaction } from '../_objects/interactions/Interaction';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,7 @@ export class EpilogueService {
         this.loadEpilogue();
         return undefined;
       } else {
-        return new InteractionWithKeys(new Interaction(epi.preEndDialogue));
+        return new Interaction(epi.preEndDialogue);
       }
       break;
     }

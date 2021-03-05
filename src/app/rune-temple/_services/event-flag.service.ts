@@ -5,6 +5,7 @@ import { Interaction, KeyPair } from '../_objects/interactions/Interaction';
 import { ChoiceService } from './choice.service';
 import { GameSettingsService } from './game-settings.service';
 import { Subject } from 'rxjs';
+import { EpilogueService } from './epilogue.service';
 
 @Injectable({
   providedIn: 'any'
@@ -20,7 +21,7 @@ export class EventFlagService {
 
   constructor(
     private choiceserv: ChoiceService,
-    // private epilogueserv: EpilogueService,
+    private epilogueserv: EpilogueService,
     private gs: GameSettingsService
   ) { }
 
@@ -74,7 +75,7 @@ export class EventFlagService {
         }
         break;
       case 'mustacheFish':
-        this.fishDeath('mustacheFish');
+        this.checkCrossGameEvent('deadFish', 'mustacheFish');
         /* falls through */ 
       case 'barrelPills' :
         this.badgeCheck('random', (this.events.mustacheFish && this.events.barrelPills));
@@ -86,7 +87,7 @@ export class EventFlagService {
             updates.push(new KeyPair(this.key, 'noFishForYou'));
           }  
         } else {
-          this.fishDeath('hammerFish');
+          this.checkCrossGameEvent('deadFish', 'hammerFish');
         }
         /* falls through */
       case ('hammerLockBox' || 'hammerPuzzleBox' || 'hammerRustedPanel'
@@ -139,43 +140,43 @@ export class EventFlagService {
         }
         break;
       case 'ashFish':
-        this.fishDeath('ashFish');
+        this.checkCrossGameEvent('deadFish', 'ashFish');
         break;
       case 'sacrificeFish':
-          this.fishDeath('sacrificeFish');
+          this.checkCrossGameEvent('deadFish', 'sacrificeFish');
           break;
       case 'flaskFish':
-        this.fishDeath('flaskFish');
+        this.checkCrossGameEvent('deadFish', 'flaskFish');
         if (this.events.ovenLit) {
           updates.push(new KeyPair(this.key, 'flaskFishOvenLit'));
         }
         break;
       case 'knifeFish1':
-        this.fishDeath('knifeFish1');
+        this.checkCrossGameEvent('deadFish', 'knifeFish1');
         break;
       case 'knifeFish2':
-        this.fishDeath('knifeFish2');
+        this.checkCrossGameEvent('deadFish', 'knifeFish2');
         break;
       case 'acidFish1':
-        this.fishDeath('acidFish1');
+        this.checkCrossGameEvent('deadFish', 'acidFish1');
         break;
       case 'acidFish2':
-        this.fishDeath('acidFish2');
+        this.checkCrossGameEvent('deadFish', 'acidFish2');
         break;
       case 'trothFish':
-        this.fishDeath('trothFish');
+        this.checkCrossGameEvent('deadFish', 'trothFish');
         break;
       case 'neglectFish':
-        this.fishDeath('neglectFish');
+        this.checkCrossGameEvent('deadFish', 'neglectFish');
         break;
       case 'boardsArranged' : 
         if (!this.events.haveNails) {
           updates.push(new KeyPair(this.key, 'boardsArrangedAllowNails'));
         }
         break;
-      // case 'endGame' :
-      //   this.triggerEndGame();
-        // break;
+      case 'endGame' :
+        this.triggerEndGame();
+        break;
       default:
         break;
     }
@@ -183,12 +184,12 @@ export class EventFlagService {
     return updates;
   }
 
-  // triggerEndGame() {
-  //   const finalDialog = this.epilogueserv.setEnding(this.events);
-  //   if (finalDialog) {
-  //     this.broadcast.next(finalDialog);
-  //   }
-  // }
+  triggerEndGame() {
+    const finalDialog = this.epilogueserv.setEnding(this.events);
+    if (finalDialog) {
+      this.broadcast.next(finalDialog);
+    }
+  }
 
   private badgeCheck(key: string, condition: boolean): void {
     const badge = this.gs.getBadge(key);
@@ -197,17 +198,17 @@ export class EventFlagService {
     }
   }
 
-  private fishDeath(key: string) {
-    this.gs.updateCrossGameEvent('fishDeaths', key);
-    const deaths = this.gs.getCrossGameEvents('fishDeaths').value;
-    const deathKeys = Object.keys(deaths);
+  private checkCrossGameEvent(key: string, subkey: string) {
+    this.gs.updateCrossGameEvent(key, subkey);
+    const events = this.gs.getCrossGameEvents(subkey).value;
+    const eventKeys = Object.keys(events);
     
-    for(const deathKey of deathKeys) {
-      if (!deaths[key]) {
+    for(const eventKey of eventKeys) {
+      if (!events[eventKey]) {
         return;
       }
     }
-    this.badgeCheck('deadFish', true);
+    this.badgeCheck(key, true);
   }
 
   private addChoice(key: string, opt: string, out: KeyPair): void {
