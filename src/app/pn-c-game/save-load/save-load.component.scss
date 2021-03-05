@@ -48,16 +48,6 @@ h3 {
     }
 }
 
-.mat-active {
-    color: whitesmoke;
-    background-color: $grey-ish-er;
-}
-
-.mat-disabled {
-    color: $grey-ish-er;
-    background-color: $dark-ish-grey;
-}
-
 mat-divider {
     position: absolute;
     margin-left: calc((100 - #{$button-width}) / 2 * -1% - #{$standard-margin} * 2 - 1px);

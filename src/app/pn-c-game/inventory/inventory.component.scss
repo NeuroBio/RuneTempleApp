@@ -61,9 +61,10 @@
 }
 
 .mat-active {
+    color: rgb(2, 133, 126);
     background-image:
-    radial-gradient(rgba(2, 44, 42, 0.1) 40%, transparent 40%),
-    radial-gradient(rgb(185, 248, 245), rgb(2, 133, 126));
+        radial-gradient(rgba(2, 44, 42, 0.1) 40%, transparent 40%),
+        radial-gradient(rgb(185, 248, 245), rgb(2, 133, 126));
     background-size: 5px 5px, 100px 100px;
     background-position: 0, 0 0 0 0;
     background-repeat: round;

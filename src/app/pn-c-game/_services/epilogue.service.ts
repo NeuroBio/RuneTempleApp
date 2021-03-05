@@ -5,7 +5,7 @@ import { Interaction } from '../_objects/interactions/Interaction';
 import { GameEventFlags } from '../_objects/EventFlag';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class EpilogueService {
 

@@ -4,7 +4,7 @@ import { KeyPair } from '../_objects/interactions/Interaction';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class ClickService {
 
@@ -18,6 +18,7 @@ export class ClickService {
 
   private getSubkey(): string {
     const select = this.inventoryserv.getSelectedItem();
+    console.log('selected', select)
     if (select) {
       return select.assetKey;
     }

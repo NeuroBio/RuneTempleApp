@@ -1,4 +1,4 @@
-import { Badge, GameBadges } from '../_objects/Badge';
+import { Badge, GameBadges } from '../../pn-c-game/_objects/Badge';
 
 export class RuneTempleGameBadges {
     gameBadges: GameBadges = {

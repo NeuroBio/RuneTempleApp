@@ -15,7 +15,14 @@ export class GameSettingsService {
 
   // Settings
   getSettings(): FormGroup {
-    return this.gameSettings;
+    return this.gameSettings.value;
+  }
+
+  updateSettings(newSettings: any): void {
+    console.log(newSettings)
+    this.gameSettings.patchValue(newSettings);
+    this.gameSettings.controls.hardMode.disable();
+    this.closeSettings();
   }
 
   getSetting(key: string): AbstractControl {

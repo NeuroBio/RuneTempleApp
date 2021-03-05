@@ -44,3 +44,13 @@ $dark-ish-grey: rgb(94, 94, 94);
     -o-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
 }
+
+.mat-active {
+    color: whitesmoke;
+    background-color: $grey-ish-er;
+}
+
+.mat-active:disabled {
+    color: $grey-ish-er;
+    background-color: $dark-ish-grey;
+}

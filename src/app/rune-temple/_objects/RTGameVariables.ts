@@ -1,4 +1,4 @@
-import { RuneTempleGameBadges } from 'src/app/pn-c-game/RT-data/RTBadges';
+import { RuneTempleGameBadges } from 'src/app/rune-temple/_objects/RTBadges';
 import { CrossGameVars, CrossVars, GameVar, GameVars } from 'src/app/pn-c-game/_objects/GameVariables';
 
 export class RuneTempleGameVariables {

@@ -39,7 +39,7 @@ export class EventFlagService {
   }
 
   checkTriggeredEvents(key: string): KeyPair[] {
-    // call inported event checker
+    // call imported event checker
     const triggered = this.eventTree(key, this.events, this.eventKey, this.gameVars);
 
     this.updateFlags(triggered.updateFlags);

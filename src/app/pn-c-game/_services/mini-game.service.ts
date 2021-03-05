@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, Subject } from 'rxjs';
 import { KeyPair } from 'src/app/pn-c-game/_objects/interactions/Interaction';
 import { MiniGame, MiniGames } from '../_objects/MiniGames';
-import { EventFlagService } from './event-flag.service';
 import { GameSettingsService } from './game-settings.service';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'any'
+})
 export class MiniGameService {
 
   activeGame = new BehaviorSubject<MiniGame>(undefined);

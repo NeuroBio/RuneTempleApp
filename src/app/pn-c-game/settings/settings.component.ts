@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, Aft
 import { GameSettingsService } from '../_services/game-settings.service';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { GameSettings } from '../_objects/GameSettings';
 
 @Component({
   selector: 'app-settings',
@@ -13,23 +14,33 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   @ViewChild('settings') settings: ElementRef;
 
-  form: FormGroup;
-  onlyOnce = false;
+  form: FormGroup = new GameSettings().settings;
   hardModeSubsciption: Subscription;
 
   constructor(private gs: GameSettingsService) { }
 
   ngOnInit(): void {
-    this.form = this.gs.getSettings();
+    this.form.patchValue(this.gs.getSettings());
+    if (!this.form.controls.hardMode.value) {
+      this.form.controls.hardMode.disable();
+      this.form.controls.changeCursorOnHover.enable();
+      this.form.controls.rightClickDescriptions.enable();
+      this.form.controls.enableHints.enable();
+      this.form.controls.allowSkip.enable();
+    }
+
     this.hardModeSubsciption = this.form.controls.hardMode.valueChanges
       .subscribe(enabled => {
-        if (!enabled && !this.onlyOnce) {
-          this.onlyOnce = true; // THIS IS CRITICAL TO AVOID A MAXSTACK ERROR
-          this.form.controls.hardMode.disable();
+        if (!enabled) {
           this.form.controls.changeCursorOnHover.enable();
           this.form.controls.rightClickDescriptions.enable();
           this.form.controls.enableHints.enable();
           this.form.controls.allowSkip.enable();
+        } else {
+          this.form.controls.changeCursorOnHover.disable();
+          this.form.controls.rightClickDescriptions.disable();
+          this.form.controls.enableHints.disable();
+          this.form.controls.allowSkip.disable();
         }
     });
     setTimeout(() => { this.settings.nativeElement.style.opacity = 1; }, 10);
@@ -41,6 +52,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   close(): void {
     this.gs.closeSettings();
+  }
+
+  saveChanges() {
+    this.gs.updateSettings(this.form.value);
   }
 
 }

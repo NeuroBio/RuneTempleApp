@@ -9,6 +9,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ControlsComponent } from './controls/controls.component';
 import { MatIconModule } from '@angular/material/icon';
 import { InfoComponent } from './info/info.component';
+import { BreakerPuzzleService } from './breaker-puzzle/_services/breaker-puzzle.service';
+import { MovementService } from './breaker-puzzle/_services/movement.service';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { InfoComponent } from './info/info.component';
   ],
   exports: [
     MiniGameComponent,
+  ],
+  providers: [
   ]
 })
 export class MiniGamesModule { }

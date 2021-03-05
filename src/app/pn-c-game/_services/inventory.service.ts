@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { InventoryItem, GameItems } from '../_objects/InventoryItem';
 import { KeyPair } from '../_objects/interactions/Interaction';
-import { GameDataService } from 'src/app/rune-temple/_services/game-data.service';
 
 @Injectable({
   providedIn: 'any'
@@ -18,13 +17,12 @@ export class InventoryService {
 
   // static variables
   private gameItems: GameItems;
-  private initialInventory: string[];
 
   constructor() {}
 
   // Items
   getSelectedItem(): InventoryItem {
-    return this.inventory.value.find(item => item.selected);
+    return this.inventory.value[this.selectedIndex];
   }
 
   addItems(items: string[]): void {
@@ -97,13 +95,13 @@ export class InventoryService {
   reset(gameItems: GameItems, initialInventory: string[]): void {
     this.inventory.next([]);
     this.gameItems = gameItems;
-    this.initialInventory = initialInventory;
     this.addItems(initialInventory);
     this.selectedIndex = undefined;
   }
 
   load(inventoryData: InventoryItem[]): void {
     this.inventory.next(inventoryData);
+    this.selectedIndex = undefined;
   }
 
   save(): InventoryItem[] {

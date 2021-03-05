@@ -14,9 +14,8 @@
     <form [formGroup]="form">
         <mat-slide-toggle formControlName="hardMode">
             <span class="center-align">
-                {{ form.get('hardMode').value ? 'HardMode On' : 'Hard Mode Off' }}
+                {{ form.get('hardMode').value ? 'Hard Mode On' : 'Hard Mode Off' }}
                 <mat-icon class="tab"
-                [matTooltipDisabled]="!form.get('hardMode').value"
                 matTooltipClass="tooltip"
                 matTooltipPosition="after"
                 matTooltip="Warning: Once hardmode is disabled, it cannot be reenabled unless you start a new game.">
@@ -54,5 +53,18 @@
         </div>
     </form>
 
+    <mat-divider></mat-divider>
+
+    <!-- prevents buttons from being stretched -->
+    <div>
+        <button mat-flat-button
+        color="active"
+        (click)="saveChanges()"
+        [disabled]="form.get('hardMode').value">
+            <mat-icon>save</mat-icon>
+            Save Changes
+        </button>
+    
+    </div>
 
 </div>

@@ -13,14 +13,14 @@
     <div id="action-buttons">
     
         <button mat-flat-button
-        color='active'
+        color="active"
         (click)="saveGame()">
             <mat-icon>save</mat-icon>
             Save Game
         </button>
     
         <button mat-flat-button
-        [color]="allowLoad ? 'active' : 'disabled'"
+        color="active"
         [disabled]="!allowLoad"
         (click)="loadGame()">
             <mat-icon>get_app</mat-icon>
@@ -28,7 +28,7 @@
         </button>
 
         <button mat-flat-button
-        color='active'
+        color="active"
         (click)="newGame()">
             <mat-icon>refresh</mat-icon>
             New Game
@@ -37,7 +37,7 @@
         <mat-divider></mat-divider><br>
 
         <button mat-flat-button
-        [color]="allowLoad ? 'active' : 'disabled'"
+        color="active"
         [disabled]="!allowLoad"
         (click)="clearData()">
             <mat-icon>delete_outline</mat-icon>

@@ -5,7 +5,7 @@ import { MiniGame } from 'src/app/pn-c-game/_objects/MiniGames';
 import { BreakerPuzzleService } from '../breaker-puzzle/_services/breaker-puzzle.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class ControllerService {
 

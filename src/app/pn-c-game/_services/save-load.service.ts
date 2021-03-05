@@ -51,11 +51,12 @@ export class SaveLoadService {
   }
 
   loadDataExists(): boolean {
-    return this.gameData !== null;
+    return this.gameData ? true : false;
   }
 
   newGame(): void {
     this.resetAlert.next();
+    this.closeSaveLoad();
   }
 
   saveGame(): void {
@@ -68,11 +69,13 @@ export class SaveLoadService {
       inventory: this.inventoryserv.save(),
       scenes: this.sceneserv.save()
     };
-
+    this.gameData = gameData;
     console.log(new Blob([this.compression.compressObject(gameData)]).size / 1000);
     localStorage.setItem(
       this.storageName,
       this.compression.compressObject(gameData));
+
+    this.closeSaveLoad();
   }
 
   loadGame(): void {
@@ -86,6 +89,7 @@ export class SaveLoadService {
     this.interactionserv.load(this.gameData.interactions);
     this.inventoryserv.load(this.gameData.inventory);
     this.sceneserv.load(this.gameData.scenes);
+    this.closeSaveLoad();
   }
 
   clearData(): void {

@@ -7,7 +7,6 @@ import { InteractionService } from './interaction.service';
 import { EventFlagService } from './event-flag.service';
 import { ChoiceService } from './choice.service';
 import { InputReqService } from './input-req.service';
-import { GameSettingsService } from './game-settings.service';
 import { MiniGameService } from './mini-game.service';
 import { Subscription } from 'rxjs';
 import { EpilogueService } from './epilogue.service';
@@ -15,7 +14,9 @@ import { ClickService } from './click.service';
 import { EventFlag } from '../_objects/EventFlag';
 import { GameVariablesService } from './game-variables.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'any'
+})
 export class TriggerService {
 
   private choiceservSubscription: Subscription;

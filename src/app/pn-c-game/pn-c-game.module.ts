@@ -39,6 +39,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SaveLoadComponent } from './save-load/save-load.component';
 import { MiniGameService } from './_services/mini-game.service';
 import { MiniGamesModule } from '../mini-games/mini-games.module';
+import { ClickService } from './_services/click.service';
 
 
 @NgModule({
@@ -74,18 +75,19 @@ import { MiniGamesModule } from '../mini-games/mini-games.module';
     MatTooltipModule
   ],
   exports: [
-    GameComponent
+    GameComponent,
   ],
   providers: [
-    ChoiceService,
-    CompressionService,
-    DialogueService,
-    EventFlagService,
-    GameSettingsService,
-    InputReqService,
-    InteractionService,
-    InventoryService,
-    SaveLoadService,
+    // ChoiceService,
+    // CompressionService,
+    // DialogueService,
+    // EventFlagService,
+    // GameSettingsService,
+    // InputReqService,
+    // InteractionService,
+    // InventoryService,
+    // SaveLoadService,
+    ClickService,
     TriggerService,
     MiniGameService
   ]

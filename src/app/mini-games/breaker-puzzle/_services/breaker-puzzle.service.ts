@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MovementService } from './movement.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class BreakerPuzzleService {
 

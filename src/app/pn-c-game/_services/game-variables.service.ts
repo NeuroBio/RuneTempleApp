@@ -4,7 +4,7 @@ import { GameBadges, Badge } from '../_objects/Badge';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class GameVariablesService {
 

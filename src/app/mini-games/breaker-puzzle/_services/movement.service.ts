@@ -3,7 +3,7 @@ import { GameTile, GameBoard } from '../_objects/GameBoard';
 import { GamePieces } from '../_objects/GamePiece';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class MovementService {
 
