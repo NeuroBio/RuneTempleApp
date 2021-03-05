@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { GameSettingsService } from '../_services/game-settings.service';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';

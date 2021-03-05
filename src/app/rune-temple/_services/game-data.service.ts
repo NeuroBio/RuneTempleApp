@@ -24,6 +24,7 @@ import { SaveLoadService } from 'src/app/pn-c-game/_services/save-load.service';
 import { RTEventTree } from '../_objects/RTEventTree';
 import { RuneTempleGameVariables } from '../_objects/RTGameVariables';
 import { GameVariablesService } from 'src/app/pn-c-game/_services/game-variables.service';
+import { GameSettingsService } from 'src/app/pn-c-game/_services/game-settings.service';
 
 @Injectable({
   providedIn: 'any'
@@ -41,6 +42,7 @@ export class GameDataService {
     private inventoryserv: InventoryService,
     private minigameserv: MiniGameService,
     private sceneserv: SceneService,
+    private gs: GameSettingsService,
     private gameVars: GameVariablesService
   ) {
     this.saveloadserv.resetAlert.subscribe(() => this.resetData());
@@ -71,9 +73,7 @@ export class GameDataService {
       new RuneTempleGameLocations().locations,
       'pitFloor');
     const vars = new RuneTempleGameVariables;
-    this.gameVars.reset(
-      vars.crossGameVars,
-      vars.textVariables,
-      vars.badges);
+    this.gameVars.reset(vars.crossGameVars, vars.textVariables, vars.badges);
+    this.gs.reset();
   }
 }

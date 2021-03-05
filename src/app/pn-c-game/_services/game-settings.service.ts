@@ -19,7 +19,6 @@ export class GameSettingsService {
   }
 
   updateSettings(newSettings: any): void {
-    console.log(newSettings)
     this.gameSettings.patchValue(newSettings);
     this.gameSettings.controls.hardMode.disable();
     this.closeSettings();
