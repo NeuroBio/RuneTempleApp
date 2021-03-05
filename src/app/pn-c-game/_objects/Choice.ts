@@ -23,3 +23,15 @@ export class GameChoices {
     [key: string]: Choice;
 }
 
+export class UpdateChoice {
+    key: string;
+    opt: string
+    out?: string
+
+    constructor(key: string, opt: string, out?: string) {
+        this.key = key;
+        this.opt = opt;
+        this.out = out;
+    }
+}
+

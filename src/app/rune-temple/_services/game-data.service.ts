@@ -21,6 +21,9 @@ import { InventoryService } from 'src/app/pn-c-game/_services/inventory.service'
 import { MiniGameService } from 'src/app/pn-c-game/_services/mini-game.service';
 import { SceneService } from 'src/app/pn-c-game/_services/scene.service';
 import { SaveLoadService } from 'src/app/pn-c-game/_services/save-load.service';
+import { RTEventTree } from '../_objects/RTEventTree';
+import { RuneTempleGameVariables } from '../_objects/RTGameVariables';
+import { GameVariablesService } from 'src/app/pn-c-game/_services/game-variables.service';
 
 @Injectable({
   providedIn: 'any'
@@ -37,19 +40,22 @@ export class GameDataService {
     private interactionserv: InteractionService,
     private inventoryserv: InventoryService,
     private minigameserv: MiniGameService,
-    private sceneserv: SceneService
-  ) { 
-    console.log('gameData')
+    private sceneserv: SceneService,
+    private gameVars: GameVariablesService
+  ) {
     this.saveloadserv.resetAlert.subscribe(() => this.resetData());
+    this.saveloadserv.storageName = 'rune-temple-game-data';
+    this.saveloadserv.fetchData();
     this.resetData();
   }
 
   resetData() {
-    console.log('resetting')
     this.choiceserv.reset(new RuneTempleGameChoices().gameChoices);
     this.dialogserv.reset(new RuneTempleDialogue().gameDialogue);
     this.epilogueserv.reset(new RuneTempleEpilogues().endings);
-    this.eventflagserv.reset(new RuneTempleEventFlags().eventFlags);
+    this.eventflagserv.reset(
+      new RuneTempleEventFlags().eventFlags,
+      new RTEventTree().eventTree);
     this.inputreqserv.reset(new RuneTempleInputRequests().inputReq);
     this.interactionserv.reset(
       new RuneTempleInteractions().gameInteractions,
@@ -57,12 +63,17 @@ export class GameDataService {
     )
     this.inventoryserv.reset(
       new RuneTempleGameItems().gameItems,
-      ['map', 'compass', 'knife', 'lighter']);
+      ['map', 'compass', 'knife', 'lighter', 'fish', 'rock']);
     this.minigameserv.reset(new RuneTempleMiniGames().miniGames);
     this.sceneserv.reset(
       new RuneTempleGameScenes().gameScenes,
       new RuneTempleGameActiveAreas().activeAreas,
       new RuneTempleGameLocations().locations,
       'pitFloor');
+    const vars = new RuneTempleGameVariables;
+    this.gameVars.reset(
+      vars.crossGameVars,
+      vars.textVariables,
+      vars.badges);
   }
 }

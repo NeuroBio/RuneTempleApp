@@ -11,3 +11,17 @@ export class Badge {
         this.earned = false;
     }
 }
+
+export class GameBadges {
+    [key: string]: Badge;
+}
+
+export class BadgeCheck {
+    name: string;
+    condition: boolean;
+
+    constructor(name, condition) {
+        this.name = name;
+        this.condition = condition;
+    }
+}

@@ -18,6 +18,7 @@ export class MiniGameService {
   private miniGames: MiniGames;
 
   constructor(private gs: GameSettingsService) { 
+    console.log(this.gs.getSettings())
       this.skipSubscription = this.gs.getSetting('allowSkip').valueChanges
         .subscribe(setting => this.allowSkip.next(setting));
     }

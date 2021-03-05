@@ -3,6 +3,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { DialogueSnippet, GameDialogue } from '../_objects/DialogueSnippet';
 import { GameSettingsService } from './game-settings.service';
 import { KeyPair } from '../_objects/interactions/Interaction';
+import { GameVariablesService } from './game-variables.service';
 
 @Injectable({
   providedIn: 'any'
@@ -17,6 +18,7 @@ export class DialogueService {
   private dialog: GameDialogue;
 
   constructor(
+    private gameVars: GameVariablesService,
     private gs: GameSettingsService
   ) { }
 
@@ -28,7 +30,7 @@ export class DialogueService {
       // replaces vars marked by ${} with their value in game settings
       dialogue.forEach(snip => {
         snip.text = snip.text.replace(this.parse, (parsed) =>
-          this.gs.getTextVar(parsed.match('[a-zA-Z0-9]+')[0]));
+          this.gameVars.getTextVar(parsed.match('[a-zA-Z0-9]+')[0]));
       });
       this.activeDialogue.next(dialogue);
     }

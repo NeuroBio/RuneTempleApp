@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { EpilogueService } from './epilogue.service';
 import { ClickService } from './click.service';
 import { EventFlag } from '../_objects/EventFlag';
+import { GameVariablesService } from './game-variables.service';
 
 @Injectable()
 export class TriggerService {
@@ -38,7 +39,7 @@ export class TriggerService {
     private minigameserv: MiniGameService,
     private sceneserv: SceneService,
 
-    private gs: GameSettingsService
+    private gameVars: GameVariablesService
   ) {
 
     // Interaction Known in Advance
@@ -98,7 +99,7 @@ export class TriggerService {
       this.sceneserv.modifyLocation(int.changeLocations);
     }
     if (int.addBadges[0]) {
-      this.gs.addBadges(int.addBadges);
+      this.gameVars.addBadges(int.addBadges);
     }
     if (int.moveToScene) {
       this.sceneserv.setActiveScene(int.moveToScene);
@@ -121,7 +122,7 @@ export class TriggerService {
   }
 
   private updateFromEventFlags(events: EventFlag[]) {
-    this.eventflagserv.updateEvents(events);
+    this.eventflagserv.updateFlags(events);
     events.forEach(event => {
       this.interactionserv.updateIfExists(new KeyPair('eventFlagUpdates', event.key));
       this.eventflagserv.checkTriggeredEvents(event.key).forEach(keypair =>

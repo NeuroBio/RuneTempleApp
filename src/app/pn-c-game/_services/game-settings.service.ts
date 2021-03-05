@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { GameSettings } from '../_objects/GameSettings';
+import { GameSettings, GameSettingsDefaults } from '../_objects/GameSettings';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { Badge } from '../_objects/Badge';
 
 @Injectable({
   providedIn: 'any'
@@ -10,63 +9,24 @@ import { Badge } from '../_objects/Badge';
 export class GameSettingsService {
 
   settingsOpen = new BehaviorSubject<boolean>(false);
-  private gameSettings = new GameSettings();
+  private gameSettings = new GameSettings().settings;
 
   constructor() { }
 
-
-  // Text variables
-  getTextVar(key: string): string {
-    return this.gameSettings.textVariables[key]
-    ? this.gameSettings.textVariables[key]
-    : this.gameSettings.textVariables[`${key}Default`];
-  }
-
-  setTextVar(key: string, value: string): void {
-    this.gameSettings.textVariables[key] = value;
-  }
-
-  setCountVar(key: string, change: number): void {
-    const value = +this.gameSettings.textVariables[key]
-    this.gameSettings.textVariables[key] = (value + change).toString();
-  }
-
   // Settings
   getSettings(): FormGroup {
-    return this.gameSettings.settings;
+    return this.gameSettings;
   }
 
   getSetting(key: string): AbstractControl {
-    return this.gameSettings.settings.get(key);
+    return this.gameSettings.get(key);
   }
 
   checkSetting(key: string): boolean {
-    return this.gameSettings.settings.get(key).value;
+    return this.gameSettings.get(key).value;
   }
 
-  // Cross Game Control
-  getCrossGameEvents(key: string): BehaviorSubject<any> {
-    return this.gameSettings.crossGameEvents[key];
-  }
-
-  addBadges(badgeKeys: string[]): void {
-    const badges = this.gameSettings.crossGameEvents.badges.value;
-    badgeKeys.forEach(key => badges[key].earned = true);
-    this.gameSettings.crossGameEvents.badges.next(badges);
-  }
-
-  updateCrossGameEvent(key: string, subkey: string) {
-    const events = this.gameSettings.crossGameEvents[key].value;
-    events[subkey] = true;
-    this.gameSettings.crossGameEvents[key].next(events);
-  }
-
-  getBadge(badgeKey: string): Badge {
-    return this.gameSettings.crossGameEvents.badges.value[badgeKey];
-  }
-
-
-  // setting controls
+  // setting component controls
   openSettings(): void {
     this.settingsOpen.next(true);
   }
@@ -77,27 +37,16 @@ export class GameSettingsService {
 
 
   // saving functions
-  reset(wipe: boolean = false): void {
-    this.gameSettings.reset(wipe);
+  reset(): void {
+    this.gameSettings.reset(new GameSettingsDefaults().defaults);
   }
 
   load(gamesettingsData: GameSettings): void {
-    this.gameSettings.settings.patchValue(gamesettingsData.settings);
-    this.gameSettings.textVariables = gamesettingsData.textVariables;
-    Object.keys(this.gameSettings.crossGameEvents).forEach(key => {
-      this.gameSettings.crossGameEvents[key].next(gamesettingsData.crossGameEvents[key]);
-    });
+    this.gameSettings.patchValue(gamesettingsData);
   }
 
   save(): void {
-    const saveGS: any = {};
-    saveGS.settings = this.gameSettings.settings.value;
-    saveGS.textVariables = this.gameSettings.textVariables;
-    saveGS.crossGameEvents = {};
-    Object.keys(this.gameSettings.crossGameEvents).forEach(key => {
-      saveGS.crossGameEvents[key] = this.gameSettings.crossGameEvents[key].value;
-    });
-    return saveGS;
+    return this.gameSettings.value;
   }
 
 }

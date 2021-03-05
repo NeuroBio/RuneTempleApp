@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { GameSettingsService } from './game-settings.service';
 import { ChoiceService } from './choice.service';
-import { DialogueService } from './dialogue.service';
 import { EventFlagService } from './event-flag.service';
-import { InputReqService } from './input-req.service';
 import { InteractionService } from './interaction.service';
 import { InventoryService } from './inventory.service';
 import { SceneService } from './scene.service';
 import { CompressionService } from './compression.service';
+import { GameVariablesService } from './game-variables.service';
+import { CrossGameVars } from '../_objects/GameVariables';
 
 @Injectable({
   providedIn: 'any'
@@ -17,24 +17,29 @@ export class SaveLoadService {
 
   saveloadOpen = new BehaviorSubject<boolean>(false);
   resetAlert = new Subject();
-  private gameData: string;
+  private gameData: any;
   storageName = 'rune-temple-game-data';
 
   constructor(
     private gs: GameSettingsService,
+    private gameVars: GameVariablesService,
     private choiceserv: ChoiceService,
-    private dialogueserv: DialogueService,
     private eventflagserv: EventFlagService,
-    private inputreqserv: InputReqService,
     private interactionserv: InteractionService,
     private inventoryserv: InventoryService,
     private sceneserv: SceneService,
     private compression: CompressionService
-  ) {
-      const data = localStorage.getItem(this.storageName);
-      if (data) {
-        this.gameData = data;
-      }
+  ) { }
+
+
+  // This is essentialy an onInit that has to be called ONCE by gameDataService
+  // it cannot be called in the constrcutor, because the storageName exists in gameData
+  fetchData() {
+    const data = localStorage.getItem(this.storageName);
+    if (data) {
+      this.gameData = this.compression.decompressObject(data);
+      this.gameVars.setCrossVars(this.gameData.gameVars.crossGameVariables);
+    }
   }
 
   openSaveLoad(): void {
@@ -50,13 +55,13 @@ export class SaveLoadService {
   }
 
   newGame(): void {
-    this.gs.reset();
     this.resetAlert.next();
   }
 
   saveGame(): void {
     const gameData = {
       gs: this.gs.save(),
+      gameVars: this.gameVars.save(),
       choices: this.choiceserv.save(),
       eventflags: this.eventflagserv.save(),
       interactions: this.interactionserv.save(),
@@ -71,20 +76,22 @@ export class SaveLoadService {
   }
 
   loadGame(): void {
-    const gameData = this.compression
+    this.gameData = this.compression
       .decompressObject(localStorage.getItem(this.storageName));
 
-    this.gs.load(gameData.gs);
-    this.choiceserv.load(gameData.choices);
-    this.eventflagserv.load(gameData.eventflags);
-    this.interactionserv.load(gameData.interactions);
-    this.inventoryserv.load(gameData.inventory);
-    this.sceneserv.load(gameData.scenes);
+    this.gs.load(this.gameData.gs);
+    this.gameVars.load(this.gameData.gameVars);
+    this.choiceserv.load(this.gameData.choices);
+    this.eventflagserv.load(this.gameData.eventflags);
+    this.interactionserv.load(this.gameData.interactions);
+    this.inventoryserv.load(this.gameData.inventory);
+    this.sceneserv.load(this.gameData.scenes);
   }
 
   clearData(): void {
-    this.gs.reset(true);
+    this.gameVars.setCrossVars(undefined);
     this.resetAlert.next();
     localStorage.removeItem(this.storageName);
   }
+
 }
