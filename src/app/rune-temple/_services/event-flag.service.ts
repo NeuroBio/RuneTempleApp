@@ -1,45 +1,42 @@
 import { Injectable } from '@angular/core';
 import { EventFlag } from '../_objects/event-types/EventFlag';
 import { EventFlags } from '../_objects/event-types/EventFlags';
-import { InteractionService } from './interaction.service';
-import { InteractionWithKeys, Interaction, KeyPair } from '../_objects/interactions/Interaction';
-import { SceneService } from './scene.service';
+import { Interaction, KeyPair } from '../_objects/interactions/Interaction';
 import { ChoiceService } from './choice.service';
 import { GameSettingsService } from './game-settings.service';
-import { OnClickDialogue } from '../_objects/dialogue-snippets/onClickDialogue';
 import { Subject } from 'rxjs';
-import { EpilogueService } from './epilogue.service';
 
 @Injectable({
   providedIn: 'any'
 })
 export class EventFlagService {
 
-  triggerNow = new Subject<InteractionWithKeys>();
+  broadcast = new Subject<Interaction>();
 
   // mutable
   private events = new EventFlags();
-
-  // variables
-  private sceneDial = new OnClickDialogue().sceneUpdates;
+  // immutable
+  private key = 'eventFlagUpdates';
 
   constructor(
-    private interactionserv: InteractionService,
-    private sceneserv: SceneService,
     private choiceserv: ChoiceService,
-    private epilogueserv: EpilogueService,
+    // private epilogueserv: EpilogueService,
     private gs: GameSettingsService
   ) { }
+
+  
+  checkEventFlag(key: string) {
+    return this.events[key];
+  }
 
   updateEvents(events: EventFlag[]): void {
     events.forEach(event => {
       this.events[event.key] = event.value;
-      this.interactionserv.updateIfExists(new KeyPair('eventFlagUpdates', event.key));
-      this.checkTriggeredEvents(event.key);
     });
   }
 
-  private checkTriggeredEvents(key: string): void {
+  checkTriggeredEvents(key: string): KeyPair[] {
+    const updates: KeyPair[] = []
     switch (key) {
       case ('enteredFoyer' || 'mapBurned'):
         if (this.events.mapBurned && !this.events.foyerMap) {
@@ -51,28 +48,28 @@ export class EventFlagService {
         this.badgeCheck('breakfast', (name === 'Fish'));
         this.badgeCheck('enlightenment', (name === 'kArA'));
         if(this.events.reliefRepaired) {
-          this.updateScene('foyer', []);
+          updates.push(new KeyPair(this.key, 'noSuffocateFish'));
         }
         /* falls through */
       case 'zhangMedicated' :
         if (this.gs.getTextVar('fishName') === 'Zhang' && this.events.zhangMedicated) {
-          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'zhangZhangFish'));
+          updates.push(new KeyPair(this.key, 'zhangZhangFish'));
         } else if(this.events.zhangMedicated) {
-          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'zhangNoZhangFish'));
+          updates.push(new KeyPair(this.key, 'zhangNoZhangFish'));
         }
         break;
       case 'trothFullness' :
         this.gs.setCountVar('trothFullness', 1);
         switch (+this.gs.getTextVar('trothFullness')) {
           case 1 :
-            this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'dampTroth'));
+            updates.push(new KeyPair(this.key, 'dampTroth'));
             break;
           case 9:
-            this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'swampTrothAlmostFilled'));
+            updates.push(new KeyPair(this.key, 'swampTrothAlmostFilled'));
             break;
           case 10:
             this.badgeCheck('stubborn', true);
-            this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'swampTrothFilled'));
+            updates.push(new KeyPair(this.key, 'swampTrothFilled'));
             break;
         }
         break;
@@ -84,9 +81,9 @@ export class EventFlagService {
         break;
       case 'hammerExit' || 'hammerFish' :
         if (key === 'hammerExit') {
-          this.addChoice('dialogue', 'zhangConvoTopics', 'about the water', new KeyPair('zhangHelp', 'water'));
+          this.addChoice('zhangConvoTopics', 'about the water', new KeyPair('zhangHelp', 'water'));
           if (this.events.reliefRepaired) {
-            this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'noFishForYou'));
+            updates.push(new KeyPair(this.key, 'noFishForYou'));
           }  
         } else {
           this.fishDeath('hammerFish');
@@ -108,18 +105,18 @@ export class EventFlagService {
         break;
       case 'bookBurned' :
         if (this.events.reliefRepaired && this.events.zhangSawBook) {
-          this.removeChoice('dialogue', 'zhangConvoTopics', 'about the relief');
+          this.removeChoice('zhangConvoTopics', 'about the relief');
         }
         break;
       case 'reliefRepaired' :
         if (this.events.haveBook && this.events.zhangSawBook) {
-          this.addChoice('dialogue', 'zhangConvoTopics', 'about the relief', new KeyPair('zhangHelp', 'relief'));
+          this.addChoice('zhangConvoTopics', 'about the relief', new KeyPair('zhangHelp', 'relief'));
         }
         if (!this.events.fishNamed && this.events.haveFish) {
-          this.updateScene('Foyer', this.sceneDial.deadFish);
+          updates.push(new KeyPair(this.key, 'suffocateFish'));
         }
         if(!this.events.haveFish && this.events.hammerExit) {
-          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'deadFish'));
+          updates.push(new KeyPair(this.key, 'deadFish'));
         }
         break;
       case 'ovenLit' :
@@ -128,17 +125,17 @@ export class EventFlagService {
         }
 
         if (this.events.flaskFish) {
-          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'flaskFishOvenLit'))
+          updates.push(new KeyPair(this.key, 'flaskFishOvenLit'));
         }
         // TODO: trigger effects?
         break;
       case 'wrapilize' :
-        this.updateScene('foyer', this.sceneDial.foyerHaunt);
+        updates.push(new KeyPair(this.key, 'foyerHaunt'));
         break;
       case 'zhangSawBook' :
-        this.addChoice('dialogue', 'zhangConvoTopics', 'about the book', new KeyPair('zhangHelp', 'book'));
+        this.addChoice('zhangConvoTopics', 'about the book', new KeyPair('zhangHelp', 'book'));
         if (this.events.reliefRepaired) {
-          this.addChoice('dialogue', 'zhangConvoTopics', 'about the relief', new KeyPair('zhangHelp', 'relief'));
+          this.addChoice('zhangConvoTopics', 'about the relief', new KeyPair('zhangHelp', 'relief'));
         }
         break;
       case 'ashFish':
@@ -150,7 +147,7 @@ export class EventFlagService {
       case 'flaskFish':
         this.fishDeath('flaskFish');
         if (this.events.ovenLit) {
-          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'flaskFishOvenLit'))
+          updates.push(new KeyPair(this.key, 'flaskFishOvenLit'));
         }
         break;
       case 'knifeFish1':
@@ -173,23 +170,25 @@ export class EventFlagService {
         break;
       case 'boardsArranged' : 
         if (!this.events.haveNails) {
-          this.interactionserv.updateInteractions(new KeyPair('eventFlagUpdates', 'boardsArrangedAllowNails'));
+          updates.push(new KeyPair(this.key, 'boardsArrangedAllowNails'));
         }
         break;
-      case 'endGame' :
-        this.triggerEndGame();
-        break;
+      // case 'endGame' :
+      //   this.triggerEndGame();
+        // break;
       default:
         break;
     }
+
+    return updates;
   }
 
-  triggerEndGame() {
-    const finalDialog = this.epilogueserv.setEnding(this.events);
-    if (finalDialog) {
-      this.triggerNow.next(finalDialog);
-    }
-  }
+  // triggerEndGame() {
+  //   const finalDialog = this.epilogueserv.setEnding(this.events);
+  //   if (finalDialog) {
+  //     this.broadcast.next(finalDialog);
+  //   }
+  // }
 
   private badgeCheck(key: string, condition: boolean): void {
     const badge = this.gs.getBadge(key);
@@ -211,26 +210,15 @@ export class EventFlagService {
     this.badgeCheck('deadFish', true);
   }
 
-  private updateScene(scene: string, dialog): void {
-    this.sceneserv.updateScene(scene, false, dialog);
+  private addChoice(key: string, opt: string, out: KeyPair): void {
+    this.choiceserv.addChoice(key, opt, new Interaction(out));
   }
 
-  private addChoice(key: string, subkey: string, opt: string, out: KeyPair): void {
-    this.choiceserv.addChoice(key, subkey, opt, new InteractionWithKeys(new Interaction(out)));
+  private removeChoice(key: string, opt: string): void {
+    this.choiceserv.removeChoice(key, opt);
   }
-
-  private removeChoice(key: string, subkey: string, opt: string): void {
-    this.choiceserv.removeChoice(key, subkey, opt);
-  }
-
-  addMapEvent(key: string): void {
-    this.events[`${key}Map`] = true;
-  }
-
-  checkEventFlag(key: string) {
-    return this.events[key];
-  }
-
+  
+  // SaveLoad Functions
   reset(): void {
     this.events = new EventFlags();
   }

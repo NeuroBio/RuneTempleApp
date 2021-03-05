@@ -10,6 +10,19 @@ export class KeyPair {
         this.subkey = subkey;
     }
 }
+
+export class  UpdateScene {
+    key: string;
+    dialogueKeys: KeyPair;
+    visited: boolean
+
+    constructor(key: string, dialogueKeys: KeyPair, visited: boolean = false) {
+        this.key = key;
+        this.dialogueKeys = dialogueKeys;
+        this.visited = visited;
+    }
+}
+
 export class Interaction {
     dialogue: KeyPair;
     removeItems: string[];
@@ -19,10 +32,12 @@ export class Interaction {
     changeLocations: Activator[];
     addBadges: string[];
     updates?: KeyPair;
-    updateScenes: any;
+    updateSceneDialogue?: UpdateScene;
     moveToScene?: string;
-    loadChoice?: KeyPair;
-    requestInput?: KeyPair;
+    loadChoice?: string;
+    requestInput?: string;
+    miniGame?: string;
+    ending?: boolean
 
     constructor(
         dialogue: KeyPair, removeItems: string[] = [],
@@ -30,8 +45,9 @@ export class Interaction {
         changeAreas: Activator[] = [], changeLocations: Activator[] = [],
         addBadges: string[] = [],
         updates?: KeyPair, moveToScene?: string,
-        updateScenes = [], loadChoice?: KeyPair,
-        requestInput?: KeyPair) {
+        updateSceneDialogue?: UpdateScene, loadChoice?: string,
+        requestInput?: string, miniGame?: string, ending?: boolean) {
+
         this.dialogue = dialogue;
         this.removeItems = removeItems;
         this.addItems = addItems;
@@ -41,9 +57,11 @@ export class Interaction {
         this.addBadges = addBadges;
         this.moveToScene = moveToScene;
         this.updates = updates;
-        this.updateScenes = updateScenes;
+        this.updateSceneDialogue = updateSceneDialogue;
         this.loadChoice = loadChoice;
         this.requestInput = requestInput;
+        this.miniGame = miniGame;
+        this.ending = ending;
     }
 }
 
@@ -59,34 +77,45 @@ export class InteractionWithKeys {
     }
 }
 
-export class ChoiceInteraction extends InteractionWithKeys {
-    constructor(key: string, subkey: string) {
-        super(
-            new Interaction(undefined, [], [], [], [], [], [],
-                undefined, undefined, [], new KeyPair(key, subkey)));
+export class ChoiceInteraction extends Interaction {
+    constructor(key: string) {
+        super(undefined, [], [], [], [], [], [],
+                undefined, undefined, undefined, key);
     }
 }
 
-export class SceneUdateInteraction extends InteractionWithKeys {
-    constructor(scenesToUpdate) {
-        super(
-            new Interaction(undefined, [], [], [], [], [], [],
-                undefined, undefined, scenesToUpdate));
+// export class SceneUdateInteraction extends InteractionWithKeys {
+//     constructor(scenesToUpdate) {
+//         super(
+//             new Interaction(undefined, [], [], [], [], [], [],
+//                 undefined, undefined, scenesToUpdate));
+//     }
+// }
+
+export class InputRequestInteraction extends Interaction {
+    constructor(key: string) {
+        super(undefined, [], [], [], [], [], [], undefined,
+                undefined, undefined, undefined, key);
     }
 }
 
-export class InputRequestInteraction extends InteractionWithKeys {
-    constructor(key: string, subkey: string) {
-        super(
-            new Interaction(undefined, [], [], [], [], [], [], undefined,
-                undefined, [], undefined, new KeyPair(key, subkey)));
+export class DialogueInteraction extends Interaction {
+    constructor(dial: KeyPair) {
+        super(dial);
     }
 }
 
-export class SceneInteraction extends InteractionWithKeys {
-    constructor(activeAreas: Activator[], locations?: Activator[], moveToScene?: string, updateScenes?: []) {
-        super(
-            new Interaction(undefined, [], [], [], activeAreas, locations,
-                [], undefined, moveToScene, updateScenes));
+export class SceneDialogueInteraction extends Interaction {
+    constructor(where: string, keys: KeyPair, visited?: boolean) {
+        super(undefined, [], [], [], [], [], [], undefined,
+                undefined, new UpdateScene(where, keys, visited));
     }
 }
+
+export class MiniGameInteraction extends Interaction {
+    constructor(game: string) {
+        super(undefined, [], [], [], [], [], [], undefined,
+            undefined, undefined, undefined, undefined, game);
+    }
+}
+

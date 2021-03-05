@@ -11,7 +11,7 @@ import { KeyPair } from '../_objects/interactions/Interaction';
 export class DialogueService {
 
   activeDialogue = new BehaviorSubject<DialogueSnippet[]>([]);
-  postDialogueInteraction = new Subject<KeyPair>()
+  broadcast = new Subject<KeyPair>()
   advance = new Subject();
   parse = new RegExp('\\${.*?}', 'g');
 
@@ -43,8 +43,9 @@ export class DialogueService {
     this.activeDialogue.next([]);
   }
 
-  triggerEvent(type: string, key: string): void {
-    this.postDialogueInteraction.next(new KeyPair(type, key));
+  triggerEvent(key: string): void {
+    console.log(new KeyPair('dialogue', key))
+    this.broadcast.next(new KeyPair('dialogue', key));
   }
 
   reset(): void {

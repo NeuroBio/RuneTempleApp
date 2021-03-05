@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { InputRequest } from '../_objects/input-requests/InputRequest';
 import { InputRequests } from '../_objects/input-requests/InputRequests';
 import { GameSettingsService } from './game-settings.service';
+import { KeyPair } from '../_objects/interactions/Interaction';
 
 @Injectable({
   providedIn: 'any'
@@ -10,12 +11,14 @@ import { GameSettingsService } from './game-settings.service';
 export class InputReqService {
 
   activeInputReq = new BehaviorSubject<InputRequest>(undefined);
+  broadcast = new Subject<KeyPair>();
+  
   private inputRequests = new InputRequests();
 
   constructor(private gs: GameSettingsService) { }
 
-  setInputRequest(key: string, subkey: string): void {
-    this.activeInputReq.next(this.inputRequests[key][subkey]);
+  setInputRequest(key: string): void {
+    this.activeInputReq.next(this.inputRequests[key]);
   }
 
   unsetInputRequest(): void {
@@ -26,6 +29,11 @@ export class InputReqService {
     this.gs.setTextVar(request.key, request.control.value);
   }
 
+  triggerEvent(keys: KeyPair) {
+    this.broadcast.next(keys);
+  }
+
+  // Save Load Functions
   reset(): void {
     this.inputRequests = new InputRequests();
   }

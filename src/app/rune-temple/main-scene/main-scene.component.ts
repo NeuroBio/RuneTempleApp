@@ -3,6 +3,7 @@ import { SceneDisplay } from '../_objects/scenes/Scene';
 import { Subscription } from 'rxjs';
 import { SceneService } from '../_services/scene.service';
 import { TriggerService } from '../_services/trigger.service';
+import { ClickService } from '../_services/click.service';
 
 @Component({
   selector: 'app-main-scene',
@@ -18,9 +19,9 @@ export class MainSceneComponent implements OnInit, OnDestroy {
   sceneSubscription: Subscription;
 
   constructor(
-    private triggerserv: TriggerService,
     private sceneserv: SceneService,
-  ) { }
+    private clickserv: ClickService
+    ) { }
 
   ngOnInit(): void {
     this.sceneSubscription = this.sceneserv.activeScene
@@ -32,10 +33,10 @@ export class MainSceneComponent implements OnInit, OnDestroy {
   }
 
   interact(key: string): void {
-    this.triggerserv.checkInteraction(key, undefined);
+    this.clickserv.triggerEvent(key);
   }
 
   travel(key: string): void {
-   this.triggerserv.travel(key);
+    this.sceneserv.travel(key);
   }
 }

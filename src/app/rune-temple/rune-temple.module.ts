@@ -92,4 +92,6 @@ import { MiniGamesModule } from '../mini-games/mini-games.module';
   ]
 })
 
-export class RuneTempleModule { }
+export class RuneTempleModule { 
+  constructor(private triggerserv: TriggerService) {}
+}

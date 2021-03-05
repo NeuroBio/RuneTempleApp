@@ -39,7 +39,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
   next(): void {
     if (!this.skip) {
       if (this.dialogue.eventKey) {
-        this.dialogueserv.triggerEvent(this.dialogue.eventType, this.dialogue.eventKey);
+        this.dialogueserv.triggerEvent(this.dialogue.eventKey);
       }
       this.advance();
     }

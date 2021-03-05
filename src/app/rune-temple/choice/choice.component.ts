@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChoiceService } from '../_services/choice.service';
 import { Choice } from '../_objects/choices/Choice';
 import { Subscription } from 'rxjs';
-import { TriggerService } from '../_services/trigger.service';
 
 @Component({
   selector: 'app-choice',
@@ -14,10 +13,7 @@ export class ChoiceComponent implements OnInit, OnDestroy {
   choice: Choice;
   choiceSubsciption: Subscription;
 
-  constructor(
-    private choiceserv: ChoiceService,
-    private triggerserv: TriggerService
-  ) { }
+  constructor(private choiceserv: ChoiceService) { }
 
   ngOnInit(): void {
     this.choiceSubsciption = this.choiceserv.activeChoice
@@ -34,7 +30,7 @@ export class ChoiceComponent implements OnInit, OnDestroy {
     const interaction = this.choice.outcomes[index];
 
     if (interaction) {
-      this.triggerserv.triggerInteraction(interaction);
+      this.choiceserv.triggerEvent(interaction);
     }
 
     this.choiceserv.unsetChoice();

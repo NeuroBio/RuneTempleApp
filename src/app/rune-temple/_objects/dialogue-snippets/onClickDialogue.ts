@@ -175,7 +175,7 @@ export class OnClickDialogue {
         ],
         zhang5: [
             new DialogueSnippet('Erin', 'Willing to talk now?'),
-            new DialogueSnippet('Zhang', 'About what?', 'choice', 'zhangConvoTopics')
+            new DialogueSnippet('Zhang', 'About what?', 'zhangConvoTopics')
         ],
         zhang6: [
             new DialogueSnippet('Erin', 'Do you think you can stand?'),
@@ -338,7 +338,7 @@ export class OnClickDialogue {
         metalEngrave3: [new DialogueSnippet('', 'Erin presses the creature in the engraving again.  The door opens again.  As soon as she moves her hand, the door shuts again.  Erin huffs.')],
         peatOven: [new DialogueSnippet('', 'The old, stone peat oven is unlit.  The ash from the last time it was used has settled deeply into the stone, staining it black.')],
         peatOvenLit: [new DialogueSnippet('', 'The fire in the oven crackles softly, bringing warmth into the damp air.')],
-        peat: [new DialogueSnippet('', 'Layers and layers of compacted peat.', 'choice', 'peatStacks')],
+        peat: [new DialogueSnippet('', 'Layers and layers of compacted peat.', 'peatStacks')],
         vent1A: [new DialogueSnippet('', 'Erin tries to pull the metal grate off, but it is screwed firmly in place.')],
         vent1B: [new DialogueSnippet('', 'Erin peers into the vent, but there is nothing there.')],
         vent1C: [new DialogueSnippet('', 'Erin peers into the vent.  The metal object from the classroom vent, now identifiable as a key, fell within reach.  Erin snags the key.')],
@@ -391,12 +391,12 @@ export class OnClickDialogue {
         boardsLadder: [new DialogueSnippet('', 'I just need a way to hold the boards in place.')],
         boardsLadder2: [new DialogueSnippet('', 'Just gotta hammer the nails down.')],
         poisonPlant: [new DialogueSnippet('Erin', 'Zhang warned me not to touch those anymore.')],
-        ladder: [new DialogueSnippet('', 'The ladder is complete.', 'choice', 'ladderEscape')]
+        ladder: [new DialogueSnippet('', 'The ladder is complete.', 'ladderEscape')]
     };
 
     combos = {
         compassKnife: [new DialogueSnippet('Erin',
-            'I\'m not sure I want to do that.  I might not be able to put the compass back together.', 'choice', 'compassKnife')],
+            'I\'m not sure I want to do that.  I might not be able to put the compass back together.', 'compassKnife')],
 
         shirtKnife: [new DialogueSnippet('', 'Erin cuts the shirt into strips.')],
         rootLighter: [new DialogueSnippet('Erin', 'I think I can make a better torch than this...')],
@@ -414,17 +414,17 @@ export class OnClickDialogue {
         rockPuzzle: [new DialogueSnippet('', 'Erin holds the two items in her hands, unsure where to hit the puzzle box with the rock.  There are no visible seams or hinges.  Erin decides this must be the wrong course of action and puts the two items away.')],
 
         rockGlassCap: [new DialogueSnippet('',
-            'Erin looks between the rock and the glass cap.  There is wanton destruction to be had here.', 'choice', 'shatter1')],
-        rockEmptyFlask: [new DialogueSnippet('', 'Erin looks between the rock and the flask.  Yes, the flask is Zhang\'s but this would not be the first of his things she destoroyed today.', 'choice', 'shatter2')],
-        mapLighter: [new DialogueSnippet('', 'Erin considers the lighter and the map.  Yes, the map is made of paper, and paper is very flammable, but it has also proved... somewhat useful as a navigation tool.', 'choice', 'igniteMap')],
+            'Erin looks between the rock and the glass cap.  There is wanton destruction to be had here.', 'shatter1')],
+        rockEmptyFlask: [new DialogueSnippet('', 'Erin looks between the rock and the flask.  Yes, the flask is Zhang\'s but this would not be the first of his things she destoroyed today.', 'shatter2')],
+        mapLighter: [new DialogueSnippet('', 'Erin considers the lighter and the map.  Yes, the map is made of paper, and paper is very flammable, but it has also proved... somewhat useful as a navigation tool.', 'igniteMap')],
         fluidRock: [new DialogueSnippet('Erin', 'Mmm... I don\'t think so.  If I break that with the rock, I\'ll get the fluid all over my hands.')],
         fishTankRock: [new DialogueSnippet('Erin', 'NO.  Not while ${fishName} is still in it.')],
-        compassRock: [new DialogueSnippet('', 'Erin considers the rock and the compass.  The rock could certainly smash through the glass, but that seems like a violent way to deal with the compass.', 'choice', 'shatter3')],
+        compassRock: [new DialogueSnippet('', 'Erin considers the rock and the compass.  The rock could certainly smash through the glass, but that seems like a violent way to deal with the compass.', 'shatter3')],
         flaskFish: [
             new DialogueSnippet('', 'Erin shoves the tiny fish into the Vodka Flash, not thinking to first compare the circumference of the flask’s opening to the circumference of the fish.  The fish’s head gets stuck, and it trashes around madly.  '),
             new DialogueSnippet('', 'Erin tries to pull the fish back out but tugs too hard.  The fish’s head is severed from its body.  Erin holds the twitching body in her fist for only a moment before dropping it.  She turns the flask upside down to shake the head out to no avail.  The water pours out of the flask, but the head is now permanently trapped inside.  Erin vows to buy Zhang a new Flask.')
         ],
-        dishFish: [new DialogueSnippet('', 'Erin plonks the tiny fish into the glass of water.  It freezes for a moment, not understanding.  Then, the fish realizes it was safely underwater again.  It begins to circle its temporary home with only mild concern.', 'inputRequest', 'nameFish')],
+        dishFish: [new DialogueSnippet('', 'Erin plonks the tiny fish into the glass of water.  It freezes for a moment, not understanding.  Then, the fish realizes it was safely underwater again.  It begins to circle its temporary home with only mild concern.', 'nameFish')],
         cleanTank: [new DialogueSnippet('', 'Erin swirls the charcoal around in the water quickly.  This both oxygenates the water and deactivates any impurities.  ${fishName} takes a big happy gulp of water.')],
         charcoalFish: [
             new DialogueSnippet('', 'Erin looks at the panic in the fish’s eyes and wants to do something to make it feel better.  Using her charcoal, she draws a happy moustache on the fish’s face.  Now, the fish looks excited!'),
@@ -597,7 +597,7 @@ export class OnClickDialogue {
             new DialogueSnippet('Erin', 'Right...')
         ],
 
-        puzzleBoxLitOven: [new DialogueSnippet('', 'Erin looks down at the puzzle box.  It\'s a risky gambit, but maybe the corrext way to open teh box is with fire.', 'choice', 'riskyGambit')],
+        puzzleBoxLitOven: [new DialogueSnippet('', 'Erin looks down at the puzzle box.  It\'s a risky gambit, but maybe the corrext way to open teh box is with fire.', 'riskyGambit')],
         zhangScrapMetal: [new DialogueSnippet('', 'Erin thinks to herself: Don\'t tell Zhang.  Don\'t show Zhang.')],
         rockExit: [
             new DialogueSnippet('Erin', 'I bet if I just...'),
@@ -704,7 +704,7 @@ export class OnClickDialogue {
         glueRelief3: [new DialogueSnippet('', 'Erin begins to reassemble the relief.')],
         glueRelief4: [new DialogueSnippet('Erin', 'It\'s repaied enough.')],
         glueRelief5: [new DialogueSnippet('Erin', 'There isn\'t enough glue in the work to fix this now.')],
-        breakerRelief: [new DialogueSnippet('', 'Erin gathers Source in her hand and converts it into a Breaker haze.  The Ghost in the relief strikes back.', 'miniGame', 'breakerPuzzle1')],
+        breakerRelief: [new DialogueSnippet('', 'Erin gathers Source in her hand and converts it into a Breaker haze.  The Ghost in the relief strikes back.', 'breakerPuzzle1')],
         breakerRelief2: [new DialogueSnippet('Erin', 'There are no more Ghosts here.')],
         reliefVictory: [new DialogueSnippet('', 'The weak Ghost dissipates, and Erin mentally pats herself on the back.')],
         reliefVictory2: [new DialogueSnippet('', 'Erin steps back to admire her handywork.  She wishes Zhang could see it.')],
@@ -763,7 +763,7 @@ export class OnClickDialogue {
 
     };
 
-    sceneDefaults = {
+    scenes = {
         pitCeiling: [new DialogueSnippet('', 'The ceiling is too high to climb out.')],
         bag: [
             new DialogueSnippet('Erin', 'Do you have anything that might help us?'),
@@ -773,12 +773,9 @@ export class OnClickDialogue {
         classroom: [new DialogueSnippet('Erin', 'That blackboard… is this a classroom?')],
         exit: [new DialogueSnippet('', 'Erin tries to push the door open, but it will not budge. Perhaps something is pressing on it from the other side?')],
         oven: [new DialogueSnippet('Erin', 'A furnace room... Good to know that I can heat this place up if it gets too cold.')],
-        leg: [new DialogueSnippet('Erin', 'That doesn\'t look good.')]
-    };
-
-    sceneUpdates = {
+        leg: [new DialogueSnippet('Erin', 'That doesn\'t look good.')],
         foyerHaunt: [new DialogueSnippet('Erin', 'What the...')],
-        deadFish: [new DialogueSnippet('', 'A strange smell catches Erin’s attention.  She looks at the tiny fish only to realize it has passed on while waiting in her inventory.  Erin sighs.  She tosses the fish into a discrete corner of the room.', 'lostItem', 'fish')]
+        deadFish: [new DialogueSnippet('', 'A strange smell catches Erin’s attention.  She looks at the tiny fish only to realize it has passed on while waiting in her inventory.  Erin sighs.  She tosses the fish into a discrete corner of the room.', 'suffocation')]
     };
 
     itemDescriptions = {

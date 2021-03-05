@@ -11,7 +11,7 @@ export class Scene {
         this.name = name;
         this.assetKey = key;
         this.visited = visited;
-        this.dialogue = new KeyPair('sceneDefaults', key);
+        this.dialogue = new KeyPair('scenes', key);
     }
 }
 

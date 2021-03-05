@@ -3,11 +3,6 @@ import { FormControl, Validators } from '@angular/forms';
 import { KeyPair } from '../interactions/Interaction';
 
 export class InputRequests {
-    dialogue = new DialogueInputRequests();
-}
-
-export class DialogueInputRequests {
-
     nameFish = new InputRequest(
         'fishName',
         'What should the fish be called?',
@@ -16,6 +11,5 @@ export class DialogueInputRequests {
             Validators.maxLength(30),
             Validators.pattern('[a-zA-Z0-9-_,@\\s]*')
         ])),
-        new KeyPair('inputReqUpdates', 'fishName'));
-
+        new KeyPair('inputReqs', 'fishName'));
 }

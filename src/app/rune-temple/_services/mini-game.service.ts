@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, Subject } from 'rxjs';
-import { InteractionWithKeys } from 'src/app/rune-temple/_objects/interactions/Interaction';
+import { Interaction } from 'src/app/rune-temple/_objects/interactions/Interaction';
 import { EventFlag } from 'src/app/rune-temple/_objects/event-types/EventFlag';
 import { MiniGameVictoryInteractions } from 'src/app/rune-temple/_objects/interactions/MiniGameVictoryInteractions';
 import { MiniGames, MiniGame } from '../_objects/MiniGames';
@@ -12,8 +12,9 @@ import { GameSettingsService } from './game-settings.service';
 export class MiniGameService {
 
   activeGame = new BehaviorSubject<MiniGame>(undefined);
-  miniGameBroadcast = new Subject<InteractionWithKeys>();
   allowSkip = new BehaviorSubject<boolean>(undefined);
+
+  broadcast = new Subject<Interaction>();
 
   private skipSubscription: Subscription;
   private victoryEvents = new MiniGameVictoryInteractions();
@@ -39,12 +40,12 @@ export class MiniGameService {
   markGameAsSkipped() {
     const victoryEvent = this.victoryEvents[this.getEventKey()];
     victoryEvent.interaction.eventFlags.push(new EventFlag(`${this.gameKey}Skipped`));
-    this.miniGameBroadcast.next(victoryEvent);
+    this.broadcast.next(victoryEvent);
     this.unsetMiniGame();
   }
 
   markGameAsCompleted() {
-    this.miniGameBroadcast.next(this.victoryEvents[this.getEventKey()]);
+    this.broadcast.next(this.victoryEvents[this.getEventKey()]);
     this.unsetMiniGame();
   }
 

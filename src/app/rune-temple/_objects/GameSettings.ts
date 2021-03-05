@@ -65,4 +65,5 @@ export class FishDeaths {
     trothFish = false;
     hammerFish = false;
     neglectFish = false;
+    suffocationFish = false;
 }

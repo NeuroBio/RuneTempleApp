@@ -61,6 +61,7 @@ export class EventFlags {
     trothFish = false;
     hammerFish = false;
     neglectFish = false;
+    suffocationFish = false;
 
     // HAMMER EVERYTHING
     hammerExit = false;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { OnClickInteractions } from '../_objects/interactions/onClickInteractions';
-import { InteractionWithKeys, KeyPair } from '../_objects/interactions/Interaction';
+import { InteractionWithKeys, KeyPair, Interaction } from '../_objects/interactions/Interaction';
 import { UpdateInteractions } from '../_objects/interactions/UpdateInteractions';
 
 @Injectable({
@@ -13,10 +13,10 @@ export class InteractionService {
 
   constructor() { }
 
-  getInteraction(key: string, subkey: string): InteractionWithKeys {
+  getInteraction(key: string, subkey: string): Interaction {
     let interaction: any;
     if (!subkey) { // nothing selected
-      return new InteractionWithKeys(this.interactions[key].default, key, 'default');
+      return this.interactions[key].default;
     }
 
     interaction = this.checkKeys(key, subkey);
@@ -42,21 +42,19 @@ export class InteractionService {
     return undefined;
   }
 
-  private checkKeys(key: string, subkey: string): InteractionWithKeys {
+  private checkKeys(key: string, subkey: string): Interaction {
     if (this.interactions[key]) {
       if (this.interactions[key][subkey]) { // assetKey is subkey
-          return new InteractionWithKeys(this.interactions[key][subkey], key, subkey);
+          return this.interactions[key][subkey];
       }
     }
     return undefined;
   }
 
-  private returnDefault(key: string): InteractionWithKeys {
+  private returnDefault(key: string): Interaction {
     if (this.interactions[key]
       && this.interactions[key].default) {
-      return new InteractionWithKeys(
-        this.interactions[key].default,
-        key, 'default');
+      return this.interactions[key].default;
     }
     return undefined;
   }

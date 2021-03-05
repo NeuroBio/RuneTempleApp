@@ -3,20 +3,17 @@ import { EventFlag } from '../event-types/EventFlag';
 import { Activator } from '../scenes/ActiveArea';
 
 export class MiniGameVictoryInteractions {
-    breakerPuzzle1 = new InteractionWithKeys(
-        new Interaction(new KeyPair('envCombos', 'reliefVictory'),
+    breakerPuzzle1 = new Interaction(new KeyPair('envCombos', 'reliefVictory'),
             [], [], [], [], [], [],
-            new KeyPair('miniGames', 'breakerPuzzle1')));
+            new KeyPair('miniGames', 'breakerPuzzle1'));
 
-    assemblePuzzleA = new InteractionWithKeys(
-        new Interaction(new KeyPair('envCombos', 'reliefVictory2'),
+    assemblePuzzleA = new Interaction(new KeyPair('envCombos', 'reliefVictory2'),
             [], [], [new EventFlag('reliefRepaired')], [
                 new Activator('classroom', 'vent2', true),
-                new Activator('classroom', 'reliefRepaired', true)]));
+                new Activator('classroom', 'reliefRepaired', true)]);
 
-    assemblePuzzleB = new InteractionWithKeys(
-        new Interaction(new KeyPair('envCombos', 'reliefUNVictory'),
+    assemblePuzzleB = new Interaction(new KeyPair('envCombos', 'reliefUNVictory'),
             [], [], [new EventFlag('deathInDarkness')], [
                 new Activator('classroom', 'vent2', true),
-                new Activator('classroom', 'reliefRepaired', true)]));
+                new Activator('classroom', 'reliefRepaired', true)]);
 }

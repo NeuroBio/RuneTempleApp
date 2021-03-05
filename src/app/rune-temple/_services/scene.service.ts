@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Activator } from '../_objects/scenes/ActiveArea';
-import { DialogueSnippet } from '../_objects/dialogue-snippets/DialogueSnippet';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { GameScenes, SceneDisplay, Scene } from '../_objects/scenes/Scene';
 import { SceneActiveAreas } from '../_objects/scenes/SceneActiveAreas';
 import { SceneLocations } from '../_objects/scenes/SceneLocations';
+import { Interaction, DialogueInteraction, KeyPair } from '../_objects/interactions/Interaction';
 
 @Injectable({
   providedIn: 'any'
@@ -13,10 +13,13 @@ export class SceneService {
 
   // mutable
   activeScene = new BehaviorSubject<SceneDisplay>(undefined);
+  broadcast = new Subject<Interaction>();
+
   private activeKey: string;
   private gameScenes = new GameScenes();
   private activeAreas = new SceneActiveAreas();
   private locations = new SceneLocations();
+  mapKeys: string[] = [];
 
   // private sceneUpdates = new SceneUpdates;
 
@@ -36,6 +39,17 @@ export class SceneService {
     return this.gameScenes[key];
   }
 
+
+
+  travel(key: string): void {
+    const scene = this.getScene(key);
+    if (!scene.visited) {
+      this.broadcast.next(new DialogueInteraction(scene.dialogue));
+      this.updateScene(key, true, null);
+      this.mapKeys.push(key);
+    }
+    this.setActiveScene(key);
+  }
 
   // Scene Control
   modifyAreaActivation(areaArray: Activator[]): void {
@@ -57,7 +71,8 @@ export class SceneService {
     this.setActiveScene(this.activeKey);
   }
 
-  updateScene(scene: string, visited: boolean, dialogue: DialogueSnippet[]): void {
+  // TO DO: update this!!!!
+  updateScene(scene: string, visited: boolean, dialogue: KeyPair): void {
     this.gameScenes[scene].visited = visited;
     if (dialogue !== null) {
       this.gameScenes[scene].dialogue = dialogue;
@@ -69,6 +84,8 @@ export class SceneService {
 
   }
 
+
+  // save data
   reset(): void {
     this.gameScenes = new GameScenes();
     this.activeAreas = new SceneActiveAreas();

@@ -1,5 +1,5 @@
 import { Activator } from '../scenes/ActiveArea';
-import { Interaction, KeyPair } from './Interaction';
+import { Interaction, KeyPair, ChoiceInteraction, InputRequestInteraction, MiniGameInteraction } from './Interaction';
 import { EventFlag } from '../event-types/EventFlag';
 
 export class OnClickInteractions {
@@ -543,7 +543,7 @@ export class OnClickInteractions {
                 new EventFlag('flaskFish'),
                 new EventFlag('haveFish', false)]),
         waterGlass: new Interaction(new KeyPair('combos', 'dishFish'),
-            ['fish', 'glassCap'], ['fishtank']),
+            ['fish', 'waterGlass'], ['fishtank']),
         charcoal: new Interaction(new KeyPair('combos', 'charcoalFish'),
             ['fish'], [], [
                 new EventFlag('mustacheFish'),
@@ -641,5 +641,25 @@ export class OnClickInteractions {
 
     poisonPlant = {
         default: new Interaction(new KeyPair('activeAreas', 'poisonPlant')),
+    };
+
+    inputReqs = {
+        fishName: new Interaction(new KeyPair('inputRequest', 'fishName'),
+            [], [], [new EventFlag('fishNamed')])
+    };
+
+    dialogue = {
+        peatStacks: new ChoiceInteraction('peatStacks'),
+        zhangConvoTopics: new ChoiceInteraction('zhangConvoTopics'),
+        ladderEscape: new ChoiceInteraction('ladderEscape'),
+        compassKnife: new ChoiceInteraction('compassKnife'),
+        shatter1: new ChoiceInteraction('shatter1'),
+        shatter3: new ChoiceInteraction('shatter2'),
+        shatter2: new ChoiceInteraction('shatter3'),
+        igniteMap: new ChoiceInteraction('igniteMap'),
+        nameFish: new InputRequestInteraction('nameFish'),
+        riskyGambit: new ChoiceInteraction('riskyGambit'),
+        breakerPuzzle1: new MiniGameInteraction('breakerPuzzle1'),
+        suffocation: new Interaction(undefined, ['fish'], [], [new EventFlag('suffocationFish')])
     };
 }

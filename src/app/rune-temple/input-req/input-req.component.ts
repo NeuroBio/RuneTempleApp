@@ -3,7 +3,6 @@ import { InputRequest } from '../_objects/input-requests/InputRequest';
 import { Subscription } from 'rxjs';
 import { InputReqService } from '../_services/input-req.service';
 import { AbstractControl } from '@angular/forms';
-import { TriggerService } from '../_services/trigger.service';
 
 @Component({
   selector: 'app-input-req',
@@ -18,8 +17,7 @@ export class InputReqComponent implements OnInit, OnDestroy {
   inputValue: AbstractControl;
 
   constructor(
-    private inputreqserv: InputReqService,
-    private triggerserv: TriggerService
+    private inputreqserv: InputReqService
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +37,7 @@ export class InputReqComponent implements OnInit, OnDestroy {
   accept(): void {
     this.inputreqserv.updateData(this.inputReq);
     if (this.inputReq.interaction) {
-      this.triggerserv.triggerUpdate(this.inputReq.interaction);
+      this.inputreqserv.triggerEvent(this.inputReq.interaction);
     }
     this.inputreqserv.unsetInputRequest();
   }

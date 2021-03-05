@@ -26,8 +26,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialogueserv: DialogueService,
-    private inventoryserv: InventoryService,
-    private triggerserv: TriggerService
+    private inventoryserv: InventoryService
   ) { }
 
   ngOnInit(): void {
@@ -62,7 +61,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   // Actions
   select(index: number): void {
-    this.triggerserv.checkClickOrCombo(index);
+    this.inventoryserv.selectOrCombo(index);
   }
 
   giveDescription(key: string, event: any): boolean {

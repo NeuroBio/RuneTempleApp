@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { InventoryItem, GameItems } from '../_objects/InventoryItem';
+import { KeyPair } from '../_objects/interactions/Interaction';
 
 @Injectable({
   providedIn: 'any'
@@ -10,6 +11,7 @@ export class InventoryService {
   // mutable
   inventory = new BehaviorSubject<InventoryItem[]>([]);
   breakerActive = new BehaviorSubject<boolean>(false);
+  broadcast = new Subject<KeyPair>();
   private selectedIndex: number;
   
 
@@ -19,7 +21,7 @@ export class InventoryService {
 
   constructor() {
     this.addItems(this.initialInventory);
-    const cheating = ['litTorch', 'silverKey', 'rock', 'nails'];
+    const cheating = ['waterGlass', 'fish'];
     this.addItems(cheating);
   }
 
@@ -67,6 +69,19 @@ export class InventoryService {
     }
   }
 
+  selectOrCombo(index: number): void {
+    const select = this.getSelectedItem();
+    const key = this.inventory.value[index].assetKey;
+    
+    if (select && select.assetKey !== key) {
+      this.broadcast.next(new KeyPair(key, select.assetKey));
+    } else if(this.breakerActive.value) {
+      this.broadcast.next(new KeyPair('breaker', key));
+    } else {
+      this.selectItem(index);
+    }
+  }
+
   // Special
   useBreaker(): void {
     if (this.breakerActive.value) {
@@ -80,7 +95,6 @@ export class InventoryService {
   deselectBreaker() {
     this.breakerActive.next(false);
   }
-
 
   // SavLoad
   reset(): void {

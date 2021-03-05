@@ -1,4 +1,4 @@
-import { Interaction, InteractionWithKeys, KeyPair, InputRequestInteraction } from './Interaction';
+import { Interaction, InteractionWithKeys, KeyPair, SceneDialogueInteraction } from './Interaction';
 import { EventFlag } from '../event-types/EventFlag';
 import { Activator } from '../scenes/ActiveArea';
 
@@ -305,14 +305,6 @@ export class UpdateInteractions {
     };
 
     dialogueUpdates = {
-
-        nameFish: [
-            new InputRequestInteraction('inputReqUpdates', 'fishName'),
-
-            new InteractionWithKeys(
-                new Interaction(new KeyPair('dialogueEvents', 'unnameFish'),
-                    [], [], [], [], [], ['pokemon']))],
-
         ovenLit: [
             new InteractionWithKeys(
                 new Interaction(new KeyPair('dialogueEvents', 'peatStacks2')),
@@ -347,6 +339,18 @@ export class UpdateInteractions {
                 new Interaction(new KeyPair('activeAreas', 'puddle3'),
                 [], [], [new EventFlag('neglectFish')]),
                 'puddle', 'default')],
+        
+        noSuffocateFish: [
+            new SceneDialogueInteraction('foyer', undefined, true)
+        ],
+
+        suffocateFish: [
+            new SceneDialogueInteraction('foyer', new KeyPair('scenes', 'deadFish'))
+        ],
+
+        foyerHaunt: [
+            new SceneDialogueInteraction('foyer', new KeyPair('scenes', 'foyerHaunt'))
+        ],
 
         zhangZhangFish: [
             new InteractionWithKeys(
@@ -442,12 +446,12 @@ export class UpdateInteractions {
                 'secondShelf', 'default')],        
     };
 
-    inputReqUpdates = {
-        fishName: [
-            new InteractionWithKeys(new Interaction(
-                new KeyPair('inputRequest', 'fishName'),
-                [], [], [new EventFlag('fishNamed')]))]
-    };
+    // inputReqUpdates = {
+    //     fishName: [
+    //         new InteractionWithKeys(new Interaction(
+    //             new KeyPair('inputRequest', 'fishName'),
+    //             [], [], [new EventFlag('fishNamed')]))]
+    // };
 
     miniGames = {
         breakerPuzzle1: [
