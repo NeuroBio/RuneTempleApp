@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Subscription } from 'rxjs';
-import { MiniGameService } from '../../rune-temple/_services/mini-game.service';
-import { MiniGame } from 'src/app/rune-temple/_objects/MiniGames';
+import { MiniGameService } from '../../pn-c-game/_services/mini-game.service';
+import { MiniGame } from 'src/app/pn-c-game/_objects/MiniGames';
 import { BreakerPuzzleService } from '../breaker-puzzle/_services/breaker-puzzle.service';
 
 @Injectable({

@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '',
     children: [
-      { path: 'RuneTemple',
+      { path: '',
         loadChildren: () =>
           import('./rune-temple/rune-temple.module')
             .then(m => m.RuneTempleModule)
