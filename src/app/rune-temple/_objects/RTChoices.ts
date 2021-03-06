@@ -77,6 +77,13 @@ export class RuneTempleGameChoices {
             'Are you sure you want to escape now?',
             ['Yes', 'No'], [
                 new KeyPair('choices', 'ladderEscape'),
-                undefined])
+                undefined]),
+
+        keyShattering: new Choice(
+            'Is Erin seriously going to wreck her clay key?',
+            ['No, she has more self-respect than that.', 'It\'s for science.'], [
+            undefined,
+            new KeyPair('choices', 'keyShattering')]
+        )
     }
 }

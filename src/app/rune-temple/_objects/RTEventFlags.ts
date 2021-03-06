@@ -19,6 +19,7 @@ export class RuneTempleEventFlags {
         boardsArranged: false,
         ladderMade: false,
         wetKeyMade: false,
+        coolKey: false,
         coreMet: false,
         coreDefeated: false,
         delay: false,
@@ -61,6 +62,7 @@ export class RuneTempleEventFlags {
         acidFish1: false,
         acidFish2: false,
         trothFish: false,
+        poachedFish: false,
         hammerFish: false,
         neglectFish: false,
         suffocationFish: false,
@@ -74,6 +76,7 @@ export class RuneTempleEventFlags {
         hammerVase: false,
         glassShatter: false,
         flaskShatter: false,
+        keyShatter: false,
 
         // Firestarter
         ovenCharcoal: false,

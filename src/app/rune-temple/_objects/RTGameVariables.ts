@@ -27,6 +27,7 @@ export class FishDeaths {
         acidFish1: false,
         acidFish2: false,
         trothFish: false,
+        poachedFish: false,
         hammerFish: false,
         neglectFish: false,
         suffocationFish: false

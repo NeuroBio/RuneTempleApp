@@ -316,9 +316,20 @@ export class RuneTempleInteractions {
     
         metalEngrave: {
             default: new Interaction(new KeyPair('activeAreas', 'metalEngrave')),
-            book: new Interaction(new KeyPair('envCombos', 'bookEngrave'))
+            book: new Interaction(new KeyPair('envCombos', 'bookEngrave')),
+            roughWetClayKey: new Interaction(new KeyPair('envCombos', 'roughtWetMetalEngraving'),
+            [], [], [], [], [], [], new KeyPair('', '')),
         },
-    
+
+        roughWetClayKey: {
+            knife: new Interaction(new KeyPair('combos', 'roughWetClayKeyKnife'),
+                ['roughWetClayKey'], ['wetClayKey']),
+            magnetString: new Interaction(new KeyPair('combos', 'roughWetClayKeyString'),
+                ['roughWetClayKey'], ['wetClayKey']),
+            stickyMagnetString: new Interaction(new KeyPair('combos', 'roughWetClayKeyString'),
+                ['roughWetClayKey'], ['wetClayKey']),
+        },
+
         peatOven: {
             default: new Interaction(new KeyPair('activeAreas', 'peatOven')),
             vodkaFlask2: new Interaction(new KeyPair('envCombos', 'vodkaFlask2Oven')),
@@ -336,6 +347,8 @@ export class RuneTempleInteractions {
                 ['fish'], [], [
                     new EventFlag('ashFish'),
                     new EventFlag('haveFish', false)]),
+            roughWetClayKey: new Interaction(new KeyPair('envCombos', 'roughWetKeyOven')),
+            wetClayKey: new Interaction(new KeyPair('envCombos', ' wetKeyUnlitOven'))
         },
     
         peatOvenLit: {
@@ -365,6 +378,8 @@ export class RuneTempleInteractions {
                 ['scrapMetal'], [], [], [
                     new Activator('oven', 'meltPot', false),
                     new Activator('oven', 'metalPot', true)]),
+            roughWetClayKey: new Interaction(new KeyPair('envCombos', 'roughWetKeyOven')),
+            wetClayKey: new Interaction(new KeyPair('envCombos', ' wetKeyLitOven'))
         },
     
         peat: {
@@ -443,8 +458,11 @@ export class RuneTempleInteractions {
                 [], ['silverKey'], [], [], [], [], new KeyPair('onClickUpdates', 'silverKeyMoved'))
         },
     
-        tongs: {
-            default: new Interaction(new KeyPair('activeAreas', 'tongs'))
+        tongsEnv: {
+            default: new Interaction(new KeyPair('activeAreas', 'tongs')),
+            wetClayKey: new Interaction(new KeyPair('envCombos', 'wetKeyTongs'),
+                ['wetClayKey'], ['hotClayKey'], [], [
+                    new Activator('oven', 'tongsEnv', false)])
         },
     
         meltPot: {
@@ -471,6 +489,25 @@ export class RuneTempleInteractions {
                 ['cleanFishtank'], ['glassCap'], [
                     new EventFlag('trothFish'),
                     new EventFlag('haveFish', false)]),
+            dryClay: new Interaction(new KeyPair('envCombos', 'dryClayEmptyTroth')),
+            hotClayKey: new Interaction(new KeyPair('envCombos', 'hotKeyDryTroth')),
+
+        },
+
+        fullTroth: {
+            default: new Interaction(new KeyPair('activeAreas', 'fullTroth')),
+            swampFlask: new Interaction(new KeyPair('envCombos', 'fillSwampTroth2')),
+            dryClay: new Interaction(new KeyPair('envCombos', 'dryClayFilledTroth'),
+                ['dryClay'], ['wetClay']),
+            wetClay: new Interaction(new KeyPair('envCombos', 'wetEnough')),
+            hotClayKey: new Interaction(new KeyPair('envCombos', 'hotKeyTroth'),
+                ['hotClayKey'], ['clayKey'], [new EventFlag('coolKey')]),
+            fish: new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
+                ['fish'], [], [new EventFlag('fishInTroth')]),
+            fishTank: new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
+                ['fishtank'], ['glassCap'], [new EventFlag('fishInTroth')]),
+            cleanFishtank: new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
+                ['cleanFishtank'], ['glassCap'], [new EventFlag('fishInTroth')]),
         },
     
         spigot: {
@@ -479,13 +516,17 @@ export class RuneTempleInteractions {
                 [], [], [new EventFlag('HammerSpigot'), new EventFlag('trothFullnss')],
                 [
                     new Activator('oven', 'spigot', false),
-                    new Activator('oven', 'dripSpigot', true)
-                ])
+                    new Activator('oven', 'dripSpigot', true)]),
+            oilBottle: new Interaction(new KeyPair('envCombos', 'oilSpigot'),
+                ['oilBottle'], [], [], [
+                    new Activator('oven', 'troth', false),
+                    new Activator('oven', 'fullTroth', true)])
         },
     
         dripSpigot: {
             default: new Interaction(new KeyPair('activeAreas', 'dripSpigot')),
-            rock: new Interaction(new KeyPair('envCombos', 'rockSpigot2'))
+            rock: new Interaction(new KeyPair('envCombos', 'rockSpigot2')),
+            oilBottle: new Interaction(new KeyPair('envCombos', 'oilBrokenSpigot')),
         },
     
         rockEnv: {
@@ -646,6 +687,19 @@ export class RuneTempleInteractions {
         poisonPlant: {
             default: new Interaction(new KeyPair('activeAreas', 'poisonPlant')),
         },
+
+        clayKey: {
+            wetClay: new Interaction(new KeyPair('combos', 'clayClay'),
+                ['wetClay'], ['wetKeyMold']),
+            rock: new Interaction(new KeyPair('combos', 'shatterKey1'),
+            [], [], [], [], [], [], new KeyPair('onClickInteractions', 'keyShattering'))
+        },
+
+        wetKeyMold: {
+            knife: new Interaction(new KeyPair('combos', 'keyMoldUnrough')),
+            magnetString: new Interaction(new KeyPair('combos', 'keyMoldUnrough')),
+            stickyMagnetString: new Interaction(new KeyPair('combos', 'keyMoldUnrough')),
+        },
     
         inputReqs: {
             fishName: new Interaction(new KeyPair('inputRequest', 'fishName'),
@@ -715,7 +769,10 @@ export class RuneTempleInteractions {
             nameFish: new InputRequestInteraction('fishName'),
             noNameFish: new Interaction(new KeyPair('dialogueEvents', 'unnameFish'),
                 [], [], [], [], [], ['pokemon']),
-            ladderEscape: new Interaction(undefined, [], [], [new EventFlag('endGame')])
+            ladderEscape: new Interaction(undefined, [], [], [new EventFlag('endGame')]),
+            keyShattering: new Interaction(new KeyPair('', ''), ['clayKey'], [],
+                [new EventFlag('keyShatter')], [], [], [], 
+                new KeyPair('onClickUpdates', 'shatterHarder'))
         }
     }
 

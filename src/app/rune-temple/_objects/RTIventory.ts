@@ -54,11 +54,14 @@ export class RuneTempleGameItems {
         // Clay
         dryClay:  new InventoryItem('Dry Clay', 'dryClay'),
         wetClay:  new InventoryItem('Wet Clay', 'wetClay'),
-        roughwetClayKey:  new InventoryItem('Rough, Wet Clay Key', 'roughWetKey'),
+        roughWetClayKey:  new InventoryItem('Rough, Wet Clay Key', 'roughWetKey'),
         wetClayKey:  new InventoryItem('Wet Clay Key', 'wetKey'),
+        hotClayKey: new InventoryItem('Hot Clay Key', 'hotClayKey'), 
         clayKey:  new InventoryItem('Clay Key', 'clayKey'),
-        wetMold:  new InventoryItem('Wet Clay Key Mold', 'wetMold'),
-        keyMold:  new InventoryItem('Keymold', 'keyMold'),
+        wetkeyMold: new InventoryItem('Wet Clay Key Mold', 'wetKeyMold'),
+        hotKeyMold: new InventoryItem('Hot Clay Key Mold', 'hotKeyMold'),
+        keyMold:  new InventoryItem('Key Mold', 'keyMold'),
+        tongs: new InventoryItem('Oven Tongs', 'tongs'),
     
         book:  new InventoryItem('Runic Book', 'book'),
         puzzleBox:  new InventoryItem('Puzzle Box', 'puzzleBox'),

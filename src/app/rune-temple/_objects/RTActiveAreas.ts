@@ -65,10 +65,11 @@ export class RuneTempleGameActiveAreas {
             new ActiveArea('Peat Oven', 'peatOvenLit', 0, 0, false),
             new ActiveArea('Peat Stacks', 'peat', 0, 0),
             new ActiveArea('Vent', 'vent1', 0, 0),
-            new ActiveArea('Tongs', 'tongs', 0, 0),
+            new ActiveArea('Tongs', 'tongsEnv', 0, 0),
             new ActiveArea('Melting Pot', 'meltPot', 0, 0),
             new ActiveArea('Melting Pot', 'metalPot', 0, 0, false),
             new ActiveArea('Cooling Troth', 'troth', 0, 0),
+            new ActiveArea('Cooling Troth', 'fullTroth', 0, 0, false),
             new ActiveArea('Spigot', 'spigot', 0, 0),
             new ActiveArea('Spigot', 'dripSpigot', 0, 0, false)
         ],

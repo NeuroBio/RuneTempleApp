@@ -394,7 +394,7 @@ export class RuneTempleDialogue {
             boardsLadder: [new DialogueSnippet('', 'I just need a way to hold the boards in place.')],
             boardsLadder2: [new DialogueSnippet('', 'Just gotta hammer the nails down.')],
             poisonPlant: [new DialogueSnippet('Erin', 'Zhang warned me not to touch those anymore.')],
-            ladder: [new DialogueSnippet('', 'The ladder is complete.', 'ladderEscape')]
+            ladder: [new DialogueSnippet('', 'The ladder is complete.', 'ladderEscape')],
         },
     
         combos: {
@@ -434,7 +434,17 @@ export class RuneTempleDialogue {
                 new DialogueSnippet('', 'The charcoal doesn’t stick well to the fish’s slick scales.  The charcoal runs and starts to coat the fish’s gills.  Erin only realizes too late what she has done.  She tries to wipe the charcoal off, but that seems to only make things worse.  The fish gives a final desperate heave, then falls still.  Erin gently lays the fish on the ground.  There is nothing more she can do.')
             ],
             fishRock: [new DialogueSnippet('', 'Erin decides that letting the fish slowly suffocate is the wrong thing to do.  Better to give it a quick merciful death.  Erin puts the fish out of it\'s misery with her rock.')],
-    
+            roughWetClayKeyKnife: [new DialogueSnippet('', 'Erin uses her pocketknife to cut the excess clay from the wet clay key.')],
+            roughWetClayKeyString: [new DialogueSnippet('', 'Erin uses the twine from her magnet string pocketknife to cut the excess clay from the wet clay key.')],
+            fishFood: [new DialogueSnippet('', 'Erin stares at the wet fish.  It\'s been a while since she last ate.  The fish would make for a nice snack.  Erin cuts off the fish\'s head and pops it in her mouth.')],
+            clayClay: [new DialogueSnippet('', 'Erin pressed the clay key into the wet clay to create a key mold.')],
+            keyMoldUnrough: [new DialogueSnippet('Erin', 'The mold has a clean impression.  I don\'t have to mess with it any further,')],
+            shatterKey1: [new DialogueSnippet('Erin', 'No.  I did not go through trouble of making this just to break it.')],
+            shatterKey2: [new DialogueSnippet('', 'Erin looks between the rock and the clay key again.  She shakes her head.')],
+            shatterKey3: [new DialogueSnippet('', 'Erin can feel her will weakening.')],
+            shatterKey4: [new DialogueSnippet('', 'Erin hammers the clay key into oblivion.  The dusty clumps of hardened clay slips through her trembling fingers.')],
+            shatterKey5: [new DialogueSnippet('', 'Erin sobs quietly as she breaks the key again.')]
+
         },
     
         envCombos: {
@@ -725,7 +735,31 @@ export class RuneTempleDialogue {
             wetEnough: [new DialogueSnippet('Erin', 'The clay is wet enough.')],
             barrelClay: [new DialogueSnippet('', 'Erin looks dubiously at the barrel of rancid water.  Whatever is in that water might damage the clay.  Or, worse, it might damage Erin’s hands…  Erin decides against using this source of water.')],
             nailsBoard: [new DialogueSnippet('', 'Erin placed the nails on the pile of boards')],
-    
+            makeRoughWetKey: [new DialogueSnippet('', 'Erin pushes the wet clay into the engraving trigger for the hidden door.  The hidden door opens and Erin stops pushing on the clay.  The door closes.  She carefully peals the impression from the engraving.')],
+            roughtWetMetalEngraving: [new DialogueSnippet('Erin', 'It won’t work like this.')],
+            doubleKey: [new DialogueSnippet('Erin', 'I don’t need two clay keys.')],
+            oilSpigot: [
+                new DialogueSnippet('', 'Erin pours the oil over the spigot.  She tries to turn it, but her hand slips off at first.  She grips it more tightly, and the old rust squeaks as Erin finally turns on the water.  The troth below fills with swamp water.'),
+                new DialogueSnippet('', 'Erin nods and turns the water off again.  The empty bottle seems too small to be useful, so Erin leaves it by the troth.')
+                ],
+            oilBrokenSpigot: [new DialogueSnippet('', 'Perhaps the oil could have helped here if Erin had not taken out her rage on the spigot with the rock.')],
+            dryClayEmptyTroth: [new DialogueSnippet('Erin', 'If only there was enough water in the troth...')],
+            dryClayFilledTroth: [new DialogueSnippet('', 'Erin periodically dips the clay in the troth water as she kneads it back into a good consistency')],
+            roughWetKeyOven: [new DialogueSnippet('Erin', 'I should cut off the excess clay first.  It my not turn out right if I don\'t.')],
+            wetKeyUnlitOven: [new DialogueSnippet('Erin', 'I’d rather not wait an eternity for the key to air dry')],
+            wetKeyLitOven: [new DialogueSnippet('Erin', 'If I just throw it into the fire, it might distort the design.  I want to place it carefully.')],
+            wetKeyTongs: [new DialogueSnippet('', 'Erin carefully placed the wet clay key into the peat oven.  She watched it change from a tawny brown to black, then pulled it out of the oven.')],
+            hotKeyDryTroth: [new DialogueSnippet('Erin', 'There’s not enough water in the troth.')],
+            hotKeyTroth: [new DialogueSnippet('', 'Erin dunks the hot key into the water troth, and the water hisses and steams.  Once it goes silent again, Erin removes the key from the water and tests it with the tip of her finger.  It is cool to the touch.')],
+            hotKeyTrothFish: [
+                new DialogueSnippet('', 'Erin dunks the hot key into the water troth, and the water hisses and steams.  Once it goes silent again, Erin removes the key from the water and tests it with the tip of her finger.  It is cool to the touch.'),
+                new DialogueSnippet('', 'For some reason, the water now smells like poached fish.  Erin decides not to investigate why.')
+            ],
+            hotKeyMoldTroth: [new DialogueSnippet('', '')],
+            hotKeyMoldTrothFish: [
+                new DialogueSnippet('', ''),
+                new DialogueSnippet('', 'For some reason, the water now smells like poached fish.  Erin decides not to investigate why.')
+            ]
         },
     
         itemDefaults: {

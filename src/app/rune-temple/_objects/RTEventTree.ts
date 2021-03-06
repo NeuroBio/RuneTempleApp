@@ -48,7 +48,6 @@ export class RTEventTree {
                 break;
               case 10:
                 checkBadges.push(new BadgeCheck('stubborn', true));
-                updates.push(new KeyPair(eventKey, 'swampTrothFilled'));
                 break;
             }
             break;
@@ -82,6 +81,8 @@ export class RTEventTree {
           case 'glassShatter' :
             /* falls through */
           case 'flaskShatter' :
+            /* falls through */
+          case 'keyShatter' :
             checkBadges.push(new BadgeCheck('hammer',
               (  events.hammerExit
               && events.hammerFish
@@ -91,7 +92,8 @@ export class RTEventTree {
               && events.hammerRustedPanel
               && events.hammerSpigot
               && events.glassShatter
-              && events.flaskShatter)));
+              && events.flaskShatter
+              && events.keyShatter)));
             break;
           case 'bookBurned' :
             if (events.reliefRepaired && events.zhangSawBook) {

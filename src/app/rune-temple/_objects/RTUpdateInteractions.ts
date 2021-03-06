@@ -300,7 +300,22 @@ export class RuneTempleUpdateInteractions {
     
                 new InteractionWithKeys(
                         new Interaction(new KeyPair('activeAreas', 'boardsLadder2')),
-                        'boardsLadder', 'default')]
+                        'boardsLadder', 'default')],
+            
+            keyShattering2: [
+                new InteractionWithKeys(new Interaction(new KeyPair('combos', 'shatterKey2'),
+                    [], [], [], [], [], [], new KeyPair('onClickpdates', 'keyShattering3')),
+                'clayKey', 'rock')],
+
+            keyShattering3: [
+                new InteractionWithKeys(new Interaction(new KeyPair('combos', 'shatterKey3'),
+                [], [], [], [], [], [], undefined, undefined, undefined, 'keyShattering'),
+                'clayKey', 'rock')],
+
+            shatterHarder: [
+                new InteractionWithKeys(new Interaction(new KeyPair('combos', 'shatterKey5'),
+                ['clayKey'], [], [new EventFlag('dispairAchieved')]))
+            ]
     
     
         },
@@ -402,15 +417,12 @@ export class RuneTempleUpdateInteractions {
                     'troth', 'cleanFishtank')],
     
             swampTrothAlmostFilled: [
-                new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fillSwampTroth2')),
+                new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fillSwampTroth2'),
+                    ['swampFlask'], ['emptyFlask'], [new EventFlag('trothFullness')],
+                    [
+                        new Activator('oven', 'troth', false),
+                        new Activator('oven', 'fullTroth', true)]),
                 'troth', 'swampFlask')],
-    
-            swampTrothFilled: [
-                new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'fillSwampTroth2')),
-                'troth', 'swampFlask'),
-    
-                new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'fullTroth')),
-                'troth', 'default')],
     
             flaskFishOvenLit: [
                 new InteractionWithKeys(
@@ -440,18 +452,53 @@ export class RuneTempleUpdateInteractions {
             reliefRepaired: [
                 new InteractionWithKeys(new Interaction(new KeyPair('activeAreas', 'engrave3')),
                 'engrave', 'default'),
+
                 new InteractionWithKeys(
                     new Interaction(
                         new KeyPair('activeAreas', 'metalEngrave2'), [], [], [],
                         [new Activator('basement', 'hiddenDoor', true)], [], [],
-                        new KeyPair('onClickUpdates', 'metalEngrave3')),
+                        new KeyPair('onClickUpdates', 'hiddenDoorRevealed')),
                     'metalEngrave', 'default')],
+
+            hiddenDoorRevealed: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('activeAreas', 'metalEngrave3')),
+                    'metalEngrave', 'default'),
+                
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'makeRoughWetKey'), 
+                        ['wetClay'], ['roughWetClayKey'], [new EventFlag('wetKeyMade')],
+                        [], [], [], new KeyPair('onClickUpdates', 'wetKeyExists')),
+                    'metalEngrave', 'wetClay')],
+
+            wetKeyExists: [
+                new InteractionWithKeys(new Interaction(new KeyPair('Erin', 'doubleKey')),
+                'metalEngrave', 'wetClay')],
     
-            boardsArrangedAllowNails: [new InteractionWithKeys(
-                new Interaction(new KeyPair('acitiveAreas', 'secondShelf3'),
-                    [], ['nails'], [new EventFlag('haveNails')], [], [], [],
-                    new KeyPair('onClickUpdates', 'secondShelfNoNails')),
-                    'secondShelf', 'default')],        
+            boardsArrangedAllowNails: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('acitiveAreas', 'secondShelf3'),
+                        [], ['nails'], [new EventFlag('haveNails')], [], [], [],
+                        new KeyPair('onClickUpdates', 'secondShelfNoNails')),
+                    'secondShelf', 'default')],
+
+            fishInTroth: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'hotKeyTrothFish'),
+                        ['hotClayKey'], ['clayKey'], [new EventFlag('poachedFish')],
+                        [], [], [], new KeyPair('eventFlagUpdates', 'noDoublePoach')),
+                    'fullTroth', 'hotClayKey'),
+
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'hotKeyMoldTrothFish'),
+                        ['hotKeyMold'], ['keyMold'], [new EventFlag('poachedFish')]),
+                    'fullTroth', 'hotClayKey')],
+
+            noDoublePoach: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'hotKeyMoldTroth'),
+                        ['hotKeyMold'], ['keyMold']),
+                    'fullTroth', 'hotKeyMold')]
         },
     
         miniGames: {
