@@ -6,7 +6,7 @@ import { RuneTempleEventFlags } from '../_objects/RTEventFlags';
 import { RuneTempleInputRequests } from '../_objects/RTInputRequests';
 import { RuneTempleInteractions } from '../_objects/RTInteractions';
 import { RuneTempleUpdateInteractions } from '../_objects/RTUpdateInteractions';
-import { RuneTempleGameItems } from '../_objects/RTIventory';
+import { RuneTempleGameItems } from '../_objects/RTInventory';
 import { RuneTempleMiniGames } from '../_objects/RTMiniGames';
 import { RuneTempleGameScenes } from '../_objects/RTScenes';
 import { RuneTempleGameActiveAreas } from '../_objects/RTActiveAreas';

@@ -78,6 +78,8 @@ export class RTEventTree {
             /* falls through */
           case 'hammerSpigot' :
             /* falls through */
+          case 'hammerClay' :
+            /* falls through */
           case 'glassShatter' :
             /* falls through */
           case 'flaskShatter' :
@@ -91,6 +93,7 @@ export class RTEventTree {
               && events.hammerPuzzleBox
               && events.hammerRustedPanel
               && events.hammerSpigot
+              && events.hammerClay
               && events.glassShatter
               && events.flaskShatter
               && events.keyShatter)));
@@ -159,6 +162,9 @@ export class RTEventTree {
             break;
           case 'neglectFish':
             crossGameEvents.push(new KeyPair('deadFish', 'neglectFish'));
+            break;
+          case 'tossFish' :
+            crossGameEvents.push(new KeyPair('deadFish', 'tossFish'));
             break;
           case 'boardsArranged' : 
             if (!events.haveNails) {

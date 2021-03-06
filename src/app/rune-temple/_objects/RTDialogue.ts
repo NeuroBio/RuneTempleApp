@@ -294,6 +294,7 @@ export class RuneTempleDialogue {
                 new DialogueSnippet('Erin', 'This might sell for a high price...')
             ],
             depression: [new DialogueSnippet('Erin', 'Maybe the students sat here?')],
+            depression2: [new DialogueSnippet('', 'Erin stares blankly at the dead fish in the center of the room.')],
             relief: [new DialogueSnippet('', 'On the far wall there was once a relief of something.  Now, most of its pieces lie on the floor, chipped and dusty.  Erin has no way of making out what it used to be in this state.')],
             relief1: [new DialogueSnippet('', 'The newly repaired relief gives a hint to the regal air that the temple must have had in its hay day.  However, the glue seams make recreating that atmosphere impossible.  The relief depicts some sort of creature.')],
             relief2: [new DialogueSnippet('', 'It\'s impossble to make out what the relief once dipected, but that is okay.  It was not supposed to be intact.  It COULD NOT be whole.')],
@@ -380,6 +381,7 @@ export class RuneTempleDialogue {
             dripSpigot: [new DialogueSnippet('', 'A puny stream of water burbles into the troth')],
             fullTroth: [new DialogueSnippet('', 'The troth is filled with water.')],
             hiddenDoor: [new DialogueSnippet('Erin', 'I need to find a way to keep this door open.')],
+            hiddenDoor2: [new DialogueSnippet('', 'As Erin tries to enter, she’s thrown back.  The entrance glows teal.')],
     
             cabinet1A: [new DialogueSnippet('', 'Inside the cabinet are leaf-wrapped lumps of clay.  Most of them have hardened into crumbly blocks, but one lump still has some give.  With a little water, it would become workable again.')],
             cabinet1B: [new DialogueSnippet('Erin', 'I have enough clay.')],
@@ -395,6 +397,7 @@ export class RuneTempleDialogue {
             boardsLadder2: [new DialogueSnippet('', 'Just gotta hammer the nails down.')],
             poisonPlant: [new DialogueSnippet('Erin', 'Zhang warned me not to touch those anymore.')],
             ladder: [new DialogueSnippet('', 'The ladder is complete.', 'ladderEscape')],
+            metalPot: [new DialogueSnippet('', 'A small part of Erin mourns for the flask.  A larger part sees the potential in the melted metal.')],
         },
     
         combos: {
@@ -442,8 +445,13 @@ export class RuneTempleDialogue {
             shatterKey1: [new DialogueSnippet('Erin', 'No.  I did not go through trouble of making this just to break it.')],
             shatterKey2: [new DialogueSnippet('', 'Erin looks between the rock and the clay key again.  She shakes her head.')],
             shatterKey3: [new DialogueSnippet('', 'Erin can feel her will weakening.')],
-            shatterKey4: [new DialogueSnippet('', 'Erin hammers the clay key into oblivion.  The dusty clumps of hardened clay slips through her trembling fingers.')],
-            shatterKey5: [new DialogueSnippet('', 'Erin sobs quietly as she breaks the key again.')]
+            shatterKey4: [new DialogueSnippet('', 'Erin hammers the clay key into oblivion.  The dusty clumps of hardened clay slip through her trembling fingers.')],
+            shatterKey5: [new DialogueSnippet('', 'Erin sobs quietly as she breaks the key again.')],
+            keyMoldKnife: [new DialogueSnippet('', 'Erin tries to pry the key out using her knife, but she cannot get the blade between the metal and the hardened clay.  Frustrated, Erin puts her knife away.')],
+            keyMoldRock: [
+                new DialogueSnippet('', 'She pulls out her shiny new key with the joy of someone who will (probably) not have to mess with the oven again.'),
+                new DialogueSnippet('', 'Erin flips the mold over and carefully taps on the clay with the hammering rock.  The clay chips then cracks.  Erin gives the mold one more heathy knock, and it crumbles')
+            ]
 
         },
     
@@ -737,6 +745,7 @@ export class RuneTempleDialogue {
             nailsBoard: [new DialogueSnippet('', 'Erin placed the nails on the pile of boards')],
             makeRoughWetKey: [new DialogueSnippet('', 'Erin pushes the wet clay into the engraving trigger for the hidden door.  The hidden door opens and Erin stops pushing on the clay.  The door closes.  She carefully peals the impression from the engraving.')],
             roughtWetMetalEngraving: [new DialogueSnippet('Erin', 'It won’t work like this.')],
+            wetClayMetalEngraving: [new DialogueSnippet('Erin', 'The clay is too soft')],
             doubleKey: [new DialogueSnippet('Erin', 'I don’t need two clay keys.')],
             oilSpigot: [
                 new DialogueSnippet('', 'Erin pours the oil over the spigot.  She tries to turn it, but her hand slips off at first.  She grips it more tightly, and the old rust squeaks as Erin finally turns on the water.  The troth below fills with swamp water.'),
@@ -755,11 +764,31 @@ export class RuneTempleDialogue {
                 new DialogueSnippet('', 'Erin dunks the hot key into the water troth, and the water hisses and steams.  Once it goes silent again, Erin removes the key from the water and tests it with the tip of her finger.  It is cool to the touch.'),
                 new DialogueSnippet('', 'For some reason, the water now smells like poached fish.  Erin decides not to investigate why.')
             ],
-            hotKeyMoldTroth: [new DialogueSnippet('', '')],
+            wetKeyMoldTongs: [new DialogueSnippet('', 'Erin carefully places the wet clay mold into the peat oven.  She watches it change from a tawny brown to black, then pulls it out of the oven.')],
+            hotKeyMoldTroth: [new DialogueSnippet('', 'Erin dunks the hot mold into the water troth, submerging it until it is cooled.')],
             hotKeyMoldTrothFish: [
-                new DialogueSnippet('', ''),
+                new DialogueSnippet('', 'Erin dunks the hot mold into the water troth, submerging it until it is cooled.'),
                 new DialogueSnippet('', 'For some reason, the water now smells like poached fish.  Erin decides not to investigate why.')
-            ]
+            ],
+            tongsBack: [new DialogueSnippet('', 'Erin put the tongs back where they belonged.')],
+            hotClayPuddle: [new DialogueSnippet('', 'Erin makes a face, but flails the hot clay around in the puddle.  She splashes more water onto it with her hands.')],
+            hotClayBarrel: [new DialogueSnippet('', 'Against her better judgement, Erin tentatively dips teh hot clay into the suspicious water.  The water steams up, releasing noxious fumes.  Erin stumbles away choking.')],
+            hotClayBarrel2: [new DialogueSnippet('Erin', 'No.  I am NOT doing that again.')],
+            makeCrypticKey: [
+                new DialogueSnippet('', 'Erin pours the melted metal into the key mold.  She watches it intently, occasionally tipping the mold to see if the metal has set.'),
+                new DialogueSnippet('', 'When the new key seems solid, Erin pulls the mold out and turns it upside down to remove the key.  It doesn’t fall out.  Erin sighs.')
+            ],
+            hotClayKeyEngrave: [new DialogueSnippet('Erin', 'It\'s too hot.  I\'ll burn my fingers trying to push it into the slot.')],
+            clayKeyEngrave: [
+                new DialogueSnippet('', 'Erin pressed the clay key into the engraving.  The engraving depresses.  Just as the hidden door opens, the clay starts to crack where the hooks have dug into it.  The cracks widen until corners of the clay key snap off.'),
+                new DialogueSnippet('', 'The key is pushed out of the engraving, and the door falls back into place.  Erin swears at the shattered clay pieces littering the floor.')
+            ],
+            clayKeyEngrave2: [new DialogueSnippet('Erin', 'I’ve already made this mistake.  The clay isn’t hard enough.  I need to make the key out of some other material.')],
+            clayKeyEngrave3: [new DialogueSnippet('', 'Erin decides to push the key into the engraving again anyway.  The clay key breaks.  Again...')],
+            crypitidKeyEngrave: [new DialogueSnippet('', 'Erin pushes the metal key into the engraving, and it depresses.  The hidden door opens.  Erin stares hard at the metal key, daring it to buckle or break.  It holds strong.  Zhang would understand that his flask had been sacrificed for the greater good.')],
+            breakerHiddenDoor: [new DialogueSnippet('', 'Erin readys herself for a fight.', 'breakerPuzzle2')],
+            fishToss: [new DialogueSnippet('', 'Erin inexplicably tosses the fish into the center of the room.  It’s not clear what she thought this would accomplish, but there is now a fish in the center of the room.  It flops listlessly several times before going still.')],
+
         },
     
         itemDefaults: {
@@ -870,9 +899,13 @@ export class RuneTempleDialogue {
             wetClay: [new DialogueSnippet('Erin', 'It\'s moldable now.')],
             roughwetClayKey: [new DialogueSnippet('Erin', 'A rough, clay copy of the original.')],
             wetClayKey: [new DialogueSnippet('Erin', 'This looks better.')],
+            hotClayKey: [new DialogueSnippet('Erin', 'It\'s too hot to touch')],
             clayKey: [new DialogueSnippet('Erin', 'A clay replica of a key.')],
             wetMold: [new DialogueSnippet('Erin', 'This looks promising...')],
+            hotClayKeyMold: [new DialogueSnippet('Erin', 'It\'s too hot to touch')],
             keyMold: [new DialogueSnippet('Erin', 'This can be used to make a tougher key.')],
+            keyMoldStuck: [new DialogueSnippet('Erin', 'How am I going to get that key out...')],
+            tongs: [new DialogueSnippet('Erin', '"Borrowed" from the furnace room.')],
     
             book: [new DialogueSnippet('Erin', 'A museum or private collector would shell out a fortune for this.')],
             puzzleBox: [new DialogueSnippet('Erin', 'The puzzle box has five spherical slots in it.')],

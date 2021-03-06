@@ -4,6 +4,7 @@ import { Interaction, KeyPair, ChoiceInteraction,
     GameInteractions, 
     EndingInteraction} from '../../pn-c-game/_objects/interactions/Interaction';
 import { EventFlag } from '../../pn-c-game/_objects/EventFlag';
+import { DialogueSnippet } from 'src/app/pn-c-game/_objects/DialogueSnippet';
 
 export class RuneTempleInteractions {
 
@@ -156,7 +157,10 @@ export class RuneTempleInteractions {
         },
     
         depression: {
-            default: new Interaction(new KeyPair('activeAreas', 'depression'))
+            default: new Interaction(new KeyPair('activeAreas', 'depression')),
+            fish: new Interaction(new KeyPair('envCombos', 'fishToss'),
+                ['fish'], [], [new EventFlag('tossFish')], [], [], [],
+                new KeyPair('onClickUpdates', 'fishDepression'))
         },
     
         relief: {
@@ -245,7 +249,11 @@ export class RuneTempleInteractions {
             emptyFlask: new Interaction(new KeyPair('envCombos', 'noAcidFlask')),
             dryClay: new Interaction(new KeyPair('envCombos', 'barrelClay'),
                 ['dryClay'], ['wetClay']),
-            wetClay: new Interaction(new KeyPair('envCombos', 'wetEnough'))
+            wetClay: new Interaction(new KeyPair('envCombos', 'wetEnough')),
+            hotClayKey: new Interaction(new KeyPair('envCombos', 'hotClayBarrel'),
+                ['hotClayKey'], ['clayKey', 'tongs'], [], [], [], [], new KeyPair('onClickUpdates', 'Noxious')),
+            hotKeyMold: new Interaction(new KeyPair('envCombos', 'hotClayBarrel'),
+                ['hotKeyMold'], ['keyMold', 'tongs'])
     
         },
     
@@ -293,7 +301,11 @@ export class RuneTempleInteractions {
                 ['emptyFlask'], ['swampFlask']),
             dryClay: new Interaction(new KeyPair('envCombos', 'puddleClay'),
                 ['dryClay'], ['wetClay']),
-            wetClay: new Interaction(new KeyPair('envCombos', 'wetEnough'))
+            wetClay: new Interaction(new KeyPair('envCombos', 'wetEnough')),
+            hotClayKey: new Interaction(new KeyPair('envCombos', 'hotClayPuddle'),
+                ['hotClayKey'], ['clayKey', 'tongs']),
+            hotKeyMold: new Interaction(new KeyPair('envCombos', 'hotClayPuddle'),
+                ['hotKeyMold'], ['keyMold', 'tongs'])
         },
     
         craftDoor: {
@@ -317,8 +329,13 @@ export class RuneTempleInteractions {
         metalEngrave: {
             default: new Interaction(new KeyPair('activeAreas', 'metalEngrave')),
             book: new Interaction(new KeyPair('envCombos', 'bookEngrave')),
-            roughWetClayKey: new Interaction(new KeyPair('envCombos', 'roughtWetMetalEngraving'),
-            [], [], [], [], [], [], new KeyPair('', '')),
+            roughWetClayKey: new Interaction(new KeyPair('envCombos', 'roughtWetMetalEngraving')),
+            wetClayKey: new Interaction(new KeyPair('envCombos', 'wetClayMetalEngraving')),
+            hotClayKey: new Interaction(new KeyPair('envCombos', 'hotClayKeyEngrave')),
+            clayKey: new Interaction(new KeyPair('envCombos', 'clayKeyEngrave'),
+                ['clayKey'], [], [], [], [], [], new KeyPair('onClickUpdates', 'clayCircle1')),
+            cryptidKey: new Interaction(new KeyPair('envCombos', 'crypitidKeyEngrave'),
+                ['cryptidKey'], [], [], [], [], [], new KeyPair('onClickUpdates', 'hiddenDoorBreaker'))
         },
 
         roughWetClayKey: {
@@ -379,7 +396,33 @@ export class RuneTempleInteractions {
                     new Activator('oven', 'meltPot', false),
                     new Activator('oven', 'metalPot', true)]),
             roughWetClayKey: new Interaction(new KeyPair('envCombos', 'roughWetKeyOven')),
-            wetClayKey: new Interaction(new KeyPair('envCombos', ' wetKeyLitOven'))
+            wetClayKey: new Interaction(new KeyPair('envCombos', ' wetKeyLitOven')),
+            tongs: new Interaction(new KeyPair('envCombos', 'tongsBack'), ['tongs'], [], [], [
+                new Activator('oven', 'tongsEnv', true)
+            ])
+        },
+
+        meltPot: {
+            default: new Interaction(new KeyPair('activeAreas', 'meltPot')),
+            emptyFlask: new Interaction(new KeyPair('envCombos', 'emptyFlaskPotUnlit')),
+            swampFlask: new Interaction(new KeyPair('envCombos', 'swampFlaskPotUnlit'),
+                ['swampFlask'], ['emptyFlask']),
+            scrapMetal: new Interaction(new KeyPair('envCombos', 'scrapMetalPotUnlit')),
+        },
+
+        metalPot: {
+            default: new Interaction(new KeyPair('activeAreas', 'metalPot')),
+            keyMold: new Interaction(new KeyPair('envCombos', 'makeCrypticKey'),
+            ['keyMold'], ['keyMoldStuck'], [], [
+                new Activator('oven', 'metalPot', false),
+                new Activator('oven', 'meltPot', false)])
+        },
+
+        keyMoldStuck: {
+            knife: new Interaction(new KeyPair('combos', 'keyMoldKnife')),
+            rock: new Interaction(new KeyPair('combos', 'keyMoldRock'), 
+                ['keyMoldStuck'], ['cryptidKey'], [new EventFlag('hammerClay')])
+
         },
     
         peat: {
@@ -462,11 +505,8 @@ export class RuneTempleInteractions {
             default: new Interaction(new KeyPair('activeAreas', 'tongs')),
             wetClayKey: new Interaction(new KeyPair('envCombos', 'wetKeyTongs'),
                 ['wetClayKey'], ['hotClayKey'], [], [
-                    new Activator('oven', 'tongsEnv', false)])
-        },
-    
-        meltPot: {
-            default: new Interaction(new KeyPair('activeAreas', 'meltPot'))
+                    new Activator('oven', 'tongsEnv', false)]),
+            wetKeyMold: new Interaction(new KeyPair('envCombos', ''))
         },
     
         troth: {
@@ -491,6 +531,7 @@ export class RuneTempleInteractions {
                     new EventFlag('haveFish', false)]),
             dryClay: new Interaction(new KeyPair('envCombos', 'dryClayEmptyTroth')),
             hotClayKey: new Interaction(new KeyPair('envCombos', 'hotKeyDryTroth')),
+            hotKeyMold: new Interaction(new KeyPair('envCombos', 'hotKeyDryTroth')),
 
         },
 
@@ -502,6 +543,8 @@ export class RuneTempleInteractions {
             wetClay: new Interaction(new KeyPair('envCombos', 'wetEnough')),
             hotClayKey: new Interaction(new KeyPair('envCombos', 'hotKeyTroth'),
                 ['hotClayKey'], ['clayKey'], [new EventFlag('coolKey')]),
+            hotKeyMold: new Interaction(new KeyPair('envCombos', 'hotKeyMoldTroth'),
+                ['hotKeyMold'], ['KeyMold']),
             fish: new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
                 ['fish'], [], [new EventFlag('fishInTroth')]),
             fishTank: new Interaction(new KeyPair('envCombos', 'fishWetTroth'),
@@ -621,6 +664,11 @@ export class RuneTempleInteractions {
         hiddenDoor: {
             default: new Interaction(new KeyPair('actionAreas', 'hiddenDoor'))
         },
+
+        hiddenDoorHaunt: {
+            default: new Interaction(new KeyPair('activeAreas', 'hiddenDoor2')),
+            breaker:  new Interaction(new KeyPair('activeAreas', 'breakerHiddenDoor'))
+        },
     
         cabinet1: {
             default: new Interaction(new KeyPair('activeAreas', 'cabinet1A'),
@@ -700,6 +748,7 @@ export class RuneTempleInteractions {
             magnetString: new Interaction(new KeyPair('combos', 'keyMoldUnrough')),
             stickyMagnetString: new Interaction(new KeyPair('combos', 'keyMoldUnrough')),
         },
+
     
         inputReqs: {
             fishName: new Interaction(new KeyPair('inputRequest', 'fishName'),
@@ -718,6 +767,7 @@ export class RuneTempleInteractions {
             nameFish: new InputRequestInteraction('nameFish'),
             riskyGambit: new ChoiceInteraction('riskyGambit'),
             breakerPuzzle1: new MiniGameInteraction('breakerPuzzle1'),
+            breakerPuzzle2: new MiniGameInteraction('breakerPuzzle2'),
             suffocation: new Interaction(undefined, ['fish'], [], [new EventFlag('suffocationFish')]),
             ending: new EndingInteraction()
         },

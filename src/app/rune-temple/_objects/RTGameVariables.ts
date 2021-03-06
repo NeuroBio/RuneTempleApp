@@ -30,6 +30,7 @@ export class FishDeaths {
         poachedFish: false,
         hammerFish: false,
         neglectFish: false,
-        suffocationFish: false
+        suffocationFish: false,
+        tossFish: false,
     };
 }

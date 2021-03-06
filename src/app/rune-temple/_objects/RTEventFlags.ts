@@ -66,6 +66,7 @@ export class RuneTempleEventFlags {
         hammerFish: false,
         neglectFish: false,
         suffocationFish: false,
+        tossFish: false,
 
         // HAMMER EVERYTHING
         hammerExit: false,
@@ -74,6 +75,7 @@ export class RuneTempleEventFlags {
         hammerRustedPanel: false,
         hammerPuzzleBox: false,
         hammerVase: false,
+        hammerClay: false,
         glassShatter: false,
         flaskShatter: false,
         keyShatter: false,

@@ -313,10 +313,41 @@ export class RuneTempleUpdateInteractions {
                 'clayKey', 'rock')],
 
             shatterHarder: [
-                new InteractionWithKeys(new Interaction(new KeyPair('combos', 'shatterKey5'),
-                ['clayKey'], [], [new EventFlag('dispairAchieved')]))
-            ]
-    
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('combos', 'shatterKey5'),
+                        ['clayKey'], [], [new EventFlag('dispairAchieved')]),
+                    'clayKey', 'rock')],
+
+            Noxious: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'hotClayBarrel2')),
+                    'rancidBarrel', 'hotKeyMold')],
+
+            clayCircle1: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'clayKeyEngrave2'),
+                        [], [], [], [], [], [], new KeyPair('onClickUpdates', 'clayCircle2')),
+                    'rancidBarrel', 'hotKeyMold')],
+
+            clayCircle2: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'clayKeyEngrave3'),
+                        ['clayKey'], [], [], [], [], [], new KeyPair('onClickUpdates', 'clayCircle1')),
+                    'rancidBarrel', 'hotKeyMold')],
+
+            hiddenDoorBreaker: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('activeAreas', 'hiddenDoor2'),
+                    [], [], [], [
+                        new Activator('basement', 'hiddenDoor', false),
+                        new Activator('basement', 'hiddenDoorHaunt', true),
+                    ]),
+                    'hiddenDoor', 'default')],
+
+            fishDepression: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('activeAreas', 'depression2')),
+                    'depression', 'default')]
     
         },
     
@@ -325,13 +356,35 @@ export class RuneTempleUpdateInteractions {
                 new InteractionWithKeys(
                     new Interaction(new KeyPair('dialogueEvents', 'peatStacks2')),
                     'peat', 'default'),
-                
+
+                    // TO DO: change this to a timer event!
                 new InteractionWithKeys(
                     new Interaction(new KeyPair('envCombos', 'reliefVictory2'),
                         [], [], [new EventFlag('reliefRepaired')], [
                             new Activator('classroom', 'vent2', true),
                             new Activator('classroom', 'reliefRepaired', true)]),
-                    'miniGames', 'assemblePuzzle')],
+                    'miniGames', 'assemblePuzzle'),
+
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'emptyFlaskPot'),
+                        ['emptyFlask'], [], [], [
+                            new Activator('oven', 'meltPot', false),
+                            new Activator('oven', 'metalPot', true)]),
+                    'meltPot', 'emptyFlask'),
+
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'swampFlaskPot'),
+                        ['swampFlask'], [], [], [
+                            new Activator('oven', 'meltPot', false),
+                            new Activator('oven', 'metalPot', true)]),
+                    'meltPot', 'swampFlask'),
+
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'scrapMetalPotLit'),
+                        ['scrapMetal'], [], [], [
+                            new Activator('oven', 'meltPot', false),
+                            new Activator('oven', 'metalPot', true)]),
+                        'meltPot', 'scrapMetal')],
     
             mapBurned: [
                 new InteractionWithKeys(

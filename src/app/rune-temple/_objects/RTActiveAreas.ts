@@ -57,7 +57,9 @@ export class RuneTempleGameActiveAreas {
         basement:  [
             new ActiveArea('Crafting Room', 'craftDoor', 0, 0),
             new ActiveArea('Bank of Moss', 'mossBank', 0, 0),
-            new ActiveArea('Metal Engraving', 'metalEngrave', 0, 0, false)
+            new ActiveArea('Metal Engraving', 'metalEngrave', 0, 0, false),
+            new ActiveArea('Hidden Door', 'hiddenDoor', 0, 0, false),
+            new ActiveArea('Hidden Door', 'hiddenDoorHaunt', 0, 0, false)
         ],
     
         oven:  [
