@@ -347,7 +347,22 @@ export class RuneTempleUpdateInteractions {
             fishDepression: [
                 new InteractionWithKeys(
                     new Interaction(new KeyPair('activeAreas', 'depression2')),
-                    'depression', 'default')]
+                    'depression', 'default')],
+
+            knifingZhang: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('zhangSleep', 'knife2')),
+                    'zhangSleep', 'knife')],
+
+            muralDestroyed: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('activeAreas', 'mural2')),
+                    'mural', 'default'),
+
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'rockMural2')),
+                    'mural', 'rock')
+            ]
     
         },
     

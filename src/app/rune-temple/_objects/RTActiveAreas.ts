@@ -5,7 +5,8 @@ export class RuneTempleGameActiveAreas {
         pitFloor: [
             new ActiveArea('Zhang Buried', 'zhangBuried', 0, 0),
             new ActiveArea('Zhang', 'zhangFreed', 0, 0, false),
-            new ActiveArea('Zhang', 'zhangBandaged', 0, 0, true),
+            new ActiveArea('Zhang', 'zhangBandaged', 0, 0, false),
+            new ActiveArea('Zhang', 'zhangSleep', 0, 0, false),
             new ActiveArea('Rubble', 'rubble', 0, 0),
             new ActiveArea('Dry Root', 'rootEnv', 0, 0),
             new ActiveArea('Palm-sized Stone', 'rockEnv', 0, 0, false)
@@ -90,5 +91,13 @@ export class RuneTempleGameActiveAreas {
             new ActiveArea('Ladder', 'ladder', 0, 0, false),
             new ActiveArea('Poisonous Plants', 'poisonPlant', 0, 0),
         ],
+
+        summon: [
+            new ActiveArea('Summoning Circle', 'circle', 0, 0),
+            new ActiveArea('Indent', 'dent', 0, 0),
+            new ActiveArea('Chalk', 'chalkEnv', 0, 0),
+            new ActiveArea('Candle Stubs', 'oldCandles', 0, 0),
+            new ActiveArea('Mosaic Mural', 'mural', 0, 0)
+        ]
     }
 }

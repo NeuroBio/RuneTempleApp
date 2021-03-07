@@ -254,6 +254,18 @@ export class RuneTempleDialogue {
                 new DialogueSnippet('', 'Erin sighs and returns to the task at hand.')
             ]
         },
+
+        zhangSleep: {
+            default: [new DialogueSnippet('Erin', 'Zhang fell asleep.  I should probably leave him alone.')],
+            knife: [
+                new DialogueSnippet('', 'This is a rare opportunity.  Zhang, both incapacitated and asleep.  Erin pulls out her knife.  She kneels quietly.  Delicately, she places the knife to Zhang’s throat.'),
+                new DialogueSnippet('Zhang', 'Zhang’s hand grabs her wrist.  The Master Hunter is now wide awake.'),
+                new DialogueSnippet('Erin', 'T-there was a thread.  Your coat—I just… wanted to cut it for you.'),
+                new DialogueSnippet('Zhang', 'Leave it be.'),
+                new DialogueSnippet('', 'Zhang settles back in to sleep.'),
+            ],
+            knife2: [new DialogueSnippet('', 'Erin knows better than to try again.  She missed her opportunity.'),]
+        },
     
         activeAreas: {
             // pitFloor
@@ -451,7 +463,19 @@ export class RuneTempleDialogue {
             keyMoldRock: [
                 new DialogueSnippet('', 'She pulls out her shiny new key with the joy of someone who will (probably) not have to mess with the oven again.'),
                 new DialogueSnippet('', 'Erin flips the mold over and carefully taps on the clay with the hammering rock.  The clay chips then cracks.  Erin gives the mold one more heathy knock, and it crumbles')
-            ]
+            ],
+            circle: [
+                new DialogueSnippet('', 'Erin is unsure what she is looking at.  Some deep memory from a history class brings the words “Rune Mural” into her mind, but none of the symbols before her are Runes.  '),
+                new DialogueSnippet('', 'Or at least not the Runes she has seen in etched into charms or printed onto “trendy” clothes.  Still, it looks familiar somehow.')
+            ],
+            dent: [new DialogueSnippet('', 'There is a dent in the floor at the center of the mural.  It looks like something is supposed to go there.')],
+            chalkEnv: [
+                new DialogueSnippet('', 'Intrigued, Erin picks up the chalk.  It doesn’t look or feel like normal chalk.  It’s much harder and an unusual shade of red.'),
+                new DialogueSnippet('', 'Are there flecks of Siphoid Crystal in this?')
+            ],
+            oldCandles: [new DialogueSnippet('Erin', 'These black candles are useless; there’s no wick left.')],
+            mural: [new DialogueSnippet('', 'A beautiful mosaic mural of the same Cryptid from the relief.  Erin runs her hand over the surface, rubbing off some of the dust.  The glass underneath is just as vibrant as it must have been centuries ago.')],
+            mural2: [new DialogueSnippet('', 'The mosaic is no more.')],
 
         },
     
@@ -788,7 +812,14 @@ export class RuneTempleDialogue {
             crypitidKeyEngrave: [new DialogueSnippet('', 'Erin pushes the metal key into the engraving, and it depresses.  The hidden door opens.  Erin stares hard at the metal key, daring it to buckle or break.  It holds strong.  Zhang would understand that his flask had been sacrificed for the greater good.')],
             breakerHiddenDoor: [new DialogueSnippet('', 'Erin readys herself for a fight.', 'breakerPuzzle2')],
             fishToss: [new DialogueSnippet('', 'Erin inexplicably tosses the fish into the center of the room.  It’s not clear what she thought this would accomplish, but there is now a fish in the center of the room.  It flops listlessly several times before going still.')],
-
+            enterSummon: [new DialogueSnippet('', 'The mid-tier Ghosts were destroyed.  Erin can now enter the hidden room unhindered.')],
+            rockMural: [
+                new DialogueSnippet('', 'Looking at the mosaic causes a wave of nausea to rush over Erin.  She takes out her makeshift hammer and batters it against the glass, shattering pieces, sending shards flying in all directions.'),
+                new DialogueSnippet('', 'Even as some of the shards cut her skin, she keeps going until the creature in the mural is no more.  Erin breathes deeply.  She feels elated.'),
+            ],
+            rockMural2: [new DialogueSnippet('', 'That which was destroyed cannot be further broken.')],
+            chalkCircle: [new DialogueSnippet('', '')],
+            
         },
     
         itemDefaults: {
@@ -831,6 +862,7 @@ export class RuneTempleDialogue {
     
         scenes: {
             pitCeiling: [new DialogueSnippet('', 'The ceiling is too high to climb out.')],
+            pitFloor: [],
             bag: [
                 new DialogueSnippet('Erin', 'Do you have anything that might help us?'),
                 new DialogueSnippet('Zhang', 'Maybe.  Take what you need.')
@@ -838,8 +870,11 @@ export class RuneTempleDialogue {
             foyer: [new DialogueSnippet('Erin', 'I can\'t see anything out here')],
             classroom: [new DialogueSnippet('Erin', 'That blackboard… is this a classroom?')],
             exit: [new DialogueSnippet('', 'Erin tries to push the door open, but it will not budge. Perhaps something is pressing on it from the other side?')],
+            basement: [new DialogueSnippet('', 'the doorway led to a staircase and a damp basement.')],
             oven: [new DialogueSnippet('Erin', 'A furnace room... Good to know that I can heat this place up if it gets too cold.')],
             leg: [new DialogueSnippet('Erin', 'That doesn\'t look good.')],
+            craft: [new DialogueSnippet('', 'A room full of crafting and building supplies.  Erin wonders what things the priests and priestesses of the old religion used to make in here.  Even after all this time, the cluttered space exudes a vague sweetness of potpourri.')],
+            summon: [new DialogueSnippet('', 'Erin walks quietly into the room, but her footsteps echo around her.  The room is dimly lit.  She looks up at what must have once been a skylight.  It is now covered in algae.  A few rays of light filter through it.')],
             foyerHaunt: [new DialogueSnippet('Erin', 'What the...')],
             deadFish: [new DialogueSnippet('', 'A strange smell catches Erin’s attention.  She looks at the tiny fish only to realize it has passed on while waiting in her inventory.  Erin sighs.  She tosses the fish into a discrete corner of the room.', 'suffocation')]
         },

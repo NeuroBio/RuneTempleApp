@@ -74,6 +74,7 @@ export class RuneTempleEventFlags {
         hammerLockBox: false,
         hammerRustedPanel: false,
         hammerPuzzleBox: false,
+        hammerMural: false,
         hammerVase: false,
         hammerClay: false,
         glassShatter: false,

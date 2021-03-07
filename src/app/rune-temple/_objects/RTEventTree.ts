@@ -74,6 +74,8 @@ export class RTEventTree {
             /* falls through */
           case 'hammerRustedPanel' :
             /* falls through */
+          case 'hammerMural' :
+            /* falls through */
           case 'hammerVase' :
             /* falls through */
           case 'hammerSpigot' :
@@ -92,6 +94,7 @@ export class RTEventTree {
               && events.hammerLockBox
               && events.hammerPuzzleBox
               && events.hammerRustedPanel
+              && events.hammerMural
               && events.hammerSpigot
               && events.hammerClay
               && events.glassShatter

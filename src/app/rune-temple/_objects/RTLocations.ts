@@ -31,6 +31,7 @@ export class RuneTempleGameLocations {
         basement: [
             new ActiveArea('Furnace Room', 'oven', 0, 0),
             new ActiveArea('Crafting Room', 'craft', 0, 0, false),
+            new ActiveArea('Summoning Room', 'summon', 0, 0, false),
             new ActiveArea('Go Back', 'foyer', 0, 0)
         ],
     
@@ -38,6 +39,13 @@ export class RuneTempleGameLocations {
     
         leg: [new ActiveArea('Go Back', 'pitFloor', 0, 0)],
     
-        craft: [new ActiveArea('Go Back', 'basement', 0, 0)]
+        craft: [new ActiveArea('Go Back', 'basement', 0, 0)],
+
+        summon: [
+            new ActiveArea('Go Back', 'basement', 0, 0),
+            new ActiveArea('small Crate', 'crate', 0, 0)
+        ],
+
+        ritual: [new ActiveArea('Go Back', 'basement', 0, 0)]
     }
 }

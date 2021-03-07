@@ -45,6 +45,13 @@ export class RuneTempleInteractions {
                 ['pills'], [], [new EventFlag('zhangMedicated')],
                 [], [], [], new KeyPair('onClickUpdates', 'zhangMedicated')),
         },
+
+        zhangSleep: {
+            default: new Interaction(new KeyPair('zhangSleep', 'default')),
+            knife: new Interaction(new KeyPair('zhangSleep', 'knife'),
+                [], [], [new EventFlag('deathWish')], [], [], [], 
+                new KeyPair('onClickUpdates', 'knifingZhang')),
+        },
     
         rubble: {
             default: new Interaction(new KeyPair('activeAreas', 'rubble')),
@@ -749,6 +756,31 @@ export class RuneTempleInteractions {
             stickyMagnetString: new Interaction(new KeyPair('combos', 'keyMoldUnrough')),
         },
 
+        circle: {
+            default: new Interaction(new KeyPair('activeAreas', 'circle'))
+        },
+
+        dent: {
+            default: new Interaction(new KeyPair('activeAreas', 'dent'))
+        },
+
+        chalkEnv: {
+            default: new Interaction(new KeyPair('activeAreas', 'chalkEnv'),
+                [], ['chalk'])
+        },
+
+        oldCandles: {
+            default: new Interaction(new KeyPair('activeAreas', 'oldCandles'))
+        },
+
+        mural: {
+            default: new Interaction(new KeyPair('activeAreas', 'mural')),
+            rock: new Interaction(new KeyPair('envCombos', 'rockMural'),
+            [], [], [new EventFlag('hammerMural')], [], [], [],
+            new KeyPair('onClickUpdates', 'muralDestroyed'))
+        },
+
+
     
         inputReqs: {
             fishName: new Interaction(new KeyPair('inputRequest', 'fishName'),
@@ -775,10 +807,12 @@ export class RuneTempleInteractions {
         miniGames: {
             breakerPuzzle1: new Interaction(new KeyPair('envCombos', 'reliefVictory'),
                 [], [], [], [], [], [], new KeyPair('miniGames', 'breakerPuzzle1')),
-            assemblePuzzle1: new Interaction(new KeyPair('envCombos', 'reliefUNVictory'),
-                [], [], [new EventFlag('deathInDarkness')], [
+            assemblePuzzle1: new Interaction(new KeyPair('envCombos', 'reliefVictory'),
+                [], [], [], [
                         new Activator('classroom', 'vent2', true),
-                        new Activator('classroom', 'reliefRepaired', true)])
+                        new Activator('classroom', 'relief', false),
+                        new Activator('classroom', 'reliefRepaired', true)]),
+            breakerPuzzle2: new Interaction(new KeyPair('envCombos', 'enterSummon')),
         },
     
         choices: {
