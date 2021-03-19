@@ -94,10 +94,19 @@ export class RuneTempleGameActiveAreas {
 
         summon: [
             new ActiveArea('Summoning Circle', 'circle', 0, 0),
+            new ActiveArea('Summoning Circle', 'circleBooked', 0, 0, false),
             new ActiveArea('Indent', 'dent', 0, 0),
             new ActiveArea('Chalk', 'chalkEnv', 0, 0),
             new ActiveArea('Candle Stubs', 'oldCandles', 0, 0),
-            new ActiveArea('Mosaic Mural', 'mural', 0, 0)
+            new ActiveArea('Mosaic Mural', 'mural', 0, 0),
+            new ActiveArea('Mosaic Mural', 'muralDestroyed', 0, 0, false),
+        ],
+
+        crate: [
+            new ActiveArea('Bags', 'bags', 0, 0),
+            new ActiveArea('Deep Red Key', 'redKeyEnv', 0, 0),
+            new ActiveArea('Dirty Rag', 'ragEnv', 0, 0),
+            new ActiveArea('Crystals', 'crystals', 0, 0)
         ]
     }
 }

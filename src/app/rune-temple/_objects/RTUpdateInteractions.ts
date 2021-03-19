@@ -353,16 +353,7 @@ export class RuneTempleUpdateInteractions {
                 new InteractionWithKeys(
                     new Interaction(new KeyPair('zhangSleep', 'knife2')),
                     'zhangSleep', 'knife')],
-
-            muralDestroyed: [
-                new InteractionWithKeys(
-                    new Interaction(new KeyPair('activeAreas', 'mural2')),
-                    'mural', 'default'),
-
-                new InteractionWithKeys(
-                    new Interaction(new KeyPair('envCombos', 'rockMural2')),
-                    'mural', 'rock')
-            ]
+            // page4: [new InteractionWithKeys(new Interaction()), '', '')],
     
         },
     
@@ -406,6 +397,7 @@ export class RuneTempleUpdateInteractions {
                     new Interaction(new KeyPair('activeAreas', 'charcoal2'),
                         [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)]),
                     'charcoalEnv', 'default')]
+            
         },
     
         eventFlagUpdates: {

@@ -70,8 +70,7 @@ export class RuneTempleGameChoices {
             'Will Erin name the fish?',
             ['Yes', 'No'], [
                 new KeyPair('choices', 'nameFish'),
-                new KeyPair('choices', 'noNameFish')
-               ]),
+                new KeyPair('choices', 'noNameFish')]),
     
         ladderEscape: new Choice(
             'Are you sure you want to escape now?',
@@ -83,7 +82,18 @@ export class RuneTempleGameChoices {
             'Is Erin seriously going to wreck her clay key?',
             ['No, she has more self-respect than that.', 'It\'s for science.'], [
             undefined,
-            new KeyPair('choices', 'keyShattering')]
-        )
+            new KeyPair('choices', 'keyShattering')]),
+
+        bookPage: new Choice(
+            'What page should Erin draw from?',
+            ['1', '2', '3', '4', '5', '6', '7'],
+            [
+                new KeyPair('choices', 'bookPageOther'),
+                new KeyPair('choices', 'bookPageOther'),
+                new KeyPair('choices', 'bookPageOther'),
+                new KeyPair('choices', 'bookPage4'),
+                new KeyPair('choices', 'bookPageOther'),
+                new KeyPair('choices', 'bookPageOther'),
+                new KeyPair('choices', 'bookPageOther')])
     }
 }

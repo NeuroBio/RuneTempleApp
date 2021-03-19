@@ -117,6 +117,12 @@ export class RTEventTree {
               updates.push(new KeyPair(eventKey, 'deadFish'));
             }
             break;
+          case 'haveBook' :
+            if (events.haveBook && events.zhangSawBook && events.reliefRepaired) {
+              updateChoices.push(new UpdateChoice('zhangConvoTopics', 'about the relief', 'zhangRelief'));
+            } else if (!events.haveBook && events.zhangSawBook && events.reliefRepaired) {
+              updateChoices.push(new UpdateChoice('zhangConvoTopics', 'about the relief'));
+            }
           case 'ovenLit' :
             if (events.ovenCharcoal) {
               updateFlags.push(new EventFlag('charcoalBurned'));

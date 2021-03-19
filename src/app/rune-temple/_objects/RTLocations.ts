@@ -46,6 +46,8 @@ export class RuneTempleGameLocations {
             new ActiveArea('small Crate', 'crate', 0, 0)
         ],
 
+        crate: [new ActiveArea('Go Back', 'summon', 0, 0)],
+
         ritual: [new ActiveArea('Go Back', 'basement', 0, 0)]
     }
 }

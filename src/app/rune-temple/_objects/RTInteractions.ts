@@ -757,7 +757,21 @@ export class RuneTempleInteractions {
         },
 
         circle: {
-            default: new Interaction(new KeyPair('activeAreas', 'circle'))
+            default: new Interaction(new KeyPair('activeAreas', 'circle')),
+            chalk: new Interaction(new KeyPair('envCombos', 'whatToDraw')),
+            book: new Interaction(new KeyPair('envCombos', 'placeBook'),
+                ['book'], [], [new EventFlag('haveBook', false)], [
+                    new Activator('summon', 'circle', false),
+                    new Activator('summon', 'circleBooked', true)
+                ]),
+            rag: new Interaction(new KeyPair('envCombos', 'eraseMural'),
+                [], [], [] )
+        },
+
+        circleBooked: {
+            default: new Interaction(new KeyPair('activeAreas', 'retakeBook'),
+            [], ['book'], [new EventFlag('haveBook', true)]),
+            chalk: new ChoiceInteraction('bookPage')
         },
 
         dent: {
@@ -770,16 +784,43 @@ export class RuneTempleInteractions {
         },
 
         oldCandles: {
-            default: new Interaction(new KeyPair('activeAreas', 'oldCandles'))
+            default: new Interaction(new KeyPair('activeAreas', 'oldCandles')),
+            lighter: new Interaction(new KeyPair('envCombos', 'lighterOldCandles'))
         },
 
         mural: {
             default: new Interaction(new KeyPair('activeAreas', 'mural')),
             rock: new Interaction(new KeyPair('envCombos', 'rockMural'),
-            [], [], [new EventFlag('hammerMural')], [], [], [],
+            [], [], [new EventFlag('hammerMural')],
+            [
+                new Activator('summon', 'mural', false),
+                new Activator('summon', 'muralDestroyed', false)
+            ], [], [],
             new KeyPair('onClickUpdates', 'muralDestroyed'))
         },
 
+        muralBroken: {
+            default: new Interaction(new KeyPair('activeAreas', 'mural2')),
+            rock: new Interaction(new KeyPair('envCombos', 'rockMural2'))
+        },
+
+        bags: {
+            default: new Interaction(new KeyPair('activeAreas', 'bags'))
+        },
+
+        redKeyEnv: {
+            default: new Interaction(new KeyPair('activeAreas', 'redKeyEnv'),
+            [], ['redKey'], [], [new Activator('crate', 'redKeyEnv', false)])
+        },
+
+        ragEnv: {
+            default: new Interaction(new KeyPair('activeAreas', 'ragEnv'),
+            [], ['rag'], [], [new Activator('crate', 'ragEnv', false)])
+        },
+
+        crystals: {
+            default: new Interaction(new KeyPair('activeAreas', 'crystals'))
+        },
 
     
         inputReqs: {
@@ -796,11 +837,16 @@ export class RuneTempleInteractions {
             shatter3: new ChoiceInteraction('shatter2'),
             shatter2: new ChoiceInteraction('shatter3'),
             igniteMap: new ChoiceInteraction('igniteMap'),
-            nameFish: new InputRequestInteraction('nameFish'),
             riskyGambit: new ChoiceInteraction('riskyGambit'),
+            bookPage: new ChoiceInteraction('bookPage'),
+
+            nameFish: new InputRequestInteraction('nameFish'),
+
             breakerPuzzle1: new MiniGameInteraction('breakerPuzzle1'),
             breakerPuzzle2: new MiniGameInteraction('breakerPuzzle2'),
+
             suffocation: new Interaction(undefined, ['fish'], [], [new EventFlag('suffocationFish')]),
+
             ending: new EndingInteraction()
         },
     
@@ -854,9 +900,19 @@ export class RuneTempleInteractions {
             noNameFish: new Interaction(new KeyPair('dialogueEvents', 'unnameFish'),
                 [], [], [], [], [], ['pokemon']),
             ladderEscape: new Interaction(undefined, [], [], [new EventFlag('endGame')]),
-            keyShattering: new Interaction(new KeyPair('', ''), ['clayKey'], [],
+            keyShattering: new Interaction(undefined, ['clayKey'], [],
                 [new EventFlag('keyShatter')], [], [], [], 
-                new KeyPair('onClickUpdates', 'shatterHarder'))
+                new KeyPair('onClickUpdates', 'shatterHarder')),
+            bookPage4: new Interaction(new KeyPair('envCombos', 'draw4'),
+                [], [], [], [
+                    new Activator('summon', 'circleBooked', false),
+                    new Activator('summon', 'circle4', true),
+                ], [], [],
+                new KeyPair('dialogueUpdates', 'page4')),
+            bookPage5: new Interaction(new KeyPair('envCombos', 'page5'), [], [], [], [], [], [],
+                new KeyPair('dialogueUpdates', 'page5')),
+            bookPageOther: new Interaction(new KeyPair('envCombos', 'drawOther'), [], [], [], [], [], [],
+                new KeyPair('dialogueUpdates', 'pageOther')),
         }
     }
 

@@ -410,6 +410,11 @@ export class RuneTempleDialogue {
             poisonPlant: [new DialogueSnippet('Erin', 'Zhang warned me not to touch those anymore.')],
             ladder: [new DialogueSnippet('', 'The ladder is complete.', 'ladderEscape')],
             metalPot: [new DialogueSnippet('', 'A small part of Erin mourns for the flask.  A larger part sees the potential in the melted metal.')],
+            retakeBook: [new DialogueSnippet('', 'Erin retrieved the book.')],
+            bags: [new DialogueSnippet('', 'Erin opens one of the cloth bags.  Whatever used to be inside it has long since disintegrated.')],
+            redKeyEnv: [new DialogueSnippet('', 'Erin grins as she retrieves the key.  Access to one more room and, potentially, an exit.')],
+            ragEnv: [new DialogueSnippet('', 'Erin is less than enthused about carrying around the dingy rag, but it could be useful.')],
+            crystals: [new DialogueSnippet('Erin', 'They’re pretty, but they don’t look very valuable.')]
         },
     
         combos: {
@@ -818,8 +823,12 @@ export class RuneTempleDialogue {
                 new DialogueSnippet('', 'Even as some of the shards cut her skin, she keeps going until the creature in the mural is no more.  Erin breathes deeply.  She feels elated.'),
             ],
             rockMural2: [new DialogueSnippet('', 'That which was destroyed cannot be further broken.')],
-            chalkCircle: [new DialogueSnippet('', '')],
-            
+            whatToDraw: [new DialogueSnippet('Erin', 'I\'m not sure what to draw here')],
+            lighterOldCandles: [new DialogueSnippet('Erin', 'There\'s no wick to light.')],
+            placeBook: [new DialogueSnippet('', 'Erin places the book on the ground.')],
+            draw4: [new DialogueSnippet('', 'Erin completes the Rune Mural.')],
+            drawOther: [new DialogueSnippet('Erin', 'I would have to erase the old one first.')],
+            eraseMural: [new DialogueSnippet('', 'Erin erases the current mural with the rag.')]
         },
     
         itemDefaults: {
