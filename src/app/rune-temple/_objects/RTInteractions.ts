@@ -760,17 +760,36 @@ export class RuneTempleInteractions {
             default: new Interaction(new KeyPair('activeAreas', 'circle')),
             chalk: new Interaction(new KeyPair('envCombos', 'whatToDraw')),
             book: new Interaction(new KeyPair('envCombos', 'placeBook'),
-                ['book'], [], [new EventFlag('haveBook', false)], [
-                    new Activator('summon', 'circle', false),
-                    new Activator('summon', 'circleBooked', true)
-                ]),
+                ['book'], [], [
+                    new EventFlag('haveBook', false),
+                    new EventFlag('circleBooked')
+                ], [new Activator('summon', 'circleBooked', true)], [], [],
+                new KeyPair('onClickInteractions', 'bookCircle')),
             rag: new Interaction(new KeyPair('envCombos', 'eraseMural'),
-                [], [], [] )
+                [], [], [
+                    new EventFlag('eraseMural'),
+                    new EventFlag('drawRuneMural', 0)
+                ], [
+                    new Activator('summon', 'rm4partial', false),
+                    new Activator('summon', 'rm1', false),
+                    new Activator('summon', 'rm2', false),
+                    new Activator('summon', 'rm3', false),
+                    new Activator('summon', 'rm4', false),
+                    new Activator('summon', 'rm5', false),
+                    new Activator('summon', 'rm6', false),
+                    new Activator('summon', 'rm7', false), 
+                ], [], [],
+                new KeyPair('onClickInteractions', 'eraseMural') ),
+            breaker: new Interaction(new KeyPair('envCombos', 'breakerMural'))
         },
 
         circleBooked: {
             default: new Interaction(new KeyPair('activeAreas', 'retakeBook'),
-            [], ['book'], [new EventFlag('haveBook', true)]),
+                [], ['book'], [
+                    new EventFlag('haveBook', true),
+                    new EventFlag('circleBooked', false)
+                ], [new Activator('summon', 'circleBooked', false)], [], [],
+                new KeyPair('onClickInteractions', 'unbookCircle')),
             chalk: new ChoiceInteraction('bookPage')
         },
 
@@ -899,20 +918,45 @@ export class RuneTempleInteractions {
             nameFish: new InputRequestInteraction('fishName'),
             noNameFish: new Interaction(new KeyPair('dialogueEvents', 'unnameFish'),
                 [], [], [], [], [], ['pokemon']),
-            ladderEscape: new Interaction(undefined, [], [], [new EventFlag('endGame')]),
+            ladderEscape: new Interaction(undefined, [], [],
+                [
+                    new EventFlag('ladderEscape'),
+                    new EventFlag('endGame')
+                ]),
             keyShattering: new Interaction(undefined, ['clayKey'], [],
                 [new EventFlag('keyShatter')], [], [], [], 
                 new KeyPair('onClickUpdates', 'shatterHarder')),
-            bookPage4: new Interaction(new KeyPair('envCombos', 'draw4'),
-                [], [], [], [
-                    new Activator('summon', 'circleBooked', false),
-                    new Activator('summon', 'circle4', true),
-                ], [], [],
-                new KeyPair('dialogueUpdates', 'page4')),
-            bookPage5: new Interaction(new KeyPair('envCombos', 'page5'), [], [], [], [], [], [],
-                new KeyPair('dialogueUpdates', 'page5')),
-            bookPageOther: new Interaction(new KeyPair('envCombos', 'drawOther'), [], [], [], [], [], [],
-                new KeyPair('dialogueUpdates', 'pageOther')),
+            bookPage4: new Interaction(new KeyPair('envCombos', 'draw'),
+                [], [], [new EventFlag('drawRuneMural', 4)], [
+                    new Activator('summon', 'rm4partial', false),
+                    new Activator('summon', 'rm4', true)
+                ], [], [], new KeyPair('dialogueUpdates', 'drewAMural')),
+            bookPage5: new Interaction(new KeyPair('envCombos', 'draw'),
+                [], [], [new EventFlag('drawRuneMural', 5)],
+                [new Activator('summon', 'rm5', true)],
+                [], [], new KeyPair('dialogueUpdates', 'drewAMural')),
+            bookPage1: new Interaction(new KeyPair('envCombos', 'draw'),
+                [], [], [new EventFlag('drawRuneMural', 1)],
+                [new Activator('summon', 'rm1', true)], [], [],
+                new KeyPair('dialogueUpdates', 'drewAMural')),
+            bookPage2: new Interaction(new KeyPair('envCombos', 'draw'),
+                [], [], [new EventFlag('drawRuneMural', 2)],
+                [new Activator('summon', 'rm2', true)], [], [],
+                new KeyPair('dialogueUpdates', 'drewAMural')),
+            bookPage3: new Interaction(new KeyPair('envCombos', 'draw'),
+                [], [], [new EventFlag('drawRuneMural', 3)],
+                [new Activator('summon', 'rm3', true)], [], [],
+                new KeyPair('dialogueUpdates', 'drewAMural')),
+            bookPage6: new Interaction(new KeyPair('envCombos', 'draw'),
+                [], [], [new EventFlag('drawRuneMural', 6)],
+                [new Activator('summon', 'rm6', true)], [], [],
+                new KeyPair('dialogueUpdates', 'drewAMural')),
+            bookPage7: new Interaction(new KeyPair('envCombos', 'draw'),
+                [], [], [new EventFlag('drawRuneMural', 7)],
+                [new Activator('summon', 'rm7', true)], [], [],
+                new KeyPair('dialogueUpdates', 'drewAMural')),
+                
+            bookPageOther: new Interaction(new KeyPair('envCombos', 'drawOther')),
         }
     }
 

@@ -1,5 +1,5 @@
 import { Interaction, InteractionWithKeys, KeyPair,
-    SceneDialogueInteraction, GameUpdateInteractions } from '../../pn-c-game/_objects/interactions/Interaction';
+    SceneDialogueInteraction, GameUpdateInteractions, ChoiceInteraction } from '../../pn-c-game/_objects/interactions/Interaction';
 import { EventFlag } from '../../pn-c-game/_objects/EventFlag';
 import { Activator } from '../../pn-c-game/_objects/ActiveArea';
 
@@ -353,8 +353,27 @@ export class RuneTempleUpdateInteractions {
                 new InteractionWithKeys(
                     new Interaction(new KeyPair('zhangSleep', 'knife2')),
                     'zhangSleep', 'knife')],
-            // page4: [new InteractionWithKeys(new Interaction()), '', '')],
     
+            bookCircle: [
+                new InteractionWithKeys(new ChoiceInteraction('bookPage'), 'circle', 'chalk')
+            ],
+
+            unbookCircle: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'whatToDraw')),
+                    'circle', 'chalk')
+            ],
+
+            eraseMural: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'nothingToErase')),
+                    'circle', 'rag'),
+
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'breakErasedMural')),
+                    'circle', 'breaker'),
+
+                new InteractionWithKeys(new ChoiceInteraction('bookPage'), 'circle', 'chalk')],
         },
     
         dialogueUpdates: {
@@ -396,8 +415,36 @@ export class RuneTempleUpdateInteractions {
                 new InteractionWithKeys(
                     new Interaction(new KeyPair('activeAreas', 'charcoal2'),
                         [], ['charcoal'], [], [new Activator('classroom', 'charcoalEnv', false)]),
-                    'charcoalEnv', 'default')]
+                    'charcoalEnv', 'default')],
             
+            drewAMural: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'drawOther')),
+                    'circle', 'chalk'),
+
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'drawOther')),
+                    'circleBooked', 'chalk'),
+
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'eraseMural'),
+                        [], [], [
+                            new EventFlag('eraseMural'),
+                            new EventFlag('drawRuneMural', 0)
+                        ], [
+                            new Activator('summon', 'rm4partial', false),
+                            new Activator('summon', 'rm1', false),
+                            new Activator('summon', 'rm2', false),
+                            new Activator('summon', 'rm3', false),
+                            new Activator('summon', 'rm4', false),
+                            new Activator('summon', 'rm5', false),
+                            new Activator('summon', 'rm6', false),
+                            new Activator('summon', 'rm7', false), 
+                        ], [], [],
+                        new KeyPair('onClickInteractions', 'eraseMural') ),
+                    'circle', 'rag'
+                )]
+
         },
     
         eventFlagUpdates: {
@@ -558,7 +605,31 @@ export class RuneTempleUpdateInteractions {
                 new InteractionWithKeys(
                     new Interaction(new KeyPair('envCombos', 'hotKeyMoldTroth'),
                         ['hotKeyMold'], ['keyMold']),
-                    'fullTroth', 'hotKeyMold')]
+                    'fullTroth', 'hotKeyMold')],
+
+            chalkDesign: [
+                new InteractionWithKeys(new Interaction(new KeyPair('envCombos', 'drawOther')),
+                'circle', 'chalk')],
+
+            chalkNoDesign: [
+                new InteractionWithKeys(new ChoiceInteraction('bookPage'), 'circle', 'chalk')
+            ],
+
+            muralNotReady: [
+                new InteractionWithKeys(
+                    new Interaction(new KeyPair('envCombos', 'breakerMural')),
+                    'circle', 'breaker'),
+            ],
+
+            mural4Ready: [],
+
+            mural5Ready: [],
+
+            posessedEnding: [
+                new InteractionWithKeys(
+                    new Interaction(undefined, [], [], [new EventFlag('endGame')],
+                    [], [], ['possessed']),
+                    'circle', 'breaker')]
         },
     
         miniGames: {

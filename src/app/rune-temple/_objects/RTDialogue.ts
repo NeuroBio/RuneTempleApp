@@ -56,7 +56,7 @@ export class RuneTempleDialogue {
                 new DialogueSnippet('', 'Zhang dodges.  He lunges at her, knocking her to the ground.  The two Hunters struggle, but Zhang pins Erin\'s right hand and puts his dagger to her throat.'),
                 new DialogueSnippet('Zhang', 'We don\'t need people like you in the profession.')
             ],
-            ending3part1: [
+            posessedFanatic: [
                 new DialogueSnippet('', 'As Erin weavers a Breaker fog where the dent as, the Red chalk lines light up, bright teal.  Erin pulls her hand back, but the mural continues to glow.  The whole room is consumed in teal light.'),
                 new DialogueSnippet('', 'Slowly, the light fades.'),
                 new DialogueSnippet('', 'Erin sits, panting anxiously in the quiet.'),
@@ -65,9 +65,7 @@ export class RuneTempleDialogue {
                 new DialogueSnippet('', 'A rush of motion through the skylight.  Another source of teal glow.  Erin looks up dumbfounded.  There is a tapping on the mosaic.  Erin puts her hand to it just as the stone cracks.'),
                 new DialogueSnippet('', 'All around Erin, Ghosts slink in.  The tapping becomes a thundering roar of pounding.  Water starts gushing through the cracks.'),
                 new DialogueSnippet('', 'A massive teal Ghost finally breaks through the rock.  As it slithers in, Erin realizes this serpentine creature is no Ghost.'),
-                new DialogueSnippet('', 'The Core.')
-            ],
-            ending3part2: [
+                new DialogueSnippet('', 'The Core.'),
                 new DialogueSnippet('', 'The being seems frustrated by Erin\'s lack of comprehension.  Or perhaps it is disdainful of her slack-jawed expression.'),
                 new DialogueSnippet('The Core', 'Why call me?'),
                 new DialogueSnippet('', 'Erin jumps to her feet, stumbles back, then falls right back onto the ground, babbling out nonsense.'),
@@ -826,9 +824,12 @@ export class RuneTempleDialogue {
             whatToDraw: [new DialogueSnippet('Erin', 'I\'m not sure what to draw here')],
             lighterOldCandles: [new DialogueSnippet('Erin', 'There\'s no wick to light.')],
             placeBook: [new DialogueSnippet('', 'Erin places the book on the ground.')],
-            draw4: [new DialogueSnippet('', 'Erin completes the Rune Mural.')],
-            drawOther: [new DialogueSnippet('Erin', 'I would have to erase the old one first.')],
-            eraseMural: [new DialogueSnippet('', 'Erin erases the current mural with the rag.')]
+            draw: [new DialogueSnippet('', 'Erin draws the Rune Mural as shown on the page.')],
+            drawOther: [new DialogueSnippet('Erin', 'I\'ll have to erase the existing mural first.')],
+            eraseMural: [new DialogueSnippet('', 'Erin erases the current mural with the rag.')],
+            nothingToErase: [new DialogueSnippet('', 'There is nothing for Erin to erase')],
+            breakerMural: [new DialogueSnippet('', 'Erin casts Breaker on the mural.  The chalk lines glow momentarily before fading back to red.')],
+            breakErasedMural: [new DialogueSnippet('', 'There is nothing for Erin to cast break on.')]
         },
     
         itemDefaults: {

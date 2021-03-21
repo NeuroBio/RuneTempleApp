@@ -20,6 +20,11 @@ export class RuneTempleEventFlags {
         ladderMade: false,
         wetKeyMade: false,
         coolKey: false,
+        drawRuneMural: 0,
+        circleBooked: false,
+        eraseMural: false,
+        erasedMuralPreviously: false,
+        candlesLit: false,
         coreMet: false,
         coreDefeated: false,
         delay: false,
@@ -97,6 +102,7 @@ export class RuneTempleEventFlags {
         reliefDestroyed: false,
         muralDestroyed: false,
         murderAttempt: false,
+        ladderEscape: false,
 
 
 

@@ -183,6 +183,41 @@ export class RTEventTree {
           case 'endGame' :
             // this.triggerEndGame();
             break;
+
+          case 'circleBooked' :
+            if (events.circleBooked) {
+              if (events.drawRuneMural === 0) {
+                updates.push(new KeyPair(eventKey, 'chalkNoDesign'));
+              } else {
+                updates.push(new KeyPair(eventKey, 'chalkDesign'));
+              }
+            }
+          break;
+          case 'drawRuneMural' :
+            switch (events.drawRuneMural) {
+              case 4 :
+                if (events.candlesLit) {
+                  updates.push(new KeyPair(eventKey, 'mural4Ready'));
+                } else {
+                  updates.push(new KeyPair(eventKey, 'muralNotReady'));
+                }
+                break;
+              case 5 :
+                if (events.sacrificeFish && events.muralDestroyed && events.reliefDestroyed) {
+                  updates.push(new KeyPair(eventKey, 'posessedEnding'));
+                } else {
+                  updates.push(new KeyPair(eventKey, 'mural5Ready'))
+                }
+                break;
+              default:
+                updates.push(new KeyPair(eventKey, 'muralNotReady'));
+                break;
+            }
+            break;
+
+          case 'ladderEscape' :
+              checkBadges.push(new BadgeCheck('quick', !events.wetKeyMade));
+            break;
           default:
             break;
         };

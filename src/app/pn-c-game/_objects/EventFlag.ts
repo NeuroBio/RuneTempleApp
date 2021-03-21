@@ -9,5 +9,5 @@ export class EventFlag {
 }
 
 export class GameEventFlags {
-    [key: string]: boolean;
+    [key: string]: boolean | number;
 }
